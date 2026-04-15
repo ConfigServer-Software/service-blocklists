@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             privacy_bytedance_ipset
 #   @uuid           2812b2c7-ef89-317d-9384-532828085f39
-#   @updated        Mon Apr  6 20:39:58 UTC 2026
-#   @entries        403,537 ips
-#                   60 subnets
-#                   60 lines
+#   @updated        Wed Apr 15 01:30:10 UTC 2026
+#   @entries        403,281 ips
+#                   59 subnets
+#                   59 lines
 #   @asn            AS396986, AS138699, AS150436
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -34,7 +34,6 @@
 118.26.132.0/24
 128.1.127.0/24
 128.1.169.0/24
-128.1.226.0/24
 128.1.235.0/24
 129.227.102.0/24
 130.44.212.0/22

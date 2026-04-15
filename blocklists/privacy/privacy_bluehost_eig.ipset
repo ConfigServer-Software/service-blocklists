@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             privacy_bluehost_eig_ipset
 #   @uuid           54f1dc61-d87d-3324-8569-943ad9473105
-#   @updated        Mon Apr  6 20:39:51 UTC 2026
-#   @entries        1,207,296 ips
-#                   89 subnets
-#                   89 lines
+#   @updated        Wed Apr 15 01:30:04 UTC 2026
+#   @entries        1,273,856 ips
+#                   91 subnets
+#                   91 lines
 #   @asn            AS46606
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -68,7 +68,9 @@
 137.59.148.0/22
 142.4.0.0/19
 143.95.0.0/16
+149.47.0.0/16
 162.144.0.0/16
+162.210.48.0/22
 162.210.70.0/23
 162.214.0.0/15
 162.222.225.0/24

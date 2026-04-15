@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             privacy_baidu_ipset
 #   @uuid           b662b683-1eff-3e0f-a722-ffdf0cc8a556
-#   @updated        Mon Apr  6 20:39:37 UTC 2026
+#   @updated        Wed Apr 15 01:29:55 UTC 2026
 #   @entries        583,686 ips
-#                   75 subnets
-#                   75 lines
+#                   72 subnets
+#                   72 lines
 #   @asn            AS38365, AS55967, AS38627
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -69,10 +69,7 @@
 122.248.54.0/23
 122.248.56.0/23
 122.248.58.0/23
-150.242.120.0/24
-150.242.121.0/24
-150.242.122.0/24
-150.242.123.0/24
+150.242.120.0/22
 154.85.32.0/20
 154.85.48.0/20
 154.222.2.0/23
