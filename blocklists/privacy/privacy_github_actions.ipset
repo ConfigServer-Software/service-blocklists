@@ -5,7 +5,7 @@
 #   @service        None
 #   @id             privacy_github_actions_ipset
 #   @uuid           94278d78-f3a7-3ec6-aebb-4de514586c95
-#   @updated        Wed Apr 15 09:40:18 UTC 2026
+#   @updated        Wed Apr 15 13:32:37 UTC 2026
 #   @entries        25,471,588 ips
 #                   5,927 subnets
 #                   5,927 lines
