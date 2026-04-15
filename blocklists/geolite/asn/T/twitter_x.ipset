@@ -1,0 +1,40 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/geolite/asn/T/twitter_x.ipset
+#
+#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/T/twitter_x.ipset
+#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @id             asn
+#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
+#   @updated        Wed Apr 15 04:29:35 UTC 2026
+#   @entries        46,851 ips
+#                   22 subnets
+#                   22 lines
+#   @asn            AS13414, AS63179, AS35995, AS54888
+#   @expires        24 hours
+#   @category       Autonomous System Number
+#
+#   Includes both IPv4 and IPv6 networks merged
+# #
+
+8.25.194.0/23
+8.25.196.0/23
+64.63.0.0/18
+69.12.56.0/21
+69.195.160.0/19
+103.252.112.0/22
+104.244.40.0/23
+104.244.42.0/24
+104.244.44.0/22
+185.45.4.0/22
+188.64.224.0/21
+192.48.236.0/23
+192.133.76.0/23
+192.133.78.0/23
+199.16.156.0/22
+199.59.148.0/22
+199.96.56.0/23
+202.160.128.0/22
+209.237.192.0/19
+2400:6680:f000::/36
+2606:1f80:f000::/36
+2a04:9d40:f000::/36

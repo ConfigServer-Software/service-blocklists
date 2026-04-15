@@ -5,14 +5,13 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat Mar 28 13:59:06 UTC 2026
-#   @entries        474,922 ips
-#                   109 subnets
-#                   109 lines
+#   @updated        Wed Apr 15 04:28:09 UTC 2026
+#   @entries        475,176 ips
+#                   108 subnets
+#                   108 lines
+#   @asn            AS32934, AS63293, AS54115
 #   @expires        24 hours
 #   @category       Autonomous System Number
-#
-#   All IP ranges registered to ASN 32934, 63293, 54115 ().
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
@@ -64,6 +63,7 @@
 157.240.134.0/24
 157.240.136.0/23
 157.240.139.0/24
+157.240.140.0/24
 157.240.156.0/22
 157.240.169.0/24
 157.240.170.0/24
@@ -99,7 +99,6 @@
 2a03:2887:ff22::/47
 2a03:2887:ff28::/46
 2a03:2887:ff2f::/48
-2a03:2887:ff30::/48
 2a03:2887:ff33::/48
 2a03:2887:ff37::/48
 2a03:2887:ff38::/46
@@ -116,8 +115,7 @@
 2a03:2887:ff60::/48
 2a03:2887:ff62::/47
 2a03:2887:ff64::/46
-2a03:2887:ff68::/47
-2a03:2887:ff6a::/48
+2a03:2887:ff68::/46
 2a03:2887:ff70::/47
 2a03:2887:ff73::/48
 2c0f:ef78:10::/47

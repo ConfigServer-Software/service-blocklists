@@ -5,14 +5,13 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat Mar 28 13:58:34 UTC 2026
-#   @entries        17,990,285 ips
-#                   197 subnets
-#                   197 lines
+#   @updated        Wed Apr 15 04:26:07 UTC 2026
+#   @entries        17,990,284 ips
+#                   199 subnets
+#                   199 lines
+#   @asn            AS714, AS6185, AS2709
 #   @expires        24 hours
 #   @category       Autonomous System Number
-#
-#   All IP ranges registered to ASN 714, 6185, 2709 ().
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
@@ -55,7 +54,10 @@
 17.253.80.0/22
 17.253.84.0/22
 17.253.88.0/21
-17.253.96.0/21
+17.253.96.0/23
+17.253.98.0/23
+17.253.100.0/23
+17.253.102.0/23
 17.253.104.0/22
 17.253.108.0/23
 17.253.110.0/24
@@ -171,8 +173,7 @@
 2a01:b740:8000::/33
 2a01:b740:800::/39
 2a01:b740::/37
-2a01:b740:a00::/48
-2a01:b740:a01::/48
+2a01:b740:a00::/47
 2a01:b740:a02::/48
 2a01:b740:a03::/48
 2a01:b740:a04::/47

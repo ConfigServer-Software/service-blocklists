@@ -5,14 +5,13 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat Mar 28 13:59:57 UTC 2026
-#   @entries        35,625 ips
-#                   114 subnets
-#                   114 lines
+#   @updated        Wed Apr 15 04:29:54 UTC 2026
+#   @entries        35,626 ips
+#                   115 subnets
+#                   115 lines
+#   @asn            AS11344, AS43515, AS36561, AS1026, AS36040
 #   @expires        24 hours
 #   @category       Autonomous System Number
-#
-#   All IP ranges registered to ASN 11344, 43515, 36561, 1026, 36040 ().
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
@@ -131,3 +130,4 @@
 2a00:1588:d801::/48
 2a00:1588:d802::/48
 2a0f:f4c1:2::/48
+2c0f:2280:a::/48

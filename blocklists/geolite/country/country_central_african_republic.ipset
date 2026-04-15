@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Sat Mar 28 13:55:46 UTC 2026
-#   @entries        8,901 ips
-#                   128 subnets
-#                   128 lines
+#   @updated        Wed Apr 15 04:23:16 UTC 2026
+#   @entries        8,886 ips
+#                   117 subnets
+#                   117 lines
 #   @country        Central African Republic (CF)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -48,12 +48,6 @@
 104.28.186.113/32
 104.28.186.114/31
 104.28.186.116/31
-104.28.218.166/31
-104.28.218.168/31
-104.28.218.170/32
-104.28.250.166/31
-104.28.250.168/31
-104.28.250.170/32
 140.248.40.12/31
 140.248.56.40/32
 140.248.57.40/32
@@ -133,16 +127,10 @@
 2a04:4e41:740a::/48
 2a04:4e41:7804::/48
 2a07:d887:2800::/40
-2a09:bac1:1600::/64
-2a09:bac1:1620::/64
-2a09:bac1:1640::/64
-2a09:bac1:1660::/64
 2a09:bac2:1d50::/45
 2a09:bac3:1d50::/45
 2a09:bac4:140::/45
 2a09:bac4:1140::/45
-2a09:bac5:1d78::/45
-2a09:bac6:1d78::/45
 2a0b:4e07:3:1400::/60
 2a0f:85c1:81b:f250::/60
 2a10:500:1200::/40
@@ -150,3 +138,4 @@
 2a13:a5c7:25ff:2800::/56
 2a14:67c2:8ed::/48
 2a14:7580:cf28::/48
+2a14:7581:3b31::/48

@@ -1,0 +1,55 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/geolite/asn/S/sprint.ipset
+#
+#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/S/sprint.ipset
+#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @id             asn
+#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
+#   @updated        Wed Apr 15 04:28:51 UTC 2026
+#   @entries        18,945 ips
+#                   28 subnets
+#                   28 lines
+#   @asn            AS1239, AS7421, AS1802, AS150389, AS3643
+#                   AS1790, AS1803, AS1806, AS6177, AS1791
+#                   AS1794, AS1799, AS1793, AS1805, AS4999
+#                   AS1789, AS8108, AS6176, AS1795, AS8110
+#                   AS2014, AS1800, AS8107, AS1801, AS8109
+#                   AS6175, AS1792, AS1808, AS8106, AS6174
+#                   AS197226, AS21288, AS2050, AS2053, AS206963
+#                   AS206638, AS2938, AS3022, AS2942, AS2959
+#                   AS2981, AS4004, AS3647, AS3648, AS3649
+#                   AS3650, AS3651, AS3652
+#   @expires        24 hours
+#   @category       Autonomous System Number
+#
+#   Includes both IPv4 and IPv6 networks merged
+# #
+
+46.29.16.0/21
+46.151.180.0/24
+57.66.70.0/24
+62.76.227.0/24
+80.66.142.0/24
+80.71.230.0/24
+86.107.112.0/22
+89.42.172.0/24
+89.125.36.0/24
+91.194.177.0/24
+91.220.130.0/24
+91.234.217.0/24
+93.88.202.0/24
+103.29.8.0/23
+103.170.208.0/23
+118.179.10.0/23
+155.178.69.0/24
+155.178.70.0/24
+185.38.248.0/22
+185.248.169.0/24
+185.248.171.0/24
+188.68.224.0/19
+195.245.226.0/24
+198.176.213.0/24
+198.176.214.0/24
+208.7.91.0/24
+208.11.210.0/24
+2a03:7940::/32

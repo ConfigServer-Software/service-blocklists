@@ -5,14 +5,13 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat Mar 28 13:59:04 UTC 2026
+#   @updated        Wed Apr 15 04:27:59 UTC 2026
 #   @entries        460,802 ips
 #                   250 subnets
 #                   250 lines
+#   @asn            AS51167
 #   @expires        24 hours
 #   @category       Autonomous System Number
-#
-#   All IP ranges registered to ASN 51167 ().
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #

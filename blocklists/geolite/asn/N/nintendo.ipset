@@ -1,0 +1,27 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/geolite/asn/N/nintendo.ipset
+#
+#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/N/nintendo.ipset
+#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @id             asn
+#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
+#   @updated        Wed Apr 15 04:28:30 UTC 2026
+#   @entries        3,328 ips
+#                   9 subnets
+#                   9 lines
+#   @asn            AS11278, AS400253
+#   @expires        24 hours
+#   @category       Autonomous System Number
+#
+#   Includes both IPv4 and IPv6 networks merged
+# #
+
+8.14.212.0/24
+8.45.177.0/24
+173.226.198.0/24
+192.159.184.0/23
+192.159.186.0/24
+192.159.188.0/22
+192.195.204.0/24
+205.166.76.0/24
+207.108.201.0/24

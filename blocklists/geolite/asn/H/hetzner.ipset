@@ -5,14 +5,13 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat Mar 28 13:59:12 UTC 2026
-#   @entries        3,269,128 ips
-#                   88 subnets
-#                   88 lines
+#   @updated        Wed Apr 15 04:28:20 UTC 2026
+#   @entries        3,302,152 ips
+#                   90 subnets
+#                   90 lines
+#   @asn            AS24940, AS213230, AS215859, AS212317
 #   @expires        24 hours
 #   @category       Autonomous System Number
-#
-#   All IP ranges registered to ASN 24940, 213230, 215859, 212317 ().
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
@@ -23,6 +22,7 @@
 5.161.0.0/16
 5.223.0.0/16
 23.88.0.0/17
+31.58.88.0/24
 37.27.0.0/16
 45.15.99.0/24
 45.145.227.0/24
@@ -30,6 +30,7 @@
 46.62.128.0/17
 46.224.0.0/15
 49.12.0.0/15
+62.238.0.0/17
 65.21.0.0/16
 65.108.0.0/15
 77.42.0.0/17

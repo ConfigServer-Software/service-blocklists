@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Sat Mar 28 13:57:28 UTC 2026
-#   @entries        158,709 ips
-#                   93 subnets
-#                   93 lines
+#   @updated        Wed Apr 15 04:24:54 UTC 2026
+#   @entries        158,710 ips
+#                   94 subnets
+#                   94 lines
 #   @country        Kosovo (XK)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -114,4 +114,5 @@
 2a03:4b80::/32
 2a0b:6300::/29
 2a0c:b340::/29
+2a0d:5600:269::/48
 2a13:a5c7:25f4::/48

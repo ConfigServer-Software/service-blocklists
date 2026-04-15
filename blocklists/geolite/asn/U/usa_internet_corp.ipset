@@ -5,14 +5,13 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat Mar 28 13:59:53 UTC 2026
-#   @entries        131,037 ips
-#                   392 subnets
-#                   392 lines
+#   @updated        Wed Apr 15 04:29:40 UTC 2026
+#   @entries        131,036 ips
+#                   399 subnets
+#                   399 lines
+#   @asn            AS10242
 #   @expires        24 hours
 #   @category       Autonomous System Number
-#
-#   All IP ranges registered to ASN 10242 ().
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
@@ -318,7 +317,14 @@
 206.55.184.62/32
 206.55.184.64/26
 206.55.184.128/25
-206.55.185.0/24
+206.55.185.0/25
+206.55.185.128/26
+206.55.185.192/27
+206.55.185.224/29
+206.55.185.232/30
+206.55.185.236/31
+206.55.185.238/32
+206.55.185.240/28
 206.55.186.0/23
 206.55.188.0/22
 207.153.0.0/23

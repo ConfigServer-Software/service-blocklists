@@ -5,14 +5,13 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat Mar 28 13:59:28 UTC 2026
+#   @updated        Wed Apr 15 04:28:40 UTC 2026
 #   @entries        14,849 ips
 #                   16 subnets
 #                   16 lines
+#   @asn            AS202425
 #   @expires        24 hours
 #   @category       Autonomous System Number
-#
-#   All IP ranges registered to ASN 202425 ().
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #

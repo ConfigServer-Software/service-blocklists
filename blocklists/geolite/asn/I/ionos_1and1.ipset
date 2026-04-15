@@ -5,20 +5,18 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat Mar 28 13:59:15 UTC 2026
-#   @entries        771,610 ips
-#                   193 subnets
-#                   193 lines
+#   @updated        Wed Apr 15 04:28:23 UTC 2026
+#   @entries        763,418 ips
+#                   192 subnets
+#                   192 lines
+#   @asn            AS8560, AS15418
 #   @expires        24 hours
 #   @category       Autonomous System Number
-#
-#   All IP ranges registered to ASN 8560, 15418 ().
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
 
 5.250.176.0/20
-31.70.0.0/19
 31.70.64.0/18
 46.16.72.0/21
 50.21.176.0/20
