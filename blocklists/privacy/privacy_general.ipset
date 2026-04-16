@@ -5,7 +5,7 @@
 #   @service        https://blocklist.configserver.dev/privacy_general.ipset
 #   @id             privacy_general_ipset
 #   @uuid           6a2bb2a1-edca-33d8-9dd5-75c3ec3c6ef7
-#   @updated        Thu Apr 16 09:11:39 UTC 2026
+#   @updated        Thu Apr 16 13:07:32 UTC 2026
 #   @entries        127,226 ips
 #                   122 subnets
 #                   266 lines
