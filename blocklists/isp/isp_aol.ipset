@@ -5,7 +5,7 @@
 #   @service        https://blocklist.configserver.dev/isp_aol.ipset
 #   @id             isp_aol_ipset
 #   @uuid           a97ea50e-08b1-3984-a6a4-2cce03dfc7dc
-#   @updated        Thu Apr 16 02:03:02 UTC 2026
+#   @updated        Thu Apr 16 06:28:44 UTC 2026
 #   @entries        106,496 ips
 #                   3 subnets
 #                   3 lines

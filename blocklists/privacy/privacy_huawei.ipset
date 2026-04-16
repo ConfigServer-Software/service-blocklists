@@ -2,18 +2,16 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/privacy_huawei.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/privacy_huawei.ipset
-#   @service        429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @service        None
 #   @id             privacy_huawei_ipset
 #   @uuid           82f556dc-6e0f-353a-96ad-f52cf6d4a25a
-#   @updated        Thu Apr 16 02:00:19 UTC 2026
+#   @updated        Thu Apr 16 06:25:56 UTC 2026
 #   @entries        3,664,913 ips
 #                   396 subnets
 #                   396 lines
 #   @asn            AS55990, AS136907, AS131444, AS141180, AS206204
 #                   AS206798, AS265443
-#   @expires        429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @expires        6 hours
 #   @category       Uncategorized
 #
 #   No description provided
