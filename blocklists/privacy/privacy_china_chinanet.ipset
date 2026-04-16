@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             privacy_china_chinanet_ipset
 #   @uuid           23689624-c7d0-38ff-ac3b-233fde133d9e
-#   @updated        Thu Apr 16 13:17:48 UTC 2026
-#   @entries        145,106,959 ips
-#                   4,030 subnets
-#                   4,030 lines
+#   @updated        Thu Apr 16 17:16:17 UTC 2026
+#   @entries        145,106,703 ips
+#                   4,029 subnets
+#                   4,029 lines
 #   @asn            AS4134, AS4812, AS23724, AS4811, AS58466
 #                   AS38283, AS23650, AS134774, AS134760, AS134773
 #                   AS58563, AS4816, AS134756, AS139203, AS140061
@@ -3851,7 +3851,6 @@
 223.223.176.0/21
 223.240.0.0/13
 223.252.160.0/24
-223.255.236.0/24
 2001:dc7::/32
 2001:dd8:1::/48
 2400:3200::/32
