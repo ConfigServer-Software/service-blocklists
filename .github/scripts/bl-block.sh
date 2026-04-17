@@ -110,6 +110,7 @@ app_desc="Fetch list of IP addresses from local file in /blocks folder."        
 app_ver="1.2.0.0"                                                               # current script version
 app_repo="configserver-software/service-blocklists"                             # repository
 app_repo_branch="main"                                                          # repository branch
+app_repo_curl_storage="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github"
 app_agent="Mozilla/5.0 (Windows NT 10.0; WOW64) "\
 "AppleWebKit/537.36 (KHTML, like Gecko) "\
 "Chrome/51.0.2704.103 Safari/537.36 "\
@@ -249,6 +250,23 @@ label( )
 print( )
 {
     echo "${greym}$1${end}"
+}
+
+# #
+#   Define › Elapsed Time
+#       - Capture end time
+#       - Calculate elapsed time
+#       - Calculate days, hours, etc.
+#       - Output to console
+# #
+
+time_elapsed( )
+{
+    local T=$1
+    D=$(( T / 86400 ))
+    H=$(( (T % 86400) / 3600 ))
+    M=$(( (T % 3600) / 60 ))
+    S=$(( T % 60 ))
 }
 
 # #
@@ -1485,14 +1503,27 @@ download_list()
 
 file_ipset_temp="${argFileSaveto}.tmp"                                          # Temp file when building ipset list
 file_ipset_target="${argFileSaveto}"                                            # Perm file when building ipset list
+folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
+
+# #
+#   Create Temp Folder
+# #
+
+mkdir -p "${app_dir_github}/${folder_target_temp}"
+if [ -d "${app_dir_github}/${folder_target_temp}" ]; then
+    ok "    📂 Created TEMPDIR ${greenl}${app_dir_github}/${folder_target_temp}"
+else
+    error "    ❌ Failed to create ${redl}${app_dir_github}/${folder_target_temp}"
+fi
 
 # #
 #   Define › Template
 # #
 
 templ_now="$(date -u)"                                                          # Get current date in utc format
-templ_id=$(basename -- "${file_ipset_target}")                                  # Ipset id, get base filename
-templ_id="${templ_id//[^[:alnum:]]/_}"                                          # Ipset id, only allow alphanum and underscore, /description/* and /category/* files must match this value
+templ_id="${file_ipset_target#blocklists/}"                                     # Remove leading "blocklists/" from path
+templ_id="${templ_id//\//_}"                                                    # Replace all "/" with "_" to flatten path
+templ_id="${templ_id//[^[:alnum:]]/_}"                                          # Replace non-alphanumeric chars with "_"
 templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # UUID associated to each release
 templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 
@@ -1500,16 +1531,35 @@ templ_curl_opts=(-sSL -A "$app_agent")                                          
 #   Define › Template › External Sources
 # #
 
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/descriptions/${templ_id}.txt" > desc.txt &
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/categories/${templ_id}.txt" > cat.txt &
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/expires/${templ_id}.txt" > exp.txt &
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/url-source/${templ_id}.txt" > src.txt &
+info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
+
+info "    ⭐ Downloading external template sources"
+label "     ${bluel}${app_repo_curl_storage}/descriptions/${templ_id}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/categories/${templ_id}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/expires/${templ_id}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/url-source/${templ_id}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/descriptions/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/categories/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/expires/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/url-source/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
 wait
-templ_desc=$(<desc.txt)
-templ_cat=$(<cat.txt)
-templ_exp=$(<exp.txt)
-templ_url_service=$(<src.txt)
-rm -f desc.txt cat.txt exp.txt src.txt
+
+templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
+templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
+templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
+templ_url_service=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+
+if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" \
+        "${app_dir_github}/${folder_target_temp}/cat.txt" \
+        "${app_dir_github}/${folder_target_temp}/exp.txt" \
+        "${app_dir_github}/${folder_target_temp}/src.txt"
+then
+    ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
+else
+    error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
+    exit 1
+fi
 
 # #
 #   Define › Template › Default Values
@@ -1635,7 +1685,7 @@ if [ -f "${file_ipset_target}" ]; then
 fi
 
 # #
-#   IPSET › Dedup Contained CIDRs (final pass across all ASNs)
+#   IPSET › Dedup Contained CIDRs (final pass across all IPs)
 # #
 
 if [ -f "${file_ipset_target}" ] && [ -s "${file_ipset_target}" ]; then
@@ -1695,12 +1745,7 @@ END_ED
 #       - Output to console
 # #
 
-time_end=$( date +%s )
-T=$(( time_end - time_start ))
-D=$(( T / 86400 ))
-H=$(( (T % 86400) / 3600 ))
-M=$(( (T % 3600) / 60 ))
-S=$(( T % 60 ))
+time_elapsed $(( $( date +%s ) - time_start ))
 
 # #
 #   Output › Footer
