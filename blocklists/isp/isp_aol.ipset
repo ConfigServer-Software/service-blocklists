@@ -2,29 +2,17 @@
 #   🧱 Firewall Blocklist - blocklists/isp/isp_aol.ipset
 #   
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_aol.ipset
-#   @service        https://blocklist.configserver.dev/isp_aol.ipset
-#   @id             isp_aol_ipset
-#   @uuid           a97ea50e-08b1-3984-a6a4-2cce03dfc7dc
-#   @updated        Fri Apr 17 09:39:28 UTC 2026
+#   @service        None
+#   @id             isp_isp_aol_ipset
+#   @uuid           3b0591ea-1d9b-373c-8e8c-67e1018c967a
+#   @updated        Fri Apr 17 17:58:39 UTC 2026
 #   @entries        106,496 ips
 #                   3 subnets
 #                   3 lines
-#   @expires        7 days
-#   @category       Internet Service Provider (ISP)
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   Historic AOL LLC (Internet Service Provider) Oath Holdings Inc.
-#   
-#   Website                     https://aol.com
-#   Parent organization:        Warner Bros. Discovery
-#   Founded                     1985
-#   Registry		            RIPE
-#   
-#   This ISP has slowly been winding down over the years, with less and less
-#   servers. This is especially true since the messenger service ICQ was shut
-#   down on June 26, 2024.
-#   
-#   Be aware that this ASN may disappear in the future as less IP blocks are
-#   assigned.
+#   No description provided
 # #
 
 62.51.0.0/16

@@ -3,9 +3,9 @@
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_sprint.ipset
 #   @service        None
-#   @id             isp_sprint_ipset
-#   @uuid           2bdab4b3-4e73-39a5-887f-d74798d7c94e
-#   @updated        Fri Apr 17 09:51:07 UTC 2026
+#   @id             isp_isp_sprint_ipset
+#   @uuid           9b3e91cb-349c-3b11-b6f1-09fd44b585a4
+#   @updated        Fri Apr 17 18:11:34 UTC 2026
 #   @entries        11,045,791 ips
 #                   903 subnets
 #                   903 lines

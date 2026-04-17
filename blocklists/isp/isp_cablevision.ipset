@@ -2,38 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/isp/isp_cablevision.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_cablevision.ipset
-#   @service        whois.radb.net
-#   @id             isp_cablevision_ipset
-#   @uuid           6de5a872-560e-3446-914e-b3818263d0c9
-#   @updated        Fri Apr 17 09:41:00 UTC 2026
+#   @service        None
+#   @id             isp_isp_cablevision_ipset
+#   @uuid           afdf68d8-d3a6-3f39-8344-07149ac9142d
+#   @updated        Fri Apr 17 18:00:24 UTC 2026
 #   @entries        5,580,040 ips
 #                   111 subnets
 #                   111 lines
 #   @asn            AS6128, AS13490, AS19720
-#   @expires        7 days
-#   @category       Internet Service Provider (ISP)
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   Cablevision (Internet Service Provider)
-#   
-#   Website               https://cablevision.com
-#   Founded               1973
-#   Status                Acquired by Altice (June 21, 2016)
-#   
-#   If you wish to block this internet service provider, it is recommended that
-#   you use both this blocklist, as well as the blocklist for Suddenlink / 
-#   Optimum.
-#      - https://blocklist.configserver.dev/isp_suddenlink_altice_optimum.ipset
-#   
-#   After Altice acquired Cablevision Systems Corporation on November 30, 2016,
-#   Suddenlink was combined with Cablevision. Together with Optimum, the name
-#   used by Cablevision for its products, Altice USA became the United States' 
-#   fourth largest cable operator with 4.6 million subscribers, and the sixth
-#   largest Pay TV service provider with 3.5 million subscribers. On August 1,
-#   2022, Suddenlink rebranded into Optimum.
-#   
-#   This blocklist contains mostly Cablevision IP addresses, however, it also
-#   includes some blocks which carried over from the acquisition of Suddenlink
-#   and Optimum which are registered as the same ASN.
+#   No description provided
 # #
 
 12.231.155.0/24

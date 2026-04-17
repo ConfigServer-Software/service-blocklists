@@ -1,0 +1,32 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/privacy/stripe_webhooks.ipset
+#
+#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/stripe_webhooks.ipset
+#   @service        None
+#   @id             privacy_stripe_webhooks_ipset
+#   @uuid           6fa1c39a-fe72-35c2-81ee-2f3ca15f40d7
+#   @updated        Fri Apr 17 17:58:11 UTC 2026
+#   @entries        15 ips
+#                   0 subnets
+#                   15 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+3.18.12.63
+3.69.109.8
+3.120.168.93
+3.130.192.231
+13.235.14.237
+13.235.122.149
+18.211.135.69
+35.154.171.200
+35.157.207.129
+52.15.183.38
+54.88.130.119
+54.88.130.237
+54.187.174.169
+54.187.205.235
+54.187.216.72

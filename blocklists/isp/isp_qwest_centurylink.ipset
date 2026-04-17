@@ -3,9 +3,9 @@
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_qwest_centurylink.ipset
 #   @service        None
-#   @id             isp_qwest_centurylink_ipset
-#   @uuid           de6c05ac-1eec-3032-84ec-ea8e40f0f501
-#   @updated        Fri Apr 17 09:49:38 UTC 2026
+#   @id             isp_isp_qwest_centurylink_ipset
+#   @uuid           32d46b9c-2a66-353d-8850-ef95569eca5f
+#   @updated        Fri Apr 17 18:09:58 UTC 2026
 #   @entries        33,365,410 ips
 #                   1,526 subnets
 #                   1,527 lines

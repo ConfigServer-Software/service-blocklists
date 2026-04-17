@@ -1,0 +1,23 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/privacy/github_hooks.ipset
+#
+#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/github_hooks.ipset
+#   @service        None
+#   @id             github_hooks_ipset
+#   @uuid           0a7d8c99-820b-3a02-9cfa-4f303c87c86c
+#   @updated        Fri Apr 17 17:55:54 UTC 2026
+#   @entries        10,242 ips
+#                   6 subnets
+#                   6 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+140.82.112.0/20
+143.55.64.0/20
+185.199.108.0/22
+192.30.252.0/22
+2606:50c0::/32
+2a0a:a440::/29

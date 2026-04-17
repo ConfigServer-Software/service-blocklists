@@ -2,31 +2,22 @@
 #   🧱 Firewall Blocklist - blocklists/isp/isp_att.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_att.ipset
-#   @service        whois.radb.net
-#   @id             isp_att_ipset
-#   @uuid           c2a8f492-a17f-36a3-821d-aae3d9b8669e
-#   @updated        Fri Apr 17 09:39:29 UTC 2026
-#   @entries        111,766,751 ips
-#                   2,620 subnets
-#                   2,620 lines
+#   @service        None
+#   @id             isp_isp_att_ipset
+#   @uuid           54efbdc0-d03b-3176-a5b4-7b61889a9db5
+#   @updated        Fri Apr 17 17:58:40 UTC 2026
+#   @entries        111,766,239 ips
+#                   2,618 subnets
+#                   2,618 lines
 #   @asn            AS7018, AS2686, AS2687, AS2688, AS2685
 #                   AS2386, AS13979, AS7287, AS6389, AS20057
 #                   AS16473, AS25993, AS14654, AS19957, AS10770
 #                   AS4185, AS6431, AS4473, AS17258, AS3423
 #                   AS6269, AS4186, AS17232
-#   @expires        7 days
-#   @category       Internet Service Provider (ISP)
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   AT&T Internet (Internet Service Provider)
-#   
-#   Website                     https://att.com/internet/
-#   Parent organization:        AT&T Communications
-#   Founded                     September 19, 2016
-#   
-#   AT&T Internet is an AT&T brand of broadband internet service. Previously,
-#   AT&T Internet was branded as U-verse Internet and bundled with U-verse TV, 
-#   which was spun off into the newly independent DirecTV in 2021. AT&T Internet
-#   plans powered by fiber-optic cable use the AT&T Fiber brand. 
+#   No description provided
 # #
 
 5.182.28.0/22
@@ -372,8 +363,6 @@
 68.120.0.0/13
 68.152.0.0/15
 68.156.0.0/15
-68.170.0.0/24
-68.170.1.0/24
 68.182.240.0/20
 68.208.0.0/16
 68.213.0.0/16

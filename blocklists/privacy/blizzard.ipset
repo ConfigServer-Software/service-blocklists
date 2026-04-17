@@ -1,0 +1,25 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/privacy/blizzard.ipset
+#
+#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/blizzard.ipset
+#   @service        None
+#   @id             privacy_blizzard_ipset
+#   @uuid           d7cd29b9-78f0-3d01-a1d5-b694cc6f47a4
+#   @updated        Fri Apr 17 17:32:58 UTC 2026
+#   @entries        16,795,139 ips
+#                   5 subnets
+#                   8 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+5.42.160.0/19
+5.42.192.0
+12.0.0.0/8
+103.4.114.0/23
+185.60.112.0/22
+185.60.116.0
+199.108.32.0/19
+199.108.64.0

@@ -1,0 +1,21 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/privacy/tumblr.ipset
+#
+#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/tumblr.ipset
+#   @service        None
+#   @id             privacy_tumblr_ipset
+#   @uuid           6c92a99a-b886-3eff-bf39-b4a3ba49a2d7
+#   @updated        Fri Apr 17 17:58:12 UTC 2026
+#   @entries        258 ips
+#                   3 subnets
+#                   3 lines
+#   @asn            AS33612, AS32345
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+200.152.174.0/24
+2620:26:8000::/48
+2804:1bc:f042::/48

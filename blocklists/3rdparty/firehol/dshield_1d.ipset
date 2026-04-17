@@ -1,0 +1,51 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/3rdparty/firehol/dshield_1d.ipset
+#
+#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/firehol/dshield_1d.ipset
+#   @service        None
+#   @id             3rdparty_firehol_dshield_1d_ipset
+#   @uuid           8e2edd40-0b83-3882-a580-8f20b158d709
+#   @updated        Fri Apr 17 17:17:41 UTC 2026
+#   @entries        8,704 ips
+#                   34 subnets
+#                   34 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+5.61.209.0/24
+5.187.35.0/24
+45.142.193.0/24
+45.148.10.0/24
+45.205.1.0/24
+64.62.156.0/24
+64.62.197.0/24
+65.49.1.0/24
+66.132.172.0/24
+66.132.186.0/24
+66.132.195.0/24
+66.132.224.0/24
+77.90.185.0/24
+81.29.142.0/24
+87.251.64.0/24
+91.196.152.0/24
+91.224.92.0/24
+91.230.168.0/24
+100.29.192.0/24
+104.243.32.0/24
+130.12.180.0/24
+147.185.132.0/24
+167.94.145.0/24
+167.94.146.0/24
+172.94.9.0/24
+178.20.210.0/24
+185.242.226.0/24
+193.163.125.0/24
+195.178.110.0/24
+195.184.76.0/24
+198.235.24.0/24
+199.45.154.0/24
+204.76.203.0/24
+205.210.31.0/24

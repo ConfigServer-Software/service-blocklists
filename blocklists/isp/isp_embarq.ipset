@@ -3,9 +3,9 @@
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_embarq.ipset
 #   @service        None
-#   @id             isp_embarq_ipset
-#   @uuid           2e51d53f-2999-31da-ae04-fbc14196827d
-#   @updated        Fri Apr 17 09:48:07 UTC 2026
+#   @id             isp_isp_embarq_ipset
+#   @uuid           ecf3205a-ae58-35c7-87e3-025be26101cb
+#   @updated        Fri Apr 17 18:08:16 UTC 2026
 #   @entries        3,817,216 ips
 #                   493 subnets
 #                   493 lines

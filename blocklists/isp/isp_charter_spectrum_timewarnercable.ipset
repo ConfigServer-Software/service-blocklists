@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/isp/isp_charter_spectrum_timewarnercable.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_charter_spectrum_timewarnercable.ipset
-#   @service        whois.radb.net
-#   @id             isp_charter_spectrum_timewarnercable_ipset
-#   @uuid           c39b3c64-d363-3eca-bbe7-34a59dc0c0b5
-#   @updated        Fri Apr 17 09:41:12 UTC 2026
+#   @service        None
+#   @id             isp_isp_charter_spectrum_timewarnercable_ipset
+#   @uuid           a7f5afc9-d680-3ee5-a193-badd52f7a562
+#   @updated        Fri Apr 17 18:00:39 UTC 2026
 #   @entries        54,836,707 ips
 #                   4,067 subnets
 #                   4,067 lines
@@ -15,23 +15,10 @@
 #                   AS23222, AS23132, AS22516, AS22513, AS16787
 #                   AS19115, AS40294, AS19157, AS22710, AS23200
 #                   AS7843, AS3456, AS63365
-#   @expires        7 days
-#   @category       Internet Service Provider (ISP)
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   Time Warner Cable, Charter Communications, and Spectrum
-#   (Internet Service Provider)
-#   
-#   Website               https://spectrum.com
-#   Founded               Time Warner Cable (1973), Spectrum (2014)
-#   Status                Merged into Charter Spectrum in 2016
-#   
-#   Time Warner Cable, Inc. was acquired by Charter Communications on
-#   May 18, 2016, resulting in the formation of Charter Spectrum.
-#      - https://ir.charter.com/news-releases/news-release-details/
-#        charter-communications-merge-time-warner-cable-and-acquire
-#   
-#   This list combines all three entities to block their shared network
-#   infrastructure.
+#   No description provided
 # #
 
 5.34.246.0/23
