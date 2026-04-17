@@ -1649,8 +1649,8 @@ download_list_fallback()
     _count_total_ips=$total_ips
     _count_total_subnets=$total_subnets
 
-    _count_total_ips=$(printf "%'d" "$_count_total_ips")
-    _count_total_subnets=$(printf "%'d" "$_count_total_subnets")
+    _count_total_ips=$(printf "%'d" "$_count_total_ips")                        # LOCAL add commas to thousands
+    _count_total_subnets=$(printf "%'d" "$_count_total_subnets")                # LOCAL add commas to thousands
 
     # #
     #   Move to target
@@ -1666,8 +1666,8 @@ download_list_fallback()
         echo >> "${_fnArgFile}"
     fi
 
-    cat "${_fnFileTemp}" >> "${_fnArgFile}"
-    rm -f "${_fnFileTemp}"
+    cat "${_fnFileTemp}" >> "${_fnArgFile}"                                     # Copy .tmp to permanent file
+    rm -f "${_fnFileTemp}"     
 
     if [ ! -f "${_fnFileTemp}" ]; then
         ok "    📄 Removed temp file ${greenl}${PWD}/${_fnFileTemp}${greym}"
