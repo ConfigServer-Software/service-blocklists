@@ -137,38 +137,38 @@ argVerbose="false"                                                              
 argIncludeBogon="false"                                                         # filter out BOGON IP addresses from list
 argTrustedInput="false"                                                         # trusted input mode (skip validation loop)
 argSkipBogonFilter="false"                                                      # skip bogon filter loop
-argSortParallel="${BL_FORMAT_SORT_PARALLEL:-}"                                  # optional sort --parallel value
-argSortBufferSize="${BL_FORMAT_SORT_BUFFER_SIZE:-}"                             # optional sort -S value
+argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
+argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
 sort_cmd_opts=()                                                                # optional sort command tuning
 did_load_fallback="false"                                                       # track whether fallback lists were merged
 
 # #
 #   Optional Parameters
 #   
-#       BL_FORMAT_TRUSTED_INPUT=true  
+#       CFG_TRUSTED_INPUT=true  
 #           Skip per-line IP/CIDR validation loop.
 #   
-#       BL_FORMAT_SKIP_BOGON_FILTER=true  
+#       CFG_SKIP_BOGON_FILTER=true  
 #           Skip bogon filtering loop.
 #   
-#       BL_FORMAT_SORT_PARALLEL=<N>  
+#       CFG_SORT_PARALLEL=<N>  
 #           Pass --parallel=<N> to sort if supported.
 #   
-#       BL_FORMAT_SORT_BUFFER_SIZE=<size>  
+#       CFG_SORT_BUFFER_SIZE=<size>  
 #           Pass -S <size> to sort (example: 50%, 1G).
 #   
 #       curl -sSL -A "${{ env.USERAGENT }}" ${{ vars.BL_APPLE_INC_PROXY_URL }} \
 #           | awk -F',' 'NR>1{print $1}' \
-#           | BL_FORMAT_TRUSTED_INPUT=true BL_FORMAT_SKIP_BOGON_FILTER=true .github/scripts/bl-format.sh blocklists/privacy/privacy_apple_icloud.ipset
+#           | CFG_TRUSTED_INPUT=true CFG_SKIP_BOGON_FILTER=true .github/scripts/bl-format.sh blocklists/privacy/privacy_apple_icloud.ipset
 # #
 
-case "${BL_FORMAT_TRUSTED_INPUT:-false}" in
+case "${CFG_TRUSTED_INPUT:-false}" in
     1|true|TRUE|yes|YES|on|ON)
         argTrustedInput="true"
         ;;
 esac
 
-case "${BL_FORMAT_SKIP_BOGON_FILTER:-false}" in
+case "${CFG_SKIP_BOGON_FILTER:-false}" in
     1|true|TRUE|yes|YES|on|ON)
         argSkipBogonFilter="true"
         ;;
@@ -729,7 +729,7 @@ configure_sort_options( )
                 warn "    ⚠️  sort --parallel unsupported; running with default sort options"
             fi
         else
-            warn "    ⚠️  Invalid BL_FORMAT_SORT_PARALLEL value ${yellowl}${argSortParallel}${greym}; ignoring"
+            warn "    ⚠️  Invalid CFG_SORT_PARALLEL value ${yellowl}${argSortParallel}${greym}; ignoring"
         fi
     fi
 
@@ -1095,7 +1095,7 @@ filter_bogon_ips( )
     _fnBogonRemoved=0
 
     if [ "${argSkipBogonFilter}" = "true" ]; then
-        info "    ⚡ Skipping bogon filtering (BL_FORMAT_SKIP_BOGON_FILTER=true)"
+        info "    ⚡ Skipping bogon filtering (CFG_SKIP_BOGON_FILTER=true)"
         return 0
     fi
 
@@ -1219,12 +1219,13 @@ dedup_cidr( )
     # #
     #   IPv4 containment dedup
     #   
-    #   Some notes to remember for how this works:
+    #   Is a bit complex, need to add a few more things later.
     #   
-    #   Step 1 (awk):   convert each CIDR to  "<10-digit network int> <3-digit prefix> <original line>"
-    #                       aligns to the true network boundary so host-bit noise is ignored.
-    #   Step 2 (sort):  network ascending, then prefix ascending (wider ranges first).
-    #   Step 3 (awk):   walk the list; skip any entry whose end address <= max_end.
+    #   Does the following:
+    #       (1) awk:    convert each CIDR to  "<10-digit network int> <3-digit prefix> <original line>"
+    #                   aligns to the true network boundary so host-bit noise is ignored.
+    #       (2) sort:   network ascending, then prefix ascending (wider ranges first).
+    #       (3) awk:    walk the list; skip any entry whose end address <= max_end.
     # #
 
     if [ -s "$_fnDedupV4" ]; then
@@ -1557,9 +1558,11 @@ fi
 # #
 
 templ_now="$(date -u)"                                                          # Get current date in utc format
-templ_id="${file_ipset_target#blocklists/}"                                     # Remove leading "blocklists/" from path
-templ_id="${templ_id//\//_}"                                                    # Replace all "/" with "_" to flatten path
-templ_id="${templ_id//[^[:alnum:]]/_}"                                          # Replace non-alphanumeric chars with "_"
+templ_path="${file_ipset_target#blocklists/}"                                   # privacy/twitter_x.ipset
+templ_path="${templ_path%.ipset}"                                               # remove extension
+templ_id="${templ_path//\//_}"                                                  # privacy_twitter_x
+templ_id="${templ_id//[^[:alnum:]]/_}"                                          # sanitize
+templ_id="${templ_id}_ipset"                                                    # match your existing format
 templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # UUID associated to each release
 templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 
@@ -1570,15 +1573,15 @@ templ_curl_opts=(-sSL -A "$app_agent")                                          
 info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
 
 info "    ⭐ Downloading external template sources"
-label "     ${bluel}${app_repo_curl_storage}/descriptions/${templ_id}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/categories/${templ_id}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/expires/${templ_id}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/url-source/${templ_id}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/url-source/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
 
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/descriptions/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/categories/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/expires/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/url-source/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/url-source/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
 wait
 
 templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
@@ -1766,12 +1769,7 @@ END_ED
 #       - Output to console
 # #
 
-time_end=$( date +%s )
-T=$(( time_end - time_start ))
-D=$(( T / 86400 ))
-H=$(( (T % 86400) / 3600 ))
-M=$(( (T % 3600) / 60 ))
-S=$(( T % 60 ))
+time_elapsed $(( $( date +%s ) - time_start ))
 
 # #
 #   Output › Footer

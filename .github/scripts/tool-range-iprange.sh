@@ -107,6 +107,7 @@ app_desc="Fetch list of IPv4 ranges and convert to CIDR using iprange"          
 app_ver="1.2.0.0"                                                               # current script version
 app_repo="configserver-software/service-blocklists"                             # repository
 app_repo_branch="main"                                                          # repository branch
+app_repo_curl_storage="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github"
 app_agent="Mozilla/5.0 (Windows NT 10.0; WOW64) "\
 "AppleWebKit/537.36 (KHTML, like Gecko) "\
 "Chrome/51.0.2704.103 Safari/537.36 "\
@@ -120,6 +121,44 @@ argDryrun="false"                                                               
 argDevMode="false"                                                              # dev mode
 argVerbose="false"                                                              # verbose mode
 argIncludeBogon="false"                                                         # filter out BOGON IP addresses from list
+argTrustedInput="false"                                                         # trusted input mode (skip validation loop)
+argSkipBogonFilter="false"                                                      # skip bogon filter loop
+argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
+argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
+sort_cmd_opts=()                                                                # optional sort command tuning
+did_load_fallback="false"                                                       # track whether fallback lists were merged
+
+# #
+#   Optional Parameters
+#   
+#       CFG_TRUSTED_INPUT=true  
+#           Skip per-line IP/CIDR validation loop.
+#   
+#       CFG_SKIP_BOGON_FILTER=true  
+#           Skip bogon filtering loop.
+#   
+#       CFG_SORT_PARALLEL=<N>  
+#           Pass --parallel=<N> to sort if supported.
+#   
+#       CFG_SORT_BUFFER_SIZE=<size>  
+#           Pass -S <size> to sort (example: 50%, 1G).
+#   
+#       curl -sSL -A "${{ env.USERAGENT }}" ${{ vars.BL_APPLE_INC_PROXY_URL }} \
+#           | awk -F',' 'NR>1{print $1}' \
+#           | CFG_TRUSTED_INPUT=true CFG_SKIP_BOGON_FILTER=true .github/scripts/bl-format.sh blocklists/privacy/privacy_apple_icloud.ipset
+# #
+
+case "${CFG_TRUSTED_INPUT:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argTrustedInput="true"
+        ;;
+esac
+
+case "${CFG_SKIP_BOGON_FILTER:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argSkipBogonFilter="true"
+        ;;
+esac
 
 # #
 #   Define › Time
@@ -208,6 +247,23 @@ label( )
 print( )
 {
     echo "${greym}$1${end}"
+}
+
+# #
+#   Define › Elapsed Time
+#       - Capture end time
+#       - Calculate elapsed time
+#       - Calculate days, hours, etc.
+#       - Output to console
+# #
+
+time_elapsed( )
+{
+    local T=$1
+    D=$(( T / 86400 ))
+    H=$(( (T % 86400) / 3600 ))
+    M=$(( (T % 3600) / 60 ))
+    S=$(( T % 60 ))
 }
 
 # #
@@ -654,6 +710,38 @@ run()
 }
 
 # #
+#   Configure sort options
+#   
+#   Builds the options array for the `sort` command based on user settings:
+#       - If `argSortParallel` is valid number and the system supports it, enable parallel sorting with that value
+#       - If `argSortBufferSize` is set, apply it as the sort buffer size (-S)
+#       - Log what gets enabled or warns if values are invalid or unsupported
+# #
+
+configure_sort_options( )
+{
+    sort_cmd_opts=()
+
+    if [ -n "${argSortParallel}" ]; then
+        if [[ "${argSortParallel}" =~ ^[1-9][0-9]*$ ]]; then
+            if sort --help 2>/dev/null | grep -q -- '--parallel'; then
+                sort_cmd_opts+=( "--parallel=${argSortParallel}" )
+                info "    ⚙️  Sort parallelism enabled (${yellowl}${argSortParallel}${greym})"
+            else
+                warn "    ⚠️  sort --parallel unsupported; running with default sort options"
+            fi
+        else
+            warn "    ⚠️  Invalid CFG_SORT_PARALLEL value ${yellowl}${argSortParallel}${greym}; ignoring"
+        fi
+    fi
+
+    if [ -n "${argSortBufferSize}" ]; then
+        sort_cmd_opts+=( "-S" "${argSortBufferSize}" )
+        info "    ⚙️  Sort buffer size set to ${yellowl}${argSortBufferSize}${greym}"
+    fi
+}
+
+# #
 #   Sort Results
 #   
 #   @usage          line=$(parse_spf_record "${ip}" | sort_results)
@@ -1008,6 +1096,11 @@ filter_bogon_ips( )
     _fnBogonAfter=0
     _fnBogonRemoved=0
 
+    if [ "${argSkipBogonFilter}" = "true" ]; then
+        info "    ⚡ Skipping bogon filtering (CFG_SKIP_BOGON_FILTER=true)"
+        return 0
+    fi
+
     case "${argIncludeBogon:-true}" in
         1|true|TRUE|yes|YES)
             return 0
@@ -1128,12 +1221,13 @@ dedup_cidr( )
     # #
     #   IPv4 containment dedup
     #   
-    #   Some notes to remember for how this works:
+    #   Is a bit complex, need to add a few more things later.
     #   
-    #   Step 1 (awk):   convert each CIDR to  "<10-digit network int> <3-digit prefix> <original line>"
-    #                       aligns to the true network boundary so host-bit noise is ignored.
-    #   Step 2 (sort):  network ascending, then prefix ascending (wider ranges first).
-    #   Step 3 (awk):   walk the list; skip any entry whose end address <= max_end.
+    #   Does the following:
+    #       (1) awk:    convert each CIDR to  "<10-digit network int> <3-digit prefix> <original line>"
+    #                   aligns to the true network boundary so host-bit noise is ignored.
+    #       (2) sort:   network ascending, then prefix ascending (wider ranges first).
+    #       (3) awk:    walk the list; skip any entry whose end address <= max_end.
     # #
 
     if [ -s "$_fnDedupV4" ]; then
@@ -1277,6 +1371,26 @@ dedup_cidr( )
 
     unset   _fnDedupFile _fnDedupV4 _fnDedupV6 _fnDedupOther _fnDedupOut \
             _fnDedupBefore _fnDedupAfter _fnDedupRemoved
+}
+
+# #
+#   Cleanup Garbage
+#   
+#   Removes old ipv4 and ipv5 folders
+# #
+
+gcc( )
+{
+    echo
+    info "    🗑️  Starting ${bluel}GCC${greym} cleanup"
+
+    # remove temp
+    rm -rf "${app_dir_github}/${folder_target_temp}"
+    if [ ! -d "${app_dir_github}/${folder_target_temp}" ]; then
+        ok "    🗑️  Removed folder ${bluel}${app_dir_github}/${folder_target_temp}"
+    else
+        error "    ❌ Failed to remove folder ${greenl}${app_dir_github}/${folder_target_temp}"
+    fi
 }
 
 # #
@@ -1482,14 +1596,29 @@ download_list()
 
 file_ipset_temp="${argFileSaveto}.tmp"                                          # Temp file when building ipset list
 file_ipset_target="${argFileSaveto}"                                            # Perm file when building ipset list
+folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
+
+# #
+#   Create Temp Folder
+# #
+
+mkdir -p "${app_dir_github}/${folder_target_temp}"
+if [ -d "${app_dir_github}/${folder_target_temp}" ]; then
+    ok "    📂 Created TEMPDIR ${greenl}${app_dir_github}/${folder_target_temp}"
+else
+    error "    ❌ Failed to create ${redl}${app_dir_github}/${folder_target_temp}"
+fi
 
 # #
 #   Define › Template
 # #
 
 templ_now="$(date -u)"                                                          # Get current date in utc format
-templ_id=$(basename -- "${file_ipset_target}")                                  # Ipset id, get base filename
-templ_id="${templ_id//[^[:alnum:]]/_}"                                          # Ipset id, only allow alphanum and underscore, /description/* and /category/* files must match this value
+templ_path="${file_ipset_target#blocklists/}"                                   # privacy/twitter_x.ipset
+templ_path="${templ_path%.ipset}"                                               # remove extension
+templ_id="${templ_path//\//_}"                                                  # privacy_twitter_x
+templ_id="${templ_id//[^[:alnum:]]/_}"                                          # sanitize
+templ_id="${templ_id}_ipset"                                                    # match your existing format
 templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # UUID associated to each release
 templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 
@@ -1497,16 +1626,35 @@ templ_curl_opts=(-sSL -A "$app_agent")                                          
 #   Define › Template › External Sources
 # #
 
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/descriptions/${templ_id}.txt" > desc.txt &
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/categories/${templ_id}.txt" > cat.txt &
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/expires/${templ_id}.txt" > exp.txt &
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/url-source/${templ_id}.txt" > src.txt &
+info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
+
+info "    ⭐ Downloading external template sources"
+label "     ${bluel}${app_repo_curl_storage}/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/url-source/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/url-source/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
 wait
-templ_desc=$(<desc.txt)
-templ_cat=$(<cat.txt)
-templ_exp=$(<exp.txt)
-templ_url_service=$(<src.txt)
-rm -f desc.txt cat.txt exp.txt src.txt
+
+templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
+templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
+templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
+templ_url_service=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+
+if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" \
+        "${app_dir_github}/${folder_target_temp}/cat.txt" \
+        "${app_dir_github}/${folder_target_temp}/exp.txt" \
+        "${app_dir_github}/${folder_target_temp}/src.txt"
+then
+    ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
+else
+    error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
+    exit 1
+fi
 
 # #
 #   Define › Template › Default Values
@@ -1606,7 +1754,7 @@ if [ -f "${file_ipset_target}" ]; then
 fi
 
 # #
-#   IPSET › Dedup Contained CIDRs (final pass across all ASNs)
+#   IPSET › Dedup Contained CIDRs (final pass across all IPs)
 # #
 
 if [ -f "${file_ipset_target}" ] && [ -s "${file_ipset_target}" ]; then
@@ -1666,12 +1814,7 @@ END_ED
 #       - Output to console
 # #
 
-time_end=$( date +%s )
-T=$(( time_end - time_start ))
-D=$(( T / 86400 ))
-H=$(( (T % 86400) / 3600 ))
-M=$(( (T % 3600) / 60 ))
-S=$(( T % 60 ))
+time_elapsed $(( $( date +%s ) - time_start ))
 
 # #
 #   Output › Footer
