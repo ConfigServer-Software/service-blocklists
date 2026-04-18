@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Apr 17 04:29:15 UTC 2026
-#   @entries        24,085 ips
-#                   133 subnets
-#                   133 lines
+#   @updated        Sat Apr 18 04:11:47 UTC 2026
+#   @entries        24,103 ips
+#                   147 subnets
+#                   147 lines
 #   @country        Samoa (WS)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -45,6 +45,14 @@
 104.28.125.96/31
 104.28.180.192/30
 104.28.180.196/31
+104.28.212.233/32
+104.28.212.234/31
+104.28.212.236/31
+104.28.212.238/32
+104.28.244.233/32
+104.28.244.234/31
+104.28.244.236/31
+104.28.244.238/32
 110.5.112.0/22
 123.176.72.0/21
 140.248.20.24/31
@@ -139,10 +147,16 @@
 2a04:4e41:680d::/48
 2a04:4e41:762e::/48
 2a07:d887:f200::/40
+2a09:bac1:7c00::/64
+2a09:bac1:7c20::/64
+2a09:bac1:7c40::/64
+2a09:bac1:7c60::/64
 2a09:bac2:d380::/45
 2a09:bac3:d380::/45
 2a09:bac4:790::/45
 2a09:bac4:1790::/45
+2a09:bac5:d480::/45
+2a09:bac6:d480::/45
 2a0a:6044:f23f::/48
 2a0a:6044:f240::/45
 2a0a:6044:f248::/46

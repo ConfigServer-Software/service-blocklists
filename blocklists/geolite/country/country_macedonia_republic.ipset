@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Apr 17 04:28:16 UTC 2026
-#   @entries        709,013 ips
-#                   383 subnets
-#                   383 lines
+#   @updated        Sat Apr 18 04:11:00 UTC 2026
+#   @entries        709,029 ips
+#                   395 subnets
+#                   395 lines
 #   @country        Macedonia Republic (MK)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -104,6 +104,12 @@
 104.28.191.178/31
 104.28.191.180/31
 104.28.191.182/32
+104.28.223.241/32
+104.28.223.242/31
+104.28.223.244/31
+104.28.255.241/32
+104.28.255.242/31
+104.28.255.244/31
 104.30.178.112/32
 109.69.40.0/21
 109.121.134.0/23
@@ -357,13 +363,19 @@
 2a07:d887:8f00::/40
 2a07:d8c0::/32
 2a09:bac0:1001:53a::/64
+2a09:bac1:4a00::/64
+2a09:bac1:4a20::/64
+2a09:bac1:4a40::/64
+2a09:bac1:4a60::/64
 2a09:bac2:4868::/45
 2a09:bac2:d4c8::/45
 2a09:bac3:4868::/45
 2a09:bac3:d4c8::/45
 2a09:bac4:470::/45
 2a09:bac4:1470::/45
+2a09:bac5:4918::/45
 2a09:bac5:d5d0::/45
+2a09:bac6:4918::/45
 2a09:bac6:d5d0::/45
 2a0a:6044:6610::/45
 2a0a:6044:6618::/46

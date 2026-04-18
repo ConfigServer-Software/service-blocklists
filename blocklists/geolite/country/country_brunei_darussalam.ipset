@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Apr 17 04:27:32 UTC 2026
-#   @entries        223,997 ips
-#                   202 subnets
-#                   202 lines
+#   @updated        Sat Apr 18 04:10:25 UTC 2026
+#   @entries        224,018 ips
+#                   215 subnets
+#                   215 lines
 #   @country        Brunei Darussalam (BN)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -67,9 +67,16 @@
 104.28.120.13/32
 104.28.120.14/32
 104.28.148.194/32
+104.28.156.194/32
 104.28.170.17/32
 104.28.170.18/31
 104.28.170.20/30
+104.28.202.38/31
+104.28.202.40/30
+104.28.202.44/32
+104.28.234.38/31
+104.28.234.40/30
+104.28.234.44/32
 104.30.169.250/32
 104.30.171.15/32
 108.171.111.64/26
@@ -201,10 +208,16 @@
 2a09:a702:a2::/47
 2a09:bac0:1000:1237::/64
 2a09:bac0:1000:1353::/64
+2a09:bac1:f80::/64
+2a09:bac1:fa0::/64
+2a09:bac1:fc0::/64
+2a09:bac1:fe0::/64
 2a09:bac2:528::/45
 2a09:bac3:528::/45
 2a09:bac4:d8::/45
 2a09:bac4:10d8::/45
+2a09:bac5:540::/45
+2a09:bac6:540::/45
 2a0a:6044:f069::/48
 2a0a:6044:f06a::/47
 2a0a:6044:f06c::/46

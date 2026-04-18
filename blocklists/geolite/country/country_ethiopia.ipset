@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Apr 17 04:27:50 UTC 2026
-#   @entries        375,108 ips
-#                   182 subnets
-#                   182 lines
+#   @updated        Sat Apr 18 04:10:39 UTC 2026
+#   @entries        375,128 ips
+#                   196 subnets
+#                   196 lines
 #   @country        Ethiopia (ET)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -58,6 +58,10 @@
 104.28.187.214/31
 104.28.187.216/31
 104.28.187.218/32
+104.28.220.15/32
+104.28.220.16/30
+104.28.252.15/32
+104.28.252.16/30
 136.23.0.149/32
 136.23.20.1/32
 138.16.16.0/24
@@ -176,12 +180,22 @@
 2a04:4e41:4e06::/48
 2a04:4e41:5209::/48
 2a07:d887:4400::/40
+2a09:bac1:2400::/64
+2a09:bac1:2400:8::/64
+2a09:bac1:2420::/64
+2a09:bac1:2420:8::/64
+2a09:bac1:2440::/64
+2a09:bac1:2440:8::/64
+2a09:bac1:2460::/64
+2a09:bac1:2460:8::/64
 2a09:bac2:3148::/45
 2a09:bac2:3150::/45
 2a09:bac3:3148::/45
 2a09:bac3:3150::/45
 2a09:bac4:220::/45
 2a09:bac4:1220::/45
+2a09:bac5:31a0::/44
+2a09:bac6:31a0::/44
 2a0a:6044:69b7::/48
 2a0a:6044:69b8::/45
 2a0a:6044:69c0::/46

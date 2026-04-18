@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Apr 17 04:28:18 UTC 2026
-#   @entries        467,032 ips
-#                   213 subnets
-#                   213 lines
+#   @updated        Sat Apr 18 04:11:02 UTC 2026
+#   @entries        467,054 ips
+#                   227 subnets
+#                   227 lines
 #   @country        Namibia (NA)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -82,6 +82,14 @@
 104.28.168.42/31
 104.28.168.44/30
 104.28.168.48/31
+104.28.200.59/32
+104.28.200.60/30
+104.28.200.64/31
+104.28.200.66/32
+104.28.232.59/32
+104.28.232.60/30
+104.28.232.64/31
+104.28.232.66/32
 104.30.169.146/32
 104.30.171.131/32
 105.232.0.0/16
@@ -209,10 +217,16 @@
 2a04:4e41:7810::/48
 2a09:bac0:1000:11cf::/64
 2a09:bac0:1000:13bc::/64
+2a09:bac1:5200::/64
+2a09:bac1:5220::/64
+2a09:bac1:5240::/64
+2a09:bac1:5260::/64
 2a09:bac2:4ca0::/45
 2a09:bac3:4ca0::/45
 2a09:bac4:4f0::/45
 2a09:bac4:14f0::/45
+2a09:bac5:4d50::/45
+2a09:bac6:4d50::/45
 2a0a:6044:6ad4::/46
 2a0a:6044:6ad8::/45
 2a0a:6044:6ae0::/47

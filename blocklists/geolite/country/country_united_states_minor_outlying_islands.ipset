@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Apr 17 04:28:39 UTC 2026
-#   @entries        221 ips
-#                   108 subnets
-#                   108 lines
+#   @updated        Sat Apr 18 04:11:19 UTC 2026
+#   @entries        733 ips
+#                   109 subnets
+#                   109 lines
 #   @country        United States Minor Outlying Islands (UM)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -52,12 +52,12 @@
 162.120.214.16/32
 162.120.216.178/32
 178.175.138.90/32
+179.64.24.0/23
 194.50.99.233/32
 216.252.220.112/29
 216.252.220.240/29
 216.252.221.112/29
 216.252.221.240/29
-2001:470:8:231::/64
 2001:470:d:228::/64
 2001:470:d:3e1::/64
 2001:470:19:76::/64
@@ -105,6 +105,7 @@
 2604:ca00:1d5::/48
 2604:ca00:1e5::/48
 2604:ca00:1f5::/48
+2605:59c0:6300::/40
 2605:ef80:5::/48
 2605:ef80:15::/48
 2605:ef80:25::/48

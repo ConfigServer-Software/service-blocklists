@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Apr 17 04:28:17 UTC 2026
-#   @entries        2,625 ips
-#                   97 subnets
-#                   97 lines
+#   @updated        Sat Apr 18 04:11:01 UTC 2026
+#   @entries        2,641 ips
+#                   107 subnets
+#                   107 lines
 #   @country        Montserrat (MS)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -36,6 +36,10 @@
 104.28.92.195/32
 104.28.181.180/30
 104.28.181.184/32
+104.28.213.223/32
+104.28.213.224/30
+104.28.245.223/32
+104.28.245.224/30
 136.23.1.139/32
 136.23.21.39/32
 140.248.44.72/31
@@ -104,10 +108,16 @@
 2a04:4e41:4079:7000::/52
 2a04:4e41:4089:7000::/52
 2a07:d887:9700::/40
+2a09:bac1:4e00::/64
+2a09:bac1:4e20::/64
+2a09:bac1:4e40::/64
+2a09:bac1:4e60::/64
 2a09:bac2:48c8::/45
 2a09:bac3:48c8::/45
 2a09:bac4:4b0::/45
 2a09:bac4:14b0::/45
+2a09:bac5:4978::/45
+2a09:bac6:4978::/45
 2a0a:6044:f5e3::/48
 2a0a:6044:f5e4::/46
 2a0a:6044:f5e8::/45
