@@ -1,11 +1,11 @@
 # #
-#   🧱 Firewall Blocklist - blocklists/3rdparty/dshield.ipset
+#   🧱 Firewall Blocklist - blocklists/3rdparty/dshield/recommended.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/dshield.ipset
+#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/dshield/recommended.ipset
 #   @service        None
-#   @id             3rdparty_dshield_ipset
-#   @uuid           fdcd26c6-6c3c-3322-8fce-72c61d1aa0ff
-#   @updated        Sat Apr 18 05:31:19 UTC 2026
+#   @id             3rdparty_dshield_recommended_ipset
+#   @uuid           4288ae28-74fe-3056-92c7-bc17d6235660
+#   @updated        Sat Apr 18 12:41:12 UTC 2026
 #   @entries        5,120 ips
 #                   20 subnets
 #                   20 lines
