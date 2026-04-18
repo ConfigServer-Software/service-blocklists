@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             3rdparty_firehol_cybercrime_ipset
 #   @uuid           0ed566eb-4d6c-3794-9727-282a6cc32127
-#   @updated        Fri Apr 17 21:03:49 UTC 2026
-#   @entries        300 ips
+#   @updated        Sat Apr 18 02:00:42 UTC 2026
+#   @entries        301 ips
 #                   0 subnets
-#                   300 lines
+#                   301 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -178,6 +178,7 @@
 116.240.149.7
 117.136.90.135
 119.28.202.234
+120.216.173.184
 122.10.0.134
 122.10.45.194
 123.207.46.236
