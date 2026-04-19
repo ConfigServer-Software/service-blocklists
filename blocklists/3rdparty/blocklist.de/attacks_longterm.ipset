@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             3rdparty_blocklist_de_attacks_longterm_ipset
 #   @uuid           64bf25f1-aed6-3475-b945-8203f7f286c8
-#   @updated        Sun Apr 19 05:56:19 UTC 2026
-#   @entries        241 ips
+#   @updated        Sun Apr 19 12:40:14 UTC 2026
+#   @entries        240 ips
 #                   0 subnets
-#                   241 lines
+#                   240 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -172,7 +172,6 @@
 125.139.124.120
 136.228.161.66
 136.232.11.10
-141.98.11.11
 141.98.11.82
 157.245.115.125
 159.65.77.254

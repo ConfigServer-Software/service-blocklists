@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             privacy_bunnycdn_ipset
 #   @uuid           6526e73d-f7e2-3927-8d8e-7e8873d0b484
-#   @updated        Sun Apr 19 06:33:44 UTC 2026
-#   @entries        907 ips
+#   @updated        Sun Apr 19 13:17:53 UTC 2026
+#   @entries        906 ips
 #                   0 subnets
-#                   907 lines
+#                   906 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -296,7 +296,6 @@
 139.84.163.144
 139.99.174.7
 139.180.129.216
-139.180.209.182
 141.164.35.160
 141.227.142.242
 142.132.223.79
