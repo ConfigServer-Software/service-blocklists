@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             3rdparty_blocklist_de_attacks_sip_ipset
 #   @uuid           cece620b-f239-39f3-b1ae-b450c71da695
-#   @updated        Sat Apr 18 20:28:30 UTC 2026
-#   @entries        15 ips
+#   @updated        Sun Apr 19 01:33:16 UTC 2026
+#   @entries        12 ips
 #                   0 subnets
-#                   15 lines
+#                   12 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -20,13 +20,10 @@
 85.122.129.248
 108.181.71.5
 109.235.88.244
-149.22.88.46
 172.86.67.130
 178.63.154.178
 181.23.110.205
 193.104.222.8
 198.37.119.56
 216.126.225.19
-216.224.124.59
-216.224.124.151
 2a02:f98:0:14::5425:7ca7
