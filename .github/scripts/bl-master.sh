@@ -866,6 +866,11 @@ filter_bogon_ips( )
     _fnBogonAfter=0
     _fnBogonRemoved=0
 
+    if [ "${argSkipBogonFilter}" = "true" ]; then
+        info "    ⚡ Skipping bogon filtering (CFG_SKIP_BOGON_FILTER=true)"
+        return 0
+    fi
+
     case "${argIncludeBogon:-true}" in
         1|true|TRUE|yes|YES)
             return 0
@@ -887,11 +892,13 @@ filter_bogon_ips( )
 
         if [[ "${_fnBogonBase}" == *:* ]]; then
             if is_bogon_ipv6 "${_fnBogonLine}"; then
+                label "       ${bluel}${_fnBogonLine}${greym}"
                 _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
                 continue
             fi
         elif [[ "${_fnBogonBase}" == *.* ]]; then
             if is_bogon_ipv4 "${_fnBogonBase}"; then
+                label "       ${bluel}${_fnBogonLine}${greym}"
                 _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
                 continue
             fi

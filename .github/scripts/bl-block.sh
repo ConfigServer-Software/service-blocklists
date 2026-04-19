@@ -1109,11 +1109,13 @@ filter_bogon_ips( )
 
         if [[ "${_fnBogonBase}" == *:* ]]; then
             if is_bogon_ipv6 "${_fnBogonLine}"; then
+                label "       ${bluel}${_fnBogonLine}${greym}"
                 _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
                 continue
             fi
         elif [[ "${_fnBogonBase}" == *.* ]]; then
             if is_bogon_ipv4 "${_fnBogonBase}"; then
+                label "       ${bluel}${_fnBogonLine}${greym}"
                 _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
                 continue
             fi

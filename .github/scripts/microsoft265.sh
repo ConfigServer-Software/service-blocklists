@@ -852,6 +852,11 @@ filter_bogon_ips( )
     _fnBogonAfter=0
     _fnBogonRemoved=0
 
+    if [ "${argSkipBogonFilter}" = "true" ]; then
+        info "    ⚡ Skipping bogon filtering (CFG_SKIP_BOGON_FILTER=true)"
+        return 0
+    fi
+
     case "${argIncludeBogon:-true}" in
         1|true|TRUE|yes|YES)
             return 0
@@ -873,11 +878,13 @@ filter_bogon_ips( )
 
         if [[ "${_fnBogonBase}" == *:* ]]; then
             if is_bogon_ipv6 "${_fnBogonLine}"; then
+                label "       ${bluel}${_fnBogonLine}${greym}"
                 _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
                 continue
             fi
         elif [[ "${_fnBogonBase}" == *.* ]]; then
             if is_bogon_ipv4 "${_fnBogonBase}"; then
+                label "       ${bluel}${_fnBogonLine}${greym}"
                 _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
                 continue
             fi
@@ -976,7 +983,7 @@ download_list()
     # remove empty lines (after trimming/comment removal)
     sed -i '/^$/d' "${_fnFileTemp}"
 
-        # #
+    # #
     #   Dedupe, Sort: Move from .tmp to .sort
     # #
 
@@ -1063,16 +1070,27 @@ templ_curl_opts=(-sSL -A "$app_agent")                                          
 #   Define › Template › External Sources
 # #
 
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/descriptions/${templ_id}.txt" > desc.txt &
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/categories/${templ_id}.txt" > cat.txt &
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/expires/${templ_id}.txt" > exp.txt &
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/url-source/${templ_id}.txt" > src.txt &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/descriptions/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/categories/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/expires/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/url-source/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
 wait
-templ_desc=$(<desc.txt)
-templ_cat=$(<cat.txt)
-templ_exp=$(<exp.txt)
-templ_url_service=$(<src.txt)
-rm -f desc.txt cat.txt exp.txt src.txt
+
+templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
+templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
+templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
+templ_url_service=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+
+if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" \
+        "${app_dir_github}/${folder_target_temp}/cat.txt" \
+        "${app_dir_github}/${folder_target_temp}/exp.txt" \
+        "${app_dir_github}/${folder_target_temp}/src.txt"
+then
+    ok "          Removed temp files from ${greenl}${folder_target_temp}${greym}: ${greend}${folder_target_temp}/desc.txt${greym}, ${greend}${folder_target_temp}/cat.txt${greym}, ${greend}${folder_target_temp}/exp.txt${greym}, ${greend}${folder_target_temp}/src.txt${greym}"
+else
+    error "          Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
+    exit 1
+fi
 
 # #
 #   Define › Template › Default Values
