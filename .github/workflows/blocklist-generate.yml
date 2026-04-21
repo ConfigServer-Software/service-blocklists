@@ -648,6 +648,13 @@ jobs:
                     | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
 
                   # #
+                  #   3rd Party › Binary Defense
+                  # #
+
+                  curl -sSL "https://binarydefense.com/banlist.txt" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/binarydefense/blocklist.ipset
+
+                  # #
                   #   3rd Party › Bitwire-IT
                   #   
                   #   @ref    https://github.com/bitwire-it/ipblocklist
@@ -710,7 +717,7 @@ jobs:
                   # #
 
                   curl -sSL "${{ vars.BL_3PARTY_BRUTEFORCEBLOCKER_LIST }}" \
-                    | .github/scripts/bl-format.sh blocklists/3rdparty/bruteforceblocker/list.ipset
+                    | .github/scripts/bl-format.sh blocklists/3rdparty/bruteforceblocker/blocklist.ipset
 
                   # #
                   #   3rd Party › DShield
@@ -722,7 +729,7 @@ jobs:
                     | grep -v '^#' \
                     | awk '$4 >= 50 {print $1 "/" $3}' \
                     | sort -u \
-                    | .github/scripts/bl-format.sh blocklists/3rdparty/dshield/recommended.ipset
+                    | .github/scripts/bl-format.sh blocklists/3rdparty/dshield/blocklist.ipset
 
                   # #
                   #   3rd Party › Firehol
@@ -811,6 +818,41 @@ jobs:
                     | cut -d'#' -f1 \
                     | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/hagezi/threat_intelligence.ipset
+
+                  # #
+                  #   3rd Party › IPSum
+                  # #
+
+                  curl -sSL "https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/ipsum/blocklist.ipset
+
+                  # #
+                  #   3rd Party › LinuxTracker
+                  # #
+
+                  curl -sSL "https://raw.githubusercontent.com/LinuxTracker/Blocklists/master/HancitorIPs.txt" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/linuxtracker/blocklist.ipset
+
+                  # #
+                  #   3rd Party › Myip.ms
+                  # #
+
+                  tmp_zip="$(mktemp)"
+                  curl -sSL "https://ru.myip.ms/files/blacklist/general/full_blacklist_database.zip" -o "${tmp_zip}"
+                  zip_entry="$(unzip -Z1 "${tmp_zip}" | grep -m1 -E '(^|/)full_blacklist_database\.txt$')"
+                  [ -z "${zip_entry}" ] && { echo "full_blacklist_database.txt not found in zip" >&2; rm -f "${tmp_zip}"; exit 1; }
+
+                  unzip -p "${tmp_zip}" "${zip_entry}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/Myip.ms/blocklist.ipset
+
+                  rm -f "${tmp_zip}"
+
+                  # #
+                  #   3rd Party › Rutgers
+                  # #
+
+                  curl -sSL "https://report.cs.rutgers.edu/DROP/attackers" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/rutgers.edu/blocklist.ipset
 
             # #
             #   Generate › Privacy › A - G
