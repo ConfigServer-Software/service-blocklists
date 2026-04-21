@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             isp_isp_frontier_communications_ipset
 #   @uuid           d97f4a2e-5067-33d2-a3b7-605fce843a62
-#   @updated        Tue Apr 21 02:46:27 UTC 2026
-#   @entries        11,772,944 ips
-#                   883 subnets
-#                   883 lines
+#   @updated        Tue Apr 21 07:17:50 UTC 2026
+#   @entries        11,777,040 ips
+#                   884 subnets
+#                   884 lines
 #   @asn            AS5650, AS7011, AS3593, AS26127, AS32587
 #                   AS30064
 #   @expires        6 hours
@@ -343,6 +343,7 @@
 84.75.28.0/22
 84.75.72.0/22
 84.245.32.0/20
+85.232.160.0/20
 86.38.191.0/24
 86.104.164.0/22
 87.82.52.0/23
