@@ -172,14 +172,15 @@ did_load_fallback="false"                                                       
 #   Optional Parameters
 #   
 #       CFG_TRUSTED_INPUT=true
-#           Skip per-line IP/CIDR validation loop.
+#           Skip per-line IP/CIDR validation loop. Only enable if we trust the
+#           source.
 #   
 #       CFG_SKIP_BOGON_FILTER=true
 #           Skip bogon filtering loop.
 #   
 #       CFG_INCLUDE_COMMENTS=true
 #           Preserve inline # and ; comments after each IP/CIDR entry.
-#
+#   
 #       CFG_SORT_PARALLEL=<N>
 #           Pass --parallel=<N> to sort if supported.
 #   
@@ -815,10 +816,18 @@ extract_ip_entry( )
 
 sort_results()
 {
-
-    # Temp files for IPv4 and IPv6
+    # Temp files for input and split output
+    _in_tmp=$(mktemp) || exit 1
     _ipv4_tmp=$(mktemp) || exit 1
     _ipv6_tmp=$(mktemp) || exit 1
+
+    cat > "${_in_tmp}"
+
+    if [ ! -s "${_in_tmp}" ]; then
+        rm -f "${_in_tmp}" "${_ipv4_tmp}" "${_ipv6_tmp}"
+        unset   _in_tmp _ipv4_tmp _ipv6_tmp
+        return 0
+    fi
 
     if [ "${argIncludeComments}" = "true" ]; then
 
@@ -847,7 +856,7 @@ sort_results()
                     fi
                     ;;
             esac
-        done
+        done < "${_in_tmp}"
 
         # Sort IPv4 numerically, remove duplicates by canonical key
         if [ -s "${_ipv4_tmp}" ]; then
@@ -862,44 +871,59 @@ sort_results()
         fi
 
         # Clean up temp files
-        rm -f "${_ipv4_tmp}" "${_ipv6_tmp}"
+        rm -f "${_in_tmp}" "${_ipv4_tmp}" "${_ipv6_tmp}"
 
         # #
         #   Unset
         # #
 
-        unset   _ipv4_tmp _ipv6_tmp _fnSortKey _fnSortPriority _fnSortIpv4 _fnSortO1 _fnSortO2 _fnSortO3 _fnSortO4
+        unset   _in_tmp _ipv4_tmp _ipv6_tmp _fnSortKey _fnSortPriority _fnSortIpv4 _fnSortO1 _fnSortO2 _fnSortO3 _fnSortO4
         return 0
     fi
 
-    # Read stdin line by line
-    while IFS= read -r line; do
-        case "$line" in
-            *:*)
-                printf '%s\n' "$line" >> "$_ipv6_tmp" ;;
-            *)
-                printf '%s\n' "$line" >> "$_ipv4_tmp" ;;
-        esac
-    done
+    # #
+    #   Fast path › pure IPv4
+    # #
 
-    # Sort IPv4 numerically, remove duplicates
-    if [ -s "$_ipv4_tmp" ]; then
-        sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "$_ipv4_tmp" | uniq
-    fi
+    if ! grep -q ':' "${_in_tmp}"; then
+        sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}"
 
-    # Sort IPv6 lexicographically, remove duplicates
-    if [ -s "$_ipv6_tmp" ]; then
-        sort "${sort_cmd_opts[@]}" "$_ipv6_tmp" | uniq
+    # #
+    #   Fast path › pure IPv6
+    # #
+
+    elif ! grep -q '\.' "${_in_tmp}"; then
+        sort "${sort_cmd_opts[@]}" -u "${_in_tmp}"
+
+    # #
+    #   Mixed IPv4/IPv6
+    # #
+
+    else
+        awk '
+        index($0, ":") { print > v6; next }
+                        { print > v4 }
+        ' v4="${_ipv4_tmp}" v6="${_ipv6_tmp}" "${_in_tmp}"
+
+        # Sort IPv4 numerically, remove duplicates
+        if [ -s "${_ipv4_tmp}" ]; then
+            sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}"
+        fi
+
+        # Sort IPv6 lexicographically, remove duplicates
+        if [ -s "${_ipv6_tmp}" ]; then
+            sort "${sort_cmd_opts[@]}" -u "${_ipv6_tmp}"
+        fi
     fi
 
     # Clean up temp files
-    rm -f "$_ipv4_tmp" "$_ipv6_tmp"
+    rm -f "${_in_tmp}" "${_ipv4_tmp}" "${_ipv6_tmp}"
 
     # #
     #   Unset
     # #
 
-    unset   _ipv4_tmp _ipv6_tmp
+    unset   _in_tmp _ipv4_tmp _ipv6_tmp
 }
 
 # #
@@ -1703,7 +1727,12 @@ download_list()
     # #
 
     info "    🔃 Sorting and deduplicating results"
-    grep -vE '^[[:space:]]*(#|;|$)' "${_fnFileTemp}" | sort_results > "${_fnFileTemp}.sort"
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        grep -vE '^[[:space:]]*(#|;|$)' "${_fnFileTemp}" | sort_results > "${_fnFileTemp}.sort"
+    else
+        sort_results < "${_fnFileTemp}" > "${_fnFileTemp}.sort"
+    fi
 
     # #
     #   Move from .sort to .tmp
@@ -1858,7 +1887,12 @@ download_list_fallback()
     # #
 
     info "    🔃 Sorting and deduplicating results"
-    grep -vE '^[[:space:]]*(#|;|$)' "${_fnFileTemp}" | sort_results > "${_fnFileTemp}.sort"
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        grep -vE '^[[:space:]]*(#|;|$)' "${_fnFileTemp}" | sort_results > "${_fnFileTemp}.sort"
+    else
+        sort_results < "${_fnFileTemp}" > "${_fnFileTemp}.sort"
+    fi
 
     # #
     #   Move from .sort to .tmp
@@ -2208,7 +2242,11 @@ fi
 if [ -f "${file_ipset_target}" ]; then
     if [ "${did_load_fallback}" = "true" ]; then
         info "    🧹 Sorting and removing duplicate IP entries from ${bluel}${PWD}/${file_ipset_target}${greym}"
-        grep -vE '^[[:space:]]*(#|;|$)' "${file_ipset_target}" | sort_results > "${file_ipset_target}.sort"
+        if [ "${argIncludeComments}" = "true" ]; then
+            grep -vE '^[[:space:]]*(#|;|$)' "${file_ipset_target}" | sort_results > "${file_ipset_target}.sort"
+        else
+            sort_results < "${file_ipset_target}" > "${file_ipset_target}.sort"
+        fi
         > "${file_ipset_target}"
         cat "${file_ipset_target}.sort" >> "${file_ipset_target}"
         rm "${file_ipset_target}.sort"
