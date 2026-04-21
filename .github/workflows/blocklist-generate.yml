@@ -632,47 +632,85 @@ jobs:
                   #   3rd Party › Alienvault
                   # #
 
-                  curl -s http://reputation.alienvault.com/reputation.data \
+                  curl -sSL "${{ vars.BL_3PARTY_ALIENVAULT_REPUTATION }}" \
                     | cut -d'#' -f1 \
                     | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/alienvault/bad_reputation.ipset
 
                   # #
+                  #   3rd Party › BBcan177
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_BBCAN177_MS1 }}" \
+                    | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms1.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_BBCAN177_MS3 }}" \
+                    | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+
+                  # #
+                  #   3rd Party › Bitwire-IT
+                  #   
+                  #   @ref    https://github.com/bitwire-it/ipblocklist
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_BITWIRE_INBOUND }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/bitwire/inbound.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_BITWIRE_OUTBOUND }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/bitwire/outbound.ipset
+
+                  # #
                   #   3rd Party › Blocklist.de
                   # #
 
-                  curl -sSL "https://lists.blocklist.de/lists/all.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_BLOCKLISTDE_ALL }}" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/blocklist.de/all.ipset
 
-                  curl -sSL "https://lists.blocklist.de/lists/ssh.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_BLOCKLISTDE_SSH }}" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/blocklist.de/attacks_ssh.ipset
 
-                  curl -sSL "https://lists.blocklist.de/lists/mail.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_BLOCKLISTDE_MAIL }}" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/blocklist.de/attacks_mail.ipset
 
-                  curl -sSL "https://lists.blocklist.de/lists/apache.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_BLOCKLISTDE_APACHE }}" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/blocklist.de/attacks_apache.ipset
 
-                  curl -sSL "https://lists.blocklist.de/lists/imap.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_BLOCKLISTDE_IMAP }}" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/blocklist.de/attacks_imap.ipset
 
-                  curl -sSL "https://lists.blocklist.de/lists/ftp.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_BLOCKLISTDE_FTP }}" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/blocklist.de/attacks_ftp.ipset
 
-                  curl -sSL "https://lists.blocklist.de/lists/sip.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_BLOCKLISTDE_SIP }}" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/blocklist.de/attacks_sip.ipset
 
-                  curl -sSL "https://lists.blocklist.de/lists/bots.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_BLOCKLISTDE_BOTS }}" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/blocklist.de/attacks_bots.ipset
 
-                  curl -sSL "https://lists.blocklist.de/lists/strongips.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_BLOCKLISTDE_LONGTERM }}" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/blocklist.de/attacks_longterm.ipset
 
-                  curl -sSL "https://lists.blocklist.de/lists/ircbot.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_BLOCKLISTDE_IRC }}" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/blocklist.de/attacks_ircbot.ipset
 
-                  curl -sSL "https://lists.blocklist.de/lists/bruteforcelogin.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_BLOCKLISTDE_BRUTEFORCE }}" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/blocklist.de/attacks_bruteforce.ipset
+
+                  # #
+                  #   3rd Party › Botvrij
+                  # #
+
+                  curl -sSL "http://www.botvrij.eu/data/ioclist.ip-dst.raw" \
+                    | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/botvrij/threats_ioc.ipset
+
+                  # #
+                  #   3rd Party › BruteForceBlocker (Daniel Gerzo)
+                  #   
+                  #   @ref    https://danger.rulez.sk/index.php/bruteforceblocker/faq/
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_BRUTEFORCEBLOCKER_LIST }}" \
+                    | .github/scripts/bl-format.sh blocklists/3rdparty/bruteforceblocker/list.ipset
 
                   # #
                   #   3rd Party › DShield
@@ -764,6 +802,15 @@ jobs:
 
                   curl -sSL "https://iplists.firehol.org/files/botscout_7d.ipset" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout_7d.ipset
+
+                  # #
+                  #   3rd Party › Hagezi
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_HAGEZI_LIST }}" \
+                    | cut -d'#' -f1 \
+                    | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' \
+                    | .github/scripts/bl-format.sh blocklists/3rdparty/hagezi/threat_intelligence.ipset
 
             # #
             #   Generate › Privacy › A - G
