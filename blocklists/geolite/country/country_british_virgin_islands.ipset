@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 21 04:29:20 UTC 2026
-#   @entries        97,233 ips
-#                   548 subnets
-#                   548 lines
+#   @updated        Wed Apr 22 04:25:53 UTC 2026
+#   @entries        98,769 ips
+#                   551 subnets
+#                   551 lines
 #   @country        British Virgin Islands (VG)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -73,11 +73,13 @@
 66.212.55.0/24
 67.209.160.0/20
 68.65.216.0/23
+69.57.233.0/24
 72.46.24.0/22
 72.51.126.0/23
 74.113.104.0/22
 74.113.236.0/23
 76.76.160.0/21
+76.76.172.0/22
 89.44.81.0/24
 89.46.240.0/24
 91.103.252.0/23
@@ -212,6 +214,7 @@
 195.242.110.0/23
 195.242.118.0/23
 198.56.56.0/22
+199.16.56.0/24
 199.79.60.0/23
 199.91.96.0/22
 199.91.101.0/24

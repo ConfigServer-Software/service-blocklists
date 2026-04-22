@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 21 04:28:14 UTC 2026
-#   @entries        823,651 ips
-#                   1,580 subnets
-#                   1,580 lines
+#   @updated        Wed Apr 22 04:24:44 UTC 2026
+#   @entries        824,932 ips
+#                   1,583 subnets
+#                   1,583 lines
 #   @country        Iraq (IQ)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -77,6 +77,8 @@
 38.3.228.0/22
 38.3.232.0/21
 38.60.190.0/24
+38.69.144.0/24
+38.199.252.0/22
 38.236.87.0/24
 38.236.171.0/24
 44.63.3.124/30
@@ -1100,6 +1102,7 @@
 2001:470:1f13:ec7::/64
 2001:470:1f13:ec8::/64
 2001:470:1f13:f0d::/64
+2001:470:1f15:29::/64
 2001:470:1f15:65::/64
 2001:470:1f15:a1::/64
 2001:470:1f15:2b2::/64
