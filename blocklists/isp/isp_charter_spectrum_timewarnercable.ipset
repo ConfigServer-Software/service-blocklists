@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             isp_isp_charter_spectrum_timewarnercable_ipset
 #   @uuid           a7f5afc9-d680-3ee5-a193-badd52f7a562
-#   @updated        Wed Apr 22 06:34:31 UTC 2026
-#   @entries        54,875,363 ips
-#                   4,069 subnets
-#                   4,069 lines
+#   @updated        Wed Apr 22 09:50:08 UTC 2026
+#   @entries        54,876,387 ips
+#                   4,073 subnets
+#                   4,073 lines
 #   @asn            AS7843, AS10796, AS11427, AS20001, AS11351
 #                   AS11426, AS12271, AS20231, AS11955, AS10838
 #                   AS20115, AS40264, AS22677, AS22974, AS33588
@@ -722,6 +722,10 @@
 64.7.224.0/20
 64.9.117.0/24
 64.9.118.0/24
+64.16.128.0/24
+64.16.129.0/24
+64.16.130.0/24
+64.16.131.0/24
 64.20.209.0/24
 64.20.247.0/24
 64.30.240.0/20
