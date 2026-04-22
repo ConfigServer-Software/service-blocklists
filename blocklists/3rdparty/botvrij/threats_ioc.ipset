@@ -1,0 +1,21 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/3rdparty/botvrij/threats_ioc.ipset
+#
+#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/botvrij/threats_ioc.ipset
+#   @service        None
+#   @id             3rdparty_botvrij_threats_ioc_ipset
+#   @uuid           5d583ce2-60ac-3dff-a28a-b60d6709b3d6
+#   @updated        Wed Apr 22 01:29:43 UTC 2026
+#   @entries        4 ips
+#                   0 subnets
+#                   4 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+59.110.7.32
+61.4.102.97
+95.179.213.0
+124.222.137.114

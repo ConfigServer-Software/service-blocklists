@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             isp_isp_qwest_centurylink_ipset
 #   @uuid           32d46b9c-2a66-353d-8850-ef95569eca5f
-#   @updated        Tue Apr 21 07:18:16 UTC 2026
-#   @entries        33,365,410 ips
-#                   1,526 subnets
-#                   1,527 lines
+#   @updated        Wed Apr 22 02:10:05 UTC 2026
+#   @entries        33,365,154 ips
+#                   1,525 subnets
+#                   1,526 lines
 #   @asn            AS3908, AS3909, AS209, AS3561, AS3910
 #                   AS22561, AS6223, AS4297, AS6224, AS4296
 #                   AS2379, AS5778, AS11398, AS14905, AS17402
@@ -780,7 +780,6 @@
 192.112.48.0/24
 192.112.64.0/24
 192.131.77.0/24
-192.136.67.0/24
 192.139.196.0/24
 192.149.235.0/24
 192.151.85.0/24

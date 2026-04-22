@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             oracle_osn_ipset
 #   @uuid           2b9df0d0-671d-3b43-9bc4-8552ea1c54d1
-#   @updated        Tue Apr 21 07:04:59 UTC 2026
-#   @entries        456,330 ips
-#                   534 subnets
-#                   534 lines
+#   @updated        Wed Apr 22 01:58:48 UTC 2026
+#   @entries        457,354 ips
+#                   535 subnets
+#                   535 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -340,6 +340,7 @@
 146.235.252.128/25
 146.235.253.0/24
 146.235.254.0/23
+147.5.28.0/22
 147.154.0.0/19
 147.154.32.0/25
 147.154.36.0/22
