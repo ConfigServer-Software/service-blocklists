@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             3rdparty_firehol_webclient_ipset
 #   @uuid           63e8ab7f-8133-3dac-bd85-b0ab53e25e00
-#   @updated        Wed Apr 22 13:06:58 UTC 2026
-#   @entries        305 ips
+#   @updated        Wed Apr 22 16:54:30 UTC 2026
+#   @entries        306 ips
 #                   0 subnets
-#                   305 lines
+#                   306 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -84,6 +84,7 @@
 45.81.39.207
 45.83.31.33
 45.131.195.55
+45.132.227.190
 45.133.5.168
 45.133.5.173
 45.133.5.180

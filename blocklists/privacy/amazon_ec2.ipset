@@ -5,7 +5,7 @@
 #   @service        None
 #   @id             amazon_ec2_ipset
 #   @uuid           7c985dac-452f-3573-9f6e-5306f1059b58
-#   @updated        Wed Apr 22 13:07:42 UTC 2026
+#   @updated        Wed Apr 22 16:55:09 UTC 2026
 #   @entries        74,412,589 ips
 #                   1,797 subnets
 #                   1,797 lines
