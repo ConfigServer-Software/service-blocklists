@@ -755,9 +755,9 @@ run()
 #   Configure sort options
 #   
 #   Builds the options array for the `sort` command based on user settings:
-#       - If `argSortParallel` is valid number and the system supports it, enable parallel sorting with that value.
-#       - If `argSortBufferSize` is set, apply it as the sort buffer size (-S).
-#       - Log what gets enabled or warns if values are invalid or unsupported.
+#       If `argSortParallel` is valid number and the system supports it, enable parallel sorting with that value.
+#       If `argSortBufferSize` is set, apply it as the sort buffer size (-S).
+#       Log what gets enabled or warns if values are invalid or unsupported.
 # #
 
 configure_sort_options( )
@@ -825,6 +825,7 @@ extract_ip_entry( )
 #   Sort Results
 #   
 #   @usage          sort_results < "${file_ipset_target}" > "${file_ipset_target}.sort"
+#                   grep -vE '^[[:space:]]*(#|;|$)' "${file_ipset_target}" | sort_results > "${file_ipset_target}.sort"
 # #
 
 sort_results()
@@ -1107,6 +1108,7 @@ filter_valid_ip_entries()
 
     while IFS= read -r _fnValidateLine || [ -n "${_fnValidateLine}" ]; do
         [ -z "${_fnValidateLine}" ] && continue
+    
         if [ "${argIncludeComments}" = "true" ]; then
             _fnValidateEntry=$(extract_ip_entry "${_fnValidateLine}")
 
@@ -1157,9 +1159,9 @@ fi
 
 # #
 #   Count file statistics
-#       - IPv4 CIDR contributes all IPv4 addresses in the subnet
-#       - IPv6 CIDR contributes one entry (do not expand)
-#       - Single IPv4/IPv6 contributes one entry
+#       IPv4 CIDR contributes all IPv4 addresses in the subnet
+#       IPv6 CIDR contributes one entry (do not expand)
+#       Single IPv4/IPv6 contributes one entry
 # #
 
 count_ip_stats( )
@@ -1998,6 +2000,12 @@ download_list_fallback()
     cat "${_fnArgLocalFile}" > "${_fnFileTemp}"
 
     # #
+    #   Running sed
+    # #
+
+    info "    ✴️  Performing sed operations on ${bluel}${_fnFileTemp}${greym}"
+
+    # #
     #   Perform sed actions on downloaded file.
     # #
 
@@ -2022,6 +2030,7 @@ download_list_fallback()
     else
         # remove inline comments (strip ' # comment' or ' ; comment' from end of lines ; collapse whitespace, trim)
         sed -i 's/[[:space:]]*[#;].*$//' "${_fnFileTemp}"
+
         # collapse multiple whitespace into a single space
         sed -i 's/[[:space:]]\+/ /g' "${_fnFileTemp}"
     fi
@@ -2032,10 +2041,14 @@ download_list_fallback()
     # remove empty lines (after trimming/comment removal)
     sed -i '/^$/d' "${_fnFileTemp}"
 
-    # drop malformed entries before sorting (optional trusted-input fast path)
+    # #
+    #   Drop malformed entries before sorting (optional trusted-input fast path)
+    # #
+
     if [ "${argTrustedInput}" = "true" ]; then
         info "    ⚡ Trusted input mode enabled; skipping per-line IP validation"
     else
+        info "    ✴️  Verify valid ip entries in ${bluel}${_fnFileTemp}${greym}. This may take some time."
         filter_valid_ip_entries "${_fnFileTemp}"
     fi
 

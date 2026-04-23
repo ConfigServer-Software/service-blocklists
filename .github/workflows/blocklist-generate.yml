@@ -925,15 +925,13 @@ jobs:
                   #   Privacy › Amazon AWS
                   # #
 
-                  run_amz_aws=".github/scripts/bl-json.sh blocklists/privacy/amazon_aws.ipset ${{ vars.BL_AMAZON_CORE_URL }} '.prefixes[] | select(.service==\"AMAZON\") | .ip_prefix'"
-                  eval "./$run_amz_aws"
+                  ./.github/scripts/bl-json.sh blocklists/privacy/amazon_aws.ipset "${{ vars.BL_AMAZON_CORE_URL }}" '.prefixes[] | select(.service=="AMAZON") | .ip_prefix'
 
                   # #
                   #   Privacy › Amazon EC2
                   # #
 
-                  run_amz_ec2=".github/scripts/bl-json.sh blocklists/privacy/amazon_ec2.ipset ${{ vars.BL_AMAZON_CORE_URL }} '.prefixes[] | select(.service==\"EC2\") | .ip_prefix'"
-                  eval "./$run_amz_ec2"
+                  ./.github/scripts/bl-json.sh blocklists/privacy/amazon_ec2.ipset "${{ vars.BL_AMAZON_CORE_URL }}" '.prefixes[] | select(.service=="EC2") | .ip_prefix'
 
                   # #
                   #   Privacy › Anthropic
@@ -961,19 +959,19 @@ jobs:
                   #   Privacy › Alibaba
                   # #
 
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/alibaba.ipset "${{ vars.BL_CHINA_ALIBABA_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/alibaba.ipset "${{ vars.BL_CHINA_ALIBABA_ASN }}"
                   
                   # #
                   #   Privacy › Automattic / Tumblr / Wordpress.com
                   # #
 
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/automattic.ipset "${{ vars.BL_AUTOMATTIC_WP_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/automattic.ipset "${{ vars.BL_AUTOMATTIC_WP_ASN }}"
 
                   # #
                   #   Privacy › Baidu
                   # #
 
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/baidu.ipset "${{ vars.BL_CHINA_BAIDU_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/baidu.ipset "${{ vars.BL_CHINA_BAIDU_ASN }}"
 
                   # #
                   #   Privacy › Bing
@@ -991,7 +989,7 @@ jobs:
                   #   Privacy › Bluehost
                   # #
 
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/bluehost_eig.ipset "${{ vars.BL_BLUEHOST_EIG_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/bluehost_eig.ipset "${{ vars.BL_BLUEHOST_EIG_ASN }}"
 
                   # #
                   #   Privacy › Bunny CDN
@@ -1008,37 +1006,37 @@ jobs:
                   #   Privacy › ByteDance / Tiktok
                   # #
 
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/bytedance.ipset "${{ vars.BL_TIKTOK_BYTEDANCE_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/bytedance.ipset "${{ vars.BL_TIKTOK_BYTEDANCE_ASN }}"
 
                   #   Privacy › Censys, Inc.
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/censys_io.ipset "${{ vars.BL_CENSYS_IO_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/censys_io.ipset "${{ vars.BL_CENSYS_IO_ASN }}"
 
                   #   Privacy › China › China Broadcasting Network
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/china_broadcasting_network.ipset "${{ vars.BL_CHINA_BROADCASTING_NETWORK_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/china_broadcasting_network.ipset "${{ vars.BL_CHINA_BROADCASTING_NETWORK_ASN }}"
 
                   #   Privacy › China › China Mobile
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/china_mobile.ipset "${{ vars.BL_CHINA_MOBILE_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/china_mobile.ipset "${{ vars.BL_CHINA_MOBILE_ASN }}"
 
                   #   Privacy › China › ChinaNET
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/china_chinanet.ipset "${{ vars.BL_CHINA_CHINANET_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/china_chinanet.ipset "${{ vars.BL_CHINA_CHINANET_ASN }}"
 
                   #   Privacy › China › China / Shanghai Mobile Communications Co.,Ltd.
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/china_net_mobile.ipset "${{ vars.BL_CHINA_NETMOBILE_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/china_net_mobile.ipset "${{ vars.BL_CHINA_NETMOBILE_ASN }}"
 
                   #   Privacy › China › China Networks Inter-Exchange
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/china_networks.ipset "${{ vars.BL_CHINA_NETWORKS_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/china_networks.ipset "${{ vars.BL_CHINA_NETWORKS_ASN }}"
 
                   #   Privacy › China › Telecom
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/china_telecom.ipset "${{ vars.BL_CHINA_TELECOM_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/china_telecom.ipset "${{ vars.BL_CHINA_TELECOM_ASN }}"
 
                   #   Privacy › China › Tencent Networks
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/china_tencent.ipset "${{ vars.BL_CHINA_TENCENT_NET_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/china_tencent.ipset "${{ vars.BL_CHINA_TENCENT_NET_ASN }}"
 
                   #   Privacy › China › Tietong
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/china_tietong.ipset "${{ vars.BL_CHINA_TIETONG_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/china_tietong.ipset "${{ vars.BL_CHINA_TIETONG_ASN }}"
 
                   #   Privacy › China › Unicorn
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/china_unicorn.ipset "${{ vars.BL_CHINA_UNICORN_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/china_unicorn.ipset "${{ vars.BL_CHINA_UNICORN_ASN }}"
 
                   # #
                   #   Privacy › Cloudfront
@@ -1061,19 +1059,19 @@ jobs:
                   #   Privacy › COLOCROSSING / HostPapa
                   # #
 
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/colocrossing_hostpapa.ipset "${{ vars.BL_COLOCROSSING_HOSTPAPA_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/colocrossing_hostpapa.ipset "${{ vars.BL_COLOCROSSING_HOSTPAPA_ASN }}"
 
                   # #
                   #   Privacy › Contabo Hosting
                   # #
 
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/contabo_gmbh.ipset "${{ vars.BL_CONTABO_GMBH_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/contabo_gmbh.ipset "${{ vars.BL_CONTABO_GMBH_ASN }}"
 
                   # #
                   #   Privacy › Digital Ocean
                   # #
 
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/digitalocean_asn.ipset "${{ vars.BL_DIGITAL_OCEAN_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/digitalocean_asn.ipset "${{ vars.BL_DIGITAL_OCEAN_ASN }}"
 
                   # #
                   #   Privacy › Digital Ocean
@@ -1089,7 +1087,7 @@ jobs:
                   #   Privacy › Dream Hosting
                   # #
 
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/dreamhost.ipset "${{ vars.BL_DREAMHOST_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/dreamhost.ipset "${{ vars.BL_DREAMHOST_ASN }}"
 
                   # #
                   #   Privacy › DuckDuckGo
@@ -1115,7 +1113,7 @@ jobs:
                   #   https://bgp.he.net/search?search%5Bsearch%5D=facebook&commit=Search
                   # #
 
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/facebook.ipset "${{ vars.BL_FACEBOOK_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/facebook.ipset "${{ vars.BL_FACEBOOK_ASN }}"
 
                   # #
                   #   Privacy › Fastly
@@ -1130,7 +1128,7 @@ jobs:
                   # #
 
                   GITHUB_URL="${{ vars.BL_GITHUB_URL }}"
-                  ./.github/scripts/bl-json.sh blocklists/privacy/github_all.ipset $GITHUB_URL '..  | strings | select(test(\"^[0-9a-fA-F:.]+/[0-9]+$\"))'
+                  ./.github/scripts/bl-json.sh blocklists/privacy/github_all.ipset $GITHUB_URL '..  | strings | select(test("^[0-9a-fA-F:.]+/[0-9]+$"))'
                   ./.github/scripts/bl-json.sh blocklists/privacy/github_hooks.ipset $GITHUB_URL '.hooks[]'
                   ./.github/scripts/bl-json.sh blocklists/privacy/github_web.ipset $GITHUB_URL '.web[]'
                   ./.github/scripts/bl-json.sh blocklists/privacy/github_api.ipset $GITHUB_URL '.api[]'
@@ -1292,7 +1290,7 @@ jobs:
                     '${{ vars.BL_PROTON_VPN_URL }}' \
                   | jq -r '.LogicalServers[] | .Servers[]? | .EntryIP, .ExitIP, .ExitIPv6 | select(. != null)' \
                   | sort -u \
-                  | .github/scripts/bl-format.sh blocklists/privacy/proton_vpn.ipset
+                  | .github/scripts/bl-format.sh blocklists/privacy/proton_vpn.ipset proton_vpn
 
                   #   Privacy › Punkbuster
                   ./.github/scripts/tool-range-iprange.sh blocklists/privacy/punkbuster.ipset "${{ vars.BL_PUNKBUSTER_URL }}"
