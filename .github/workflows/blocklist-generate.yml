@@ -1172,7 +1172,7 @@ jobs:
                   #   Privacy › Huawei
                   # #
 
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/huawei.ipset "${{ vars.BL_HUAWEI_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/huawei.ipset "${{ vars.BL_HUAWEI_ASN }}"
 
                   # #
                   #   Privacy › Linode
@@ -1302,19 +1302,19 @@ jobs:
                   curl -sSL -A "${{ env.USERAGENT }}" "${{ vars.BL_RSSAPI_URL }}" | .github/scripts/bl-format.sh blocklists/privacy/rssapi.ipset
 
                   #   Privacy › Shadow Server
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/shadowserver.ipset "${{ vars.BL_SHADOWSERVER_FOUNDATION_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/shadowserver.ipset "${{ vars.BL_SHADOWSERVER_FOUNDATION_ASN }}"
 
                   #   Privacy › Sony › All
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/sony_all.ipset "${{ vars.BL_SONY_ALL_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/sony_all.ipset "${{ vars.BL_SONY_ALL_ASN }}"
 
                   #   Privacy › Sony › Sony Network Communications Inc. (Japan/ISP/So-net)
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/sony_network_communications.ipset "${{ vars.BL_SONY_NETWORK_COMMUNICATIONS_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/sony_network_communications.ipset "${{ vars.BL_SONY_NETWORK_COMMUNICATIONS_ASN }}"
 
                   #   Privacy › Sony › Sony Interactive Entertainment LLC (Playstation)
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/sony_playstation_network.ipset "${{ vars.BL_SONY_PLAYSTATION_NETWORK_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/sony_playstation_network.ipset "${{ vars.BL_SONY_PLAYSTATION_NETWORK_ASN }}"
 
                   #   Privacy › Sony › Sony Pictures Technologies Inc.
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/sony_pictures_technologies.ipset "${{ vars.BL_SONY_PICTURES_TECHNOLOGIES_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/sony_pictures_technologies.ipset "${{ vars.BL_SONY_PICTURES_TECHNOLOGIES_ASN }}"
 
                   #   Privacy › Sony › User Reported
                   ./.github/scripts/tool-range-iprange.sh blocklists/privacy/sony_userflagged.ipset "${{ vars.BL_SONY_USERFLAGGED_URL }}"
@@ -1335,10 +1335,10 @@ jobs:
                   curl -sSL -A "${{ env.USERAGENT }}" "${{ vars.BL_TELEGRAM_URL }}" | .github/scripts/bl-format.sh blocklists/privacy/telegram.ipset
 
                   #   Privacy › Tumblr
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/tumblr.ipset "${{ vars.BL_TUMBLR_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/tumblr.ipset "${{ vars.BL_TUMBLR_ASN }}"
 
                   #   Privacy › Twitter / X
-                  ./.github/scripts/bl-whois.sh blocklists/privacy/twitter_x.ipset "${{ vars.BL_TWITTER_INC_X_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/twitter_x.ipset "${{ vars.BL_TWITTER_INC_X_ASN }}"
 
             # #
             #   Generate › Privacy › U - Z
@@ -1410,39 +1410,39 @@ jobs:
                   ./.github/scripts/bl-block.sh blocklists/isp/isp_aol.ipset isp/aol.ipset
 
                   #   ISP › ATT
-                  ./.github/scripts/bl-whois.sh blocklists/isp/isp_att.ipset "${{ vars.BL_ATT_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_att.ipset "${{ vars.BL_ATT_ASN }}"
 
                   #   ISP › Cablevision | Later merged with Suddenlink
-                  ./.github/scripts/bl-whois.sh blocklists/isp/isp_cablevision.ipset "${{ vars.BL_CABLEVISION_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_cablevision.ipset "${{ vars.BL_CABLEVISION_ASN }}"
 
                   #   ISP › Charter & Spectrum (Previously Time Warner Cable)
-                  ./.github/scripts/bl-whois.sh blocklists/isp/isp_charter_spectrum_timewarnercable.ipset "${{ vars.BL_CHARTER_SPECTRUM_TIMEWARNERCABLE_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_charter_spectrum_timewarnercable.ipset "${{ vars.BL_CHARTER_SPECTRUM_TIMEWARNERCABLE_ASN }}"
 
                   #   ISP › Comcast
-                  ./.github/scripts/bl-whois.sh blocklists/isp/isp_comcast.ipset "${{ vars.BL_COMCAST_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_comcast.ipset "${{ vars.BL_COMCAST_ASN }}"
 
                   #   ISP › Cox Communications
                   #   https://networksdb.io/ip-addresses-of/cox-communications-inc
-                  ./.github/scripts/bl-whois.sh blocklists/isp/isp_cox_communications.ipset "${{ vars.BL_COX_COMMUNICATIONS_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_cox_communications.ipset "${{ vars.BL_COX_COMMUNICATIONS_ASN }}"
 
                   #   ISP › Embarq
-                  ./.github/scripts/bl-whois.sh blocklists/isp/isp_embarq.ipset "${{ vars.BL_EMBARQ_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_embarq.ipset "${{ vars.BL_EMBARQ_ASN }}"
 
                   #   ISP › Frontier Communications
-                  ./.github/scripts/bl-whois.sh blocklists/isp/isp_frontier_communications.ipset "${{ vars.BL_FRONTIER_COMMUNICATIONS_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_frontier_communications.ipset "${{ vars.BL_FRONTIER_COMMUNICATIONS_ASN }}"
 
                   #   ISP › Qwest / CenturyLink
-                  ./.github/scripts/bl-whois.sh blocklists/isp/isp_qwest_centurylink.ipset "${{ vars.BL_QWEST_CENTURYLINK_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_qwest_centurylink.ipset "${{ vars.BL_QWEST_CENTURYLINK_ASN }}"
 
                   #   ISP › Sprint
-                  ./.github/scripts/bl-whois.sh blocklists/isp/isp_sprint.ipset "${{ vars.BL_SPRINT_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_sprint.ipset "${{ vars.BL_SPRINT_ASN }}"
 
                   #   ISP › Verizon
                   #   https://networksdb.io/search/org/verizon
-                  ./.github/scripts/bl-whois.sh blocklists/isp/isp_verizon.ipset "${{ vars.BL_VERIZON_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_verizon.ipset "${{ vars.BL_VERIZON_ASN }}"
 
                   #   ISP › SpaceX Starlink
-                  ./.github/scripts/bl-whois.sh blocklists/isp/isp_spacex_starlink.ipset "${{ vars.BL_SPACEX_STARLINK_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_spacex_starlink.ipset "${{ vars.BL_SPACEX_STARLINK_ASN }}"
 
                   #   ISP › Suddenlink / Altice / Optiumum
                   ./.github/scripts/bl-json.sh blocklists/isp/isp_suddenlink_altice_optimum.ipset https://ip.guide/AS19108 '.routes | .v4//empty,.v6//empty | .[]'
