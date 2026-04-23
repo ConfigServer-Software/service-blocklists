@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             3rdparty_firehol_dshield_7d_ipset
 #   @uuid           91b3a613-75de-3c07-9b8b-cde7ce64d241
-#   @updated        Thu Apr 23 06:06:20 UTC 2026
-#   @entries        12,032 ips
-#                   46 subnets
-#                   46 lines
+#   @updated        Thu Apr 23 20:49:29 UTC 2026
+#   @entries        11,776 ips
+#                   45 subnets
+#                   45 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -57,7 +57,6 @@
 195.230.103.0/24
 198.235.24.0/24
 199.45.154.0/24
-204.76.203.0/24
 205.210.31.0/24
 209.38.230.0/24
 209.99.188.0/24

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             3rdparty_firehol_level1_ipset
 #   @uuid           24a6cf25-6e33-36a1-8828-a4a57e0cede2
-#   @updated        Thu Apr 23 06:04:54 UTC 2026
-#   @entries        610,984,513 ips
-#                   4,426 subnets
-#                   4,427 lines
+#   @updated        Thu Apr 23 20:48:03 UTC 2026
+#   @entries        610,983,489 ips
+#                   4,425 subnets
+#                   4,426 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -1780,7 +1780,6 @@
 192.0.2.0/24
 192.5.103.0/24
 192.5.240.0/24
-192.31.56.0/22
 192.35.52.0/23
 192.35.54.0/24
 192.35.59.0/24

@@ -2,17 +2,24 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/BBcan177/ms1.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/BBcan177/ms1.ipset
-#   @service        None
+#   @service        https://gist.githubusercontent.com/BBcan177/bf29d47ea04391cb3eb0/raw/2ff035344d6dee55900edad92d573c53b9aa1b2c/MS-1
 #   @id             3rdparty_BBcan177_ms1_ipset
 #   @uuid           c72a24de-918f-3a74-a7e0-0d7453f00de1
-#   @updated        Thu Apr 23 06:03:09 UTC 2026
+#   @updated        Thu Apr 23 20:46:18 UTC 2026
 #   @entries        5,270,736 ips
 #                   55 subnets
 #                   2,763 lines
 #   @expires        6 hours
-#   @category       Uncategorized
+#   @category       3rdParty
 #
-#   No description provided
+#   BBcan177 Malicious Threats
+#   
+#   This list is curated by BBcan177 and contains known malicious threats.
+#   
+#   This is a static list and is not automatically updated by any back-end
+#   software, so over time some IPs may be reassigned to legitimate traffic.
+#   
+#   Use at your own discretion.
 # #
 
 1.35.32.95            # 742370496046583808
