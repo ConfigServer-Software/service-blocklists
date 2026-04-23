@@ -2405,7 +2405,7 @@ download_list "${file_ipset_target}" "$i"
 
 if ! has_valid_ip_entries "${file_ipset_target}"; then
     did_load_fallback="true"
-     warn "    ⚠️  Using local IP block fallback ${yellowl}${argBlockCategory}${greym} for ${yellowl}${file_ipset_target}${greym}"
+    warn "    ⚠️  Using local IP block fallback ${yellowl}${argBlockCategory}${greym} for ${yellowl}${file_ipset_target}${greym}"
     load_list_fallback "${file_ipset_target}" "${argBlockCategory}" "2"
 fi
 

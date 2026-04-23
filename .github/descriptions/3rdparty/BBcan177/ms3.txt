@@ -1,0 +1,8 @@
+#   BBcan177 Malicious Threats
+#   
+#   This list is curated by BBcan177 and contains known malicious threats.
+#   
+#   This is a static list and is not automatically updated by any back-end
+#   software, so over time some IPs may be reassigned to legitimate traffic.
+#   
+#   Use at your own discretion.
