@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             amazon_aws_ipset
 #   @uuid           8e612309-b666-3ef9-899f-905893eb95d7
-#   @updated        Fri Apr 24 16:53:11 UTC 2026
-#   @entries        101,752,000 ips
-#                   5,832 subnets
-#                   5,832 lines
+#   @updated        Fri Apr 24 20:43:43 UTC 2026
+#   @entries        101,752,256 ips
+#                   5,833 subnets
+#                   5,833 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -5660,6 +5660,7 @@
 173.83.192.0/22
 173.83.196.0/23
 173.83.198.0/24
+173.83.199.0/24
 173.83.200.0/22
 173.83.204.0/23
 173.83.206.0/23
