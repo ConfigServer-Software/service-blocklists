@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Thu Apr 23 04:34:01 UTC 2026
-#   @entries        1,113,088 ips
-#                   831 subnets
-#                   831 lines
+#   @updated        Fri Apr 24 04:36:48 UTC 2026
+#   @entries        1,114,368 ips
+#                   832 subnets
+#                   832 lines
 #   @asn            AS2379, AS5778, AS11398, AS14905, AS17402
 #                   AS14921, AS6222, AS22186, AS13787, AS32855
 #                   AS3447, AS4212, AS6367, AS11530, AS14910
@@ -344,10 +344,11 @@
 69.69.152.0/22
 69.69.156.0/24
 69.69.158.0/23
-69.69.182.0/23
+69.69.180.0/22
 69.69.210.0/24
-69.69.212.0/24
+69.69.212.0/23
 69.69.215.0/24
+69.69.220.0/23
 69.69.222.0/24
 69.69.224.0/23
 69.69.233.0/24

@@ -5,7 +5,7 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Thu Apr 23 04:34:45 UTC 2026
+#   @updated        Fri Apr 24 04:37:29 UTC 2026
 #   @entries        18,689 ips
 #                   27 subnets
 #                   27 lines
