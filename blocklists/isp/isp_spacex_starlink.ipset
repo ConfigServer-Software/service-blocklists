@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             isp_isp_spacex_starlink_ipset
 #   @uuid           1e05d47b-132a-390c-bbfa-525f549e1289
-#   @updated        Fri Apr 24 13:37:00 UTC 2026
+#   @updated        Fri Apr 24 17:25:00 UTC 2026
 #   @entries        940,811 ips
-#                   1,584 subnets
-#                   1,584 lines
+#                   1,582 subnets
+#                   1,582 lines
 #   @asn            AS14593, AS34602, AS45700, AS25076, AS212210
 #                   AS49854, AS50494, AS204791
 #   @expires        6 hours
@@ -371,9 +371,7 @@
 98.97.190.0/24
 98.97.191.0/24
 98.98.180.0/23
-102.215.56.0/23
-102.215.58.0/24
-102.215.59.0/24
+102.215.56.0/22
 103.152.126.0/23
 103.228.240.0/22
 103.235.92.0/23
