@@ -5,7 +5,7 @@
 #   @service        None
 #   @id             3rdparty_binarydefense_blocklist_ipset
 #   @uuid           dede1900-dd71-32eb-ba3b-0b7ddc6717d9
-#   @updated        Sat Apr 25 08:44:32 UTC 2026
+#   @updated        Sat Apr 25 12:42:36 UTC 2026
 #   @entries        5,937 ips
 #                   0 subnets
 #                   5,937 lines
