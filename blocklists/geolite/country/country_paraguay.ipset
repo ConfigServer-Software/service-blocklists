@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Apr 24 04:33:04 UTC 2026
-#   @entries        1,255,672 ips
-#                   674 subnets
-#                   674 lines
+#   @updated        Sat Apr 25 04:16:32 UTC 2026
+#   @entries        1,255,671 ips
+#                   673 subnets
+#                   673 lines
 #   @country        Paraguay (PY)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -580,7 +580,6 @@
 2803:9790::/32
 2803:9810:4100::/40
 2803:9810:4f00::/40
-2803:9810:b300::/42
 2803:9810:c400::/40
 2803:98d0::/32
 2803:9ba0::/32

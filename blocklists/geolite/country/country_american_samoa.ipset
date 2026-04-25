@@ -5,10 +5,10 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Apr 24 04:32:01 UTC 2026
-#   @entries        78,879 ips
-#                   719 subnets
-#                   719 lines
+#   @updated        Sat Apr 25 04:15:30 UTC 2026
+#   @entries        79,007 ips
+#                   720 subnets
+#                   720 lines
 #   @country        American Samoa (AS)
 #   @expires        24 hours
 #   @category       Geolocation
@@ -205,6 +205,7 @@
 198.105.76.0/23
 198.152.14.0/24
 199.63.1.0/24
+199.201.67.0/25
 202.8.27.0/24
 202.33.124.0/24
 202.42.65.0/24

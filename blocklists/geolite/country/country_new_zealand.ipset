@@ -5,8 +5,8 @@
 #   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Apr 24 04:33:01 UTC 2026
-#   @entries        7,352,517 ips
+#   @updated        Sat Apr 25 04:16:29 UTC 2026
+#   @entries        7,352,261 ips
 #                   4,189 subnets
 #                   4,189 lines
 #   @country        New Zealand (NZ)
@@ -1667,7 +1667,7 @@
 172.225.247.218/31
 172.225.247.220/30
 172.235.118.0/23
-173.82.124.0/23
+173.82.125.0/24
 173.223.228.0/22
 175.45.87.0/24
 175.45.93.0/24
