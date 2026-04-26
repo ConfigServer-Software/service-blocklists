@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             privacy_shadowserver_ipset
 #   @uuid           1e020598-1b53-3795-8d12-34242a9f4bdf
-#   @updated        Sun Apr 26 09:10:00 UTC 2026
-#   @entries        55,574 ips
-#                   117 subnets
-#                   117 lines
+#   @updated        Sun Apr 26 13:02:02 UTC 2026
+#   @entries        56,086 ips
+#                   118 subnets
+#                   118 lines
 #   @asn            AS22168, AS394161
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -112,6 +112,7 @@
 199.120.35.0/24
 199.120.36.0/24
 199.120.37.0/24
+199.120.38.0/23
 199.120.47.0/24
 199.120.48.0/24
 199.120.49.0/24
