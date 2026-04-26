@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             isp_isp_verizon_ipset
 #   @uuid           c0f3dc21-7897-30df-9b74-6d7942823f38
-#   @updated        Sat Apr 25 21:01:39 UTC 2026
-#   @entries        89,609,056 ips
-#                   1,929 subnets
-#                   1,929 lines
+#   @updated        Sun Apr 26 02:25:47 UTC 2026
+#   @entries        89,608,800 ips
+#                   1,928 subnets
+#                   1,928 lines
 #   @asn            AS701, AS702, AS703, AS7046, AS1321
 #                   AS2125, AS3378, AS2828, AS3371, AS3372
 #                   AS14551, AS1339, AS11486, AS22394, AS12079
@@ -1503,7 +1503,6 @@
 194.39.76.0/24
 194.45.165.0/24
 194.53.76.0/22
-194.62.47.0/24
 194.76.60.0/24
 194.98.0.0/16
 194.113.48.0/22
