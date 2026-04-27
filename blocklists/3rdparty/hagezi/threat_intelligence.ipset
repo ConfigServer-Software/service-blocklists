@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             3rdparty_hagezi_threat_intelligence_ipset
 #   @uuid           3a43bc64-4409-32a4-bc29-61afb1182bd3
-#   @updated        Mon Apr 27 06:29:00 UTC 2026
-#   @entries        58,625 ips
+#   @updated        Mon Apr 27 10:11:57 UTC 2026
+#   @entries        58,624 ips
 #                   0 subnets
-#                   58,625 lines
+#                   58,624 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -5896,7 +5896,6 @@
 31.47.103.116
 31.54.22.168
 31.55.236.199
-31.56.32.76
 31.56.120.29
 31.56.177.15
 31.56.196.120

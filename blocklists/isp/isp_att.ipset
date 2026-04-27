@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             isp_isp_att_ipset
 #   @uuid           54efbdc0-d03b-3176-a5b4-7b61889a9db5
-#   @updated        Mon Apr 27 06:44:48 UTC 2026
-#   @entries        111,198,943 ips
-#                   2,694 subnets
-#                   2,694 lines
+#   @updated        Mon Apr 27 10:28:40 UTC 2026
+#   @entries        111,198,687 ips
+#                   2,693 subnets
+#                   2,693 lines
 #   @asn            AS7018, AS2686, AS2687, AS2688, AS2685
 #                   AS2386, AS13979, AS7287, AS6389, AS20057
 #                   AS16473, AS25993, AS14654, AS19957, AS10770
@@ -968,7 +968,6 @@
 107.225.188.0/22
 107.225.204.0/24
 107.225.205.0/24
-107.225.206.0/24
 107.225.208.0/24
 107.225.209.0/24
 107.225.224.0/22
