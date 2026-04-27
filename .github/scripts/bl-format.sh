@@ -85,11 +85,19 @@ app_dir_github="${app_dir_this_dir}/.github"                                    
 #   This bash script has the following arguments:
 #   
 #   @param  argFileSaveto       str         File to save IP addresses into
-#           argBlockCategory    str         Static block folder
+#           argFallbackBlock    str         Fallback block folder
 # #
 
 argFileSaveto=$1
-argBlockCategory=$2
+argFallbackBlock=$2
+
+# #
+#   Define › App
+# #
+
+file_ipset_temp="${argFileSaveto}.tmp"                                          # Temp file when building ipset list
+file_ipset_target="${argFileSaveto}"                                            # Perm file when building ipset list
+folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
 
 # #
 #   Define › Colors
@@ -785,9 +793,9 @@ configure_sort_options( )
 
 # #
 #   Extract canonical IP/CIDR entry from a line
-#       - Strip inline # / ; comments
-#       - Normalize whitespace
-#       - If IPv4 range supplied (A - B), return A
+#       Strip inline # / ; comments
+#       Normalize whitespace
+#       If IPv4 range supplied (A - B), return A
 # #
 
 extract_ip_entry( )
@@ -880,7 +888,7 @@ sort_results()
         # #
 
         if [ -s "${_ipv4_tmp}" ]; then
-            sort "${sort_cmd_opts[@]}" -t$'\t' -n -k1,1 -k2,2 -k3,3 -k4,4 -k5,5 -k6,6n "${_ipv4_tmp}" \
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -s -t$'\t' -n -k1,1 -k2,2 -k3,3 -k4,4 -k5,5 -k6,6n "${_ipv4_tmp}" \
                 | awk -F '\t' '!seen[$5]++ { print $7 }'
         fi
 
@@ -889,7 +897,7 @@ sort_results()
         # #
 
         if [ -s "${_ipv6_tmp}" ]; then
-            sort "${sort_cmd_opts[@]}" -t$'\t' -k1,1 -k2,2n "${_ipv6_tmp}" \
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -s -t$'\t' -k1,1 -k2,2n "${_ipv6_tmp}" \
                 | awk -F '\t' '!seen[$1]++ { print $3 }'
         fi
 
@@ -912,14 +920,14 @@ sort_results()
     # #
 
     if ! grep -q ':' "${_in_tmp}"; then
-        sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}"
+        LC_ALL=C sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}"
 
     # #
     #   Fast path › pure IPv6
     # #
 
     elif ! grep -q '\.' "${_in_tmp}"; then
-        sort "${sort_cmd_opts[@]}" -u "${_in_tmp}"
+        LC_ALL=C sort "${sort_cmd_opts[@]}" -u "${_in_tmp}"
 
     # #
     #   Mixed IPv4/IPv6
@@ -936,7 +944,7 @@ sort_results()
         # #
 
         if [ -s "${_ipv4_tmp}" ]; then
-            sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}"
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}"
         fi
 
         # #
@@ -944,7 +952,7 @@ sort_results()
         # #
     
         if [ -s "${_ipv6_tmp}" ]; then
-            sort "${sort_cmd_opts[@]}" -u "${_ipv6_tmp}"
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -u "${_ipv6_tmp}"
         fi
     fi
 
@@ -1283,15 +1291,19 @@ is_bogon_ipv4( )
         0.*|10.*|127.*|127.0.53.53|169.254.*|192.168.*|255.255.255.255)
             return 0
             ;;
+
         100.6[4-9].*|100.[7-9][0-9].*|100.1[01][0-9].*|100.12[0-7].*)           # 100.64.0.0/10
             return 0
             ;;
+
         172.1[6-9].*|172.2[0-9].*|172.3[0-1].*)                                 # 172.16.0.0/12
             return 0
             ;;
+
         192.0.0.*|192.0.2.*|198.18.*|198.19.*|198.51.100.*|203.0.113.*)
             return 0
             ;;
+
         22[4-9].*|23[0-9].*|24[0-9].*|25[0-5].*)                                # 224.0.0.0/4 + 240.0.0.0/4
             return 0
             ;;
@@ -1315,12 +1327,15 @@ is_bogon_ipv6( )
         ::|::1|::ffff:*|::*)                                                        # ::/128 ::1/128 ::ffff:0:0/96 ::/96
             return 0
             ;;
+
         100:*|100::*)                                                               # 100::/64
             return 0
             ;;
+
         2001:1[0-9a-f]:*|2001:01[0-9a-f]:*|2001:001[0-9a-f]:*|2001:0001[0-9a-f]:*)  # 2001:10::/28
             return 0
             ;;
+
         2001:db8:*|3fff:*|fc*|fd*|fe8*|fe9*|fea*|feb*|fec*|fed*|fee*|fef*|ff*)
             return 0
             ;;
@@ -1387,13 +1402,13 @@ filter_bogon_ips( )
 
             if [[ "${_fnBogonBase}" == *:* ]]; then
                 if is_bogon_ipv6 "${_fnBogonEntry}"; then
-                    label "       ${bluel}${_fnBogonLine}${greym}"
+                    label "        ${bluel}${_fnBogonLine}${greym}"
                     _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
                     continue
                 fi
             elif [[ "${_fnBogonBase}" == *.* ]]; then
                 if is_bogon_ipv4 "${_fnBogonBase}"; then
-                    label "       ${bluel}${_fnBogonLine}${greym}"
+                    label "        ${bluel}${_fnBogonLine}${greym}"
                     _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
                     continue
                 fi
@@ -1780,6 +1795,135 @@ dedup_cidr( )
 }
 
 # #
+#   Check if specified file contains valid IP entries.
+#   
+#   Requires an input file to be passed as argument:
+#       has_valid_ip_entries "${file_ipset_target}"
+# #
+
+has_valid_ip_entries()
+{
+    _fnArgFile=$1
+    _fnValidLine=""
+    _fnValidEntry=""
+
+    if [ ! -f "${_fnArgFile}" ]; then
+        return 1
+    fi
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=true
+    #       curl -s https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3 | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+    # #
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        while IFS= read -r _fnValidLine || [ -n "${_fnValidLine}" ]; do
+            _fnValidEntry=$(extract_ip_entry "${_fnValidLine}")
+            [ -z "${_fnValidEntry}" ] && continue
+
+            if is_valid_ip_entry "${_fnValidEntry}"; then
+                unset _fnArgFile _fnValidLine _fnValidEntry
+                return 0
+            fi
+        done < "${_fnArgFile}"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
+    # #
+
+    else
+
+        # #
+        #   use grep instead of is_valid_ip_entry; avoid large slowdown from per-line read
+        # #
+
+        if grep -Eq "^(${regex_ipv4}|${regex_ipv4_cidr}|${regex_ipv6}|${regex_ipv6_cidr})$" "${_fnArgFile}"; then
+            unset _fnArgFile _fnValidLine _fnValidEntry
+            return 0
+        fi
+    fi
+
+    # #
+    #   Unset
+    # #
+
+    unset _fnArgFile _fnValidLine _fnValidEntry
+
+    return 1
+}
+
+# #
+#   Load fallback static blocks from .github/blocks/<category>.
+#   
+#   Must define the category when calling this script with something such as:
+#       run_mip_anthropic=".github/scripts/bl-mip.sh blocklists/privacy/privacy_anthropic.ipset '${{ vars.BL_PRIVACY_MIP_ANTHROPIC_SRC }}' privacy/anthropic"
+#       eval "./$run_mip_anthropic"
+# #
+
+load_list_fallback()
+{
+    _fnArgFile=$1
+    _fnCategory=$2
+    _fnListNum=$3
+    _fnResolvedCategory="${_fnCategory}"
+    _fnTargetParent=""
+
+    if [ -z "${_fnCategory}" ]; then
+        warn "    ⚠️  Stdin did not return any valid IP entries, and no fallback category was provided"
+        return 1
+    fi
+
+    if [ ! -d ".github/blocks/" ]; then
+        warn "    ❌ No static blocklist folder found at ${orangel}.github/blocks/${greym}"
+        return 1
+    fi
+
+    # #
+    #   Resolve fallback category from target path when only leaf category is given.
+    #   
+    #   @example        target      :   blocklists/privacy/privacy_proton_vpn.ipset
+    #                   category    :   proton_vpn
+    #                   resolved    :   privacy/proton_vpn
+    # #
+
+    if [[ "${_fnCategory}" != */* ]] && [[ "${_fnCategory}" != *ipset ]]; then
+        _fnTargetParent="$(dirname "${_fnArgFile}")"
+        _fnTargetParent="${_fnTargetParent#blocklists/}"
+        if [ -n "${_fnTargetParent}" ] && [ "${_fnTargetParent}" != "." ] && [ "${_fnTargetParent}" != "blocklists" ]; then
+            _fnResolvedCategory="${_fnTargetParent}/${_fnCategory}"
+        fi
+    fi
+
+    APP_BLOCK_TARGET=".github/blocks/${_fnResolvedCategory}/*.ipset"
+    if [[ "${_fnResolvedCategory}" == *ipset ]]; then
+        APP_BLOCK_TARGET=".github/blocks/${_fnResolvedCategory}"
+    fi
+
+    shopt -s nullglob
+    _fnBlockFiles=( ${APP_BLOCK_TARGET} )
+    shopt -u nullglob
+
+    if [ ${#_fnBlockFiles[@]} -eq 0 ]; then
+        warn "    ❌ No fallback static blocklist found at ${yellowl}${APP_BLOCK_TARGET}${greym}"
+        unset _fnArgFile _fnCategory _fnListNum APP_BLOCK_TARGET _fnBlockFiles
+        return 1
+    fi
+
+    info "    📦 Stdin list is empty, using fallback category ${bluel}${_fnResolvedCategory}${greym}"
+    for APP_FILE_TEMP in "${_fnBlockFiles[@]}"; do
+        download_list_fallback "${APP_FILE_TEMP}" "${_fnArgFile}" "${_fnListNum}"
+        _fnListNum=$(( _fnListNum + 1 ))
+    done
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnArgFile _fnCategory _fnResolvedCategory _fnTargetParent \
+            _fnListNum APP_BLOCK_TARGET APP_FILE_TEMP _fnBlockFiles
+}
+
+# #
 #   Cleanup Garbage
 #   
 #   Removes old ipv4 and ipv5 folders
@@ -1861,6 +2005,7 @@ download_list()
     else
         # remove inline comments (strip ' # comment' or ' ; comment' from end of lines ; collapse whitespace, trim)
         sed -i 's/[[:space:]]*[#;].*$//' "${_fnFileTemp}"
+
         # collapse multiple whitespace into a single space
         sed -i 's/[[:space:]]\+/ /g' "${_fnFileTemp}"
     fi
@@ -1871,10 +2016,14 @@ download_list()
     # remove empty lines (after trimming/comment removal)
     sed -i '/^$/d' "${_fnFileTemp}"
 
-    # drop malformed entries before sorting (optional trusted-input fast path)
+    # #
+    #   Drop malformed entries before sorting (optional trusted-input fast path)
+    # #
+
     if [ "${argTrustedInput}" = "true" ]; then
         info "    ⚡ Trusted input mode enabled; skipping per-line IP validation"
     else
+        info "    ✴️  Verify valid ip entries in ${bluel}${_fnFileTemp}${greym}. This may take some time."
         filter_valid_ip_entries "${_fnFileTemp}"
     fi
 
@@ -2056,7 +2205,7 @@ download_list_fallback()
     #   Dedupe, Sort: Move from .tmp to .sort
     # #
 
-    info "    🔃 Sorting and deduplicating results"
+    info "    🔃 Sorting and deduplicating fallback results"
 
     if [ "${argIncludeComments}" = "true" ]; then
         grep -vE '^[[:space:]]*(#|;|$)' "${_fnFileTemp}" | sort_results > "${_fnFileTemp}.sort"
@@ -2121,145 +2270,9 @@ download_list_fallback()
     #   Unset
     # #
 
-    unset _fnArgLocalFile _fnArgFile _fnFileTemp _fnListNum _count_total_ips _count_total_subnets
+    unset   _fnArgLocalFile _fnArgFile _fnFileTemp _fnListNum \
+            _count_total_ips _count_total_subnets
 }
-
-# #
-#   Check if specified file contains valid IP entries.
-#   
-#   Requires an input file to be passed as argument:
-#       has_valid_ip_entries "${file_ipset_target}"
-# #
-
-has_valid_ip_entries()
-{
-    _fnArgFile=$1
-    _fnValidLine=""
-    _fnValidEntry=""
-
-    if [ ! -f "${_fnArgFile}" ]; then
-        return 1
-    fi
-
-    # #
-    #   If we specify CFG_INCLUDE_COMMENTS=true
-    #       curl -s https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3 | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
-    # #
-
-    if [ "${argIncludeComments}" = "true" ]; then
-        while IFS= read -r _fnValidLine || [ -n "${_fnValidLine}" ]; do
-            _fnValidEntry=$(extract_ip_entry "${_fnValidLine}")
-            [ -z "${_fnValidEntry}" ] && continue
-
-            if is_valid_ip_entry "${_fnValidEntry}"; then
-                unset _fnArgFile _fnValidLine _fnValidEntry
-                return 0
-            fi
-        done < "${_fnArgFile}"
-
-    # #
-    #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
-    # #
-
-    else
-
-        # #
-        #   use grep instead of is_valid_ip_entry; avoid large slowdown from per-line read
-        # #
-
-        if grep -Eq "^(${regex_ipv4}|${regex_ipv4_cidr}|${regex_ipv6}|${regex_ipv6_cidr})$" "${_fnArgFile}"; then
-            unset _fnArgFile _fnValidLine _fnValidEntry
-            return 0
-        fi
-    fi
-
-    # #
-    #   Unset
-    # #
-
-    unset _fnArgFile _fnValidLine _fnValidEntry
-
-    return 1
-}
-
-# #
-#   Load fallback static blocks from .github/blocks/<category>.
-#   
-#   Must define the category when calling this script with something such as:
-#       run_mip_anthropic=".github/scripts/bl-mip.sh blocklists/privacy/privacy_anthropic.ipset '${{ vars.BL_PRIVACY_MIP_ANTHROPIC_SRC }}' privacy/anthropic"
-#       eval "./$run_mip_anthropic"
-# #
-
-load_list_fallback()
-{
-    _fnArgFile=$1
-    _fnCategory=$2
-    _fnListNum=$3
-    _fnResolvedCategory="${_fnCategory}"
-    _fnTargetParent=""
-
-    if [ -z "${_fnCategory}" ]; then
-        warn "    ⚠️  Stdin did not return any valid IP entries, and no fallback category was provided"
-        return 1
-    fi
-
-    if [ ! -d ".github/blocks/" ]; then
-        warn "    ❌ No static blocklist folder found at ${orangel}.github/blocks/${greym}"
-        return 1
-    fi
-
-    # #
-    #   Resolve fallback category from target path when only leaf category is given.
-    #   
-    #   @example        target      :   blocklists/privacy/privacy_proton_vpn.ipset
-    #                   category    :   proton_vpn
-    #                   resolved    :   privacy/proton_vpn
-    # #
-
-    if [[ "${_fnCategory}" != */* ]] && [[ "${_fnCategory}" != *ipset ]]; then
-        _fnTargetParent="$(dirname "${_fnArgFile}")"
-        _fnTargetParent="${_fnTargetParent#blocklists/}"
-        if [ -n "${_fnTargetParent}" ] && [ "${_fnTargetParent}" != "." ] && [ "${_fnTargetParent}" != "blocklists" ]; then
-            _fnResolvedCategory="${_fnTargetParent}/${_fnCategory}"
-        fi
-    fi
-
-    APP_BLOCK_TARGET=".github/blocks/${_fnResolvedCategory}/*.ipset"
-    if [[ "${_fnResolvedCategory}" == *ipset ]]; then
-        APP_BLOCK_TARGET=".github/blocks/${_fnResolvedCategory}"
-    fi
-
-    shopt -s nullglob
-    _fnBlockFiles=( ${APP_BLOCK_TARGET} )
-    shopt -u nullglob
-
-    if [ ${#_fnBlockFiles[@]} -eq 0 ]; then
-        warn "    ❌ No fallback static blocklist found at ${yellowl}${APP_BLOCK_TARGET}${greym}"
-        unset _fnArgFile _fnCategory _fnListNum APP_BLOCK_TARGET _fnBlockFiles
-        return 1
-    fi
-
-    info "    📦 Stdin list is empty, using fallback category ${bluel}${_fnResolvedCategory}${greym}"
-    for APP_FILE_TEMP in "${_fnBlockFiles[@]}"; do
-        download_list_fallback "${APP_FILE_TEMP}" "${_fnArgFile}" "${_fnListNum}"
-        _fnListNum=$(( _fnListNum + 1 ))
-    done
-
-    # #
-    #   Unset
-    # #
-
-    unset   _fnArgFile _fnCategory _fnResolvedCategory _fnTargetParent \
-            _fnListNum APP_BLOCK_TARGET APP_FILE_TEMP _fnBlockFiles
-}
-
-# #
-#   Define › App
-# #
-
-file_ipset_temp="${argFileSaveto}.tmp"                                          # Temp file when building ipset list
-file_ipset_target="${argFileSaveto}"                                            # Perm file when building ipset list
-folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
 
 # #
 #   Create Temp Folder
@@ -2286,33 +2299,41 @@ templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             
 templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 
 # #
-#   Define › Template › External Sources
+#   Template › External Sources
 # #
 
 info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
 
 info "    ⭐ Downloading external template sources"
-label "     ${bluel}${app_repo_curl_storage}/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/url-source/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
 
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/url-source/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
+# #
+#   Template › Get
+# #
+
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
 wait
+
+# #
+#   Template › Write Variable from Temp File
+# #
 
 templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
 templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
 templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
-templ_url_service=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+templ_src=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
 
-if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" \
-        "${app_dir_github}/${folder_target_temp}/cat.txt" \
-        "${app_dir_github}/${folder_target_temp}/exp.txt" \
-        "${app_dir_github}/${folder_target_temp}/src.txt"
-then
+# #
+#   Template › Remove Temp File
+# #
+
+if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" "${app_dir_github}/${folder_target_temp}/cat.txt" "${app_dir_github}/${folder_target_temp}/exp.txt" "${app_dir_github}/${folder_target_temp}/src.txt"; then
     ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
 else
     error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
@@ -2320,13 +2341,13 @@ else
 fi
 
 # #
-#   Define › Template › Default Values
+#   Template › Default Values
 # #
 
-case "$templ_desc" in *"404: Not Found"*) templ_desc="#   No description provided";; esac
-case "$templ_cat" in *"404: Not Found"*) templ_cat="Uncategorized";; esac
-case "$templ_exp" in *"404: Not Found"*) templ_exp="6 hours";; esac
-case "$templ_url_service" in *"404: Not Found"*) templ_url_service="None";; esac
+[ -z "$templ_desc" ] || [[ "$templ_desc" == *"404: Not Found"* ]] && templ_desc="#   No description provided"
+[ -z "$templ_cat"  ] || [[ "$templ_cat"  == *"404: Not Found"* ]] && templ_cat="Uncategorized"
+[ -z "$templ_exp"  ] || [[ "$templ_exp"  == *"404: Not Found"* ]] && templ_exp="6 hours"
+[ -z "$templ_src"  ] || [[ "$templ_src"  == *"404: Not Found"* ]] && templ_src="None"
 
 # #
 #   Output › Header
@@ -2339,7 +2360,7 @@ ${greyd}\n${greym}Id: 	    ${greyd}...............${yellowl} ${templ_id}${greyd}
 ${greyd}\n${greym}UUID:	        ${greyd}.............${yellowl} ${templ_uuid}${greyd} \
 ${greyd}\n${greym}Category:	        ${greyd}.........${yellowl} ${templ_cat}${greyd} \
 ${greyd}\n${greym}Script:	       ${greyd}...........${yellowl} ${app_file_this}${greyd} \
-${greyd}\n${greym}Service:	        ${greyd}..........${yellowl} ${templ_url_service}${greyd}"
+${greyd}\n${greym}Source:	         ${greyd}...........${yellowl} ${templ_src}${greyd}"
 
 # #
 #   Start
@@ -2381,9 +2402,9 @@ else
     mkdir -p "$(dirname "${file_ipset_target}")"
 
     if [ -d "$(dirname "${file_ipset_target}")" ]; then
-        ok "    📁 Created ${greenl}$(dirname "${file_ipset_target}")${greym}"
+        ok "    📁 Created ${greenl}$( dirname "${file_ipset_target}" )${greym}"
     else
-        error "    ⭕  Failed to create directory ${redl}$(dirname "${file_ipset_target}")${greym}; aborting${greym}"
+        error "    ⭕  Failed to create directory ${redl}$( dirname "${file_ipset_target}" )${greym}; aborting${greym}"
         exit 1
     fi
 
@@ -2403,10 +2424,19 @@ fi
 i=1
 download_list "${file_ipset_target}" "$i"
 
+# #
+#   Get Fallback List
+#   
+#   If IPs cannot be obtained from the URL source; use a local static file to
+#   populate the blocklist.
+#   
+#   .github/scripts/bl-format.sh blocklists/privacy/proton_vpn.ipset proton_vpn
+# #
+
 if ! has_valid_ip_entries "${file_ipset_target}"; then
     did_load_fallback="true"
-    warn "    ⚠️  Using local IP block fallback ${yellowl}${argBlockCategory}${greym} for ${yellowl}${file_ipset_target}${greym}"
-    load_list_fallback "${file_ipset_target}" "${argBlockCategory}" "2"
+    warn "    ⚠️  Using local IP block fallback ${yellowl}${argFallbackBlock}${greym} for ${yellowl}${file_ipset_target}${greym}"
+    load_list_fallback "${file_ipset_target}" "${argFallbackBlock}" "2"
 fi
 
 # #
@@ -2468,8 +2498,8 @@ ed -s "${file_ipset_target}" <<END_ED
 # #
 #   🧱 Firewall Blocklist - ${file_ipset_target}
 #
-#   @repo           https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}
-#   @service        ${templ_url_service}
+#   @blocklist      https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}
+#   @source         ${templ_src}
 #   @id             ${templ_id}
 #   @uuid           ${templ_uuid}
 #   @updated        ${templ_now}
@@ -2489,10 +2519,10 @@ END_ED
 
 # #
 #   Finished
-#       - Capture end time
-#       - Calculate elapsed time
-#       - Calculate days, hours, etc.
-#       - Output to console
+#       Capture end time
+#       Calculate elapsed time
+#       Calculate days, hours, etc.
+#       Output to console
 # #
 
 time_elapsed $(( $( date +%s ) - time_start ))

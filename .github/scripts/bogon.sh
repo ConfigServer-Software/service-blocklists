@@ -50,6 +50,14 @@ app_dir_github="${app_dir_this_dir}/.github"                                    
 argFileSaveto=$1
 
 # #
+#   Define › App
+# #
+
+file_ipset_temp="${argFileSaveto}.tmp"                                          # Temp file when building ipset list
+file_ipset_target="${argFileSaveto}"                                            # Perm file when building ipset list
+folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
+
+# #
 #   Define › Colors
 #   
 #   Use the color table at:
@@ -120,6 +128,8 @@ argVerbose="false"                                                              
 argIncludeBogon="false"                                                         # filter out BOGON IP addresses from list
 argTrustedInput="false"                                                         # trusted input mode (skip validation loop)
 argSkipBogonFilter="false"                                                      # skip bogon filter loop
+argSkipCidrDedup="false"                                                        # skip overlapping CIDR dedupe loop
+argIncludeComments="false"                                                      # preserve inline comments in output
 argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
 argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
 sort_cmd_opts=()                                                                # optional sort command tuning
@@ -128,18 +138,19 @@ did_load_fallback="false"                                                       
 # #
 #   Optional Parameters
 #   
-#       CFG_TRUSTED_INPUT=true  
-#           Skip per-line IP/CIDR validation loop.
+#   The following list outlines the optional parameters that can be passed
+#   when generating a blocklist using this script.
 #   
-#       CFG_SKIP_BOGON_FILTER=true  
-#           Skip bogon filtering loop.
-#   
-#       CFG_SORT_PARALLEL=<N>  
-#           Pass --parallel=<N> to sort if supported.
-#   
-#       CFG_SORT_BUFFER_SIZE=<size>  
-#           Pass -S <size> to sort (example: 50%, 1G).
-#   
+#       CFG_TRUSTED_INPUT=<true|false>                                          Skip per-line IP/CIDR validation loop. Only enable if we trust the source.
+#       CFG_SKIP_BOGON_FILTER=<true|false>                                      Skip bogon filtering loop.
+#       CFG_SKIP_CIDR_DEDUPE=<true|false>                                       Skip overlapping CIDR dedupe loop.
+#       CFG_INCLUDE_COMMENTS=<true|false>                                       Preserve inline # and ; comments after each IP/CIDR entry.
+#                                                                                   true                            Automatically enables CFG_SKIP_CIDR_DEDUPE
+#       CFG_SORT_PARALLEL=<N>                                                   Pass --parallel=<N> to sort command (if supported).
+#                                                                                   sort --parallel                 change the number of sorts run concurrently to N
+#       CFG_SORT_BUFFER_SIZE=<size>                                             Pass -S <size> to sort command (example: 50%, 1G).
+#                                                                                   sort -S, --buffer-size=SIZE     use SIZE for main memory buffer
+#   Usage:
 #       curl -sSL -A "${{ env.USERAGENT }}" ${{ vars.BL_APPLE_INC_PROXY_URL }} \
 #           | awk -F',' 'NR>1{print $1}' \
 #           | CFG_TRUSTED_INPUT=true CFG_SKIP_BOGON_FILTER=true .github/scripts/bl-format.sh blocklists/privacy/privacy_apple_icloud.ipset
@@ -156,6 +167,27 @@ case "${CFG_SKIP_BOGON_FILTER:-false}" in
         argSkipBogonFilter="true"
         ;;
 esac
+
+case "${CFG_SKIP_CIDR_DEDUPE:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argSkipCidrDedup="true"
+        ;;
+esac
+
+case "${CFG_INCLUDE_COMMENTS:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argIncludeComments="true"
+        ;;
+esac
+
+# #
+#   If preserving comments from the source; turn off dedupe. Otherwise some
+#   comments will be missing since we're merging CIDRs together.
+# #
+
+if [ "${argIncludeComments}" = "true" ]; then
+    argSkipCidrDedup="true"
+fi
 
 # #
 #   Define › Time
@@ -248,10 +280,10 @@ print( )
 
 # #
 #   Define › Elapsed Time
-#       - Capture end time
-#       - Calculate elapsed time
-#       - Calculate days, hours, etc.
-#       - Output to console
+#       Capture end time
+#       Calculate elapsed time
+#       Calculate days, hours, etc.
+#       Output to console
 # #
 
 time_elapsed( )
@@ -689,9 +721,9 @@ run()
 #   Configure sort options
 #   
 #   Builds the options array for the `sort` command based on user settings:
-#       - If `argSortParallel` is valid number and the system supports it, enable parallel sorting with that value
-#       - If `argSortBufferSize` is set, apply it as the sort buffer size (-S)
-#       - Log what gets enabled or warns if values are invalid or unsupported
+#       If `argSortParallel` is valid number and the system supports it, enable parallel sorting with that value.
+#       If `argSortBufferSize` is set, apply it as the sort buffer size (-S).
+#       Log what gets enabled or warns if values are invalid or unsupported.
 # #
 
 configure_sort_options( )
@@ -718,50 +750,189 @@ configure_sort_options( )
 }
 
 # #
-#   Sort Results
-#   
-#   @usage          line=$(parse_spf_record "${ip}" | sort_results)
+#   Extract canonical IP/CIDR entry from a line
+#       - Strip inline # / ; comments
+#       - Normalize whitespace
+#       - If IPv4 range supplied (A - B), return A
 # #
 
-sort_results()
+extract_ip_entry( )
 {
+    _fnEntry="$1"
 
-    # Temp files for IPv4 and IPv6
-    _ipv4_tmp=$(mktemp) || exit 1
-    _ipv6_tmp=$(mktemp) || exit 1
+    _fnEntry="${_fnEntry%%#*}"
+    _fnEntry="${_fnEntry%%;*}"
 
-    # Read stdin line by line
-    while IFS= read -r line; do
-        case "$line" in
-            *:*)
-                printf '%s\n' "$line" >> "$_ipv6_tmp" ;;
-            *)
-                printf '%s\n' "$line" >> "$_ipv4_tmp" ;;
-        esac
-    done
+    # #
+    #   Trim leading and trailing whitespace
+    # #
 
-    # Sort IPv4 numerically, remove duplicates
-    if [ -s "$_ipv4_tmp" ]; then
-        sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "$_ipv4_tmp" | uniq
+    _fnEntry="${_fnEntry#"${_fnEntry%%[![:space:]]*}"}"
+    _fnEntry="${_fnEntry%"${_fnEntry##*[![:space:]]}"}"
+
+    # #
+    #   If IPv4 range is supplied (A - B), keep A
+    # #
+
+    if [[ "${_fnEntry}" =~ ^(([0-9]{1,3}\.){3}[0-9]{1,3})[[:space:]]*-[[:space:]]*([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+        _fnEntry="${BASH_REMATCH[1]}"
     fi
 
-    # Sort IPv6 lexicographically, remove duplicates
-    if [ -s "$_ipv6_tmp" ]; then
-        sort "${sort_cmd_opts[@]}" "$_ipv6_tmp" | uniq
-    fi
-
-    # Clean up temp files
-    rm -f "$_ipv4_tmp" "$_ipv6_tmp"
+    printf '%s\n' "${_fnEntry}"
 
     # #
     #   Unset
     # #
 
-    unset   _ipv4_tmp _ipv6_tmp
+    unset   _fnEntry
 }
 
 # #
-#   Validate › IPv4
+#   Sort Results
+#   
+#   @usage          sort_results < "${file_ipset_target}" > "${file_ipset_target}.sort"
+#                   grep -vE '^[[:space:]]*(#|;|$)' "${file_ipset_target}" | sort_results > "${file_ipset_target}.sort"
+# #
+
+sort_results()
+{
+    # Temp files for input and split output
+    _in_tmp=$(mktemp) || exit 1
+    _ipv4_tmp=$(mktemp) || exit 1
+    _ipv6_tmp=$(mktemp) || exit 1
+
+    cat > "${_in_tmp}"
+
+    if [ ! -s "${_in_tmp}" ]; then
+        rm -f "${_in_tmp}" "${_ipv4_tmp}" "${_ipv6_tmp}"
+        unset   _in_tmp _ipv4_tmp _ipv6_tmp
+        return 0
+    fi
+
+    if [ "${argIncludeComments}" = "true" ]; then
+
+        # #
+        #   Read stdin line by line
+        # #
+
+        while IFS= read -r line; do
+            _fnSortKey=$(extract_ip_entry "${line}")
+            [ -z "${_fnSortKey}" ] && continue
+            _fnSortPriority=1
+
+            case "${line}" in
+                *"#"*|*";"*)
+                    _fnSortPriority=0
+                    ;;
+            esac
+
+            case "${_fnSortKey}" in
+                *:*)
+                    printf '%s\t%s\t%s\n' "${_fnSortKey}" "${_fnSortPriority}" "${line}" >> "${_ipv6_tmp}"
+                    ;;
+                *)
+                    _fnSortIpv4="${_fnSortKey%%/*}"
+                    if [[ "${_fnSortIpv4}" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+                        IFS='.' read -r _fnSortO1 _fnSortO2 _fnSortO3 _fnSortO4 <<< "${_fnSortIpv4}"
+                        printf '%03d\t%03d\t%03d\t%03d\t%s\t%s\t%s\n' \
+                            "${_fnSortO1}" "${_fnSortO2}" "${_fnSortO3}" "${_fnSortO4}" "${_fnSortKey}" "${_fnSortPriority}" "${line}" >> "${_ipv4_tmp}"
+                    fi
+                    ;;
+            esac
+        done < "${_in_tmp}"
+
+        # #
+        #   Sort IPv4 numerically, remove duplicates by canonical key
+        # #
+
+        if [ -s "${_ipv4_tmp}" ]; then
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -s -t$'\t' -n -k1,1 -k2,2 -k3,3 -k4,4 -k5,5 -k6,6n "${_ipv4_tmp}" \
+                | awk -F '\t' '!seen[$5]++ { print $7 }'
+        fi
+
+        # #
+        #   Sort IPv6 lexicographically, remove duplicates by canonical key
+        # #
+
+        if [ -s "${_ipv6_tmp}" ]; then
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -s -t$'\t' -k1,1 -k2,2n "${_ipv6_tmp}" \
+                | awk -F '\t' '!seen[$1]++ { print $3 }'
+        fi
+
+        # #
+        #   Clean up temp files
+        # #
+    
+        rm -f "${_in_tmp}" "${_ipv4_tmp}" "${_ipv6_tmp}"
+
+        # #
+        #   Unset
+        # #
+
+        unset   _in_tmp _ipv4_tmp _ipv6_tmp _fnSortKey _fnSortPriority _fnSortIpv4 _fnSortO1 _fnSortO2 _fnSortO3 _fnSortO4
+        return 0
+    fi
+
+    # #
+    #   Fast path › pure IPv4
+    # #
+
+    if ! grep -q ':' "${_in_tmp}"; then
+        LC_ALL=C sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}"
+
+    # #
+    #   Fast path › pure IPv6
+    # #
+
+    elif ! grep -q '\.' "${_in_tmp}"; then
+        LC_ALL=C sort "${sort_cmd_opts[@]}" -u "${_in_tmp}"
+
+    # #
+    #   Mixed IPv4/IPv6
+    # #
+
+    else
+        awk '
+        index($0, ":") { print > v6; next }
+                        { print > v4 }
+        ' v4="${_ipv4_tmp}" v6="${_ipv6_tmp}" "${_in_tmp}"
+
+        # #
+        #   Sort IPv4 numerically, remove duplicates
+        # #
+
+        if [ -s "${_ipv4_tmp}" ]; then
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}"
+        fi
+
+        # #
+        #   Sort IPv6 lexicographically, remove duplicates
+        # #
+    
+        if [ -s "${_ipv6_tmp}" ]; then
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -u "${_ipv6_tmp}"
+        fi
+    fi
+
+    # #
+    #   Clean up temp files
+    # #
+
+    rm -f "${_in_tmp}" "${_ipv4_tmp}" "${_ipv6_tmp}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _in_tmp _ipv4_tmp _ipv6_tmp
+}
+
+# #
+#   Validate › IPv4 › Single
+#   
+#   @usage          is_valid_ipv4 "${_fnEntry}" && return 0
+#                       return 0    success (valid IP)
+#                       return 1    failure (invalid IP)
 # #
 
 is_valid_ipv4()
@@ -785,7 +956,13 @@ is_valid_ipv4()
 }
 
 # #
-#   Validate › IPv4 CIDR
+#   Validate › IPv4 › CIDR
+#   
+#   Validates IPV4 CIDR such as 192.168.1.1/24.
+#   
+#   @usage          is_valid_ipv4_cidr "${_fnEntry}" && return 0
+#                       return 0    success (valid IP / CIDR)
+#                       return 1    failure (invalid IP / CIDR)
 # #
 
 is_valid_ipv4_cidr()
@@ -808,7 +985,13 @@ is_valid_ipv4_cidr()
 }
 
 # #
-#   Validate › IPv6
+#   Validate › IPv6 › Single
+#   
+#   Validates IPV6 address.
+#   
+#   @usage          is_valid_ipv6 "${_fnEntry}" && return 0
+#                       return 0    success (valid IP)
+#                       return 1    failure (invalid IP)
 # #
 
 is_valid_ipv6()
@@ -827,7 +1010,13 @@ is_valid_ipv6()
 }
 
 # #
-#   Validate › IPv6 CIDR
+#   Validate › IPv6 › CIDR
+#   
+#   Validates IPV6 CIDR address.
+#   
+#   @usage          is_valid_ipv6_cidr "${_fnEntry}" && return 0
+#                       return 0    success (valid IP / CIDR)
+#                       return 1    failure (invalid IP / CIDR)
 # #
 
 is_valid_ipv6_cidr()
@@ -857,16 +1046,17 @@ is_valid_ip_entry()
 {
     _fnEntry=$1
 
-    is_valid_ipv4 "${_fnEntry}" && return 0
-    is_valid_ipv4_cidr "${_fnEntry}" && return 0
-    is_valid_ipv6 "${_fnEntry}" && return 0
-    is_valid_ipv6_cidr "${_fnEntry}" && return 0
+    is_valid_ipv4       "${_fnEntry}" && return 0
+    is_valid_ipv4_cidr  "${_fnEntry}" && return 0
+    is_valid_ipv6       "${_fnEntry}" && return 0
+    is_valid_ipv6_cidr  "${_fnEntry}" && return 0
 
     # #
     #   Unset
     # #
 
     unset   _fnEntry
+
     return 1
 }
 
@@ -884,11 +1074,21 @@ filter_valid_ip_entries()
 
     while IFS= read -r _fnValidateLine || [ -n "${_fnValidateLine}" ]; do
         [ -z "${_fnValidateLine}" ] && continue
+    
+        if [ "${argIncludeComments}" = "true" ]; then
+            _fnValidateEntry=$(extract_ip_entry "${_fnValidateLine}")
 
-        if is_valid_ip_entry "${_fnValidateLine}"; then
-            printf '%s\n' "${_fnValidateLine}" >> "${_fnValidateTemp}"
+            if [ -n "${_fnValidateEntry}" ] && is_valid_ip_entry "${_fnValidateEntry}"; then
+                printf '%s\n' "${_fnValidateLine}" >> "${_fnValidateTemp}"
+            else
+                _fnValidateRemoved=$(( _fnValidateRemoved + 1 ))
+            fi
         else
-            _fnValidateRemoved=$(( _fnValidateRemoved + 1 ))
+            if is_valid_ip_entry "${_fnValidateLine}"; then
+                printf '%s\n' "${_fnValidateLine}" >> "${_fnValidateTemp}"
+            else
+                _fnValidateRemoved=$(( _fnValidateRemoved + 1 ))
+            fi
         fi
     done < "${_fnValidateFile}"
 
@@ -902,7 +1102,7 @@ filter_valid_ip_entries()
     #   Unset
     # #
 
-    unset   _fnValidateFile _fnValidateTemp _fnValidateRemoved _fnValidateLine
+    unset   _fnValidateFile _fnValidateTemp _fnValidateRemoved _fnValidateLine _fnValidateEntry
 }
 
 # #
@@ -925,68 +1125,114 @@ fi
 
 # #
 #   Count file statistics
-#       - IPv4 CIDR contributes all IPv4 addresses in the subnet
-#       - IPv6 CIDR contributes one entry (do not expand)
-#       - Single IPv4/IPv6 contributes one entry
+#       IPv4 CIDR contributes all IPv4 addresses in the subnet
+#       IPv6 CIDR contributes one entry (do not expand)
+#       Single IPv4/IPv6 contributes one entry
 # #
 
 count_ip_stats( )
 {
     _fnCountFile=$1
-    _fnSubnetIps=0
+    _fnStatsLine=""
     _fnTotalIps=0
     _fnTotalSubnets=0
 
-    while IFS= read -r _fnLine; do
+    if [ ! -s "${_fnCountFile}" ]; then
+        total_ips=0
+        total_subnets=0
+        unset   _fnCountFile _fnStatsLine _fnTotalIps _fnTotalSubnets
+        return 0
+    fi
 
-        # #
-        #   IPv4 CIDR
-        # #
+    _fnStatsLine=$(awk -v include_comments="${argIncludeComments}" '
+        function trim(s) {
+            sub(/^[[:space:]]+/, "", s)
+            sub(/[[:space:]]+$/, "", s)
+            return s
+        }
+        function is_ipv4(ip, octets, i) {
+            if (index(ip, ":") > 0) {
+                return 0
+            }
+            if (split(ip, octets, ".") != 4) {
+                return 0
+            }
+            for (i = 1; i <= 4; i++) {
+                if (octets[i] !~ /^[0-9]+$/) {
+                    return 0
+                }
+                if (length(octets[i]) < 1 || length(octets[i]) > 3) {
+                    return 0
+                }
+            }
+            return 1
+        }
+        function is_ipv6(ip) {
+            return (index(ip, ":") > 0 && ip ~ /^[0-9A-Fa-f:.]+$/)
+        }
+        BEGIN {
+            total_ips = 0
+            total_subnets = 0
+        }
+        {
+            entry = $0
 
-        if [[ $_fnLine =~ $regex_ipv4_cidr ]]; then
-            _fnCidr="${BASH_REMATCH[2]}"
-            if [ "$_fnCidr" -le 32 ]; then
-                _fnSubnetIps=$(( 1 << (32 - _fnCidr) ))
-                _fnTotalIps=$(( _fnTotalIps + _fnSubnetIps ))
-                _fnTotalSubnets=$(( _fnTotalSubnets + 1 ))
-            fi
+            if (include_comments == "true") {
+                sub(/[[:space:]]*[#;].*$/, "", entry)
+            }
 
-        # #
-        #   IPv4 single
-        # #
+            entry = trim(entry)
+            if (entry == "") {
+                next
+            }
 
-        elif [[ $_fnLine =~ $regex_ipv4 ]]; then
-            _fnTotalIps=$(( _fnTotalIps + 1 ))
+            if (index(entry, "/") > 0) {
+                if (split(entry, parts, "/") != 2) {
+                    next
+                }
+                base = parts[1]
+                cidr = parts[2]
 
-        # #
-        #   IPv6 CIDR (count as one entry, do not expand)
-        # #
+                if (cidr !~ /^[0-9]+$/) {
+                    next
+                }
+                cidr += 0
 
-        elif [[ $_fnLine =~ $regex_ipv6_cidr ]]; then
-            _fnCidr="${_fnLine#*/}"
-            if [ "$_fnCidr" -le 128 ]; then
-                _fnTotalIps=$(( _fnTotalIps + 1 ))
-                _fnTotalSubnets=$(( _fnTotalSubnets + 1 ))
-            fi
+                if (is_ipv4(base)) {
+                    if (cidr <= 32) {
+                        total_ips += (2 ^ (32 - cidr))
+                        total_subnets++
+                    }
+                } else if (is_ipv6(base)) {
+                    if (cidr <= 128) {
+                        total_ips++
+                        total_subnets++
+                    }
+                }
 
-        # #
-        #   IPv6 single
-        # #
+                next
+            }
 
-        elif [[ $_fnLine =~ $regex_ipv6 ]] && [[ $_fnLine == *:* ]]; then
-            _fnTotalIps=$(( _fnTotalIps + 1 ))
-        fi
+            if (is_ipv4(entry) || is_ipv6(entry)) {
+                total_ips++
+            }
+        }
+        END {
+            printf "%.0f %.0f\n", total_ips, total_subnets
+        }
+    ' "${_fnCountFile}")
 
-    done < "${_fnCountFile}"
+    _fnTotalIps=${_fnStatsLine%% *}
+    _fnTotalSubnets=${_fnStatsLine##* }
 
-    total_ips=$_fnTotalIps
-    total_subnets=$_fnTotalSubnets
+    total_ips=${_fnTotalIps:-0}
+    total_subnets=${_fnTotalSubnets:-0}
 
     # #
     #   Unset
     # #
 
-    unset   _fnCountFile _fnSubnetIps _fnTotalIps _fnTotalSubnets _fnLine _fnCidr
+    unset   _fnCountFile _fnStatsLine _fnTotalIps _fnTotalSubnets
 }
 
 # #
@@ -1003,15 +1249,19 @@ is_bogon_ipv4( )
         0.*|10.*|127.*|127.0.53.53|169.254.*|192.168.*|255.255.255.255)
             return 0
             ;;
+
         100.6[4-9].*|100.[7-9][0-9].*|100.1[01][0-9].*|100.12[0-7].*)           # 100.64.0.0/10
             return 0
             ;;
+
         172.1[6-9].*|172.2[0-9].*|172.3[0-1].*)                                 # 172.16.0.0/12
             return 0
             ;;
+
         192.0.0.*|192.0.2.*|198.18.*|198.19.*|198.51.100.*|203.0.113.*)
             return 0
             ;;
+
         22[4-9].*|23[0-9].*|24[0-9].*|25[0-5].*)                                # 224.0.0.0/4 + 240.0.0.0/4
             return 0
             ;;
@@ -1035,12 +1285,15 @@ is_bogon_ipv6( )
         ::|::1|::ffff:*|::*)                                                        # ::/128 ::1/128 ::ffff:0:0/96 ::/96
             return 0
             ;;
+
         100:*|100::*)                                                               # 100::/64
             return 0
             ;;
+
         2001:1[0-9a-f]:*|2001:01[0-9a-f]:*|2001:001[0-9a-f]:*|2001:0001[0-9a-f]:*)  # 2001:10::/28
             return 0
             ;;
+
         2001:db8:*|3fff:*|fc*|fd*|fe8*|fe9*|fea*|feb*|fec*|fed*|fee*|fef*|ff*)
             return 0
             ;;
@@ -1089,29 +1342,65 @@ filter_bogon_ips( )
     fi
 
     info "    🚫 Filtering bogon IP ranges from ${bluel}${PWD}/${_fnBogonFile}${greym}"
+
     _fnBogonBefore=$(wc -l < "${_fnBogonFile}")
     > "${_fnBogonTemp}"
 
-    while IFS= read -r _fnBogonLine || [ -n "${_fnBogonLine}" ]; do
-        [ -z "${_fnBogonLine}" ] && continue
-        _fnBogonBase="${_fnBogonLine%%/*}"
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=true
+    #       curl -s https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3 | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+    # #
 
-        if [[ "${_fnBogonBase}" == *:* ]]; then
-            if is_bogon_ipv6 "${_fnBogonLine}"; then
-                label "       ${bluel}${_fnBogonLine}${greym}"
-                _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
-                continue
-            fi
-        elif [[ "${_fnBogonBase}" == *.* ]]; then
-            if is_bogon_ipv4 "${_fnBogonBase}"; then
-                label "       ${bluel}${_fnBogonLine}${greym}"
-                _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
-                continue
-            fi
-        fi
+    if [ "${argIncludeComments}" = "true" ]; then
+        while IFS= read -r _fnBogonLine || [ -n "${_fnBogonLine}" ]; do
+            [ -z "${_fnBogonLine}" ] && continue
+            _fnBogonEntry=$(extract_ip_entry "${_fnBogonLine}")
+            [ -z "${_fnBogonEntry}" ] && continue
+            _fnBogonBase="${_fnBogonEntry%%/*}"
 
-        printf '%s\n' "${_fnBogonLine}" >> "${_fnBogonTemp}"
-    done < "${_fnBogonFile}"
+            if [[ "${_fnBogonBase}" == *:* ]]; then
+                if is_bogon_ipv6 "${_fnBogonEntry}"; then
+                    label "        ${bluel}${_fnBogonLine}${greym}"
+                    _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
+                    continue
+                fi
+            elif [[ "${_fnBogonBase}" == *.* ]]; then
+                if is_bogon_ipv4 "${_fnBogonBase}"; then
+                    label "        ${bluel}${_fnBogonLine}${greym}"
+                    _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
+                    continue
+                fi
+            fi
+
+            printf '%s\n' "${_fnBogonLine}" >> "${_fnBogonTemp}"
+        done < "${_fnBogonFile}"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
+    # #
+
+    else
+        while IFS= read -r _fnBogonLine || [ -n "${_fnBogonLine}" ]; do
+            [ -z "${_fnBogonLine}" ] && continue
+            _fnBogonBase="${_fnBogonLine%%/*}"
+
+            if [[ "${_fnBogonBase}" == *:* ]]; then
+                if is_bogon_ipv6 "${_fnBogonLine}"; then
+                    label "       ${bluel}${_fnBogonLine}${greym}"
+                    _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
+                    continue
+                fi
+            elif [[ "${_fnBogonBase}" == *.* ]]; then
+                if is_bogon_ipv4 "${_fnBogonBase}"; then
+                    label "       ${bluel}${_fnBogonLine}${greym}"
+                    _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
+                    continue
+                fi
+            fi
+
+            printf '%s\n' "${_fnBogonLine}" >> "${_fnBogonTemp}"
+        done < "${_fnBogonFile}"
+    fi
 
     mv "${_fnBogonTemp}" "${_fnBogonFile}"
 
@@ -1123,7 +1412,7 @@ filter_bogon_ips( )
     #   Unset
     # #
 
-    unset   _fnBogonFile _fnBogonTemp _fnBogonLine _fnBogonBase _fnBogonBefore _fnBogonAfter _fnBogonRemoved _fnBogonIp
+    unset   _fnBogonFile _fnBogonTemp _fnBogonLine _fnBogonEntry _fnBogonBase _fnBogonBefore _fnBogonAfter _fnBogonRemoved _fnBogonIp
 }
 
 # #
@@ -1138,9 +1427,12 @@ filter_bogon_ips( )
 #   
 #   Supports both IPv4 and IPv6
 #   
-#   For tests; see python script `verify_cidr.py`.
-#       Requires original list of IPs, and also new list so that it can compare.
-#       python verify_cidr.py alibaba_old.txt alibaba_new.txt
+#   For tests; see python script `verify_cidr.py`:
+#       The test script requires two (2) files.
+#           1. Original source list of IPs
+#           2. New list
+#       Test by running:
+#           python verify_cidr.py alibaba_old.txt alibaba_new.txt
 #   
 #   Examples (IPv4):
 #       8.217.0.0/16    = keep
@@ -1160,11 +1452,91 @@ filter_bogon_ips( )
 #   Notes:
 #       Run AFTER sort/dedupe for best results
 #       Run BEFORE count_ip_stats for accurate totals
+#   
+#   Usage:
+#       dedup_cidr "${_fnFileTemp}"
 # #
 
 dedup_cidr( )
 {
     _fnDedupFile=$1
+    _fnDedupWorkFile=$1
+    _fnDedupLogFile=$1
+    _fnDedupUseCommentRemap="false"
+
+    _fnDedupCommentMap=""
+    _fnDedupCommentCanon=""
+    _fnDedupCommentOut=""
+    _fnDedupCommentLine=""
+    _fnDedupCommentEntry=""
+    _fnDedupCommentBase=""
+
+    if [ "${argSkipCidrDedup}" = "true" ]; then
+        info "    ⚡ Skipping overlapping CIDR dedupe (CFG_SKIP_CIDR_DEDUPE=true)"
+        return 0
+    fi
+
+    if [ ! -f "${_fnDedupFile}" ] || [ ! -s "${_fnDedupFile}" ]; then
+        return 0
+    fi
+
+    # #
+    #   Notes:
+    #       Must preserve original commented lines in output.
+    #       CIDR overlap dedupe must still run on canonical IP/CIDR keys.
+    #       This keeps counts and final entries consistent with non-comment mode.
+    # #
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        _fnDedupUseCommentRemap="true"
+        _fnDedupCommentMap=$(mktemp) || return 1
+        _fnDedupCommentCanon=$(mktemp) || { rm -f "${_fnDedupCommentMap}"; return 1; }
+        _fnDedupCommentOut=$(mktemp) || { rm -f "${_fnDedupCommentMap}" "${_fnDedupCommentCanon}"; return 1; }
+
+        > "${_fnDedupCommentMap}"
+        > "${_fnDedupCommentCanon}"
+
+        while IFS= read -r _fnDedupCommentLine || [ -n "${_fnDedupCommentLine}" ]; do
+            [ -z "${_fnDedupCommentLine}" ] && continue
+            _fnDedupCommentEntry=$(extract_ip_entry "${_fnDedupCommentLine}")
+            [ -z "${_fnDedupCommentEntry}" ] && continue
+
+            printf '%s\t%s\n' "${_fnDedupCommentEntry}" "${_fnDedupCommentLine}" >> "${_fnDedupCommentMap}"
+
+            case "${_fnDedupCommentEntry}" in
+                */32)
+                    _fnDedupCommentBase="${_fnDedupCommentEntry%%/*}"
+                    if [[ "${_fnDedupCommentBase}" == *.* ]]; then
+                        printf '%s\t%s\n' "${_fnDedupCommentBase}" "${_fnDedupCommentLine}" >> "${_fnDedupCommentMap}"
+                    fi
+                    ;;
+                */128)
+                    _fnDedupCommentBase="${_fnDedupCommentEntry%%/*}"
+                    if [[ "${_fnDedupCommentBase}" == *:* ]]; then
+                        printf '%s\t%s\n' "${_fnDedupCommentBase}" "${_fnDedupCommentLine}" >> "${_fnDedupCommentMap}"
+                    fi
+                    ;;
+            esac
+
+            printf '%s\n' "${_fnDedupCommentEntry}" >> "${_fnDedupCommentCanon}"
+        done < "${_fnDedupFile}"
+
+        if [ ! -s "${_fnDedupCommentCanon}" ]; then
+            > "${_fnDedupFile}"
+            rm -f "${_fnDedupCommentMap}" "${_fnDedupCommentCanon}" "${_fnDedupCommentOut}"
+            unset   _fnDedupFile _fnDedupWorkFile _fnDedupLogFile _fnDedupUseCommentRemap \
+                    _fnDedupCommentMap _fnDedupCommentCanon _fnDedupCommentOut \
+                    _fnDedupCommentLine _fnDedupCommentEntry _fnDedupCommentBase
+            return 0
+        fi
+
+        _fnDedupWorkFile="${_fnDedupCommentCanon}"
+    fi
+
+    # #
+    #   Create all our vars
+    # #
+
     _fnDedupV4=$(mktemp) || return 1
     _fnDedupV6=$(mktemp) || return 1
     _fnDedupOther=$(mktemp) || return 1
@@ -1173,19 +1545,28 @@ dedup_cidr( )
     _fnDedupAfter=0
     _fnDedupRemoved=0
 
-    if [ ! -f "$_fnDedupFile" ] || [ ! -s "$_fnDedupFile" ]; then
+    if [ ! -f "$_fnDedupWorkFile" ] || [ ! -s "$_fnDedupWorkFile" ]; then
         rm -f "$_fnDedupV4" "$_fnDedupV6" "$_fnDedupOther" "$_fnDedupOut"
+        if [ "${_fnDedupUseCommentRemap}" = "true" ]; then
+            > "${_fnDedupFile}"
+            rm -f "${_fnDedupCommentMap}" "${_fnDedupCommentCanon}" "${_fnDedupCommentOut}"
+        fi
+        unset   _fnDedupFile _fnDedupWorkFile _fnDedupLogFile _fnDedupUseCommentRemap \
+                _fnDedupCommentMap _fnDedupCommentCanon _fnDedupCommentOut \
+                _fnDedupCommentLine _fnDedupCommentEntry _fnDedupCommentBase \
+                _fnDedupV4 _fnDedupV6 _fnDedupOther _fnDedupOut \
+                _fnDedupBefore _fnDedupAfter _fnDedupRemoved
         return 0
     fi
 
-    info "    🔍 Removing overlapping CIDR ranges from ${bluel}${_fnDedupFile}${greym}"
-    _fnDedupBefore=$(wc -l < "$_fnDedupFile")
+    info "    🔍 Removing overlapping CIDR ranges from ${bluel}${_fnDedupLogFile}${greym}"
+    _fnDedupBefore=$(wc -l < "$_fnDedupWorkFile")
 
     # #
     #   Classify lines
-    #       IPv4 CIDR / single  =  _fnDedupV4       (singles promoted to /32)
-    #       IPv6 CIDR / single  =  _fnDedupV6       (singles promoted to /128)
-    #       Other               =  _fnDedupOther    (pass-through)
+    #       IPv4 CIDR / single      _fnDedupV4       (singles promoted to /32)
+    #       IPv6 CIDR / single      _fnDedupV6       (singles promoted to /128)
+    #       Other                   _fnDedupOther    (pass-through)
     # #
 
     awk '
@@ -1194,7 +1575,7 @@ dedup_cidr( )
     /\// && /\./ { print > v4; next }
     /\./         { print $0 "/32" > v4; next }
                  { print > ot }
-    ' v4="$_fnDedupV4" v6="$_fnDedupV6" ot="$_fnDedupOther" "$_fnDedupFile"
+    ' v4="$_fnDedupV4" v6="$_fnDedupV6" ot="$_fnDedupOther" "$_fnDedupWorkFile"
 
     # #
     #   IPv4 containment dedup
@@ -1239,7 +1620,7 @@ dedup_cidr( )
     # #
     #   IPv6 containment dedup
     #   
-    #   Same algorithm but uses fully-expanded 32-char lowercase hex for
+    #   Same algorithm v4; but uses fully-expanded 32-char lowercase hex for
     #   network/end addresses so that lexicographic comparison == numeric.
     # #
 
@@ -1331,24 +1712,102 @@ dedup_cidr( )
         cat "$_fnDedupOther" >> "$_fnDedupOut"
     fi
 
-    mv "$_fnDedupOut" "$_fnDedupFile"
+    mv "$_fnDedupOut" "$_fnDedupWorkFile"
     rm -f "$_fnDedupV4" "$_fnDedupV6" "$_fnDedupOther"
 
-    _fnDedupAfter=$(wc -l < "$_fnDedupFile")
+    _fnDedupAfter=$(wc -l < "$_fnDedupWorkFile")
     _fnDedupRemoved=$(( _fnDedupBefore - _fnDedupAfter ))
 
+    if [ "${_fnDedupUseCommentRemap}" = "true" ]; then
+        awk -F'\t' '
+        NR == FNR {
+            key = $1
+            sub(/^[^\t]*\t/, "", $0)
+            if (!(key in line_by_key)) line_by_key[key] = $0
+            next
+        }
+        {
+            if ($0 in line_by_key) print line_by_key[$0]
+        }
+        ' "${_fnDedupCommentMap}" "${_fnDedupCommentCanon}" > "${_fnDedupCommentOut}"
+
+        mv "${_fnDedupCommentOut}" "${_fnDedupFile}"
+        rm -f "${_fnDedupCommentMap}" "${_fnDedupCommentCanon}"
+    fi
+
     if [ "$_fnDedupRemoved" -gt 0 ]; then
-        ok "    🔍 Removed ${greenl}${_fnDedupRemoved}${greym} overlapping CIDR entries from ${bluel}${_fnDedupFile}${greym}"
+        ok "    🔍 Removed ${greenl}${_fnDedupRemoved}${greym} overlapping CIDR entries from ${bluel}${_fnDedupLogFile}${greym}"
     else
-        ok "    🔍 No overlapping CIDRs found in ${bluel}${_fnDedupFile}${greym}"
+        ok "    🔍 No overlapping CIDRs found in ${bluel}${_fnDedupLogFile}${greym}"
     fi
 
     # #
     #   Unset
     # #
 
-    unset   _fnDedupFile _fnDedupV4 _fnDedupV6 _fnDedupOther _fnDedupOut \
+    unset   _fnDedupFile _fnDedupWorkFile _fnDedupLogFile _fnDedupUseCommentRemap \
+            _fnDedupCommentMap _fnDedupCommentCanon _fnDedupCommentOut \
+            _fnDedupCommentLine _fnDedupCommentEntry _fnDedupCommentBase \
+            _fnDedupV4 _fnDedupV6 _fnDedupOther _fnDedupOut \
             _fnDedupBefore _fnDedupAfter _fnDedupRemoved
+}
+
+# #
+#   Check if specified file contains valid IP entries.
+#   
+#   Requires an input file to be passed as argument:
+#       has_valid_ip_entries "${file_ipset_target}"
+# #
+
+has_valid_ip_entries()
+{
+    _fnArgFile=$1
+    _fnValidLine=""
+    _fnValidEntry=""
+
+    if [ ! -f "${_fnArgFile}" ]; then
+        return 1
+    fi
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=true
+    #       curl -s https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3 | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+    # #
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        while IFS= read -r _fnValidLine || [ -n "${_fnValidLine}" ]; do
+            _fnValidEntry=$(extract_ip_entry "${_fnValidLine}")
+            [ -z "${_fnValidEntry}" ] && continue
+
+            if is_valid_ip_entry "${_fnValidEntry}"; then
+                unset _fnArgFile _fnValidLine _fnValidEntry
+                return 0
+            fi
+        done < "${_fnArgFile}"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
+    # #
+
+    else
+
+        # #
+        #   use grep instead of is_valid_ip_entry; avoid large slowdown from per-line read
+        # #
+
+        if grep -Eq "^(${regex_ipv4}|${regex_ipv4_cidr}|${regex_ipv6}|${regex_ipv6_cidr})$" "${_fnArgFile}"; then
+            unset _fnArgFile _fnValidLine _fnValidEntry
+            return 0
+        fi
+    fi
+
+    # #
+    #   Unset
+    # #
+
+    unset _fnArgFile _fnValidLine _fnValidEntry
+
+    return 1
 }
 
 # #
@@ -1362,8 +1821,8 @@ gcc( )
     echo
     info "    🗑️  Starting ${bluel}GCC${greym} cleanup"
 
-    # remove temp
     rm -rf "${app_dir_github}/${folder_target_temp}"
+
     if [ ! -d "${app_dir_github}/${folder_target_temp}" ]; then
         ok "    🗑️  Removed folder ${bluel}${app_dir_github}/${folder_target_temp}"
     else
@@ -1444,20 +1903,40 @@ ff00::/8
 EOF
 
     # #
+    #   Running sed
+    # #
+
+    info "    ✴️  Performing sed operations on ${bluel}${_fnFileTemp}${greym}"
+
+    # #
     #   Perform sed actions on downloaded file.
     # #
 
     # normalize CRLF
     sed -i 's/\r$//' "${_fnFileTemp}"
 
-    # remove hyphens from IP ranges (if format is "1.2.3.4 - 1.2.3.5" take left side)
-    sed -i 's/-.*//' "${_fnFileTemp}"
+    # remove right side from IPv4 ranges when format is "1.2.3.4 - 1.2.3.5"
+    sed -E -i 's/^([[:space:]]*[0-9]{1,3}(\.[0-9]{1,3}){3})[[:space:]]*-[[:space:]]*[0-9]{1,3}(\.[0-9]{1,3}){3}/\1/' "${_fnFileTemp}"
 
-    # remove inline comments (strip ' # comment' or ' ; comment' from end of lines ; collapse whitespace, trim)
-    sed -i 's/[[:space:]]*[#;].*$//' "${_fnFileTemp}"
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=true
+    #       curl -s https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3 | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+    # #
 
-    # collapse multiple whitespace into a single space
-    sed -i 's/[[:space:]]\+/ /g' "${_fnFileTemp}"
+    if [ "${argIncludeComments}" = "true" ]; then
+        info "    ⚡ Preserving inline comments (CFG_INCLUDE_COMMENTS=true)"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
+    # #
+
+    else
+        # remove inline comments (strip ' # comment' or ' ; comment' from end of lines ; collapse whitespace, trim)
+        sed -i 's/[[:space:]]*[#;].*$//' "${_fnFileTemp}"
+
+        # collapse multiple whitespace into a single space
+        sed -i 's/[[:space:]]\+/ /g' "${_fnFileTemp}"
+    fi
 
     # trim leading and trailing whitespace
     sed -i 's/^[[:space:]]*//;s/[[:space:]]*$//' "${_fnFileTemp}"
@@ -1465,10 +1944,14 @@ EOF
     # remove empty lines (after trimming/comment removal)
     sed -i '/^$/d' "${_fnFileTemp}"
 
-    # drop malformed entries before sorting (optional trusted-input fast path)
+    # #
+    #   Drop malformed entries before sorting (optional trusted-input fast path)
+    # #
+
     if [ "${argTrustedInput}" = "true" ]; then
         info "    ⚡ Trusted input mode enabled; skipping per-line IP validation"
     else
+        info "    ✴️  Verify valid ip entries in ${bluel}${_fnFileTemp}${greym}. This may take some time."
         filter_valid_ip_entries "${_fnFileTemp}"
     fi
 
@@ -1477,7 +1960,12 @@ EOF
     # #
 
     info "    🔃 Sorting and deduplicating results"
-    grep -vE '^[[:space:]]*(#|;|$)' "${_fnFileTemp}" | sort_results > "${_fnFileTemp}.sort"
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        grep -vE '^[[:space:]]*(#|;|$)' "${_fnFileTemp}" | sort_results > "${_fnFileTemp}.sort"
+    else
+        sort_results < "${_fnFileTemp}" > "${_fnFileTemp}.sort"
+    fi
 
     # #
     #   Move from .sort to .tmp
@@ -1529,16 +2017,9 @@ EOF
     #   Unset
     # #
 
-    unset   _fnArgFile _fnFileTemp _count_total_ips _count_total_subnets
+    unset   _fnArgLocalFile _fnArgFile _fnFileTemp _fnListNum \
+            _count_total_ips _count_total_subnets
 }
-
-# #
-#   Define › App
-# #
-
-file_ipset_temp="${argFileSaveto}.tmp"                                          # Temp file when building ipset list
-file_ipset_target="${argFileSaveto}"                                            # Perm file when building ipset list
-folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
 
 # #
 #   Create Temp Folder
@@ -1565,33 +2046,41 @@ templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             
 templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 
 # #
-#   Define › Template › External Sources
+#   Template › External Sources
 # #
 
 info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
 
 info "    ⭐ Downloading external template sources"
-label "     ${bluel}${app_repo_curl_storage}/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/url-source/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
 
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/url-source/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
+# #
+#   Template › Get
+# #
+
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
 wait
+
+# #
+#   Template › Write Variable from Temp File
+# #
 
 templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
 templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
 templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
-templ_url_service=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+templ_src=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
 
-if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" \
-        "${app_dir_github}/${folder_target_temp}/cat.txt" \
-        "${app_dir_github}/${folder_target_temp}/exp.txt" \
-        "${app_dir_github}/${folder_target_temp}/src.txt"
-then
+# #
+#   Template › Remove Temp File
+# #
+
+if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" "${app_dir_github}/${folder_target_temp}/cat.txt" "${app_dir_github}/${folder_target_temp}/exp.txt" "${app_dir_github}/${folder_target_temp}/src.txt"; then
     ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
 else
     error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
@@ -1599,13 +2088,13 @@ else
 fi
 
 # #
-#   Define › Template › Default Values
+#   Template › Default Values
 # #
 
-case "$templ_desc" in *"404: Not Found"*) templ_desc="#   No description provided";; esac
-case "$templ_cat" in *"404: Not Found"*) templ_cat="Uncategorized";; esac
-case "$templ_exp" in *"404: Not Found"*) templ_exp="6 hours";; esac
-case "$templ_url_service" in *"404: Not Found"*) templ_url_service="None";; esac
+[ -z "$templ_desc" ] || [[ "$templ_desc" == *"404: Not Found"* ]] && templ_desc="#   No description provided"
+[ -z "$templ_cat"  ] || [[ "$templ_cat"  == *"404: Not Found"* ]] && templ_cat="Uncategorized"
+[ -z "$templ_exp"  ] || [[ "$templ_exp"  == *"404: Not Found"* ]] && templ_exp="6 hours"
+[ -z "$templ_src"  ] || [[ "$templ_src"  == *"404: Not Found"* ]] && templ_src="None"
 
 # #
 #   Output › Header
@@ -1618,7 +2107,7 @@ ${greyd}\n${greym}Id: 	    ${greyd}...............${yellowl} ${templ_id}${greyd}
 ${greyd}\n${greym}UUID:	        ${greyd}.............${yellowl} ${templ_uuid}${greyd} \
 ${greyd}\n${greym}Category:	        ${greyd}.........${yellowl} ${templ_cat}${greyd} \
 ${greyd}\n${greym}Script:	       ${greyd}...........${yellowl} ${app_file_this}${greyd} \
-${greyd}\n${greym}Service:	        ${greyd}..........${yellowl} ${templ_url_service}${greyd}"
+${greyd}\n${greym}Source:	         ${greyd}...........${yellowl} ${templ_src}${greyd}"
 
 # #
 #   Start
@@ -1632,6 +2121,14 @@ fi
 
 if [ "${argSkipBogonFilter}" = "true" ]; then
     info "    ⚡ Fast mode: bogon filtering disabled"
+fi
+
+if [ "${argSkipCidrDedup}" = "true" ]; then
+    info "    ⚡ Fast mode: overlapping CIDR dedupe disabled"
+fi
+
+if [ "${argIncludeComments}" = "true" ]; then
+    info "    ⚡ Fast mode: inline comments preserved"
 fi
 
 # #
@@ -1652,9 +2149,9 @@ else
     mkdir -p "$(dirname "${file_ipset_target}")"
 
     if [ -d "$(dirname "${file_ipset_target}")" ]; then
-        ok "    📁 Created ${greenl}$(dirname "${file_ipset_target}")${greym}"
+        ok "    📁 Created ${greenl}$( dirname "${file_ipset_target}" )${greym}"
     else
-        error "    ⭕  Failed to create directory ${redl}$(dirname "${file_ipset_target}")${greym}; aborting${greym}"
+        error "    ⭕  Failed to create directory ${redl}$( dirname "${file_ipset_target}" )${greym}; aborting${greym}"
         exit 1
     fi
 
@@ -1675,16 +2172,20 @@ download_list "${file_ipset_target}"
 
 # #
 #   Sort
-#       - Remove downloaded comment/blank lines
-#       - Sort/dedupe IPv4 and IPv6 separately
-#       - Move sorted text over to permanent file
-#       - Delete temp sort file
+#       Remove downloaded comment/blank lines.
+#       Sort/dedupe IPv4 and IPv6 separately.
+#       Move sorted text over to permanent file.
+#       Delete temp sort file.
 # #
 
 if [ -f "${file_ipset_target}" ]; then
     if [ "${did_load_fallback}" = "true" ]; then
         info "    🧹 Sorting and removing duplicate IP entries from ${bluel}${PWD}/${file_ipset_target}${greym}"
-        grep -vE '^[[:space:]]*(#|;|$)' "${file_ipset_target}" | sort_results > "${file_ipset_target}.sort"
+        if [ "${argIncludeComments}" = "true" ]; then
+            grep -vE '^[[:space:]]*(#|;|$)' "${file_ipset_target}" | sort_results > "${file_ipset_target}.sort"
+        else
+            sort_results < "${file_ipset_target}" > "${file_ipset_target}.sort"
+        fi
         > "${file_ipset_target}"
         cat "${file_ipset_target}.sort" >> "${file_ipset_target}"
         rm "${file_ipset_target}.sort"
@@ -1694,6 +2195,13 @@ if [ -f "${file_ipset_target}" ]; then
     fi
 fi
 
+# #
+#   IPSET › Dedup Contained CIDRs (final pass across all IPs)
+# #
+
+if [ -f "${file_ipset_target}" ] && [ -s "${file_ipset_target}" ]; then
+    dedup_cidr "${file_ipset_target}"
+fi
 
 # #
 #   Final Counts (from final cleaned + deduped file)
@@ -1721,8 +2229,8 @@ ed -s "${file_ipset_target}" <<END_ED
 # #
 #   🧱 Firewall Blocklist - ${file_ipset_target}
 #
-#   @repo           https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}
-#   @service        ${templ_url_service}
+#   @blocklist      https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}
+#   @source         ${templ_src}
 #   @id             ${templ_id}
 #   @uuid           ${templ_uuid}
 #   @updated        ${templ_now}
@@ -1742,10 +2250,10 @@ END_ED
 
 # #
 #   Finished
-#       - Capture end time
-#       - Calculate elapsed time
-#       - Calculate days, hours, etc.
-#       - Output to console
+#       Capture end time
+#       Calculate elapsed time
+#       Calculate days, hours, etc.
+#       Output to console
 # #
 
 time_elapsed $(( $( date +%s ) - time_start ))
