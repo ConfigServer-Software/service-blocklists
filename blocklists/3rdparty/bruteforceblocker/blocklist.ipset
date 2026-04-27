@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/bruteforceblocker/blocklist.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/bruteforceblocker/blocklist.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/bruteforceblocker/blocklist.ipset
+#   @source         None
 #   @id             3rdparty_bruteforceblocker_blocklist_ipset
 #   @uuid           fe9d9942-beab-34a1-8e9a-20523944a425
-#   @updated        Mon Apr 27 13:22:05 UTC 2026
-#   @entries        361 ips
+#   @updated        Mon Apr 27 17:19:20 UTC 2026
+#   @entries        358 ips
 #                   0 subnets
-#                   361 lines
+#                   358 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -312,9 +312,7 @@
 171.231.199.119
 171.231.199.134
 171.243.149.96
-171.243.149.203
 171.243.149.220
-171.243.149.235
 171.243.150.164
 171.243.151.24
 171.243.151.26
@@ -328,7 +326,6 @@
 178.175.167.17
 180.76.143.27
 180.76.175.142
-180.76.233.159
 182.23.36.166
 182.66.193.212
 183.6.91.151

@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/linuxtracker/blocklist.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/linuxtracker/blocklist.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/linuxtracker/blocklist.ipset
+#   @source         None
 #   @id             3rdparty_linuxtracker_blocklist_ipset
 #   @uuid           5e12a53c-a12b-344a-96cf-5f605ae19f4f
-#   @updated        Mon Apr 27 13:23:52 UTC 2026
+#   @updated        Mon Apr 27 17:21:13 UTC 2026
 #   @entries        777 ips
 #                   0 subnets
 #                   777 lines

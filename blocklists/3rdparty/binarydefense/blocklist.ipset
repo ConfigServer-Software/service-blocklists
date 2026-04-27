@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/binarydefense/blocklist.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/binarydefense/blocklist.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/binarydefense/blocklist.ipset
+#   @source         None
 #   @id             3rdparty_binarydefense_blocklist_ipset
 #   @uuid           dede1900-dd71-32eb-ba3b-0b7ddc6717d9
-#   @updated        Mon Apr 27 13:20:39 UTC 2026
+#   @updated        Mon Apr 27 17:17:50 UTC 2026
 #   @entries        6,262 ips
 #                   0 subnets
 #                   6,262 lines

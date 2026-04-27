@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/ipsum/blocklist.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/ipsum/blocklist.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/ipsum/blocklist.ipset
+#   @source         None
 #   @id             3rdparty_ipsum_blocklist_ipset
 #   @uuid           4baf65b5-3133-381a-a44d-9f3e8149eb60
-#   @updated        Mon Apr 27 13:23:49 UTC 2026
+#   @updated        Mon Apr 27 17:21:11 UTC 2026
 #   @entries        106,557 ips
 #                   0 subnets
 #                   106,557 lines

@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/rssapi.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/rssapi.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/rssapi.ipset
+#   @source         None
 #   @id             privacy_rssapi_ipset
 #   @uuid           25f8a230-2869-3380-b3b4-cf05e212a968
-#   @updated        Mon Apr 27 13:38:58 UTC 2026
+#   @updated        Mon Apr 27 17:38:51 UTC 2026
 #   @entries        2 ips
 #                   1 subnets
 #                   2 lines

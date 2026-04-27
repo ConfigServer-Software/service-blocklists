@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/firehol/dshield_7d.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/firehol/dshield_7d.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/firehol/dshield_7d.ipset
+#   @source         None
 #   @id             3rdparty_firehol_dshield_7d_ipset
 #   @uuid           91b3a613-75de-3c07-9b8b-cde7ce64d241
-#   @updated        Mon Apr 27 13:23:29 UTC 2026
+#   @updated        Mon Apr 27 17:20:50 UTC 2026
 #   @entries        12,032 ips
 #                   45 subnets
 #                   45 lines

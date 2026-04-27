@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/linode.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/linode.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/linode.ipset
+#   @source         None
 #   @id             privacy_linode_ipset
 #   @uuid           e71c3451-15b3-34d1-9de1-276984458abb
-#   @updated        Mon Apr 27 13:38:29 UTC 2026
+#   @updated        Mon Apr 27 17:38:19 UTC 2026
 #   @entries        1,346,142 ips
 #                   5,321 subnets
 #                   5,321 lines

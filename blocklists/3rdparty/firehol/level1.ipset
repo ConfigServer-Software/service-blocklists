@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/firehol/level1.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/firehol/level1.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/firehol/level1.ipset
+#   @source         None
 #   @id             3rdparty_firehol_level1_ipset
 #   @uuid           24a6cf25-6e33-36a1-8828-a4a57e0cede2
-#   @updated        Mon Apr 27 13:22:07 UTC 2026
-#   @entries        610,978,881 ips
-#                   4,431 subnets
-#                   4,432 lines
+#   @updated        Mon Apr 27 17:19:23 UTC 2026
+#   @entries        610,979,137 ips
+#                   4,432 subnets
+#                   4,433 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -1258,6 +1258,7 @@
 104.193.228.0/22
 104.232.96.0/20
 104.239.66.0/24
+104.243.32.0/24
 104.244.56.0/21
 104.244.80.0/22
 104.250.163.0/24

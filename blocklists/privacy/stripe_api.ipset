@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/stripe_api.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/stripe_api.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/stripe_api.ipset
+#   @source         None
 #   @id             privacy_stripe_api_ipset
 #   @uuid           d1dce4bc-a9a2-3300-8f22-fdc968d3358e
-#   @updated        Mon Apr 27 13:39:44 UTC 2026
+#   @updated        Mon Apr 27 17:39:42 UTC 2026
 #   @entries        162 ips
 #                   0 subnets
 #                   162 lines

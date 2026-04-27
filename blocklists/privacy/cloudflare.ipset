@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/cloudflare.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/cloudflare.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/cloudflare.ipset
+#   @source         None
 #   @id             privacy_cloudflare_ipset
 #   @uuid           9bff5966-157e-3428-9dc9-4fc7c00d929a
-#   @updated        Mon Apr 27 13:36:26 UTC 2026
+#   @updated        Mon Apr 27 17:36:08 UTC 2026
 #   @entries        1,524,743 ips
 #                   22 subnets
 #                   22 lines

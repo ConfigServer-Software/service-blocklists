@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/tor_exitnodes.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/tor_exitnodes.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/tor_exitnodes.ipset
+#   @source         None
 #   @id             tor_exitnodes_ipset
 #   @uuid           9d63ca5e-2c49-3352-bc9f-3d6ace1edd1e
-#   @updated        Mon Apr 27 13:20:23 UTC 2026
-#   @entries        1,329 ips
+#   @updated        Mon Apr 27 17:17:32 UTC 2026
+#   @entries        1,330 ips
 #                   0 subnets
-#                   1,329 lines
+#                   1,330 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -872,6 +872,7 @@
 185.100.85.24
 185.100.85.25
 185.100.85.132
+185.100.87.41
 185.100.87.136
 185.100.87.166
 185.100.87.174

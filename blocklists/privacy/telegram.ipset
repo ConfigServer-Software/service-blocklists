@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/telegram.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/telegram.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/telegram.ipset
+#   @source         None
 #   @id             privacy_telegram_ipset
 #   @uuid           d1bc7fff-3756-30cb-b376-b1ed8fdc511b
-#   @updated        Mon Apr 27 13:39:45 UTC 2026
+#   @updated        Mon Apr 27 17:39:44 UTC 2026
 #   @entries        11,013 ips
 #                   14 subnets
 #                   14 lines

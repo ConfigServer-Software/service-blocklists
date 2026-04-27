@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/blocklist.de/attacks_ircbot.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/blocklist.de/attacks_ircbot.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/blocklist.de/attacks_ircbot.ipset
+#   @source         None
 #   @id             3rdparty_blocklist_de_attacks_ircbot_ipset
 #   @uuid           5184c018-0d1a-378e-8b34-1356c881c777
-#   @updated        Mon Apr 27 13:22:03 UTC 2026
+#   @updated        Mon Apr 27 17:19:18 UTC 2026
 #   @entries        0 ips
 #                   0 subnets
 #                   0 lines

@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/firehol/webclient.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/firehol/webclient.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/firehol/webclient.ipset
+#   @source         None
 #   @id             3rdparty_firehol_webclient_ipset
 #   @uuid           63e8ab7f-8133-3dac-bd85-b0ab53e25e00
-#   @updated        Mon Apr 27 13:23:26 UTC 2026
+#   @updated        Mon Apr 27 17:20:45 UTC 2026
 #   @entries        308 ips
 #                   0 subnets
 #                   308 lines

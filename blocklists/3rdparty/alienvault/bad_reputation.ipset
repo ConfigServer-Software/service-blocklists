@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/alienvault/bad_reputation.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/alienvault/bad_reputation.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/alienvault/bad_reputation.ipset
+#   @source         None
 #   @id             3rdparty_alienvault_bad_reputation_ipset
 #   @uuid           6819b770-fe10-320d-9dac-de21c26f18bb
-#   @updated        Mon Apr 27 13:20:24 UTC 2026
+#   @updated        Mon Apr 27 17:17:34 UTC 2026
 #   @entries        609 ips
 #                   0 subnets
 #                   609 lines

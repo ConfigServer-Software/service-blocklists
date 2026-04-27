@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/bunnycdn.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/bunnycdn.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/bunnycdn.ipset
+#   @source         None
 #   @id             privacy_bunnycdn_ipset
 #   @uuid           6526e73d-f7e2-3927-8d8e-7e8873d0b484
-#   @updated        Mon Apr 27 13:25:28 UTC 2026
+#   @updated        Mon Apr 27 17:23:08 UTC 2026
 #   @entries        906 ips
 #                   0 subnets
 #                   906 lines

@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/firehol/cybercrime.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/firehol/cybercrime.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/firehol/cybercrime.ipset
+#   @source         None
 #   @id             3rdparty_firehol_cybercrime_ipset
 #   @uuid           0ed566eb-4d6c-3794-9727-282a6cc32127
-#   @updated        Mon Apr 27 13:23:29 UTC 2026
+#   @updated        Mon Apr 27 17:20:50 UTC 2026
 #   @entries        308 ips
 #                   0 subnets
 #                   308 lines

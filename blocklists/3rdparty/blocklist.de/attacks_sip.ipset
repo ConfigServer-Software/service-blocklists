@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/blocklist.de/attacks_sip.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/blocklist.de/attacks_sip.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/blocklist.de/attacks_sip.ipset
+#   @source         None
 #   @id             3rdparty_blocklist_de_attacks_sip_ipset
 #   @uuid           cece620b-f239-39f3-b1ae-b450c71da695
-#   @updated        Mon Apr 27 13:22:01 UTC 2026
-#   @entries        21 ips
+#   @updated        Mon Apr 27 17:19:16 UTC 2026
+#   @entries        20 ips
 #                   0 subnets
-#                   21 lines
+#                   20 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -16,23 +16,22 @@
 # #
 
 5.135.12.124
-5.135.241.62
+45.61.184.184
 45.148.9.200
 45.156.87.99
 49.207.40.162
 51.75.194.10
 51.195.20.204
 54.38.94.109
-61.231.206.52
 62.60.130.234
 80.94.92.166
 81.26.81.32
-132.145.213.106
+85.121.50.118
+91.240.65.5
+103.190.214.241
 179.43.150.26
 180.76.202.69
 188.154.156.103
-192.109.200.50
-193.46.255.46
 195.161.114.163
-202.69.169.162
-211.217.235.23
+201.66.81.130
+210.14.142.89
