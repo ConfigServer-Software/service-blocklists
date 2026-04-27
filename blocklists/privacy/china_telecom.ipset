@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             privacy_china_telecom_ipset
 #   @uuid           2953bb09-3cee-3d6f-8892-cb3d53c3faf0
-#   @updated        Mon Apr 27 10:21:41 UTC 2026
-#   @entries        139,542,588 ips
-#                   3,855 subnets
-#                   3,855 lines
+#   @updated        Mon Apr 27 13:33:29 UTC 2026
+#   @entries        139,534,396 ips
+#                   3,854 subnets
+#                   3,854 lines
 #   @asn            AS4811, AS4134, AS131285, AS131325, AS132225
 #                   AS132437, AS132833, AS4816, AS4835, AS140359
 #                   AS23764, AS4809, AS4812
@@ -3159,7 +3159,6 @@
 210.75.48.0/21
 210.75.56.0/21
 210.75.96.0/19
-210.76.64.0/19
 210.76.160.0/22
 210.76.164.0/22
 210.76.168.0/22

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             privacy_china_tencent_ipset
 #   @uuid           484c5ca9-c6b1-34dd-b49e-e06a79cc845b
-#   @updated        Mon Apr 27 10:22:41 UTC 2026
-#   @entries        9,665,866 ips
-#                   460 subnets
-#                   460 lines
+#   @updated        Mon Apr 27 13:34:27 UTC 2026
+#   @entries        9,666,122 ips
+#                   461 subnets
+#                   461 lines
 #   @asn            AS132203, AS45090, AS137876, AS132591, AS139341
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -178,6 +178,7 @@
 43.146.84.0/24
 43.146.85.0/24
 43.146.86.0/24
+43.146.87.0/24
 43.146.88.0/24
 43.146.89.0/24
 43.152.0.0/13
