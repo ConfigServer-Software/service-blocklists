@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             privacy_webpagetest_ipset
 #   @uuid           d0c64444-f996-3e09-8981-ff2f6848f1e8
-#   @updated        Tue Apr 28 17:58:40 UTC 2026
-#   @entries        34 ips
+#   @updated        Tue Apr 28 21:24:05 UTC 2026
+#   @entries        35 ips
 #                   0 subnets
-#                   34 lines
+#                   35 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -48,4 +48,5 @@
 82.157.95.229
 104.199.223.119
 111.229.119.150
+115.159.149.234
 154.8.149.120
