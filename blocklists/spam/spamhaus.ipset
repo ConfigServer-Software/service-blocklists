@@ -5,7 +5,7 @@
 #   @service        None
 #   @id             spam_spamhaus_ipset
 #   @uuid           58ac5de8-785d-356a-ab2b-8be8960e311b
-#   @updated        Tue Apr 28 10:27:25 UTC 2026
+#   @updated        Tue Apr 28 13:57:08 UTC 2026
 #   @entries        14,566,400 ips
 #                   1,566 subnets
 #                   1,566 lines

@@ -1,13 +1,13 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/github_pages.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/github_pages.ipset
-#   @service        None
-#   @id             github_pages_ipset
-#   @uuid           e91febb5-5ee9-3832-8ea0-b96724e4fd08
-#   @updated        Tue Apr 28 10:25:09 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/github_pages.ipset
+#   @source         None
+#   @id             privacy_github_pages_ipset
+#   @uuid           f49aec1b-20c3-38df-ba42-118deb86549d
+#   @updated        Tue Apr 28 13:53:11 UTC 2026
 #   @entries        10 ips
-#                   10 subnets
+#                   0 subnets
 #                   10 lines
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -15,13 +15,13 @@
 #   No description provided
 # #
 
-185.199.108.153/32
-185.199.109.153/32
-185.199.110.153/32
-185.199.111.153/32
-192.30.252.153/32
-192.30.252.154/32
-2606:50c0:8000::153/128
-2606:50c0:8001::153/128
-2606:50c0:8002::153/128
-2606:50c0:8003::153/128
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+192.30.252.153
+192.30.252.154
+2606:50c0:8000::153
+2606:50c0:8001::153
+2606:50c0:8002::153
+2606:50c0:8003::153

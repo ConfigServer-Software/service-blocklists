@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/bing.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/bing.ipset
-#   @service        None
-#   @id             bing_ipset
-#   @uuid           7b5221ef-f327-332e-9243-1a90896adc56
-#   @updated        Tue Apr 28 10:13:42 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/bing.ipset
+#   @source         None
+#   @id             privacy_bing_ipset
+#   @uuid           242d7bf6-08d5-31e1-8a0d-37a730bed1b8
+#   @updated        Tue Apr 28 13:36:26 UTC 2026
 #   @entries        4,736 ips
 #                   28 subnets
 #                   28 lines

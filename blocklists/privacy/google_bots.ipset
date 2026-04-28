@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/google_bots.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/google_bots.ipset
-#   @service        None
-#   @id             google_bots_ipset
-#   @uuid           32a307a2-98d9-3ead-8b26-32dd73d70ee4
-#   @updated        Tue Apr 28 10:25:14 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/google_bots.ipset
+#   @source         None
+#   @id             privacy_google_bots_ipset
+#   @uuid           81909ab8-f29b-3a67-be67-09e11c1311f7
+#   @updated        Tue Apr 28 13:53:20 UTC 2026
 #   @entries        5,103 ips
 #                   309 subnets
 #                   309 lines
@@ -181,6 +181,9 @@
 192.178.7.160/27
 192.178.7.192/27
 192.178.7.224/27
+2001:4860:4801:2::/64
+2001:4860:4801:c::/64
+2001:4860:4801:f::/64
 2001:4860:4801:10::/64
 2001:4860:4801:12::/64
 2001:4860:4801:13::/64
@@ -206,7 +209,6 @@
 2001:4860:4801:27::/64
 2001:4860:4801:28::/64
 2001:4860:4801:29::/64
-2001:4860:4801:2::/64
 2001:4860:4801:2a::/64
 2001:4860:4801:2b::/64
 2001:4860:4801:2c::/64
@@ -322,5 +324,3 @@
 2001:4860:4801:b4::/64
 2001:4860:4801:b5::/64
 2001:4860:4801:b6::/64
-2001:4860:4801:c::/64
-2001:4860:4801:f::/64

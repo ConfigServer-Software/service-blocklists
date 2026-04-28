@@ -2,17 +2,24 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/BBcan177/ms3.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/BBcan177/ms3.ipset
-#   @source         None
+#   @source         https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3
 #   @id             3rdparty_BBcan177_ms3_ipset
 #   @uuid           4a040e5e-c403-3ac8-8802-14420de633bb
-#   @updated        Tue Apr 28 10:08:38 UTC 2026
+#   @updated        Tue Apr 28 13:31:17 UTC 2026
 #   @entries        30,152,426 ips
 #                   125 subnets
 #                   1,383 lines
 #   @expires        6 hours
-#   @category       Uncategorized
+#   @category       3rdParty
 #
-#   No description provided
+#   BBcan177 Malicious Threats
+#   
+#   This list is curated by BBcan177 and contains known malicious threats.
+#   
+#   This is a static list and is not automatically updated by any back-end
+#   software, so over time some IPs may be reassigned to legitimate traffic.
+#   
+#   Use at your own discretion.
 # #
 
 1.208.0.0/12            # http://krebsonsecurity.com/2015/08/chinese-vpn-service-as-attack-platform/

@@ -1,13 +1,13 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/cloudfront.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/cloudfront.ipset
-#   @service        None
-#   @id             cloudfront_ipset
-#   @uuid           b24ac42c-bbff-3c0d-8b20-b414bb53aed3
-#   @updated        Tue Apr 28 10:23:38 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/cloudfront.ipset
+#   @source         None
+#   @id             privacy_cloudfront_ipset
+#   @uuid           faac2d95-4e94-303c-9cbf-74304f75f5fa
+#   @updated        Tue Apr 28 13:51:12 UTC 2026
 #   @entries        4,173,957 ips
-#                   203 subnets
+#                   202 subnets
 #                   203 lines
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -157,7 +157,7 @@
 54.239.192.0/19
 54.240.128.0/18
 56.125.46.0/24
-56.125.47.0/32
+56.125.47.0
 56.125.48.0/24
 57.182.253.0/24
 57.183.42.0/25

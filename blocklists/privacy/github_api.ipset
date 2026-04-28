@@ -1,13 +1,13 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/github_api.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/github_api.ipset
-#   @service        None
-#   @id             github_api_ipset
-#   @uuid           b7a44d47-7030-32fe-bfdb-ee1d28a0305c
-#   @updated        Tue Apr 28 10:25:08 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/github_api.ipset
+#   @source         None
+#   @id             privacy_github_api_ipset
+#   @uuid           6386f821-6cbb-301a-95f4-50d9aa4e2303
+#   @updated        Tue Apr 28 13:53:10 UTC 2026
 #   @entries        10,258 ips
-#                   22 subnets
+#                   6 subnets
 #                   22 lines
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -15,22 +15,22 @@
 #   No description provided
 # #
 
-4.208.26.200/32
-4.225.11.201/32
-4.228.31.149/32
-4.237.22.34/32
-20.26.156.210/32
-20.27.177.116/32
-20.29.134.17/32
-20.87.245.6/32
-20.175.192.149/32
-20.199.39.228/32
-20.200.245.245/32
-20.201.28.148/32
-20.205.243.168/32
-20.207.73.85/32
-20.217.135.0/32
-20.233.83.146/32
+4.208.26.200
+4.225.11.201
+4.228.31.149
+4.237.22.34
+20.26.156.210
+20.27.177.116
+20.29.134.17
+20.87.245.6
+20.175.192.149
+20.199.39.228
+20.200.245.245
+20.201.28.148
+20.205.243.168
+20.207.73.85
+20.217.135.0
+20.233.83.146
 140.82.112.0/20
 143.55.64.0/20
 185.199.108.0/22

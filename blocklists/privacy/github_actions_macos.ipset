@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/github_actions_macos.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/github_actions_macos.ipset
-#   @service        None
-#   @id             github_actions_macos_ipset
-#   @uuid           0db2f2aa-b455-377a-9e69-fa25966cec8c
-#   @updated        Tue Apr 28 10:25:12 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/github_actions_macos.ipset
+#   @source         None
+#   @id             privacy_github_actions_macos_ipset
+#   @uuid           9b920a30-a2d7-39ce-a7e2-18dc7370420a
+#   @updated        Tue Apr 28 13:53:18 UTC 2026
 #   @entries        702 ips
 #                   8 subnets
 #                   8 lines

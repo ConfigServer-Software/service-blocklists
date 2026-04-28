@@ -1,13 +1,13 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/github_importer.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/github_importer.ipset
-#   @service        None
-#   @id             github_importer_ipset
-#   @uuid           bc95e14a-9513-3600-9890-a7b3eb9568da
-#   @updated        Tue Apr 28 10:25:10 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/github_importer.ipset
+#   @source         None
+#   @id             privacy_github_importer_ipset
+#   @uuid           77f3bab9-d42b-3924-9454-98c7d330a254
+#   @updated        Tue Apr 28 13:53:12 UTC 2026
 #   @entries        35 ips
-#                   5 subnets
+#                   2 subnets
 #                   5 lines
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -16,7 +16,7 @@
 # #
 
 20.51.87.64/28
-52.0.228.224/32
-52.22.155.48/32
-52.23.85.212/32
+52.0.228.224
+52.22.155.48
+52.23.85.212
 172.184.222.112/28

@@ -5,24 +5,14 @@
 #   @service        None
 #   @id             privacy_activision_ipset
 #   @uuid           37b918c0-6031-3140-93ce-dcbeedce6018
-#   @updated        Tue Apr 28 10:12:09 UTC 2026
+#   @updated        Tue Apr 28 13:34:50 UTC 2026
 #   @entries        4,902 ips
 #                   47 subnets
 #                   49 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
-#   Activision Blocklist
-#   
-#   Activision is a major video game publisher known for popular titles
-#   such as Call of Duty, Destiny, and World of Warcraft. Its online
-#   services connect millions of players worldwide for multiplayer gaming,
-#   matchmaking, and content delivery.
-#   
-#   This blocklist contains IP addresses associated with Activision
-#   servers. By using it, you can prevent Activision services from
-#   accessing your server, blocking game-related traffic and connections
-#   from their network.
+#   No description provided
 # #
 
 62.17.29.192/26

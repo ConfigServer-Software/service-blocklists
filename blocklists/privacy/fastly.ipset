@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/fastly.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/fastly.ipset
-#   @service        None
-#   @id             fastly_ipset
-#   @uuid           774d369f-4bfd-36f2-b8e2-0238d2b26a7f
-#   @updated        Tue Apr 28 10:25:05 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/fastly.ipset
+#   @source         None
+#   @id             privacy_fastly_ipset
+#   @uuid           bc39e07e-ba7f-3724-bb6a-d250b2d443ff
+#   @updated        Tue Apr 28 13:53:03 UTC 2026
 #   @entries        304,130 ips
 #                   21 subnets
 #                   21 lines

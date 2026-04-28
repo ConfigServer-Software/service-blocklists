@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/github_codespaces.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/github_codespaces.ipset
-#   @service        None
-#   @id             github_codespaces_ipset
-#   @uuid           6a26aa1b-615d-3b50-966d-b12761622e92
-#   @updated        Tue Apr 28 10:25:12 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/github_codespaces.ipset
+#   @source         None
+#   @id             privacy_github_codespaces_ipset
+#   @uuid           a733d06d-3e3f-37b4-b8ec-493c1b22192f
+#   @updated        Tue Apr 28 13:53:18 UTC 2026
 #   @entries        3,056 ips
 #                   191 subnets
 #                   191 lines

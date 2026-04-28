@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/oracle_osn.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/oracle_osn.ipset
-#   @service        None
-#   @id             oracle_osn_ipset
-#   @uuid           2b9df0d0-671d-3b43-9bc4-8552ea1c54d1
-#   @updated        Tue Apr 28 10:26:08 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/oracle_osn.ipset
+#   @source         None
+#   @id             privacy_oracle_osn_ipset
+#   @uuid           0b7a599b-2a22-3518-a4f1-ffb94f88f764
+#   @updated        Tue Apr 28 13:55:44 UTC 2026
 #   @entries        458,378 ips
 #                   536 subnets
 #                   536 lines

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             isp_isp_spacex_starlink_ipset
 #   @uuid           1e05d47b-132a-390c-bbfa-525f549e1289
-#   @updated        Tue Apr 28 10:43:15 UTC 2026
+#   @updated        Tue Apr 28 14:13:47 UTC 2026
 #   @entries        942,091 ips
 #                   1,590 subnets
-#                   1,591 lines
+#                   1,590 lines
 #   @asn            AS14593, AS34602, AS45700, AS25076, AS212210
 #                   AS49854, AS50494, AS204791
 #   @expires        6 hours
@@ -17,7 +17,6 @@
 #   No description provided
 # #
 
-2406SpaceXServices,Inc./32
 14.1.64.0/22
 14.1.68.0/23
 14.1.70.0/23
