@@ -7,29 +7,14 @@
 #   @type               Bash script
 #   
 #   @summary            Formats a list of IP addresses fed in via STDIN.
-#                           This script does NOT download ipsets from any source. It
-#                           only formats a list of IPs that are fed into the script.
-#                           You must generate a blocklist using the other /scripts.
+#                       This script does NOT download ipsets from any source. It
+#                       only formats a list of IPs that are fed into the script.
+#                       You must generate a blocklist using the other /scripts.
 #   
-#   @execute            Run with the following commands:
-#                           curl -sSL \
-#                               -A "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36" \
-#                               https://search.developer.apple.com/applebot.json \
-#                           | jq -r '.prefixes | .[] | .ipv4Prefix // empty, .ipv6Prefix // empty' \
-#                           | .github/scripts/bl-format.sh" \
-#                               blocklists/privacy/privacy_apple_bot.ipset
+#   @workflow           curl -sSL "https://check.torproject.org/exit-addresses" | grep '^ExitAddress' | awk '{print $2}' | sort -u | .github/scripts/bl-format.sh blocklists/tor_exitnodes.ipset
+#                       curl -sSL "https://gist.githubusercontent.com/BBcan177/bf29d47ea04391cb3eb0/raw/2ff035344d6dee55900edad92d573c53b9aa1b2c/MS-1" | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms1.ipset
 #   
-#   @workflow           # Privacy › AppleBot
-#                       chmod +x ".github/scripts/bl-format.sh"
-#                       run_apple_bot='
-#                       curl -sSL -A "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36" \
-#                           https://search.developer.apple.com/applebot.json \
-#                       | jq -r ".prefixes | .[] | .ipv4Prefix // empty, .ipv6Prefix // empty" \
-#                       | ".github/scripts/bl-format.sh" blocklists/privacy/privacy_apple_bot.ipset
-#                       '
-#                       eval "$run_apple_bot"
-#   
-#   @usage              .github/scripts/bl-format.sh
+#   @args               .github/scripts/bl-format.sh
 #                           <argFileSaveto>     str         required
 #   
 #                       To feed the script IPs via stdin:
@@ -174,8 +159,8 @@ argSkipCidrDedup="false"                                                        
 argIncludeComments="false"                                                      # preserve inline comments in output
 argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
 argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
-sort_cmd_opts=()                                                                # optional sort command tuning
 did_load_fallback="false"                                                       # track whether fallback lists were merged
+sort_cmd_opts=()                                                                # optional sort command tuning
 
 # #
 #   Optional Parameters
@@ -920,14 +905,14 @@ sort_results()
     # #
 
     if ! grep -q ':' "${_in_tmp}"; then
-        LC_ALL=C sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}"
+        LC_ALL=C sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}" | uniq
 
     # #
     #   Fast path › pure IPv6
     # #
 
     elif ! grep -q '\.' "${_in_tmp}"; then
-        LC_ALL=C sort "${sort_cmd_opts[@]}" -u "${_in_tmp}"
+        LC_ALL=C sort "${sort_cmd_opts[@]}" "${_in_tmp}" | uniq
 
     # #
     #   Mixed IPv4/IPv6
@@ -944,7 +929,7 @@ sort_results()
         # #
 
         if [ -s "${_ipv4_tmp}" ]; then
-            LC_ALL=C sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}"
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}" | uniq
         fi
 
         # #
@@ -952,7 +937,7 @@ sort_results()
         # #
     
         if [ -s "${_ipv6_tmp}" ]; then
-            LC_ALL=C sort "${sort_cmd_opts[@]}" -u "${_ipv6_tmp}"
+            LC_ALL=C sort "${sort_cmd_opts[@]}" "${_ipv6_tmp}" | uniq
         fi
     fi
 
