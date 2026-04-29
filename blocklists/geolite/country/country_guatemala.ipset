@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_guatemala.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_guatemala.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:15 UTC 2026
-#   @entries        705,691 ips
-#                   753 subnets
-#                   753 lines
+#   @updated        Wed Apr 29 04:46:31 UTC 2026
+#   @entries        705,692 ips
+#                   754 subnets
+#                   754 lines
 #   @country        Guatemala (GT)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.57.225.30/31
@@ -666,6 +660,7 @@
 2803:e290::/32
 2803:e2e0::/32
 2803:e880::/32
+2803:ee30::/32
 2803:f5d0::/32
 2803:fd10::/32
 2804:5330:2:c::/64

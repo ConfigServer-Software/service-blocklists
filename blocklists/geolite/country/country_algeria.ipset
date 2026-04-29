@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_algeria.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_algeria.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:00 UTC 2026
-#   @entries        4,778,651 ips
-#                   420 subnets
-#                   420 lines
+#   @updated        Wed Apr 29 04:46:17 UTC 2026
+#   @entries        4,778,653 ips
+#                   422 subnets
+#                   422 lines
 #   @country        Algeria (DZ)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.62.63.241/32
@@ -277,6 +271,7 @@
 2001:470:71:4a::/64
 2001:470:7c:b9::/64
 2001:470:1f05:454::/64
+2001:470:1f09:73::/64
 2001:470:1f09:1ef::/64
 2001:470:1f09:5a5::/64
 2001:470:1f0b:272::/64
@@ -286,6 +281,7 @@
 2001:470:1f13:19d::/64
 2001:470:1f13:242::/64
 2001:470:1f13:2eb::/64
+2001:470:1f13:47f::/64
 2001:470:1f19:2a1::/64
 2001:470:1f1b:aa::/64
 2001:470:1f1b:1d7::/64

@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_estonia.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_estonia.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:00 UTC 2026
-#   @entries        1,647,126 ips
-#                   1,637 subnets
-#                   1,637 lines
+#   @updated        Wed Apr 29 04:46:17 UTC 2026
+#   @entries        1,646,874 ips
+#                   1,641 subnets
+#                   1,641 lines
 #   @country        Estonia (EE)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.57.220.0/22
@@ -381,7 +375,7 @@
 95.47.173.0/24
 95.47.236.0/24
 95.85.224.0/24
-95.85.228.0/23
+95.85.228.0/24
 95.85.242.0/23
 95.85.245.0/24
 95.85.249.0/24
@@ -1124,6 +1118,7 @@
 2001:470:1f13:488::/64
 2001:470:1f13:4d0::/64
 2001:470:1f13:cd6::/64
+2001:470:1f15:7c::/64
 2001:470:1f15:6b0::/64
 2001:470:1f15:a58::/64
 2001:470:1f15:d47::/64
@@ -1139,6 +1134,7 @@
 2001:470:7272::/48
 2001:470:73f6::/48
 2001:470:746f::/48
+2001:470:782f::/48
 2001:470:7b2c::/48
 2001:470:7cdf::/48
 2001:470:b5f9::/48
@@ -1258,6 +1254,7 @@
 2600:70ff:b257::/48
 2600:70ff:b2f7::/48
 2600:70ff:d037::/48
+2605:7a80:9914::/47
 2606:40:1870::/44
 2606:40:1880::/44
 2606:40:22e8:4000::/54
@@ -1457,6 +1454,7 @@
 2a0b:ac40::/29
 2a0b:b240::/29
 2a0b:b2c0::/29
+2a0b:ba40::/29
 2a0b:f740::/29
 2a0c:1180::/29
 2a0c:36c0::/29

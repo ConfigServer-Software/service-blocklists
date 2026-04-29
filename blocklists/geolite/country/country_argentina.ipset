@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_argentina.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_argentina.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:51:38 UTC 2026
-#   @entries        19,614,418 ips
-#                   5,316 subnets
-#                   5,316 lines
+#   @updated        Wed Apr 29 04:45:54 UTC 2026
+#   @entries        19,614,680 ips
+#                   5,319 subnets
+#                   5,319 lines
 #   @country        Argentina (AR)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 1.178.48.0/20
@@ -138,6 +132,7 @@
 32.115.8.0/29
 32.115.8.32/27
 32.115.8.64/28
+32.115.32.228/30
 32.115.35.17/32
 32.115.36.2/32
 32.115.41.70/32
@@ -160,6 +155,7 @@
 38.3.144.0/20
 38.3.188.0/22
 38.3.216.0/22
+38.3.224.0/23
 38.7.8.0/22
 38.7.32.0/19
 38.10.84.0/22
@@ -231,7 +227,6 @@
 38.211.32.0/24
 38.211.193.0/24
 38.211.245.0/24
-38.224.20.0/24
 38.224.63.0/24
 38.224.107.0/24
 38.224.235.0/24
@@ -782,6 +777,7 @@
 104.28.115.0/27
 104.28.115.32/31
 104.28.115.34/32
+104.28.137.36/32
 104.28.138.1/32
 104.28.140.5/32
 104.28.140.240/30
@@ -809,6 +805,7 @@
 104.28.164.237/32
 104.28.164.238/32
 104.28.165.1/32
+104.28.166.176/32
 104.28.175.93/32
 104.28.175.94/31
 104.28.175.96/30
@@ -1589,9 +1586,6 @@
 170.84.212.0/22
 170.84.232.0/23
 170.84.235.0/24
-170.85.18.172/32
-170.85.22.83/32
-170.85.22.97/32
 170.150.8.0/22
 170.150.32.0/22
 170.150.44.0/22
@@ -4260,6 +4254,7 @@
 2803:2d20::/32
 2803:2d50::/32
 2803:2da0::/32
+2803:2e30::/32
 2803:2e80::/32
 2803:2f20::/32
 2803:2f50::/32
@@ -4502,6 +4497,7 @@
 2803:6d40::/32
 2803:6da0::/32
 2803:6dc0::/32
+2803:6e30::/32
 2803:6e40::/32
 2803:6e60::/32
 2803:6ea0::/32
@@ -4542,6 +4538,7 @@
 2803:75e0::/32
 2803:7600::/32
 2803:7620::/32
+2803:7630::/32
 2803:7660::/32
 2803:76c0::/32
 2803:76e0::/32

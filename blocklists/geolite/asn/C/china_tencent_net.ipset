@@ -2,16 +2,16 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/C/china_tencent_net.ipset
 #
 #   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/C/china_tencent_net.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Tue Apr 28 04:56:24 UTC 2026
-#   @entries        8,352,147 ips
-#                   714 subnets
-#                   714 lines
+#   @updated        Wed Apr 29 04:50:55 UTC 2026
+#   @entries        8,352,146 ips
+#                   713 subnets
+#                   713 lines
 #   @asn            AS132203, AS45090, AS137876, AS132591, AS139341
-#   @expires        24 hours
-#   @category       Autonomous System Number
+#   @expires        6 hours
+#   @category       Uncategorized
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
@@ -713,7 +713,6 @@
 240d:c010:ba::/47
 240d:c010:bf::/48
 240d:c010:c0::/47
-240d:c010:c2::/48
 240d:c010:c8::/48
 240d:c010:ca::/48
 240d:c010:cc::/48

@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_afghanistan.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_afghanistan.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:51:37 UTC 2026
-#   @entries        186,529 ips
-#                   709 subnets
-#                   709 lines
+#   @updated        Wed Apr 29 04:45:52 UTC 2026
+#   @entries        186,531 ips
+#                   711 subnets
+#                   711 lines
 #   @country        Afghanistan (AF)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.62.63.232/30
@@ -286,7 +280,6 @@
 2001:470:d:83f::/64
 2001:470:d:a0b::/64
 2001:470:d:a5b::/64
-2001:470:d:cab::/64
 2001:470:d:ceb::/64
 2001:470:d:d94::/64
 2001:470:d:e6a::/64
@@ -297,6 +290,7 @@
 2001:470:d:1170::/64
 2001:470:d:11f1::/64
 2001:470:19:14c::/64
+2001:470:19:1da::/64
 2001:470:19:12b5::/64
 2001:470:1d:ce::/64
 2001:470:1d:228::/64
@@ -445,6 +439,7 @@
 2001:470:1f0f:24e::/64
 2001:470:1f0f:2b0::/64
 2001:470:1f0f:32a::/64
+2001:470:1f11:63::/64
 2001:470:1f11:546::/64
 2001:470:1f13:18::/64
 2001:470:1f13:75::/64
@@ -589,6 +584,7 @@
 2001:470:b904::/48
 2001:470:b908::/48
 2001:470:b92b::/48
+2001:470:c00e::/48
 2001:470:c217::/48
 2001:470:c814::/48
 2001:470:c87d::/48

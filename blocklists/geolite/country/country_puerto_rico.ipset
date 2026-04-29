@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_puerto_rico.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_puerto_rico.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:41 UTC 2026
-#   @entries        1,323,946 ips
+#   @updated        Wed Apr 29 04:47:00 UTC 2026
+#   @entries        1,323,691 ips
 #                   1,064 subnets
 #                   1,064 lines
 #   @country        Puerto Rico (PR)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.57.255.36/31
@@ -320,7 +314,6 @@
 65.218.144.0/21
 66.7.147.192/28
 66.9.164.0/23
-66.9.174.0/24
 66.50.0.0/16
 66.54.141.48/29
 66.54.147.200/29
@@ -777,6 +770,7 @@
 2001:470:8:292::/64
 2001:470:d:187::/64
 2001:470:d:75b::/64
+2001:470:19:1ca::/64
 2001:470:19:63d::/64
 2001:470:24:2fe::/64
 2001:470:36:2f3::/64

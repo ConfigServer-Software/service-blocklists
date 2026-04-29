@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_bahrain.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_bahrain.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:51:42 UTC 2026
-#   @entries        998,768 ips
+#   @updated        Wed Apr 29 04:45:58 UTC 2026
+#   @entries        999,021 ips
 #                   464 subnets
 #                   464 lines
 #   @country        Bahrain (BH)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 1.178.16.0/24
@@ -250,6 +244,7 @@
 172.225.160.32/28
 172.225.196.0/28
 172.225.220.32/28
+173.82.230.0/24
 178.93.73.0/24
 178.132.32.0/20
 185.7.8.0/22
@@ -272,7 +267,7 @@
 193.188.96.0/19
 194.33.28.0/24
 194.50.99.23/32
-195.219.152.128/30
+195.219.152.128/31
 195.242.243.0/24
 196.48.44.0/24
 196.56.44.0/24
@@ -364,7 +359,6 @@
 2620:171:af::/48
 2a00:6600::/29
 2a00:dde0::/32
-2a01:3e0:3c00::/64
 2a01:578:0:7600::/63
 2a01:578:0:7602::/64
 2a01:4600::/32

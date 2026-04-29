@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_kazakhstan.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_kazakhstan.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:26 UTC 2026
-#   @entries        3,511,120 ips
-#                   2,228 subnets
-#                   2,228 lines
+#   @updated        Wed Apr 29 04:46:43 UTC 2026
+#   @entries        3,510,609 ips
+#                   2,227 subnets
+#                   2,227 lines
 #   @country        Kazakhstan (KZ)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.27.130.0/23
@@ -727,7 +721,6 @@
 109.175.215.0/24
 109.175.225.0/24
 109.196.105.0/24
-109.196.110.0/24
 109.196.165.0/24
 109.197.16.0/24
 109.197.18.0/23
@@ -1272,7 +1265,6 @@
 212.154.128.0/17
 212.247.225.124/32
 213.5.184.0/21
-213.109.97.0/24
 213.109.98.0/23
 213.109.146.0/24
 213.109.208.0/20
@@ -1576,7 +1568,6 @@
 2001:470:1f07:23::/64
 2001:470:1f07:2d5::/64
 2001:470:1f07:b4d::/64
-2001:470:1f09:5c::/64
 2001:470:1f09:1f7::/64
 2001:470:1f09:234::/64
 2001:470:1f09:2a0::/64
@@ -1643,7 +1634,9 @@
 2001:470:1f13:3b9::/64
 2001:470:1f13:68a::/64
 2001:470:1f15:34::/64
+2001:470:1f15:55::/64
 2001:470:1f15:5a::/64
+2001:470:1f15:75::/64
 2001:470:1f15:12c::/64
 2001:470:1f15:138::/64
 2001:470:1f15:215::/64

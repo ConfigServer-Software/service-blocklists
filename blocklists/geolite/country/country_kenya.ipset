@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_kenya.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_kenya.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:24 UTC 2026
-#   @entries        6,367,711 ips
+#   @updated        Wed Apr 29 04:46:42 UTC 2026
+#   @entries        6,368,735 ips
 #                   1,202 subnets
 #                   1,202 lines
 #   @country        Kenya (KE)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.17.161.0/24
@@ -227,7 +221,7 @@
 102.202.189.0/24
 102.203.2.0/23
 102.203.44.0/22
-102.203.64.0/22
+102.203.64.0/21
 102.203.84.0/23
 102.203.100.0/22
 102.203.112.0/24

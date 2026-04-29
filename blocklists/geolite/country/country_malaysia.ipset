@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_malaysia.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_malaysia.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:31 UTC 2026
-#   @entries        7,979,413 ips
-#                   4,121 subnets
-#                   4,121 lines
+#   @updated        Wed Apr 29 04:46:49 UTC 2026
+#   @entries        7,981,208 ips
+#                   4,126 subnets
+#                   4,126 lines
 #   @country        Malaysia (MY)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 1.9.0.0/16
@@ -1756,6 +1750,7 @@
 142.252.0.0/24
 142.252.2.0/24
 143.14.214.0/24
+143.20.31.0/24
 143.20.166.0/24
 143.191.120.0/21
 143.192.96.0/20
@@ -1853,6 +1848,7 @@
 154.83.67.0/24
 154.83.68.0/23
 154.83.70.0/24
+154.89.153.240/32
 154.90.38.0/23
 154.90.40.0/22
 154.90.65.0/24
@@ -1910,10 +1906,7 @@
 154.223.192.0/23
 154.223.194.0/24
 154.223.196.0/23
-154.223.224.0/22
-154.223.228.0/23
-154.223.232.0/21
-154.223.240.0/20
+154.223.224.0/19
 155.102.32.0/22
 155.117.72.0/24
 155.212.32.0/24
@@ -2138,6 +2131,7 @@
 170.168.81.0/24
 170.168.181.0/24
 170.168.227.0/24
+170.251.20.0/23
 172.69.19.0/24
 172.69.85.0/24
 172.69.226.0/24
@@ -2163,6 +2157,7 @@
 172.235.104.0/23
 172.252.217.0/24
 173.82.63.0/24
+173.82.224.0/24
 173.213.123.0/24
 173.222.152.0/22
 173.223.40.0/22
@@ -2185,7 +2180,6 @@
 180.72.0.0/14
 180.87.2.0/31
 180.87.95.107/32
-180.87.103.216/31
 180.87.128.0/25
 180.87.156.0/24
 180.87.157.0/26
@@ -2523,6 +2517,7 @@
 212.212.110.0/24
 213.152.42.0/24
 213.177.232.0/24
+213.177.255.0/24
 216.23.96.0/23
 216.122.163.0/24
 216.132.69.0/24
@@ -2641,6 +2636,7 @@
 2001:470:36:450::/64
 2001:470:36:465::/64
 2001:470:36:47f::/64
+2001:470:36:49e::/64
 2001:470:36:4e7::/64
 2001:470:36:52c::/64
 2001:470:36:5cd::/64
@@ -2757,6 +2753,7 @@
 2001:470:ee01::/48
 2001:470:ee05::/48
 2001:470:ee07::/48
+2001:470:ee29::/48
 2001:470:ee2e::/48
 2001:470:ee46::/48
 2001:470:ee88::/48
@@ -2956,6 +2953,7 @@
 2400:4400::/32
 2400:4c60::/32
 2400:5380::/32
+2400:5680::/32
 2400:5880::/32
 2400:6180:0:d2::/64
 2400:6e80::/32
@@ -3193,7 +3191,7 @@
 2405:1c0::/32
 2405:1840::/32
 2405:2000:b00::/63
-2405:2020:ffc0::/64
+2405:2000:2300::/64
 2405:2900::/32
 2405:3240::/32
 2405:3800::/31
@@ -3433,6 +3431,7 @@
 2603:c01a:e000::/36
 2603:c02d:4000::/35
 2603:c030::/35
+2605:7a80:6802::/47
 2605:f500:409::/48
 2606:54c0:4c30::/44
 2606:54c0:4c40::/42

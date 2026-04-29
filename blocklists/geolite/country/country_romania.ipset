@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_romania.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_romania.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:43 UTC 2026
-#   @entries        7,478,797 ips
-#                   4,987 subnets
-#                   4,987 lines
+#   @updated        Wed Apr 29 04:47:02 UTC 2026
+#   @entries        7,478,861 ips
+#                   5,035 subnets
+#                   5,035 lines
 #   @country        Romania (RO)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.17.116.0/22
@@ -550,6 +544,7 @@
 81.22.144.0/20
 81.24.16.0/20
 81.27.68.196/31
+81.27.69.58/31
 81.89.0.0/19
 81.161.12.0/22
 81.161.59.0/24
@@ -1448,7 +1443,6 @@
 91.200.120.0/22
 91.200.132.0/24
 91.200.134.0/23
-91.200.220.0/24
 91.201.76.0/22
 91.201.80.0/22
 91.201.192.0/22
@@ -2411,6 +2405,14 @@
 162.120.217.144/29
 162.120.217.152/30
 162.120.217.164/31
+162.120.228.42/31
+162.120.228.44/30
+162.120.228.48/30
+162.120.228.52/31
+162.120.228.54/32
+162.120.228.224/30
+162.120.228.228/31
+162.120.249.76/30
 162.158.14.0/24
 162.158.16.0/22
 162.249.124.0/23
@@ -2494,6 +2496,7 @@
 176.58.94.0/24
 176.96.48.0/20
 176.96.89.0/24
+176.96.94.0/24
 176.96.176.0/21
 176.97.76.0/24
 176.97.144.0/21
@@ -4293,6 +4296,7 @@
 2602:fbaf:85c::/48
 2602:fcf6:b::/48
 2604:a100::/32
+2605:7a80:990a::/47
 2605:e440:40::/48
 2606:40:18b0::/44
 2606:40:18c0::/44
@@ -4318,6 +4322,26 @@
 2606:40:21fa:c000::/54
 2606:40:21fc:8000::/53
 2606:40:22f8:e000::/54
+2606:40:22fe:400::/54
+2606:40:22fe:2400::/54
+2606:40:22fe:4400::/54
+2606:40:22fe:5000::/52
+2606:40:22fe:6400::/54
+2606:40:22fe:8400::/54
+2606:40:22fe:a400::/54
+2606:40:2319:c400::/54
+2606:40:2319:e400::/54
+2606:40:231a:400::/54
+2606:40:231a:2400::/54
+2606:40:231a:4400::/54
+2606:40:231a:6400::/54
+2606:40:231a:8400::/54
+2606:40:231a:a400::/54
+2606:40:231a:c400::/54
+2606:40:231a:e400::/54
+2606:40:231b:400::/54
+2606:40:231b:2400::/54
+2606:40:231b:4400::/54
 2606:40:2329:2000::/54
 2606:40:2329:4000::/54
 2606:40:2329:6000::/54
@@ -4682,7 +4706,25 @@
 2a0b:4e07:c1::/48
 2a0b:5000::/29
 2a0b:8800::/29
-2a0b:cd40::/29
+2a0b:cd40::/32
+2a0b:cd41::/44
+2a0b:cd41:10::/46
+2a0b:cd41:14::/47
+2a0b:cd41:17::/48
+2a0b:cd41:18::/45
+2a0b:cd41:20::/43
+2a0b:cd41:40::/42
+2a0b:cd41:80::/41
+2a0b:cd41:100::/40
+2a0b:cd41:200::/39
+2a0b:cd41:400::/38
+2a0b:cd41:800::/37
+2a0b:cd41:1000::/36
+2a0b:cd41:2000::/35
+2a0b:cd41:4000::/34
+2a0b:cd41:8000::/33
+2a0b:cd42::/31
+2a0b:cd44::/30
 2a0b:fb40::/29
 2a0c:3200::/29
 2a0c:4200::/29

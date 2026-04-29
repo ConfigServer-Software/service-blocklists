@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_thailand.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_thailand.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:50 UTC 2026
-#   @entries        10,108,107 ips
-#                   3,374 subnets
-#                   3,374 lines
+#   @updated        Wed Apr 29 04:47:10 UTC 2026
+#   @entries        10,112,206 ips
+#                   3,380 subnets
+#                   3,380 lines
 #   @country        Thailand (TH)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 1.0.128.0/17
@@ -112,6 +106,7 @@
 23.155.20.0/24
 23.156.196.0/24
 23.156.212.0/24
+23.157.108.0/24
 23.177.168.0/24
 23.177.200.0/24
 23.178.56.0/24
@@ -174,6 +169,8 @@
 43.109.108.0/23
 43.109.110.0/24
 43.109.145.0/24
+43.109.170.0/24
+43.109.176.0/20
 43.128.192.0/19
 43.133.96.0/19
 43.152.224.0/19
@@ -289,7 +286,7 @@
 45.192.112.0/24
 45.192.115.0/24
 45.192.237.0/24
-45.195.152.0/22
+45.195.152.0/23
 45.195.170.0/24
 45.195.174.0/23
 45.195.176.0/24
@@ -1255,7 +1252,6 @@
 151.243.108.0/24
 151.243.210.0/23
 151.244.73.0/24
-151.244.218.0/24
 151.244.249.0/24
 151.246.99.0/24
 151.246.100.0/24
@@ -1559,6 +1555,7 @@
 172.226.46.64/27
 173.82.67.0/24
 173.82.104.0/24
+173.82.226.0/24
 173.222.188.0/22
 173.239.196.240/28
 173.239.201.0/25
@@ -2074,6 +2071,7 @@
 2001:470:36:482::/64
 2001:470:36:48e::/64
 2001:470:36:4aa::/64
+2001:470:36:4ba::/64
 2001:470:36:4c0::/64
 2001:470:36:4d9::/64
 2001:470:36:556::/64
@@ -2560,6 +2558,7 @@
 2600:f0f0:8104::/48
 2600:f0f1:4840::/42
 2600:f0f2:7022::/48
+2602:f3e8::/40
 2602:f3f8::/40
 2602:f41d::/40
 2602:f42c::/40
@@ -2584,6 +2583,7 @@
 2603:c09e::/35
 2603:c09e:4000::/35
 2605:380:38::/48
+2605:7a80:6704::/47
 2606:54c0:55c0::/42
 2606:54c0:5600::/40
 2606:54c0:5700::/42

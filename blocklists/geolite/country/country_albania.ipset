@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_albania.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_albania.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:51:37 UTC 2026
-#   @entries        343,403 ips
-#                   1,484 subnets
-#                   1,484 lines
+#   @updated        Wed Apr 29 04:45:53 UTC 2026
+#   @entries        343,407 ips
+#                   1,488 subnets
+#                   1,488 lines
 #   @country        Albania (AL)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.62.63.237/32
@@ -465,7 +459,6 @@
 2001:470:6f:204::/64
 2001:470:6f:302::/64
 2001:470:6f:355::/64
-2001:470:18c2::/48
 2001:470:190c::/48
 2001:470:1f07:434::/64
 2001:470:1f09:49f::/64
@@ -485,7 +478,6 @@
 2001:470:1f1b:15::/64
 2001:470:1f1b:4e2::/64
 2001:470:1f1d:1eb::/64
-2001:470:1f1d:207::/64
 2001:470:1f21:18::/64
 2001:470:1f21:51::/64
 2001:470:1f27:a::/64
@@ -1494,7 +1486,13 @@
 2a13:a5c7:25ff:500::/56
 2a13:a5c7:3307::/48
 2a13:bc00::/29
-2a13:c8c0::/29
+2a13:c8c0::/30
+2a13:c8c4:1000::/36
+2a13:c8c4:2000::/35
+2a13:c8c4:4000::/34
+2a13:c8c4:8000::/33
+2a13:c8c5::/32
+2a13:c8c6::/31
 2a13:d940::/29
 2a14:1800::/29
 2a14:3400::/29

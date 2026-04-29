@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_cyprus.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_cyprus.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:51:53 UTC 2026
-#   @entries        1,158,576 ips
-#                   1,486 subnets
-#                   1,486 lines
+#   @updated        Wed Apr 29 04:46:10 UTC 2026
+#   @entries        1,158,835 ips
+#                   1,489 subnets
+#                   1,489 lines
 #   @country        Cyprus (CY)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.56.120.0/24
@@ -326,6 +320,7 @@
 91.210.124.0/24
 91.211.147.0/24
 91.212.145.0/24
+91.213.140.0/24
 91.214.236.0/22
 91.217.246.0/24
 91.223.164.0/24
@@ -425,7 +420,6 @@
 132.243.229.0/24
 132.243.231.0/24
 132.243.232.0/23
-132.243.235.0/24
 132.243.236.0/22
 132.243.240.0/21
 132.243.249.0/24
@@ -665,7 +659,7 @@
 185.249.152.0/22
 185.253.162.0/24
 188.72.119.0/24
-188.95.145.0/24
+188.95.144.0/23
 188.212.251.0/24
 188.214.34.0/24
 188.215.32.0/24
@@ -875,7 +869,9 @@
 2001:470:1f0b:686::/64
 2001:470:1f0b:72c::/64
 2001:470:1f0b:1120::/64
+2001:470:1f13:196::/64
 2001:470:1f13:41f::/64
+2001:470:1f13:471::/64
 2001:470:1f15:362::/64
 2001:470:1f15:466::/64
 2001:470:1f15:5da::/64
@@ -899,6 +895,7 @@
 2001:470:786a::/48
 2001:470:7b2a::/48
 2001:470:c9cb::/48
+2001:470:c9e1::/48
 2001:470:dd06::/48
 2001:668:1f:fc6a::/64
 2001:668:1f:fdbc::/64

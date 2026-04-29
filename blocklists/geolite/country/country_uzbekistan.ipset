@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_uzbekistan.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_uzbekistan.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:53:27 UTC 2026
-#   @entries        407,859 ips
-#                   755 subnets
-#                   755 lines
+#   @updated        Wed Apr 29 04:47:47 UTC 2026
+#   @entries        408,115 ips
+#                   756 subnets
+#                   756 lines
 #   @country        Uzbekistan (UZ)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.57.149.0/24
@@ -382,6 +376,7 @@
 170.168.60.0/24
 170.168.63.0/24
 170.168.70.0/24
+170.168.90.0/24
 170.168.109.0/24
 170.168.162.0/24
 170.168.202.0/24

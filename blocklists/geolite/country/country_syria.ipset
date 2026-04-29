@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_syria.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_syria.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:50 UTC 2026
-#   @entries        1,314,665 ips
-#                   384 subnets
-#                   384 lines
+#   @updated        Wed Apr 29 04:47:09 UTC 2026
+#   @entries        1,314,666 ips
+#                   385 subnets
+#                   385 lines
 #   @country        Syria (SY)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.0.0.0/16
@@ -383,6 +377,7 @@
 2a0b:b6c0::/29
 2a0b:f2c0::/29
 2a0c:de40::/32
+2a0d:3341:c500::/40
 2a0d:3341:df00::/40
 2a0d:3341:f800::/40
 2a0d:4100::/32

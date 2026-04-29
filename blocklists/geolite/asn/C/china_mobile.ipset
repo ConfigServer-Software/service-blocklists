@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/C/china_mobile.ipset
 #
 #   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/C/china_mobile.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Tue Apr 28 04:56:10 UTC 2026
+#   @updated        Wed Apr 29 04:50:40 UTC 2026
 #   @entries        32,097,671 ips
 #                   7,490 subnets
 #                   7,490 lines
@@ -16,8 +16,8 @@
 #                   AS132525, AS141425, AS56045, AS56042, AS140105
 #                   AS135054, AS24059, AS132511, AS132501, AS136755
 #                   AS45120
-#   @expires        24 hours
-#   @category       Autonomous System Number
+#   @expires        6 hours
+#   @category       Uncategorized
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #

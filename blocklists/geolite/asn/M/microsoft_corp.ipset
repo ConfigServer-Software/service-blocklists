@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/M/microsoft_corp.ipset
 #
 #   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/M/microsoft_corp.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Tue Apr 28 04:57:28 UTC 2026
+#   @updated        Wed Apr 29 04:52:03 UTC 2026
 #   @entries        66,976,556 ips
 #                   1,647 subnets
 #                   1,647 lines
@@ -13,8 +13,8 @@
 #                   AS59067, AS12076, AS54396, AS46182, AS30520
 #                   AS17144, AS58862, AS63314, AS45139, AS35106
 #                   AS5761
-#   @expires        24 hours
-#   @category       Autonomous System Number
+#   @expires        6 hours
+#   @category       Uncategorized
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #

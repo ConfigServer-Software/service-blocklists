@@ -2,19 +2,19 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/C/china_unicorn.ipset
 #
 #   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/C/china_unicorn.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Tue Apr 28 04:56:27 UTC 2026
-#   @entries        71,408,569 ips
-#                   12,036 subnets
-#                   12,036 lines
+#   @updated        Wed Apr 29 04:50:59 UTC 2026
+#   @entries        71,406,521 ips
+#                   12,037 subnets
+#                   12,037 lines
 #   @asn            AS4837, AS10099, AS10206, AS133118, AS133119
 #                   AS134542, AS134543, AS135061, AS136958, AS136959
 #                   AS137539, AS138421, AS140979, AS152120, AS17621
 #                   AS17622, AS17623, AS17816, AS4808, AS9929
-#   @expires        24 hours
-#   @category       Autonomous System Number
+#   @expires        6 hours
+#   @category       Uncategorized
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
@@ -3144,7 +3144,8 @@
 211.101.240.0/22
 211.102.128.0/21
 211.102.144.0/20
-211.102.160.0/19
+211.102.160.0/20
+211.102.184.0/21
 211.103.128.0/20
 211.103.144.0/21
 211.103.160.0/19

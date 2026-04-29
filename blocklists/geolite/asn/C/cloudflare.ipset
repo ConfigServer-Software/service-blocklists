@@ -2,16 +2,16 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/C/cloudflare.ipset
 #
 #   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/C/cloudflare.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Tue Apr 28 04:56:29 UTC 2026
-#   @entries        1,378,481 ips
-#                   2,590 subnets
-#                   2,590 lines
+#   @updated        Wed Apr 29 04:51:01 UTC 2026
+#   @entries        1,380,019 ips
+#                   2,597 subnets
+#                   2,597 lines
 #   @asn            AS13335
-#   @expires        24 hours
-#   @category       Autonomous System Number
+#   @expires        6 hours
+#   @category       Uncategorized
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
@@ -880,6 +880,11 @@
 208.88.71.0/24
 208.184.1.0/24
 208.185.162.0/24
+209.55.226.0/24
+209.55.232.0/24
+209.55.234.0/24
+209.55.246.0/23
+209.55.253.0/24
 209.55.254.0/24
 210.1.232.0/23
 211.188.26.0/23
@@ -1438,6 +1443,7 @@
 2400:cb00:a731::/48
 2400:cb00:a741::/48
 2400:cb00:a742::/47
+2400:cb00:a771::/48
 2400:cb00:a772::/47
 2400:cb00:a781::/48
 2400:cb00:a791::/48
@@ -2062,6 +2068,7 @@
 2400:cb00:ddb1::/48
 2400:cb00:ddb2::/47
 2400:cb00:ddb4::/47
+2400:cb00:ddc1::/48
 2400:cb00:ddc2::/47
 2400:cb00:ddd1::/48
 2400:cb00:ddd2::/47

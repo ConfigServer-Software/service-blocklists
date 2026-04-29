@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_uganda.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_uganda.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:53 UTC 2026
-#   @entries        1,468,617 ips
-#                   356 subnets
-#                   356 lines
+#   @updated        Wed Apr 29 04:47:13 UTC 2026
+#   @entries        1,468,619 ips
+#                   358 subnets
+#                   358 lines
 #   @country        Uganda (UG)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.17.248.0/24
@@ -259,6 +253,7 @@
 2001:470:24:16e::/64
 2001:470:26:4e::/64
 2001:470:36:1c5::/64
+2001:470:36:4ab::/64
 2001:470:1f07:a27::/64
 2001:470:1f0b:895::/64
 2001:470:1f0b:95d::/64
@@ -269,6 +264,7 @@
 2001:470:2128::/48
 2001:470:71f1::/48
 2001:470:7b01::/48
+2001:470:ee33::/48
 2001:470:fdb8::/48
 2001:470:fdf9::/48
 2001:43f8:130::/48

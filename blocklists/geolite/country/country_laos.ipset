@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_laos.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_laos.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:26 UTC 2026
-#   @entries        103,099 ips
-#                   276 subnets
-#                   276 lines
+#   @updated        Wed Apr 29 04:46:44 UTC 2026
+#   @entries        103,100 ips
+#                   277 subnets
+#                   277 lines
 #   @country        Laos (LA)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.62.16.0/24
@@ -228,6 +222,7 @@
 2600:70ff:aa4f::/48
 2600:70ff:aac9::/48
 2600:70ff:ac33::/48
+2605:7a80:6702::/47
 2606:54c0:4778::/45
 2606:54c3:0:80e::/64
 2607:740:74::/48
@@ -267,7 +262,7 @@
 2a04:4e41:5e0f::/48
 2a04:4e41:760f::/48
 2a07:d887:7d00::/40
-2a09:a702:44::/47
+2a09:a702:44::/48
 2a09:a702:86::/48
 2a09:bac1:4100::/64
 2a09:bac1:4120::/64

@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/E/embarq.ipset
 #
 #   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/E/embarq.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Tue Apr 28 04:57:08 UTC 2026
+#   @updated        Wed Apr 29 04:51:41 UTC 2026
 #   @entries        1,055,744 ips
 #                   802 subnets
 #                   802 lines
@@ -13,8 +13,8 @@
 #                   AS14921, AS6222, AS22186, AS13787, AS32855
 #                   AS3447, AS4212, AS6367, AS11530, AS14910
 #                   AS16718, AS18494
-#   @expires        24 hours
-#   @category       Autonomous System Number
+#   @expires        6 hours
+#   @category       Uncategorized
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #

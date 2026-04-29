@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/A/akamai_core.ipset
 #
 #   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/A/akamai_core.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Tue Apr 28 04:54:34 UTC 2026
+#   @updated        Wed Apr 29 04:49:02 UTC 2026
 #   @entries        5,235,475 ips
 #                   4,335 subnets
 #                   4,335 lines
@@ -13,8 +13,8 @@
 #                   AS17204, AS26008, AS393560, AS16702, AS35993
 #                   AS17334, AS22207, AS23454, AS30675, AS20189
 #                   AS18717, AS33047, AS22452, AS23455, AS18680
-#   @expires        24 hours
-#   @category       Autonomous System Number
+#   @expires        6 hours
+#   @category       Uncategorized
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
@@ -1784,7 +1784,7 @@
 88.221.208.0/23
 88.221.240.0/21
 88.221.248.0/22
-89.147.34.0/24
+89.147.32.0/23
 92.122.0.0/20
 92.122.16.0/22
 92.122.24.0/22
@@ -2774,7 +2774,7 @@
 203.14.207.0/24
 204.209.72.0/24
 205.167.188.0/23
-207.203.28.0/23
+207.203.29.0/24
 207.203.30.0/24
 209.200.129.0/24
 209.200.130.0/23

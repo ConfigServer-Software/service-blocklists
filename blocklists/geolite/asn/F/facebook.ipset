@@ -2,16 +2,16 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/F/facebook.ipset
 #
 #   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/F/facebook.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Tue Apr 28 04:57:09 UTC 2026
-#   @entries        474,922 ips
-#                   109 subnets
-#                   109 lines
+#   @updated        Wed Apr 29 04:51:42 UTC 2026
+#   @entries        474,920 ips
+#                   108 subnets
+#                   108 lines
 #   @asn            AS32934, AS63293, AS54115
-#   @expires        24 hours
-#   @category       Autonomous System Number
+#   @expires        6 hours
+#   @category       Uncategorized
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
@@ -30,7 +30,7 @@
 102.132.96.0/20
 102.132.112.0/24
 102.132.115.0/24
-102.132.116.0/23
+102.132.117.0/24
 102.132.119.0/24
 102.132.120.0/23
 102.132.123.0/24
@@ -43,6 +43,7 @@
 129.134.132.0/24
 129.134.135.0/24
 129.134.136.0/22
+129.134.140.0/24
 129.134.143.0/24
 129.134.144.0/24
 129.134.147.0/24
@@ -100,8 +101,7 @@
 2a03:2887:ff2f::/48
 2a03:2887:ff33::/48
 2a03:2887:ff37::/48
-2a03:2887:ff38::/47
-2a03:2887:ff3a::/48
+2a03:2887:ff38::/46
 2a03:2887:ff3f::/48
 2a03:2887:ff40::/46
 2a03:2887:ff44::/47
@@ -115,8 +115,7 @@
 2a03:2887:ff60::/48
 2a03:2887:ff62::/47
 2a03:2887:ff64::/46
-2a03:2887:ff68::/48
-2a03:2887:ff6a::/47
+2a03:2887:ff68::/46
 2a03:2887:ff70::/47
 2a03:2887:ff73::/48
 2c0f:ef78:10::/47

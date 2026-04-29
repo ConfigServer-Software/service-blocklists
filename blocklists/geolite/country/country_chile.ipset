@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_chile.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_chile.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:51:50 UTC 2026
-#   @entries        10,865,899 ips
-#                   10,413 subnets
-#                   10,413 lines
+#   @updated        Wed Apr 29 04:46:07 UTC 2026
+#   @entries        10,866,915 ips
+#                   10,415 subnets
+#                   10,415 lines
 #   @country        Chile (CL)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 1.179.102.0/24
@@ -822,6 +816,7 @@
 138.121.96.0/22
 138.121.108.0/22
 138.121.168.0/22
+138.121.176.0/22
 138.186.8.0/22
 138.186.120.0/22
 138.204.228.0/22
@@ -1531,7 +1526,8 @@
 199.100.16.224/27
 199.100.17.0/28
 199.100.17.16/29
-199.100.17.32/27
+199.100.17.32/28
+199.100.17.56/29
 199.100.17.80/29
 199.100.17.90/31
 199.100.17.92/30

@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_greece.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_greece.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:14 UTC 2026
-#   @entries        5,961,759 ips
-#                   2,611 subnets
-#                   2,611 lines
+#   @updated        Wed Apr 29 04:46:31 UTC 2026
+#   @entries        5,961,763 ips
+#                   2,616 subnets
+#                   2,616 lines
 #   @country        Greece (GR)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.16.19.0/24
@@ -274,6 +268,7 @@
 81.2.129.64/26
 81.2.130.0/23
 81.2.191.0/24
+81.27.69.60/31
 81.92.48.0/20
 81.92.238.192/29
 81.186.0.0/17
@@ -288,6 +283,7 @@
 82.29.44.0/24
 82.29.50.0/24
 82.29.243.0/24
+82.47.62.0/24
 82.192.2.0/23
 83.97.37.0/24
 83.147.192.0/24
@@ -997,7 +993,8 @@
 178.253.34.0/23
 178.253.36.0/22
 178.253.40.0/21
-178.253.52.0/22
+178.253.52.0/23
+178.253.54.0/24
 178.253.56.0/21
 181.215.225.0/24
 185.1.29.0/24
@@ -1509,6 +1506,7 @@
 217.156.252.176/29
 217.195.128.0/20
 217.198.186.0/24
+2001:470:19:1ba::/64
 2001:470:24:306::/64
 2001:470:26:d5::/64
 2001:470:26:2b7::/64
@@ -1644,6 +1642,7 @@
 2604:ca00:1a5::/49
 2604:ca00:1b5::/49
 2605:59c0:4c00::/38
+2605:7a80:990c::/47
 2605:e440:44::/47
 2606:40:1990::/44
 2606:40:19a0::/44

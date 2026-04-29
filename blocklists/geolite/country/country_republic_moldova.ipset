@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_republic_moldova.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_republic_moldova.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:28 UTC 2026
-#   @entries        1,346,174 ips
-#                   2,317 subnets
-#                   2,317 lines
+#   @updated        Wed Apr 29 04:46:46 UTC 2026
+#   @entries        1,346,176 ips
+#                   2,330 subnets
+#                   2,330 lines
 #   @country        Republic Moldova (MD)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.10.217.0/24
@@ -309,7 +303,17 @@
 94.103.188.0/24
 94.131.2.0/23
 94.131.8.0/21
-94.131.96.0/21
+94.131.96.0/24
+94.131.97.0/30
+94.131.97.4/32
+94.131.97.6/31
+94.131.97.8/29
+94.131.97.16/28
+94.131.97.32/27
+94.131.97.64/26
+94.131.97.128/25
+94.131.98.0/23
+94.131.100.0/22
 94.131.104.0/22
 94.131.108.0/23
 94.131.110.0/27
@@ -521,6 +525,7 @@
 162.120.188.243/32
 162.120.206.10/32
 162.120.216.4/32
+162.120.228.40/32
 163.116.166.98/32
 163.116.166.143/32
 163.116.172.95/32
@@ -964,6 +969,7 @@
 2001:470:5976::/48
 2001:470:59b1::/48
 2001:470:638c::/48
+2001:470:639d::/48
 2001:470:7036::/48
 2001:470:c28f::/48
 2001:470:c9d2::/48
@@ -997,6 +1003,7 @@
 2606:40:15e0::/44
 2606:40:21c1:4000::/54
 2606:40:22f8:8000::/54
+2606:40:2319:8400::/54
 2606:54c0:4838::/45
 2606:54c0:4840::/45
 2606:54c3:0:f9e::/64

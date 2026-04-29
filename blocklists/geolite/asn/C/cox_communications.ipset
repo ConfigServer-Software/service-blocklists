@@ -2,18 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/C/cox_communications.ipset
 #
 #   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/C/cox_communications.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Tue Apr 28 04:57:02 UTC 2026
-#   @entries        12,523,631 ips
-#                   27,859 subnets
-#                   27,859 lines
+#   @updated        Wed Apr 29 04:51:35 UTC 2026
+#   @entries        12,523,646 ips
+#                   27,882 subnets
+#                   27,882 lines
 #   @asn            AS22773, AS13432, AS26146, AS26204, AS31771
 #                   AS22318, AS15218, AS25904, AS13493, AS14710
 #                   AS12064, AS6298
-#   @expires        24 hours
-#   @category       Autonomous System Number
+#   @expires        6 hours
+#   @category       Uncategorized
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
@@ -782,7 +782,14 @@
 68.5.8.152/29
 68.5.8.160/27
 68.5.8.192/26
-68.5.9.0/24
+68.5.9.0/26
+68.5.9.64/27
+68.5.9.96/29
+68.5.9.105/32
+68.5.9.106/31
+68.5.9.108/30
+68.5.9.112/28
+68.5.9.128/25
 68.5.10.0/23
 68.5.12.0/23
 68.5.14.0/29
@@ -20809,7 +20816,23 @@
 2600:8804:581:c800::/53
 2600:8804:581:d000::/52
 2600:8804:581:e000::/51
-2600:8804:582::/47
+2600:8804:582:4000::/51
+2600:8804:582:6000::/55
+2600:8804:582:6201::/64
+2600:8804:582:6202::/63
+2600:8804:582:6204::/62
+2600:8804:582:6208::/61
+2600:8804:582:6210::/60
+2600:8804:582:6220::/59
+2600:8804:582:6240::/58
+2600:8804:582:6280::/57
+2600:8804:582:6300::/56
+2600:8804:582:6400::/54
+2600:8804:582:6800::/53
+2600:8804:582:7000::/52
+2600:8804:582:8000::/49
+2600:8804:582::/50
+2600:8804:583::/48
 2600:8804:584::/46
 2600:8804:588::/47
 2600:8804:58a:4000::/52

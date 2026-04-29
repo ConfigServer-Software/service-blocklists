@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_vietnam.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_vietnam.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:53:28 UTC 2026
-#   @entries        16,697,313 ips
-#                   3,712 subnets
-#                   3,712 lines
+#   @updated        Wed Apr 29 04:47:49 UTC 2026
+#   @entries        16,693,733 ips
+#                   3,716 subnets
+#                   3,716 lines
 #   @country        Vietnam (VN)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 1.52.0.0/17
@@ -244,7 +238,6 @@
 69.84.199.192/26
 69.85.92.0/24
 69.91.148.0/24
-69.161.128.0/20
 72.14.201.135/32
 72.14.201.156/31
 72.57.186.0/23
@@ -1769,6 +1762,7 @@
 161.248.208.0/22
 161.248.212.0/23
 161.248.236.0/22
+162.4.8.0/23
 162.10.17.19/32
 162.10.17.20/32
 162.14.24.0/21
@@ -2279,6 +2273,7 @@
 2001:470:6d:315::/64
 2001:470:6d:362::/64
 2001:470:6d:583::/64
+2001:470:6f:80::/64
 2001:470:71:60c::/64
 2001:470:7c:ec::/64
 2001:470:7c:10d::/64
@@ -2356,6 +2351,7 @@
 2001:470:5124::/48
 2001:470:5214::/48
 2001:470:6239::/48
+2001:470:715f::/48
 2001:470:73da::/48
 2001:470:73f8::/48
 2001:470:78ed::/48
@@ -2905,6 +2901,7 @@
 2001:df6:d680::/48
 2001:df6:db00::/48
 2001:df6:dd00::/48
+2001:df6:f540::/48
 2001:df6:fc80::/48
 2001:df7:1500::/48
 2001:df7:1700::/48
@@ -3465,6 +3462,7 @@
 2602:ffe4:c5c::/48
 2602:ffe4:c7b::/48
 2602:ffe4:c88::/46
+2605:7a80:6706::/47
 2606:54c0:d300::/42
 2606:54c0:d340::/43
 2606:54c0:d360::/44

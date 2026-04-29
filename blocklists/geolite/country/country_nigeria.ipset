@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_nigeria.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_nigeria.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:32 UTC 2026
-#   @entries        3,235,005 ips
-#                   1,549 subnets
-#                   1,549 lines
+#   @updated        Wed Apr 29 04:46:50 UTC 2026
+#   @entries        3,234,494 ips
+#                   1,548 subnets
+#                   1,548 lines
 #   @country        Nigeria (NG)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.62.63.53/32
@@ -188,7 +182,6 @@
 72.14.201.90/32
 74.118.126.164/30
 79.127.149.0/24
-79.127.251.0/24
 80.64.18.0/24
 80.88.7.0/24
 80.88.8.0/24
@@ -1091,7 +1084,6 @@
 212.100.64.0/19
 212.165.142.0/24
 212.221.122.64/29
-213.109.151.0/24
 213.111.130.0/24
 213.156.254.13/32
 213.235.10.232/29
@@ -1141,6 +1133,7 @@
 2001:470:1f1d:55::/64
 2001:470:1f1d:3dd::/64
 2001:470:1f1d:dfa::/64
+2001:470:1f21:9e::/64
 2001:470:1f23:7::/64
 2001:470:1f23:360::/64
 2001:470:1f27:d::/64

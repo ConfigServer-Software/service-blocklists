@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_saudi_arabia.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_saudi_arabia.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:45 UTC 2026
-#   @entries        11,600,082 ips
-#                   3,362 subnets
-#                   3,362 lines
+#   @updated        Wed Apr 29 04:47:05 UTC 2026
+#   @entries        11,600,083 ips
+#                   3,363 subnets
+#                   3,363 lines
 #   @country        Saudi Arabia (SA)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 1.179.101.0/24
@@ -1703,6 +1697,7 @@
 2001:470:1f29:e7::/64
 2001:470:1f29:10c::/64
 2001:470:1f29:11b::/64
+2001:470:1f29:138::/64
 2001:470:1f29:143::/64
 2001:470:1f29:15f::/64
 2001:470:1f29:16d::/64

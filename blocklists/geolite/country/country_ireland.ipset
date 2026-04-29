@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_ireland.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_ireland.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:18 UTC 2026
-#   @entries        18,033,844 ips
-#                   8,996 subnets
-#                   8,996 lines
+#   @updated        Wed Apr 29 04:46:36 UTC 2026
+#   @entries        18,034,099 ips
+#                   9,014 subnets
+#                   9,014 lines
 #   @country        Ireland (IE)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 1.178.7.0/24
@@ -48,7 +42,22 @@
 3.40.128.0/17
 3.172.117.0/25
 3.248.0.0/13
-4.207.0.0/16
+4.207.0.0/17
+4.207.128.0/18
+4.207.192.0/19
+4.207.224.0/20
+4.207.240.0/22
+4.207.244.0/26
+4.207.244.64/27
+4.207.244.96/29
+4.207.244.104/30
+4.207.244.109/32
+4.207.244.110/31
+4.207.244.112/28
+4.207.244.128/25
+4.207.245.0/24
+4.207.246.0/23
+4.207.248.0/21
 4.208.0.0/15
 4.210.0.0/17
 4.231.128.0/17
@@ -3602,7 +3611,8 @@
 152.236.8.0/23
 152.236.14.0/24
 152.236.18.0/23
-152.236.20.0/22
+152.236.20.0/23
+152.236.23.0/24
 152.236.24.0/21
 152.236.32.0/19
 152.236.64.0/18
@@ -4095,6 +4105,8 @@
 172.245.52.0/24
 172.245.97.0/24
 172.245.241.0/24
+173.82.160.0/24
+173.82.197.0/24
 173.83.214.0/24
 173.194.96.0/25
 173.209.230.0/23
@@ -5945,6 +5957,7 @@
 2604:ca00:1b5:8000::/49
 2605:59ca:8058::/47
 2605:6f0a::/32
+2605:7a80:9408::/47
 2605:a7c0:10::/48
 2605:dd40:8570::/44
 2605:f500:302::/48
@@ -6533,7 +6546,6 @@
 2a01:3e4:3d00::/64
 2a01:3e6:3d00::/64
 2a01:3e8:3d00::/64
-2a01:3ea:3d00::/64
 2a01:3ec:3d00::/64
 2a01:3f0:3d00::/64
 2a01:400::/36

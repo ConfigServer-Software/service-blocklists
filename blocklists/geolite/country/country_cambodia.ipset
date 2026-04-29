@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_cambodia.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_cambodia.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:24 UTC 2026
-#   @entries        558,569 ips
-#                   1,041 subnets
-#                   1,041 lines
+#   @updated        Wed Apr 29 04:46:42 UTC 2026
+#   @entries        558,570 ips
+#                   1,042 subnets
+#                   1,042 lines
 #   @country        Cambodia (KH)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.28.32.0/21
@@ -558,6 +552,7 @@
 2001:470:b:d::/64
 2001:470:d:6e7::/64
 2001:470:19:7c::/64
+2001:470:19:1c9::/64
 2001:470:19:e0e::/64
 2001:470:19:e39::/64
 2001:470:19:f53::/64
@@ -566,7 +561,6 @@
 2001:470:28:e0f::/64
 2001:470:28:ec6::/64
 2001:470:36:1b0::/64
-2001:470:36:388::/64
 2001:470:36:4ee::/64
 2001:470:36:546::/64
 2001:470:4b:237::/64
@@ -694,6 +688,7 @@
 2600:70ff:a652::/48
 2600:70ff:ac32::/48
 2600:70ff:b119::/48
+2605:7a80:6700::/47
 2606:54c0:4648::/45
 2606:54c3:0:2c8::/64
 2606:f4c0:2250::/44

@@ -2,16 +2,16 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/O/ovh_cloud.ipset
 #
 #   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/O/ovh_cloud.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Tue Apr 28 04:57:33 UTC 2026
-#   @entries        4,685,066 ips
-#                   557 subnets
-#                   557 lines
+#   @updated        Wed Apr 29 04:52:09 UTC 2026
+#   @entries        4,683,530 ips
+#                   551 subnets
+#                   551 lines
 #   @asn            AS16276, AS35540
-#   @expires        24 hours
-#   @category       Autonomous System Number
+#   @expires        6 hours
+#   @category       Uncategorized
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #
@@ -130,7 +130,6 @@
 62.122.126.0/24
 62.141.62.0/24
 63.251.117.0/24
-64.83.69.0/24
 64.94.92.0/23
 64.95.150.0/23
 64.225.244.0/23
@@ -196,7 +195,6 @@
 82.41.100.0/22
 82.41.104.0/22
 82.41.124.0/22
-82.41.134.0/24
 82.41.148.0/22
 82.41.152.0/22
 82.41.160.0/21
@@ -230,7 +228,6 @@
 84.32.10.0/24
 85.217.144.0/23
 86.54.26.0/24
-87.76.144.0/24
 87.76.170.0/24
 87.98.128.0/17
 87.229.51.0/24
@@ -380,7 +377,6 @@
 151.243.6.0/24
 151.243.120.0/24
 151.243.160.0/22
-151.243.166.0/24
 151.243.236.0/24
 151.244.78.0/24
 151.245.54.0/24
@@ -482,7 +478,6 @@
 192.109.11.0/24
 192.124.170.0/24
 192.124.180.0/24
-192.144.79.0/24
 192.152.126.0/24
 192.177.90.0/24
 192.207.105.0/24
@@ -562,7 +557,6 @@
 217.65.73.0/24
 217.182.0.0/16
 217.217.26.0/24
-222.167.192.0/24
 2001:41d0:8000::/34
 2001:41d0::/33
 2001:41d0:c000::/35

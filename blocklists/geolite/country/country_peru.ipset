@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_peru.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_peru.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:39 UTC 2026
-#   @entries        3,723,490 ips
-#                   1,867 subnets
-#                   1,867 lines
+#   @updated        Wed Apr 29 04:46:58 UTC 2026
+#   @entries        3,723,746 ips
+#                   1,868 subnets
+#                   1,868 lines
 #   @country        Peru (PE)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.23.232.0/22
@@ -117,6 +111,7 @@
 38.191.84.0/23
 38.191.86.0/24
 38.199.4.0/22
+38.199.89.0/24
 38.199.94.0/23
 38.199.239.0/24
 38.199.245.0/24
@@ -595,6 +590,7 @@
 154.50.208.54/32
 154.85.2.0/24
 154.200.71.0/24
+154.201.0.0/24
 154.201.3.0/24
 154.201.13.0/24
 154.201.14.0/24
@@ -947,7 +943,6 @@
 193.111.184.0/22
 193.186.4.220/32
 193.186.4.248/31
-193.218.35.0/24
 194.50.99.175/32
 196.19.214.0/23
 196.48.159.0/24

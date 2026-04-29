@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_luxembourg.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_luxembourg.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:27 UTC 2026
-#   @entries        1,423,967 ips
-#                   1,926 subnets
-#                   1,926 lines
+#   @updated        Wed Apr 29 04:46:45 UTC 2026
+#   @entries        1,423,987 ips
+#                   1,929 subnets
+#                   1,929 lines
 #   @country        Luxembourg (LU)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.18.250.0/24
@@ -240,6 +234,8 @@
 80.231.172.218/32
 80.239.200.144/29
 80.239.200.208/30
+80.239.216.192/29
+80.239.249.168/30
 80.240.97.0/24
 80.240.112.0/24
 80.240.114.0/24
@@ -835,7 +831,6 @@
 166.1.107.0/24
 166.49.131.0/25
 166.49.153.0/25
-166.49.220.75/32
 170.23.173.0/24
 170.23.174.0/24
 171.22.196.0/22
@@ -1257,6 +1252,7 @@
 212.35.105.48/29
 212.35.105.80/29
 212.35.106.208/29
+212.35.107.224/29
 212.35.111.8/30
 212.35.111.40/29
 212.35.111.64/29
@@ -1883,6 +1879,7 @@
 2a0a:6044:f582::/47
 2a0a:6044:f584::/46
 2a0a:6044:f588::/45
+2a0a:7a80::/29
 2a0a:cf40::/29
 2a0b:880::/32
 2a0b:dc0::/32

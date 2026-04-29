@@ -2,16 +2,16 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/F/fastly.ipset
 #
 #   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/F/fastly.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN-CSV.zip
+#   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Tue Apr 28 04:57:10 UTC 2026
+#   @updated        Wed Apr 29 04:51:43 UTC 2026
 #   @entries        343,053 ips
 #                   619 subnets
 #                   619 lines
 #   @asn            AS54113, AS394192, AS895
-#   @expires        24 hours
-#   @category       Autonomous System Number
+#   @expires        6 hours
+#   @category       Uncategorized
 #
 #   Includes both IPv4 and IPv6 networks merged
 # #

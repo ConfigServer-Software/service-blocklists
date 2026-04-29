@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_croatia.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_croatia.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:16 UTC 2026
-#   @entries        2,472,436 ips
-#                   1,107 subnets
-#                   1,107 lines
+#   @updated        Wed Apr 29 04:46:33 UTC 2026
+#   @entries        2,472,198 ips
+#                   1,113 subnets
+#                   1,113 lines
 #   @country        Croatia (HR)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.56.9.252/30
@@ -406,7 +400,9 @@
 150.40.97.0/24
 150.40.98.0/23
 150.40.100.0/22
-150.40.104.0/21
+150.40.104.0/23
+150.40.107.0/24
+150.40.108.0/22
 150.40.112.0/24
 150.40.120.0/22
 150.40.124.0/23
@@ -486,6 +482,7 @@
 162.120.216.53/32
 162.120.216.60/30
 162.120.217.176/30
+162.120.227.48/29
 163.116.166.157/32
 163.116.166.165/32
 163.116.172.160/32
@@ -705,6 +702,7 @@
 195.182.46.0/24
 195.190.10.0/24
 195.190.136.0/24
+195.202.108.112/29
 195.234.22.0/23
 195.245.255.0/24
 196.48.71.0/24
@@ -932,12 +930,14 @@
 2600:9000:1152::/64
 2600:9000:122c::/63
 2600:9000:1239::/58
+2605:7a80:9910::/47
 2606:40:1830::/44
 2606:40:1840::/44
 2606:40:22f8:1000::/52
 2606:40:22f8:4000::/54
 2606:40:22fe:1000::/52
 2606:40:22fe:a000::/54
+2606:40:2910:c000::/51
 2606:54c0:3938::/45
 2606:54c0:3940::/45
 2606:54c3:0:71e::/64

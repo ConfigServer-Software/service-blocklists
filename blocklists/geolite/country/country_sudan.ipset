@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_sudan.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_sudan.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:46 UTC 2026
-#   @entries        1,897,601 ips
-#                   201 subnets
-#                   201 lines
+#   @updated        Wed Apr 29 04:47:05 UTC 2026
+#   @entries        1,897,603 ips
+#                   203 subnets
+#                   203 lines
 #   @country        Sudan (SD)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.62.63.137/32
@@ -154,6 +148,8 @@
 2001:43f8:7f0::/47
 2001:43f8:11d0::/48
 2605:59c0:3800::/39
+2605:59c0:8f00::/40
+2605:59c0:9000::/40
 2605:59c8:1200::/40
 2605:59ca:2f00::/40
 2606:40:1430::/44

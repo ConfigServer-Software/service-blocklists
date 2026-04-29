@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_liechtenstein.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_liechtenstein.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:26 UTC 2026
-#   @entries        110,196 ips
-#                   715 subnets
-#                   715 lines
+#   @updated        Wed Apr 29 04:46:44 UTC 2026
+#   @entries        110,204 ips
+#                   712 subnets
+#                   712 lines
 #   @country        Liechtenstein (LI)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.34.248.0/21
@@ -118,10 +112,7 @@
 89.248.159.31/32
 89.248.159.32/27
 89.248.159.64/26
-89.248.159.128/28
-89.248.159.144/29
-89.248.159.160/27
-89.248.159.192/26
+89.248.159.128/25
 91.90.122.0/24
 91.207.130.0/23
 91.217.207.0/24

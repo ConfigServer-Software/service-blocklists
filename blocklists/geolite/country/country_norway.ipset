@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_norway.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_norway.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:38 UTC 2026
-#   @entries        16,274,217 ips
-#                   4,314 subnets
-#                   4,314 lines
+#   @updated        Wed Apr 29 04:46:57 UTC 2026
+#   @entries        16,275,507 ips
+#                   4,312 subnets
+#                   4,312 lines
 #   @country        Norway (NO)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.18.172.0/22
@@ -791,6 +785,7 @@
 86.62.128.0/18
 86.105.20.0/22
 86.111.48.0/23
+87.76.181.0/24
 87.118.0.0/18
 87.119.76.16/29
 87.119.76.96/29
@@ -1325,6 +1320,9 @@
 137.133.128.0/17
 137.217.0.0/16
 137.221.24.0/21
+138.16.48.0/23
+138.16.50.0/24
+138.16.80.0/23
 138.32.168.0/22
 138.43.100.0/24
 138.62.0.0/16
@@ -1680,7 +1678,6 @@
 158.127.160.224/27
 158.149.0.0/16
 158.150.0.0/16
-158.173.104.0/24
 158.173.166.0/24
 158.233.246.16/29
 158.233.247.16/29
@@ -1792,12 +1789,6 @@
 166.0.210.0/24
 166.1.105.0/24
 166.49.145.0/25
-166.49.162.26/32
-166.49.162.73/32
-166.49.179.237/32
-166.49.179.253/32
-166.49.189.1/32
-166.49.197.201/32
 166.49.231.128/25
 166.49.235.128/25
 166.88.253.0/24
@@ -2908,6 +2899,7 @@
 213.212.56.80/28
 213.212.63.184/30
 213.225.64.0/18
+213.228.205.192/28
 213.230.160.0/20
 213.230.176.0/21
 213.230.186.0/23
@@ -3449,6 +3441,7 @@
 2604:ca00:197:8000::/49
 2604:ca00:1a7:8000::/49
 2604:ca00:1b7:8000::/49
+2605:7a80:9802::/47
 2606:40:168::/45
 2606:40:178::/45
 2606:40:21a1::/54
@@ -4187,7 +4180,6 @@
 2a0b:4e07:3:5780::/60
 2a0b:4e07:c25::/48
 2a0b:5100::/29
-2a0b:64c2::/32
 2a0b:6640::/29
 2a0b:8340::/29
 2a0b:9100::/29

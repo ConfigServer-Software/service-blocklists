@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_colombia.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_colombia.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:51:52 UTC 2026
-#   @entries        17,885,147 ips
-#                   3,681 subnets
-#                   3,681 lines
+#   @updated        Wed Apr 29 04:46:09 UTC 2026
+#   @entries        17,885,907 ips
+#                   3,687 subnets
+#                   3,687 lines
 #   @country        Colombia (CO)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.19.32.0/22
@@ -256,6 +250,7 @@
 38.190.26.0/23
 38.190.72.0/24
 38.190.90.0/23
+38.190.120.0/22
 38.191.41.0/24
 38.191.42.0/23
 38.191.80.0/23
@@ -274,11 +269,13 @@
 38.196.178.0/23
 38.199.20.0/22
 38.199.24.0/21
-38.199.64.0/20
+38.199.65.0/24
+38.199.66.0/23
+38.199.68.0/22
+38.199.72.0/21
 38.199.80.0/22
 38.199.84.0/24
 38.199.86.0/23
-38.199.89.0/24
 38.199.91.0/24
 38.199.93.0/24
 38.199.238.0/24
@@ -394,9 +391,6 @@
 45.169.98.0/23
 45.169.253.0/24
 45.170.124.0/22
-45.170.132.0/29
-45.170.132.10/31
-45.170.132.12/30
 45.170.132.32/27
 45.170.132.64/27
 45.170.132.96/30
@@ -1070,7 +1064,6 @@
 152.200.0.0/14
 152.204.0.0/15
 152.231.24.0/21
-152.233.125.0/24
 153.67.22.0/23
 153.67.112.0/22
 153.72.9.128/27
@@ -2242,6 +2235,7 @@
 212.212.118.0/23
 213.236.5.0/24
 213.236.6.0/24
+216.28.154.0/23
 216.28.210.0/23
 216.28.212.0/24
 216.28.215.0/24
@@ -2330,10 +2324,12 @@
 2001:470:1f05:4e5::/64
 2001:470:1f07:13::/64
 2001:470:1f07:7b1::/64
+2001:470:1f0b:247::/64
 2001:470:1f0f:5c::/64
 2001:470:1f0f:8e::/64
 2001:470:1f0f:2f3::/64
 2001:470:1f0f:2f7::/64
+2001:470:1f0f:449::/64
 2001:470:1f13:19b::/64
 2001:470:1f17:182::/63
 2001:470:1f2b:1::/64
@@ -3095,6 +3091,7 @@
 2803:1a50::/32
 2803:1a90::/32
 2803:1d10::/32
+2803:1e30::/32
 2803:1fd0::/32
 2803:2060::/32
 2803:2090::/32
@@ -3147,6 +3144,7 @@
 2803:4d20::/32
 2803:4d90::/32
 2803:4de0::/32
+2803:4e30::/32
 2803:5050::/32
 2803:5230::/32
 2803:5250::/32
@@ -3222,6 +3220,7 @@
 2803:8ca0::/32
 2803:8cd0::/32
 2803:8d90::/32
+2803:8e30::/32
 2803:8e50::/32
 2803:9060::/32
 2803:9110::/32
@@ -3268,6 +3267,7 @@
 2803:aba0:8000::/33
 2803:ac80::/32
 2803:ad80:69::/48
+2803:ae30::/32
 2803:ae90::/32
 2803:aea0::/32
 2803:af90::/32

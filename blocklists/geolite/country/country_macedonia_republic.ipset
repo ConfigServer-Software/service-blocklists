@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_macedonia_republic.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_macedonia_republic.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:29 UTC 2026
-#   @entries        709,037 ips
-#                   396 subnets
-#                   396 lines
+#   @updated        Wed Apr 29 04:46:47 UTC 2026
+#   @entries        709,039 ips
+#                   398 subnets
+#                   398 lines
 #   @country        Macedonia Republic (MK)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.32.176.0/21
@@ -183,6 +177,7 @@
 160.25.105.106/32
 162.120.216.6/32
 162.120.216.55/32
+162.120.225.208/32
 163.116.166.175/32
 163.116.166.179/32
 163.116.179.113/32
@@ -298,6 +293,7 @@
 2400:cb00:705::/48
 2606:40:1590::/44
 2606:40:15a0::/44
+2606:40:2191:4400::/54
 2606:40:22f8:c000::/54
 2606:40:22fe:e000::/54
 2606:54c0:4868::/45

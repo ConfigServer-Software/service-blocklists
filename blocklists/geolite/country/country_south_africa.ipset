@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_south_africa.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_south_africa.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:53:29 UTC 2026
-#   @entries        28,877,383 ips
-#                   5,496 subnets
-#                   5,496 lines
+#   @updated        Wed Apr 29 04:47:50 UTC 2026
+#   @entries        28,882,768 ips
+#                   5,510 subnets
+#                   5,510 lines
 #   @country        South Africa (ZA)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 1.178.18.0/24
@@ -1060,6 +1054,9 @@
 102.177.188.0/23
 102.177.190.0/24
 102.182.0.0/16
+102.202.156.0/22
+102.202.168.0/21
+102.202.176.0/22
 102.202.192.0/22
 102.202.200.0/21
 102.202.224.0/22
@@ -1565,6 +1562,8 @@
 104.28.113.204/31
 104.28.136.237/32
 104.28.136.255/32
+104.28.137.33/32
+104.28.137.34/31
 104.28.138.50/32
 104.28.138.95/32
 104.28.138.99/32
@@ -1607,6 +1606,8 @@
 104.28.165.94/32
 104.28.166.123/32
 104.28.166.140/32
+104.28.166.173/32
+104.28.166.174/31
 104.28.170.71/32
 104.28.170.72/30
 104.28.170.76/31
@@ -2195,7 +2196,10 @@
 154.200.208.0/22
 154.200.212.0/23
 154.200.220.0/24
+154.200.241.0/24
+154.200.242.0/24
 154.200.245.0/24
+154.200.248.0/23
 154.203.189.0/24
 154.203.190.0/24
 155.2.162.48/29
@@ -2719,6 +2723,7 @@
 172.235.102.0/23
 172.253.244.192/26
 172.253.249.192/26
+173.82.216.0/24
 173.194.171.192/26
 176.67.176.0/21
 178.95.108.0/24
@@ -4042,7 +4047,8 @@
 2001:470:1f23:50::/64
 2001:470:1f23:53::/64
 2001:470:1f23:5a::/64
-2001:470:1f23:5c::/62
+2001:470:1f23:5c::/63
+2001:470:1f23:5f::/64
 2001:470:1f23:61::/64
 2001:470:1f23:62::/63
 2001:470:1f23:64::/64
@@ -4924,6 +4930,7 @@
 2c0f:980::/32
 2c0f:a80::/32
 2c0f:ac0::/32
+2c0f:b20::/32
 2c0f:bc0::/32
 2c0f:c00::/32
 2c0f:c40::/32
@@ -5030,6 +5037,7 @@
 2c0f:49c0::/32
 2c0f:4a00::/32
 2c0f:4a80::/32
+2c0f:4aa0::/32
 2c0f:4b80::/32
 2c0f:4bc0::/32
 2c0f:4d40::/32

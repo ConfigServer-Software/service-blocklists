@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_north_korea.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_north_korea.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:25 UTC 2026
-#   @entries        3,086 ips
-#                   529 subnets
-#                   529 lines
+#   @updated        Wed Apr 29 04:46:42 UTC 2026
+#   @entries        3,085 ips
+#                   528 subnets
+#                   528 lines
 #   @country        North Korea (KP)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.62.56.160/30
@@ -83,7 +77,6 @@
 2001:470:d:86d::/64
 2001:470:d:878::/64
 2001:470:d:8c5::/64
-2001:470:d:9c6::/64
 2001:470:d:cad::/64
 2001:470:d:d26::/64
 2001:470:d:d62::/64
@@ -108,7 +101,6 @@
 2001:470:d:1284::/64
 2001:470:d:12ab::/64
 2001:470:d:12b7::/64
-2001:470:d:12be::/64
 2001:470:d:12c5::/64
 2001:470:d:12cc::/64
 2001:470:d:12e2::/64
@@ -127,6 +119,7 @@
 2001:470:19:192::/64
 2001:470:19:1a8::/64
 2001:470:19:1ab::/64
+2001:470:19:1d2::/64
 2001:470:19:3f6::/64
 2001:470:19:541::/64
 2001:470:19:556::/64
@@ -188,7 +181,6 @@
 2001:470:24:1d3::/64
 2001:470:24:22d::/64
 2001:470:24:291::/64
-2001:470:24:2ac::/64
 2001:470:24:32c::/64
 2001:470:24:336::/64
 2001:470:24:377::/64
@@ -256,6 +248,8 @@
 2001:470:6d:bcd::/64
 2001:470:7c:3c::/64
 2001:470:19ab::/48
+2001:470:1f05:8b::/64
+2001:470:1f05:98::/64
 2001:470:1f05:144::/64
 2001:470:1f05:15e::/64
 2001:470:1f05:17b::/64
@@ -288,7 +282,6 @@
 2001:470:1f19:3a::/64
 2001:470:1f19:40::/64
 2001:470:1f19:73::/64
-2001:470:1f19:1c0::/64
 2001:470:1f19:261::/64
 2001:470:1f1b:4d::/64
 2001:470:1f1d:3b4::/64
@@ -332,6 +325,7 @@
 2001:470:7537::/48
 2001:470:7828::/48
 2001:470:7a5e::/48
+2001:470:8091::/48
 2001:470:80f6::/48
 2001:470:827d::/48
 2001:470:82ab::/48
@@ -352,6 +346,7 @@
 2001:470:e868::/48
 2001:470:e881::/48
 2001:470:e8a8::/48
+2001:470:e92e::/48
 2001:470:e941::/48
 2001:470:e950::/48
 2001:470:e9ad::/48
@@ -402,7 +397,6 @@
 2001:470:f2d8::/48
 2001:470:f2da::/48
 2001:470:f35d::/48
-2001:470:f386::/48
 2001:470:f390::/48
 2001:470:f3dc::/48
 2001:470:f3f4::/47
@@ -429,7 +423,6 @@
 2001:470:f6e3::/48
 2001:470:f6e4::/48
 2001:470:f6ef::/48
-2001:470:f6f3::/48
 2001:470:f6fe::/48
 2001:470:f709::/48
 2001:470:f801::/48

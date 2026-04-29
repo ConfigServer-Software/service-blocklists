@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_pakistan.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_pakistan.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:40 UTC 2026
-#   @entries        5,846,905 ips
-#                   1,957 subnets
-#                   1,957 lines
+#   @updated        Wed Apr 29 04:46:59 UTC 2026
+#   @entries        5,848,442 ips
+#                   1,963 subnets
+#                   1,963 lines
 #   @country        Pakistan (PK)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.62.35.0/24
@@ -126,7 +120,7 @@
 45.194.26.0/24
 45.194.80.0/23
 45.194.88.0/23
-45.195.130.0/24
+45.195.130.0/23
 45.195.194.0/23
 45.195.210.0/23
 45.195.240.0/23
@@ -933,7 +927,8 @@
 149.40.242.0/24
 149.40.247.0/24
 149.71.34.0/23
-149.71.36.0/22
+149.71.36.0/23
+149.71.39.0/24
 150.129.4.0/22
 151.123.144.0/20
 151.123.224.0/19
@@ -943,6 +938,7 @@
 151.158.200.0/23
 151.158.212.0/22
 151.158.252.0/23
+151.244.60.0/24
 153.72.4.128/26
 153.72.15.64/26
 153.72.15.128/26
@@ -1029,6 +1025,8 @@
 160.250.122.0/23
 161.248.186.0/23
 161.248.202.0/23
+162.4.16.0/24
+162.4.32.0/23
 162.10.8.99/32
 162.10.8.100/32
 162.12.208.0/22
@@ -1067,6 +1065,7 @@
 163.128.74.0/23
 163.128.122.0/23
 163.128.148.0/24
+163.128.188.0/23
 163.223.4.0/23
 163.223.92.0/23
 163.227.212.0/23
@@ -1432,7 +1431,7 @@
 2001:470:f80b::/48
 2001:470:f84d::/48
 2001:470:f8b6::/48
-2001:470:fc52::/48
+2001:470:ff46::/48
 2001:ac8:5::/48
 2001:dd8:1c::/48
 2001:dec:8000::/48
@@ -1718,6 +1717,7 @@
 2402:4960::/32
 2402:4ea0::/32
 2402:5860::/32
+2402:5a60::/32
 2402:7c00::/32
 2402:9640::/32
 2402:9ec0::/32

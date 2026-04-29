@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_venezuela.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_venezuela.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:53:28 UTC 2026
-#   @entries        7,559,668 ips
-#                   1,513 subnets
-#                   1,513 lines
+#   @updated        Wed Apr 29 04:47:48 UTC 2026
+#   @entries        7,559,669 ips
+#                   1,514 subnets
+#                   1,514 lines
 #   @country        Venezuela (VE)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.62.57.101/32
@@ -1357,6 +1351,7 @@
 2803:f080:3000::/43
 2803:f250::/32
 2803:f5e0::/32
+2803:f630::/32
 2803:f690::/32
 2803:f7a0::/32
 2803:f960::/32

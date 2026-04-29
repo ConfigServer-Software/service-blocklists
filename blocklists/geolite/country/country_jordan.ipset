@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_jordan.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_jordan.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:23 UTC 2026
-#   @entries        666,626 ips
-#                   610 subnets
-#                   610 lines
+#   @updated        Wed Apr 29 04:46:40 UTC 2026
+#   @entries        666,882 ips
+#                   611 subnets
+#                   611 lines
 #   @country        Jordan (JO)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 2.17.24.0/22
@@ -83,6 +77,7 @@
 62.72.174.0/24
 62.72.176.0/24
 62.72.179.0/24
+62.72.180.0/24
 62.72.184.0/22
 62.72.191.0/24
 63.246.33.64/26

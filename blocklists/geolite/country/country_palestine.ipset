@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_palestine.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_palestine.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:41 UTC 2026
-#   @entries        844,275 ips
+#   @updated        Wed Apr 29 04:47:01 UTC 2026
+#   @entries        845,298 ips
 #                   466 subnets
 #                   466 lines
 #   @country        Palestine (PS)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 1.178.112.0/20
@@ -132,6 +126,7 @@
 103.49.208.0/22
 103.53.4.0/22
 103.57.108.0/22
+103.102.252.0/22
 103.193.132.0/22
 103.196.120.0/22
 103.199.176.0/22
@@ -478,7 +473,6 @@
 2a10:500:e600::/40
 2a11:a40::/29
 2a11:ac80::/29
-2a12:bec0:684::/48
 2a12:cf40::/32
 2a13:9500:64::/48
 2a13:a5c3:d64c::/46

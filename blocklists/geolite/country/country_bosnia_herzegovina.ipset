@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_bosnia_herzegovina.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_bosnia_herzegovina.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:51:41 UTC 2026
-#   @entries        826,385 ips
-#                   444 subnets
-#                   444 lines
+#   @updated        Wed Apr 29 04:45:57 UTC 2026
+#   @entries        826,387 ips
+#                   446 subnets
+#                   446 lines
 #   @country        Bosnia Herzegovina (BA)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.43.64.0/18
@@ -213,6 +207,7 @@
 162.120.188.231/32
 162.120.216.1/32
 162.120.216.49/32
+162.120.227.182/32
 163.116.166.174/32
 163.116.166.178/32
 163.116.179.112/32
@@ -369,6 +364,7 @@
 2001:4860:7:1707::/64
 2606:40:1570::/44
 2606:40:1580::/44
+2606:40:21c9:a400::/54
 2606:40:22f8:2000::/54
 2606:40:22fe:2000::/54
 2606:54c0:458::/45

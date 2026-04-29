@@ -2,24 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_somalia.ipset
 #
 #   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_somalia.ipset
-#   @service        http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Apr 28 04:52:49 UTC 2026
-#   @entries        55,918 ips
-#                   209 subnets
-#                   209 lines
+#   @updated        Wed Apr 29 04:47:09 UTC 2026
+#   @entries        55,917 ips
+#                   208 subnets
+#                   208 lines
 #   @country        Somalia (SO)
-#   @expires        24 hours
-#   @category       Geolocation
+#   @expires        6 hours
+#   @category       Uncategorized
 #
-#   These ASN databases allow you to restrict which companies from accessing your server
-#   based on their assigned ASN (Autonomous System Number). They are fully compatible with
-#   applications such as ConfigServer Firewall, Wireshark, Elastic Search, NGINX, 
-#   Snowplow Analytics, Revive Adserver, OPNSense, etc.
-#   
-#   A more detailed list is available at:
-#       - https://dev.maxmind.com/geoip/docs/databases/#client-apis
+#   No description provided
 # #
 
 5.62.63.129/32
@@ -213,7 +207,6 @@
 2a0f:85c1:81b:fa20::/60
 2a10:500:3500::/40
 2a10:9007:2:1a::/64
-2a12:bec0:685::/48
 2a13:a5c3:d654::/46
 2a13:a5c7:25cd::/48
 2a13:a5c7:25ff:cd00::/56
