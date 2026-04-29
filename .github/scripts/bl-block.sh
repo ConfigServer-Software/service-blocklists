@@ -1,23 +1,30 @@
 #!/bin/bash
 
 # #
-#   @script             Blocklist › Local Blocks
+#   @script             Blocklist › Local Block File Formatter
 #   @repo               https://github.com/ConfigServer-Software/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
-#   @summary            Generate ipset by reading locally specified file in /blocks folder.
-#                           Specify a source category to fetch local ipset from.
-#                           Copies local ipsets from .github/blocks/${argCategory}/*.ipset
-#                           Preserves comments in local block list.
-#   @storage            .github/scripts/bl-block.sh
-#   @terminal           .github/scripts/bl-block.sh blocklists/privacy/privacy_general.ipset privacy
-#   @workflow           chmod +x ".github/scripts/bl-block.sh"
-#                       run_privacy=".github/scripts/bl-block.sh blocklists/privacy/privacy_general.ipset privacy"
-#                       eval "./$run_privacy"
-#   @uage               bl-block.sh
-#                           <argFileSaveto>
-#                           <fromCategory>
-#                       bl-block.sh blocklists/privacy/privacy_general.ipset privacy
+#   @summary            Generate blocklist by reading locally specified file in /blocks folder.
+#                       Copies local ipsets from .github/blocks/${argCategory}/*.ipset
+#   @path               .github/scripts/bl-block.sh
+#   @args               bl-block.sh <argFileSaveto> <argCategory>
+#   @commands           1.  ./.github/scripts/bl-block.sh blocklists/isp/isp_aol.ipset isp/aol.ipset
+#                       2.  CFG_SKIP_CIDR_DEDUPE=true CFG_SKIP_BOGON_FILTER=true ./.github/scripts/bl-block.sh blocklists/privacy/@general.ipset privacy
+#   @structure          📁 .github
+#                           📁 scripts
+#                               📄 bl-block.sh
+#                           📁 templates
+#                               📁 categories
+#                                   📄 *
+#                               📁 descriptions
+#                                   📄 *
+#                               📁 expires
+#                                   📄 *
+#                               📁 sources
+#                                   📄 *
+#                           📁 workflows
+#                               📄 blocklist-generate.yml
 # #
 
 # #
@@ -113,7 +120,7 @@ bgError="${esc}[1;38;5;15;48;5;160m"
 #   Define › App
 # #
 
-app_name="Blocklist › Blocks"                                                   # name of app
+app_name="Blocklist › Local Blocks"                                             # name of app
 app_desc="Fetch list of IP addresses from local file in /blocks folder."        # desc
 app_ver="1.2.0.0"                                                               # current script version
 app_repo="configserver-software/service-blocklists"                             # repository
@@ -138,8 +145,8 @@ argSkipCidrDedup="false"                                                        
 argIncludeComments="false"                                                      # preserve inline comments in output
 argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
 argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
-sort_cmd_opts=()                                                                # optional sort command tuning
 did_load_fallback="false"                                                       # track whether fallback lists were merged
+sort_cmd_opts=()                                                                # optional sort command tuning
 
 # #
 #   Optional Parameters
@@ -889,14 +896,14 @@ sort_results()
     # #
 
     if ! grep -q ':' "${_in_tmp}"; then
-        LC_ALL=C sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}"
+        LC_ALL=C sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}" | uniq
 
     # #
     #   Fast path › pure IPv6
     # #
 
     elif ! grep -q '\.' "${_in_tmp}"; then
-        LC_ALL=C sort "${sort_cmd_opts[@]}" -u "${_in_tmp}"
+        LC_ALL=C sort "${sort_cmd_opts[@]}" "${_in_tmp}" | uniq
 
     # #
     #   Mixed IPv4/IPv6
@@ -913,7 +920,7 @@ sort_results()
         # #
 
         if [ -s "${_ipv4_tmp}" ]; then
-            LC_ALL=C sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}"
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}" | uniq
         fi
 
         # #
@@ -921,7 +928,7 @@ sort_results()
         # #
     
         if [ -s "${_ipv6_tmp}" ]; then
-            LC_ALL=C sort "${sort_cmd_opts[@]}" -u "${_ipv6_tmp}"
+            LC_ALL=C sort "${sort_cmd_opts[@]}" "${_ipv6_tmp}" | uniq
         fi
     fi
 
@@ -1816,12 +1823,203 @@ has_valid_ip_entries()
     #   Unset
     # #
 
-    unset _fnArgFile _fnValidLine _fnValidEntry
+    unset   _fnArgFile _fnValidLine _fnValidEntry
 
     return 1
 }
 
 # #
+#   Cleanup Garbage
+#   
+#   Removes old ipv4 and ipv5 folders
+# #
+
+gcc( )
+{
+    echo
+    info "    🗑️  Starting ${bluel}GCC${greym} cleanup"
+
+    rm -rf "${app_dir_github}/${folder_target_temp}"
+
+    if [ ! -d "${app_dir_github}/${folder_target_temp}" ]; then
+        ok "    🗑️  Removed folder ${bluel}${app_dir_github}/${folder_target_temp}"
+    else
+        error "    ❌ Failed to remove folder ${greenl}${app_dir_github}/${folder_target_temp}"
+    fi
+}
+
+# #
+#   Blocklist › Fallback › Download
+#   
+#   If we cannot download from the source website, revert to a fallback list to 
+#   ensure our blocklist is not pushed empty.
+# #
+
+list_fallback_download()
+{
+    _fnArgLocalFile=$1
+    _fnArgFile=$2
+    _fnListNum=${3:-1}
+    _fnFileTemp="${_fnArgFile}.tmp"
+    _count_total_ips=0
+    _count_total_subnets=0
+
+    # #
+    #   Create the file if it doesn't exist
+    # #
+
+    prinp "📄[-1] Processing fallback list #${_fnListNum}"
+
+    if [ ! -f "${_fnFileTemp}" ]; then
+        touch "${_fnFileTemp}"
+
+        if [ -f "${_fnFileTemp}" ]; then
+            ok "    📄 Created temp file ${greenl}${PWD}/${_fnFileTemp}${greym}"
+        else
+            error "    ⭕ Failed to create temp file ${bluel}${PWD}/${_fnFileTemp}${greym}"
+            exit 1
+        fi
+    fi
+
+    info "    📒 Reading fallback static block ${bluel}${PWD}/${_fnArgLocalFile}${greym}"
+
+    # #
+    #   Read stdin into temp file
+    # #
+
+    cat "${_fnArgLocalFile}" > "${_fnFileTemp}"
+
+    # #
+    #   Running sed
+    # #
+
+    info "    ✴️  Performing sed operations on ${bluel}${_fnFileTemp}${greym}"
+
+    # #
+    #   Perform sed actions on downloaded file.
+    # #
+
+    # normalize CRLF
+    sed -i 's/\r$//' "${_fnFileTemp}"
+
+    # remove right side from IPv4 ranges when format is "1.2.3.4 - 1.2.3.5"
+    sed -E -i 's/^([[:space:]]*[0-9]{1,3}(\.[0-9]{1,3}){3})[[:space:]]*-[[:space:]]*[0-9]{1,3}(\.[0-9]{1,3}){3}/\1/' "${_fnFileTemp}"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=true
+    #       curl -s https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3 | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+    # #
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        info "    ⚡ Preserving inline comments (CFG_INCLUDE_COMMENTS=true)"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
+    # #
+
+    else
+        # remove inline comments (strip ' # comment' or ' ; comment' from end of lines ; collapse whitespace, trim)
+        sed -i 's/[[:space:]]*[#;].*$//' "${_fnFileTemp}"
+
+        # collapse multiple whitespace into a single space
+        sed -i 's/[[:space:]]\+/ /g' "${_fnFileTemp}"
+    fi
+
+    # trim leading and trailing whitespace
+    sed -i 's/^[[:space:]]*//;s/[[:space:]]*$//' "${_fnFileTemp}"
+
+    # remove empty lines (after trimming/comment removal)
+    sed -i '/^$/d' "${_fnFileTemp}"
+
+    # #
+    #   Drop malformed entries before sorting (optional trusted-input fast path)
+    # #
+
+    if [ "${argTrustedInput}" = "true" ]; then
+        info "    ⚡ Trusted input mode enabled; skipping per-line IP validation"
+    else
+        info "    ✴️  Verify valid ip entries in ${bluel}${_fnFileTemp}${greym}. This may take some time."
+        filter_valid_ip_entries "${_fnFileTemp}"
+    fi
+
+    # #
+    #   Dedupe, Sort: Move from .tmp to .sort
+    # #
+
+    info "    🔃 Sorting and deduplicating fallback results"
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        grep -vE '^[[:space:]]*(#|;|$)' "${_fnFileTemp}" | sort_results > "${_fnFileTemp}.sort"
+    else
+        sort_results < "${_fnFileTemp}" > "${_fnFileTemp}.sort"
+    fi
+
+    # #
+    #   Move from .sort to .tmp
+    # #
+
+    mv "${_fnFileTemp}.sort" "${_fnFileTemp}"
+
+    # #
+    #   IPSET › Filter BOGON
+    #   
+    #   Removes any BOGON addresses that may be within the list.
+    #       Optional
+    #       Run before count_ip_stats for accurate totals
+    # #
+
+    filter_bogon_ips "${_fnFileTemp}"
+
+    # #
+    #   Calculate list statistics
+    #       local only (global totals are calculated after final dedupe)
+    # #
+
+    info "    📊 Fetching statistics for clean file ${bluel}${PWD}/${_fnFileTemp}${greym}"
+
+    count_ip_stats "${_fnFileTemp}"
+    _count_total_ips=$total_ips
+    _count_total_subnets=$total_subnets
+
+    _count_total_ips=$(printf "%'d" "$_count_total_ips")                        # LOCAL add commas to thousands
+    _count_total_subnets=$(printf "%'d" "$_count_total_subnets")                # LOCAL add commas to thousands
+
+    # #
+    #   Move to target
+    # #
+
+    info "    🚛 Move ${bluel}${_fnFileTemp}${greym} to ${bluel}${_fnArgFile}${greym}"
+
+    # #
+    #   Ensure dest file ends with newline before append
+    # #
+
+    if [ -s "${_fnArgFile}" ] && [ "$(tail -c1 "${_fnArgFile}")" != "" ]; then
+        echo >> "${_fnArgFile}"
+    fi
+
+    cat "${_fnFileTemp}" >> "${_fnArgFile}"                                     # Copy .tmp to permanent file
+    rm -f "${_fnFileTemp}"                                                      # Delete temp file
+
+    if [ ! -f "${_fnFileTemp}" ]; then
+        ok "    📄 Removed temp file ${greenl}${PWD}/${_fnFileTemp}${greym}"
+    else
+        error "    ⭕  Unable to delete temp file ${redl}${PWD}/${_fnFileTemp}${greym}"
+    fi
+
+    ok "    ➕ Added ${greenl}${_count_total_ips}${greym} IP addresses and ${greenl}${_count_total_subnets}${greym} subnets to ${greenl}${PWD}/${_fnArgFile}${greym}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnArgLocalFile _fnArgFile _fnFileTemp _fnListNum \
+            _count_total_ips _count_total_subnets
+}
+
+# #
+#   Blocklist › Fallback › Load
+#   
 #   Load fallback static blocks from .github/blocks/<category>.
 #   
 #   Must define the category when calling this script with something such as:
@@ -1829,11 +2027,11 @@ has_valid_ip_entries()
 #       eval "./$run_mip_anthropic"
 # #
 
-load_list_fallback()
+list_fallback_load()
 {
     _fnArgFile=$1
     _fnCategory=$2
-    _fnListNum=$3
+    _fnListNum=${3:-1}
     _fnResolvedCategory="${_fnCategory}"
     _fnTargetParent=""
 
@@ -1850,9 +2048,9 @@ load_list_fallback()
     # #
     #   Resolve fallback category from target path when only leaf category is given.
     #   
-    #   @example        target      :   blocklists/privacy/privacy_proton_vpn.ipset
-    #                   category    :   proton_vpn
-    #                   resolved    :   privacy/proton_vpn
+    #   @example        target          blocklists/privacy/proton_vpn.ipset
+    #                   category        proton_vpn
+    #                   resolved        privacy/proton_vpn
     # #
 
     if [[ "${_fnCategory}" != */* ]] && [[ "${_fnCategory}" != *ipset ]]; then
@@ -1880,7 +2078,7 @@ load_list_fallback()
 
     info "    📦 Stdin list is empty, using fallback category ${bluel}${_fnResolvedCategory}${greym}"
     for APP_FILE_TEMP in "${_fnBlockFiles[@]}"; do
-        download_list_fallback "${APP_FILE_TEMP}" "${_fnArgFile}" "${_fnListNum}"
+        list_fallback_download "${APP_FILE_TEMP}" "${_fnArgFile}" "${_fnListNum}"
         _fnListNum=$(( _fnListNum + 1 ))
     done
 
@@ -1893,34 +2091,24 @@ load_list_fallback()
 }
 
 # #
-#   Cleanup Garbage
+#   Blocklist › Main › Load
 #   
-#   Removes old ipv4 and ipv5 folders
+#   @usage          list_main_load "${APP_FILE_TEMP}" "${file_ipset_target}" "${i}"
+#   @args           _fnArgLocalFile     input local block file to fetch IPs from
+#   @args           _fnArgFile          output filename to add ips to
+#                   _fnListNum          blocklist number (#1 out of #2) - visual only
 # #
 
-gcc( )
-{
-    echo
-    info "    🗑️  Starting ${bluel}GCC${greym} cleanup"
-
-    rm -rf "${app_dir_github}/${folder_target_temp}"
-
-    if [ ! -d "${app_dir_github}/${folder_target_temp}" ]; then
-        ok "    🗑️  Removed folder ${bluel}${app_dir_github}/${folder_target_temp}"
-    else
-        error "    ❌ Failed to remove folder ${greenl}${app_dir_github}/${folder_target_temp}"
-    fi
-}
-
-# #
-#   Func › Download List
-# #
-
-download_list()
+list_main_load()
 {
     _fnArgLocalFile=$1
     _fnArgFile=$2
-    _fnListNum=$3
+    _fnListNum=${3:-1}
+
+    # #
+    #   Define › Generic
+    # #
+
     _fnFileTemp="${_fnArgFile}.tmp"
     _count_total_ips=0
     _count_total_subnets=0
@@ -1949,6 +2137,12 @@ download_list()
     # #
 
     cat "${_fnArgLocalFile}" > "${_fnFileTemp}"
+
+    # #
+    #   Running sed
+    # #
+
+    info "    ✴️  Performing sed operations on ${bluel}${_fnFileTemp}${greym}"
 
     # #
     #   Perform sed actions on downloaded file.
@@ -2037,7 +2231,7 @@ download_list()
 
     # #
     #   Calculate list statistics
-    #       - local only (global totals are calculated after final dedupe)
+    #       local only (global totals are calculated after final dedupe)
     # #
 
     info "    📊 Fetching statistics for clean file ${bluel}${PWD}/${_fnFileTemp}${greym}"
@@ -2251,7 +2445,7 @@ if [ -d ".github/blocks/" ]; then
 
     i=1
     for APP_FILE_TEMP in ${APP_BLOCK_TARGET}; do
-        download_list "${APP_FILE_TEMP}" "${file_ipset_target}" "${i}"
+        list_main_load "${APP_FILE_TEMP}" "${file_ipset_target}" "${i}"
         i=$((i + 1))
     done
 else

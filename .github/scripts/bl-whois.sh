@@ -1,54 +1,35 @@
 #!/bin/bash
 
 # #
-#   @script             Blocklist › WHOIS Service Lookup
+#   @script             Blocklist › Whois
 #   @repo               https://github.com/ConfigServer-Software/service-blocklists
 #   @workflow           blocklist-generate.yml
-#   @type               Bash script
-#   
+#   @type               bash script
 #   @summary            Utilizes the WHOIS binary, along with multiple different servers,
 #                           to fetch all IP addresses associated with a list of ASNs.
 #                           Supports VARARG for ASNs parameter.
 #                           Supports custom GREP filter.
 #                           Removes any lines starting with ';' and '#'.
-#   
-#   @execute            Run with the following commands:
-#                           .github/scripts/bl-whois.sh blocklists/privacy/privacy_shadowserver.ipset AS22168 
-#                           .github/scripts/bl-whois.sh blocklists/privacy/privacy_facebook.ipset AS32934 AS54115 AS63293 AS149642
-#                           .github/scripts/bl-whois.sh blocklists/privacy/privacy_facebook.ipset AS32934 whois.radb.net
-#                           .github/scripts/bl-whois.sh blocklists/privacy/privacy_facebook.ipset AS32934 whois.radb.net '#|^;|^$'
-#   
-#                       You can specify your ASN list separated by spaces, colons, or semi-colons. If using semi-colons; add quotes.
-#                           .github/scripts/bl-whois.sh blocklists/privacy/privacy_censysio.ipset "AS398324;AS2914"
-#                           .github/scripts/bl-whois.sh blocklists/privacy/privacy_censysio.ipset AS398324,AS2914
-#                           .github/scripts/bl-whois.sh blocklists/privacy/privacy_censysio.ipset AS398324 AS2914
-#   
-#                       You can additionally specify a specific WHOIS server:
-#                           .github/scripts/bl-whois.sh blocklists/privacy/privacy_censysio.ipset AS398324 AS2914 whois.radb.net
-#   
-#                       You can additionally specify a grep filter:
-#                           .github/scripts/bl-whois.sh blocklists/privacy/privacy_censysio.ipset AS398324 AS2914 whois.radb.net '#|^;|^$'
-#   
-#   @workflow           chmod +x ".github/scripts/bl-whois.sh"
-#                       run_facebook=".github/scripts/bl-whois.sh blocklists/privacy/privacy_facebook.ipset AS32934"
-#                       eval "./$run_facebook"
-#   
-#   @usage              .github/scripts/bl-whois.sh
-#                           <argFileSaveto>     str         required
-#                           <argAsn>            vararg      required
-#                           <argServiceWhois>   str         optional
-#                           <argGrepFilter>     str         optional
-#                       
-#                       Examples:
-#                           [1]     curl -sSL https://mask-api.icloud.com/egress-ip-ranges.csv | cut -d',' -f1 | .github/scripts/bl-format.sh privacy_apple_icloud.ipset
-#                           [2]     curl -sSL https://search.developer.apple.com/applebot.json | jq -r '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty' | .github/scripts/bl-format.sh privacy_applebot.ipset
-#                           [3]     whois -h whois.radb.net -- '-i origin AS32934' | grep ^route | awk '{gsub("(route:|route6:)","");print}' | awk '{gsub(/ /,""); print}' | .github/scripts/bl-format.sh blocklists/privacy_facebook.ipset
-#   
-#   @demo               .github/scripts/bl-whois.sh blocklists/isp/isp_comcast.ipset AS7922 AS7015 AS36732 AS36196 AS33651
-#   
+#   @path               .github/scripts/bl-whois.sh
+#   @args               bl-whois.sh <argAsnList> <argServiceWhois> <argGrepFilter>
+#                           Note:   Arguments do not have to be in specific order.
+#                                   If specifying whois service, must start with word whois.*
+#   @commands           1.  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/alibaba.ipset "AS37963 AS45102 AS24429 AS134963"
+#                       2.  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/alibaba.ipset "AS37963,AS45102,AS24429,AS134963"
+#                       3.  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/alibaba.ipset "AS37963;AS45102;AS24429;AS134963"
+#                       4.  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/alibaba.ipset "AS37963;AS45102;AS24429;AS134963" whois.arin.net
 #   @structure          📁 .github
 #                           📁 scripts
-#                               📄 bl-whois.sh
+#                               📄 bl-format.sh
+#                           📁 templates
+#                               📁 categories
+#                                   📄 *
+#                               📁 descriptions
+#                                   📄 *
+#                               📁 expires
+#                                   📄 *
+#                               📁 sources
+#                                   📄 *
 #                           📁 workflows
 #                               📄 blocklist-generate.yml
 # #
@@ -87,13 +68,36 @@ binary_whois=$( which whois || echo "/usr/bin/whois" )
 #   This bash script has the following arguments:
 #   
 #   @param  argFileSaveto       str         File to save IP addresses into
-#           argJsonUrl          str         Direct url to json file to download
-#           argJsonPattern      str         JQ rules which pull the needed ip addresses
+#           argAsnList          str         List of delimited ASNs to download IPs for.
+#           argWhoisService     str         Specify an optional whois service to target specifically. Must start with whois.*
+#           argGrepFilter       str         JQ rules which pull the needed ip addresses
 # #
 
 argFileSaveto=$1
 argServiceWhois="${argServiceWhois:-whois.radb.net}"
 argGrepFilter="${argGrepFilter:-^#|^;|^$}"
+
+# #
+#   Define › Arguments › Passive
+#   
+#   The following should not be modified by the user; they are used for internal
+#   tracking only.
+#   
+#   argAsnList          String      Populated from list of ASNs provided by user when running script.
+#   argWhoisUseCustom   Boolean     true        Only use one specific whois service to search IPs from ASN
+#                                   false       Use built-in list of whois services to search IPs from ASN
+# #
+
+argAsnList=()
+argWhoisUseCustom=false
+
+# #
+#   Define › App
+# #
+
+file_ipset_temp="${argFileSaveto}.tmp"                                          # Temp file when building ipset list
+file_ipset_target="${argFileSaveto}"                                            # Perm file when building ipset list
+folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
 
 # #
 #   Define › Colors
@@ -171,8 +175,8 @@ argSkipCidrDedup="false"                                                        
 argIncludeComments="false"                                                      # preserve inline comments in output
 argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
 argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
-sort_cmd_opts=()                                                                # optional sort command tuning
 did_load_fallback="false"                                                       # track whether fallback lists were merged
+sort_cmd_opts=()                                                                # optional sort command tuning
 
 # #
 #   Optional Parameters
@@ -813,6 +817,44 @@ configure_sort_options( )
 }
 
 # #
+#   Extract canonical IP/CIDR entry from a line
+#       Strip inline # / ; comments
+#       Normalize whitespace
+#       If IPv4 range supplied (A - B), return A
+# #
+
+extract_ip_entry( )
+{
+    _fnEntry="$1"
+
+    _fnEntry="${_fnEntry%%#*}"
+    _fnEntry="${_fnEntry%%;*}"
+
+    # #
+    #   Trim leading and trailing whitespace
+    # #
+
+    _fnEntry="${_fnEntry#"${_fnEntry%%[![:space:]]*}"}"
+    _fnEntry="${_fnEntry%"${_fnEntry##*[![:space:]]}"}"
+
+    # #
+    #   If IPv4 range is supplied (A - B), keep A
+    # #
+
+    if [[ "${_fnEntry}" =~ ^(([0-9]{1,3}\.){3}[0-9]{1,3})[[:space:]]*-[[:space:]]*([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+        _fnEntry="${BASH_REMATCH[1]}"
+    fi
+
+    printf '%s\n' "${_fnEntry}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnEntry
+}
+
+# #
 #   Sort Results
 #   
 #   @usage          sort_results < "${file_ipset_target}" > "${file_ipset_target}.sort"
@@ -871,7 +913,7 @@ sort_results()
         # #
 
         if [ -s "${_ipv4_tmp}" ]; then
-            sort "${sort_cmd_opts[@]}" -t$'\t' -n -k1,1 -k2,2 -k3,3 -k4,4 -k5,5 -k6,6n "${_ipv4_tmp}" \
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -s -t$'\t' -n -k1,1 -k2,2 -k3,3 -k4,4 -k5,5 -k6,6n "${_ipv4_tmp}" \
                 | awk -F '\t' '!seen[$5]++ { print $7 }'
         fi
 
@@ -880,7 +922,7 @@ sort_results()
         # #
 
         if [ -s "${_ipv6_tmp}" ]; then
-            sort "${sort_cmd_opts[@]}" -t$'\t' -k1,1 -k2,2n "${_ipv6_tmp}" \
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -s -t$'\t' -k1,1 -k2,2n "${_ipv6_tmp}" \
                 | awk -F '\t' '!seen[$1]++ { print $3 }'
         fi
 
@@ -903,14 +945,14 @@ sort_results()
     # #
 
     if ! grep -q ':' "${_in_tmp}"; then
-        sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}"
+        LC_ALL=C sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}" | uniq
 
     # #
     #   Fast path › pure IPv6
     # #
 
     elif ! grep -q '\.' "${_in_tmp}"; then
-        sort "${sort_cmd_opts[@]}" -u "${_in_tmp}"
+        LC_ALL=C sort "${sort_cmd_opts[@]}" "${_in_tmp}" | uniq
 
     # #
     #   Mixed IPv4/IPv6
@@ -927,7 +969,7 @@ sort_results()
         # #
 
         if [ -s "${_ipv4_tmp}" ]; then
-            sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}"
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}" | uniq
         fi
 
         # #
@@ -935,7 +977,7 @@ sort_results()
         # #
     
         if [ -s "${_ipv6_tmp}" ]; then
-            sort "${sort_cmd_opts[@]}" -u "${_ipv6_tmp}"
+            LC_ALL=C sort "${sort_cmd_opts[@]}" "${_ipv6_tmp}" | uniq
         fi
     fi
 
@@ -1274,15 +1316,19 @@ is_bogon_ipv4( )
         0.*|10.*|127.*|127.0.53.53|169.254.*|192.168.*|255.255.255.255)
             return 0
             ;;
+
         100.6[4-9].*|100.[7-9][0-9].*|100.1[01][0-9].*|100.12[0-7].*)           # 100.64.0.0/10
             return 0
             ;;
+
         172.1[6-9].*|172.2[0-9].*|172.3[0-1].*)                                 # 172.16.0.0/12
             return 0
             ;;
+
         192.0.0.*|192.0.2.*|198.18.*|198.19.*|198.51.100.*|203.0.113.*)
             return 0
             ;;
+
         22[4-9].*|23[0-9].*|24[0-9].*|25[0-5].*)                                # 224.0.0.0/4 + 240.0.0.0/4
             return 0
             ;;
@@ -1306,12 +1352,15 @@ is_bogon_ipv6( )
         ::|::1|::ffff:*|::*)                                                        # ::/128 ::1/128 ::ffff:0:0/96 ::/96
             return 0
             ;;
+
         100:*|100::*)                                                               # 100::/64
             return 0
             ;;
+
         2001:1[0-9a-f]:*|2001:01[0-9a-f]:*|2001:001[0-9a-f]:*|2001:0001[0-9a-f]:*)  # 2001:10::/28
             return 0
             ;;
+
         2001:db8:*|3fff:*|fc*|fd*|fe8*|fe9*|fea*|feb*|fec*|fed*|fee*|fef*|ff*)
             return 0
             ;;
@@ -1378,13 +1427,13 @@ filter_bogon_ips( )
 
             if [[ "${_fnBogonBase}" == *:* ]]; then
                 if is_bogon_ipv6 "${_fnBogonEntry}"; then
-                    label "       ${bluel}${_fnBogonLine}${greym}"
+                    label "        ${bluel}${_fnBogonLine}${greym}"
                     _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
                     continue
                 fi
             elif [[ "${_fnBogonBase}" == *.* ]]; then
                 if is_bogon_ipv4 "${_fnBogonBase}"; then
-                    label "       ${bluel}${_fnBogonLine}${greym}"
+                    label "        ${bluel}${_fnBogonLine}${greym}"
                     _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
                     continue
                 fi
@@ -1771,6 +1820,64 @@ dedup_cidr( )
 }
 
 # #
+#   Check if specified file contains valid IP entries.
+#   
+#   Requires an input file to be passed as argument:
+#       has_valid_ip_entries "${file_ipset_target}"
+# #
+
+has_valid_ip_entries()
+{
+    _fnArgFile=$1
+    _fnValidLine=""
+    _fnValidEntry=""
+
+    if [ ! -f "${_fnArgFile}" ]; then
+        return 1
+    fi
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=true
+    #       curl -s https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3 | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+    # #
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        while IFS= read -r _fnValidLine || [ -n "${_fnValidLine}" ]; do
+            _fnValidEntry=$(extract_ip_entry "${_fnValidLine}")
+            [ -z "${_fnValidEntry}" ] && continue
+
+            if is_valid_ip_entry "${_fnValidEntry}"; then
+                unset _fnArgFile _fnValidLine _fnValidEntry
+                return 0
+            fi
+        done < "${_fnArgFile}"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
+    # #
+
+    else
+
+        # #
+        #   use grep instead of is_valid_ip_entry; avoid large slowdown from per-line read
+        # #
+
+        if grep -Eq "^(${regex_ipv4}|${regex_ipv4_cidr}|${regex_ipv6}|${regex_ipv6_cidr})$" "${_fnArgFile}"; then
+            unset _fnArgFile _fnValidLine _fnValidEntry
+            return 0
+        fi
+    fi
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnArgFile _fnValidLine _fnValidEntry
+
+    return 1
+}
+
+# #
 #   Cleanup Garbage
 #   
 #   Removes old ipv4 and ipv5 folders
@@ -1791,92 +1898,14 @@ gcc( )
 }
 
 # #
-#   Arguments
+#   Blocklist › Main › Load
 #   
-#   We are attempting to add dynamic arguments, meaning they can be in any order. this is because some of the arguments are
-#   optional, and we support providing multiple ASN.
-#   
-#       argFileSaveto       (str)       always the first arg
-#       argServiceWhois     (str)       specifies what whois service to use
-#                                           - if string arg is valid URL (checked by regex)
-#                                           - if string arg STARTS with `whois`
-#       argGrepFilter       (str)       specifies what grep pattern to use for filtering out results
-#                                           - if string arg STARTS with ^
-#                                           - if string arg STARTS with (
-#                                           - if string arg ENDS with $
-#                                           - if string arg ENDS with )
-#       argAsn              (str)       ASN to grab IP addresses from. supports multiple ASN numbers.
-#                                           - if string arg STARTS with `AS`
+#   @usage          list_main_load "${file_ipset_target}" "$i"
+#   @args           _fnArgFile          output filename to add ips to
+#                   _fnListNum          blocklist number (#1 out of #2) - visual only
 # #
 
-# #
-#   Define Dynamic Arguments
-#   
-#   argGrepFilter               Remove comment (# and ;) and blank lines.
-#   
-#                               | Pattern   | Description                                             |
-#                               | --------- | ------------------------------------------------------- |
-#                               | ^#        | lines starting with `#` (comments)                      |
-#                               | ^;        | lines starting with `;` (also comments in some lists)   |
-#                               | ^$        | empty lines                                             |
-# #
-
-ASN_LIST=()
-argServiceWhois=""
-argServiceWhoisSpecified=false
-argGrepFilter="^#|^;|^$"
-
-for arg in "${@:2}"; do
-
-    # Check ASN args
-    case "$arg" in
-        AS*)
-            # Support all formats:
-            #   AS1 AS2 AS3
-            #   AS1,AS2,AS3
-            #   AS1;AS2;AS3
-            #   "AS1 AS2 AS3"
-            _arg_asn_list=$(printf "%s\n" "$arg" | sed -E 's/[,;[:space:]]+/\n/g')
-            while IFS= read -r _arg_asn; do
-                _arg_asn=$(printf "%s" "${_arg_asn}" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-                if printf '%s\n' "${_arg_asn}" | grep -qE '^AS[0-9]+$'; then
-                    ASN_LIST+=("${_arg_asn}")
-                fi
-            done <<< "${_arg_asn_list}"
-            unset _arg_asn_list _arg_asn
-            continue
-            ;;
-    esac
-
-    # Check for prefix `whois` or URL match
-    case "$arg" in
-        whois*)
-            argServiceWhois="$arg"
-            argServiceWhoisSpecified=true
-            continue
-            ;;
-        *)
-            if expr "$arg" : "$regex_url" >/dev/null 2>&1; then
-                argServiceWhois=$(printf "%s" "$arg" | sed -E 's#^[[:alpha:]]+://##; s#/.*$##')
-                argServiceWhoisSpecified=true
-                continue
-            fi
-            ;;
-    esac
-
-    # Check for grep filter patterns
-    case "$arg" in
-        \^* | \(* | *\$ | *\))
-            argGrepFilter="$arg"
-            ;;
-    esac
-done
-
-# #
-#   Func › Download List
-# #
-
-download_list()
+list_main_load()
 {
     _fnArgAsn=$1
     _fnArgFile=$2
@@ -1921,7 +1950,7 @@ download_list()
     #       - No host specified: use default fallback host list
     # #
 
-    if [ "${argServiceWhoisSpecified}" = true ] && [ -n "${argServiceWhois}" ]; then
+    if [ "${argWhoisUseCustom}" = true ] && [ -n "${argServiceWhois}" ]; then
         _whois_hosts+=("${argServiceWhois}")
     else
         for _default_host in ${SERVERS_WHOIS}; do
@@ -2134,23 +2163,27 @@ download_list()
 
     # #
     #   IPSET › Dedup Contained CIDRs
-    #       Remove CIDRs fully contained within a larger CIDR
-    #       Run before count_ip_stats for accurate totals
+    #   
+    #   Combine CIDRs to save on number of lines:
+    #       Remove CIDRs fully contained within a larger CIDR.
+    #       Run before count_ip_stats for accurate totals.
     # #
 
     dedup_cidr "${_fnFileTemp}"
 
     # #
     #   IPSET › Filter BOGON
-    #       - Optional
-    #       - Run before count_ip_stats for accurate totals
+    #   
+    #   Removes any BOGON addresses that may be within the list.
+    #       Optional
+    #       Run before count_ip_stats for accurate totals
     # #
 
     filter_bogon_ips "${_fnFileTemp}"
 
     # #
     #   Calculate list statistics
-    #       - local only (global totals are calculated after final dedupe)
+    #       local only (global totals are calculated after final dedupe)
     # #
 
     info "    📊 Fetching statistics for clean file ${bluel}${PWD}/${_fnFileTemp}${greym}"
@@ -2198,62 +2231,89 @@ download_list()
 }
 
 # #
-#   Check if specified file contains valid IP entries.
+#   Arguments
 #   
-#   Requires an input file to be passed as argument:
-#       has_valid_ip_entries "${file_ipset_target}"
+#   We are attempting to add dynamic arguments, meaning they can be in any order. this is because some of the arguments are
+#   optional, and we support providing multiple ASN.
+#   
+#       argFileSaveto       (str)       always the first arg
+#       argServiceWhois     (str)       specifies what whois service to use
+#                                           - if string arg is valid URL (checked by regex)
+#                                           - if string arg STARTS with `whois`
+#   
+#       argGrepFilter       (str)       specifies what grep pattern to use for filtering out results
+#                                           - if string arg STARTS with ^
+#                                           - if string arg STARTS with (
+#                                           - if string arg ENDS with $
+#                                           - if string arg ENDS with )
+#   
+#                                           Pattern         Description
+#                                           ^#              lines starting with `#` (comments)
+#                                           ^;              lines starting with `;` (also comments in some lists)
+#                                           ^$              empty lines
+#   
+#       argAsn              (str)       ASN to grab IP addresses from. supports multiple ASN numbers.
+#                                           - if string arg STARTS with `AS`
 # #
 
-has_valid_ip_entries()
-{
-    _fnArgFile=$1
-    _fnValidLine=""
-    _fnValidEntry=""
-
-    if [ ! -f "${_fnArgFile}" ]; then
-        return 1
-    fi
+for arg in "${@:2}"; do
 
     # #
-    #   If we specify CFG_INCLUDE_COMMENTS=true
-    #       curl -s https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3 | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+    #   Check ASN args
     # #
 
-    if [ "${argIncludeComments}" = "true" ]; then
-        while IFS= read -r _fnValidLine || [ -n "${_fnValidLine}" ]; do
-            _fnValidEntry=$(extract_ip_entry "${_fnValidLine}")
-            [ -z "${_fnValidEntry}" ] && continue
+    case "$arg" in
+        AS*)
+            # #
+            #   Support all formats:
+            #       AS1 AS2 AS3
+            #       AS1,AS2,AS3
+            #       AS1;AS2;AS3
+            #       "AS1 AS2 AS3"
+            # #
 
-            if is_valid_ip_entry "${_fnValidEntry}"; then
-                unset _fnArgFile _fnValidLine _fnValidEntry
-                return 0
+            _arg_asn_list=$(printf "%s\n" "$arg" | sed -E 's/[,;[:space:]]+/\n/g')
+            while IFS= read -r _arg_asn; do
+                _arg_asn=$(printf "%s" "${_arg_asn}" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+                if printf '%s\n' "${_arg_asn}" | grep -qE '^AS[0-9]+$'; then
+                    argAsnList+=("${_arg_asn}")
+                fi
+            done <<< "${_arg_asn_list}"
+
+            unset _arg_asn_list _arg_asn
+            continue
+            ;;
+    esac
+
+    # #
+    #   Check for prefix `whois` or URL match
+    # #
+
+    case "$arg" in
+        whois*)
+            argServiceWhois="$arg"
+            argWhoisUseCustom=true
+            continue
+            ;;
+        *)
+            if expr "$arg" : "$regex_url" >/dev/null 2>&1; then
+                argServiceWhois=$(printf "%s" "$arg" | sed -E 's#^[[:alpha:]]+://##; s#/.*$##')
+                argWhoisUseCustom=true
+                continue
             fi
-        done < "${_fnArgFile}"
+            ;;
+    esac
 
     # #
-    #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
+    #   Check for grep filter patterns
     # #
 
-    else
-
-        # #
-        #   use grep instead of is_valid_ip_entry; avoid large slowdown from per-line read
-        # #
-
-        if grep -Eq "^(${regex_ipv4}|${regex_ipv4_cidr}|${regex_ipv6}|${regex_ipv6_cidr})$" "${_fnArgFile}"; then
-            unset _fnArgFile _fnValidLine _fnValidEntry
-            return 0
-        fi
-    fi
-
-    # #
-    #   Unset
-    # #
-
-    unset _fnArgFile _fnValidLine _fnValidEntry
-
-    return 1
-}
+    case "$arg" in
+        \^* | \(* | *\$ | *\))
+            argGrepFilter="$arg"
+            ;;
+    esac
+done
 
 # #
 #   No whois service specified, set to default
@@ -2269,18 +2329,10 @@ has_valid_ip_entries()
 
 : "${argGrepFilter:=^#|^;|^$}"
 
-if [ ${#ASN_LIST[@]} -eq 0 ]; then
+if [ ${#argAsnList[@]} -eq 0 ]; then
     error "    ⭕  Invalid ASN list specified for ${yellowd}${argFileSaveto}${greym}; aborting${end}"
     exit 0
 fi
-
-# #
-#   Define › App
-# #
-
-file_ipset_temp="${argFileSaveto}.tmp"                                          # Temp file when building ipset list
-file_ipset_target="${argFileSaveto}"                                            # Perm file when building ipset list
-folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
 
 # #
 #   Create Temp Folder
@@ -2305,35 +2357,44 @@ templ_id="${templ_id//[^[:alnum:]]/_}"                                          
 templ_id="${templ_id}_ipset"                                                    # match your existing format
 templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # UUID associated to each release
 templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
+templ_asns=""                                                                   # List of ASNs to include in template
 
 # #
-#   Define › Template › External Sources
+#   Template › External Sources
 # #
 
 info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
 
 info "    ⭐ Downloading external template sources"
-label "     ${bluel}${app_repo_curl_storage}/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/url-source/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
 
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/url-source/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
+# #
+#   Template › Get
+# #
+
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
 wait
+
+# #
+#   Template › Write Variable from Temp File
+# #
 
 templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
 templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
 templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
-templ_url_service=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+templ_src=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
 
-if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" \
-        "${app_dir_github}/${folder_target_temp}/cat.txt" \
-        "${app_dir_github}/${folder_target_temp}/exp.txt" \
-        "${app_dir_github}/${folder_target_temp}/src.txt"
-then
+# #
+#   Template › Remove Temp File
+# #
+
+if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" "${app_dir_github}/${folder_target_temp}/cat.txt" "${app_dir_github}/${folder_target_temp}/exp.txt" "${app_dir_github}/${folder_target_temp}/src.txt"; then
     ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
 else
     error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
@@ -2341,13 +2402,13 @@ else
 fi
 
 # #
-#   Define › Template › Default Values
+#   Template › Default Values
 # #
 
-case "$templ_desc" in *"404: Not Found"*) templ_desc="#   No description provided";; esac
-case "$templ_cat" in *"404: Not Found"*) templ_cat="Uncategorized";; esac
-case "$templ_exp" in *"404: Not Found"*) templ_exp="6 hours";; esac
-case "$templ_url_service" in *"404: Not Found"*) templ_url_service="None";; esac
+[ -z "$templ_desc" ] || [[ "$templ_desc" == *"404: Not Found"* ]] && templ_desc="#   No description provided"
+[ -z "$templ_cat"  ] || [[ "$templ_cat"  == *"404: Not Found"* ]] && templ_cat="Uncategorized"
+[ -z "$templ_exp"  ] || [[ "$templ_exp"  == *"404: Not Found"* ]] && templ_exp="6 hours"
+[ -z "$templ_src"  ] || [[ "$templ_src"  == *"404: Not Found"* ]] && templ_src="None"
 
 # #
 #   Output › Header
@@ -2360,7 +2421,7 @@ ${greyd}\n${greym}Id: 	    ${greyd}...............${yellowl} ${templ_id}${greyd}
 ${greyd}\n${greym}UUID:	        ${greyd}.............${yellowl} ${templ_uuid}${greyd} \
 ${greyd}\n${greym}Category:	        ${greyd}.........${yellowl} ${templ_cat}${greyd} \
 ${greyd}\n${greym}Script:	       ${greyd}...........${yellowl} ${app_file_this}${greyd} \
-${greyd}\n${greym}Service:	        ${greyd}..........${yellowl} ${templ_url_service}${greyd}"
+${greyd}\n${greym}Source:	         ${greyd}...........${yellowl} ${templ_src}${greyd}"
 
 # #
 #   Start
@@ -2404,7 +2465,7 @@ else
     if [ -d "$(dirname "${file_ipset_target}")" ]; then
         ok "    📁 Created ${greenl}$(dirname "${file_ipset_target}")${greym}"
     else
-        error "    ⭕  Failed to create directory ${redl}$(dirname "${file_ipset_target}")${greym}; aborting${greym}"
+        error "    ⭕  Failed to create directory ${redl}$( dirname "${file_ipset_target}" )${greym}; aborting${greym}"
         exit 1
     fi
 
@@ -2418,23 +2479,14 @@ else
 fi
 
 # #
-#   Count ASN
-#   
-#   To make sure we add the correct amount of commas to the ASN list, and break
-#   up the ASN numbers per line; we need to get the total count available.
-# #
-
-asn_step=0
-templ_asns=""
-
-# #
 #   Template › Inject ASN List
 #   
 #   Print list of ASN in template header.
 #   Shows the first 5, and then the 6th is on a new line.
 # #
 
-for asn in "${ASN_LIST[@]}"; do
+asn_step=0
+for asn in "${argAsnList[@]}"; do
     if [ $((asn_step % 5)) -eq 0 ] && [ $asn_step -ne 0 ]; then
         # Start a new line after every 5 ASNs
         templ_asns+=$'\n#                   '"$asn"
@@ -2456,8 +2508,8 @@ done
 
 asn_list_num=1
 i=1
-for asn in "${ASN_LIST[@]}"; do
-    download_list "$asn" "$file_ipset_target" "$asn_list_num"
+for asn in "${argAsnList[@]}"; do
+    list_main_load "$asn" "$file_ipset_target" "$asn_list_num"
     asn_list_num=$((asn_list_num + 1))
 done
 
@@ -2477,7 +2529,6 @@ if [ -f "${file_ipset_target}" ]; then
         else
             sort_results < "${file_ipset_target}" > "${file_ipset_target}.sort"
         fi
-
         > "${file_ipset_target}"
         cat "${file_ipset_target}.sort" >> "${file_ipset_target}"
         rm "${file_ipset_target}.sort"
@@ -2521,8 +2572,8 @@ ed -s "${file_ipset_target}" <<END_ED
 # #
 #   🧱 Firewall Blocklist - ${file_ipset_target}
 #
-#   @repo           https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}
-#   @service        ${templ_url_service}
+#   @blocklist      https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}
+#   @source         ${templ_src}
 #   @id             ${templ_id}
 #   @uuid           ${templ_uuid}
 #   @updated        ${templ_now}
@@ -2543,10 +2594,10 @@ END_ED
 
 # #
 #   Finished
-#       - Capture end time
-#       - Calculate elapsed time
-#       - Calculate days, hours, etc.
-#       - Output to console
+#       Capture end time
+#       Calculate elapsed time
+#       Calculate days, hours, etc.
+#       Output to console
 # #
 
 time_elapsed $(( $( date +%s ) - time_start ))
