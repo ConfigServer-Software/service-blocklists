@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             privacy_amazon_aws_ipset
 #   @uuid           0dad23a4-276f-3f28-9f0b-3d543e375f70
-#   @updated        Thu Apr 30 06:29:38 UTC 2026
-#   @entries        101,545,600 ips
-#                   4,020 subnets
-#                   5,148 lines
+#   @updated        Thu Apr 30 10:05:32 UTC 2026
+#   @entries        101,545,344 ips
+#                   4,019 subnets
+#                   5,147 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -1953,7 +1953,6 @@
 40.168.229.0/24
 40.168.230.0/24
 40.168.231.0/24
-40.168.255.0/24
 40.172.0.0/16
 40.173.0.0/16
 40.174.0.0/15
