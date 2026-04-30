@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/censys_io.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/censys_io.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/censys_io.ipset
+#   @source         None
 #   @id             privacy_censys_io_ipset
 #   @uuid           b1420874-4ab4-3b72-b5e7-883d31d03cef
-#   @updated        Wed Apr 29 10:05:35 UTC 2026
+#   @updated        Thu Apr 30 02:05:55 UTC 2026
 #   @entries        6,147 ips
 #                   27 subnets
 #                   27 lines

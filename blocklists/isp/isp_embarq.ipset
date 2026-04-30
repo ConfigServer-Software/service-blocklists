@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/isp/isp_embarq.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_embarq.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_embarq.ipset
+#   @source         None
 #   @id             isp_isp_embarq_ipset
 #   @uuid           ecf3205a-ae58-35c7-87e3-025be26101cb
-#   @updated        Wed Apr 29 10:27:27 UTC 2026
-#   @entries        3,815,936 ips
-#                   501 subnets
-#                   501 lines
+#   @updated        Thu Apr 30 02:29:23 UTC 2026
+#   @entries        3,814,144 ips
+#                   491 subnets
+#                   491 lines
 #   @asn            AS2379, AS5778, AS11398, AS14905, AS17402
 #                   AS14921, AS6222, AS22186, AS13787, AS32855
 #                   AS3447, AS4212, AS6367, AS11530, AS14910
@@ -271,8 +271,7 @@
 76.0.0.0/13
 129.55.150.0/24
 130.128.0.0/16
-138.210.0.0/17
-138.210.128.0/17
+138.210.0.0/16
 138.234.0.0/16
 144.75.0.0/16
 150.104.224.0/19
@@ -454,14 +453,7 @@
 207.14.188.0/22
 207.14.216.0/22
 207.14.224.0/20
-207.30.0.0/18
-207.30.64.0/21
-207.30.72.0/23
-207.30.74.0/24
-207.30.76.0/22
-207.30.80.0/20
-207.30.96.0/19
-207.30.128.0/17
+207.30.0.0/16
 207.40.80.0/20
 207.40.112.0/20
 207.40.212.0/23
@@ -501,7 +493,6 @@
 208.34.0.0/21
 208.34.224.0/20
 208.67.140.0/22
-208.68.120.0/21
 208.71.16.0/21
 208.71.152.0/22
 208.74.226.0/24
@@ -510,8 +501,7 @@
 208.187.230.0/24
 208.206.127.0/24
 208.214.191.0/24
-209.26.0.0/17
-209.26.128.0/17
+209.26.0.0/16
 209.40.0.0/18
 209.198.216.0/21
 209.198.250.0/24

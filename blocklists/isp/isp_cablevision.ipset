@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/isp/isp_cablevision.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_cablevision.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_cablevision.ipset
+#   @source         None
 #   @id             isp_isp_cablevision_ipset
 #   @uuid           afdf68d8-d3a6-3f39-8344-07149ac9142d
-#   @updated        Wed Apr 29 10:21:34 UTC 2026
-#   @entries        5,575,944 ips
-#                   113 subnets
-#                   113 lines
+#   @updated        Thu Apr 30 02:23:23 UTC 2026
+#   @entries        5,580,040 ips
+#                   111 subnets
+#                   111 lines
 #   @asn            AS6128, AS13490, AS19720
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -21,8 +21,7 @@
 24.38.192.0/18
 24.44.0.0/14
 24.52.64.0/18
-24.53.128.0/20
-24.53.160.0/19
+24.53.128.0/18
 24.55.131.0/24
 24.55.132.0/24
 24.89.128.0/18
@@ -56,8 +55,7 @@
 68.192.0.0/13
 69.27.224.0/19
 69.74.0.0/16
-69.112.0.0/13
-69.120.0.0/13
+69.112.0.0/12
 69.160.224.0/20
 72.240.0.0/15
 74.88.0.0/15

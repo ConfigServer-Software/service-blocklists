@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/isp/isp_sprint.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_sprint.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_sprint.ipset
+#   @source         None
 #   @id             isp_isp_sprint_ipset
 #   @uuid           9b3e91cb-349c-3b11-b6f1-09fd44b585a4
-#   @updated        Wed Apr 29 10:30:17 UTC 2026
+#   @updated        Thu Apr 30 02:31:40 UTC 2026
 #   @entries        11,044,767 ips
-#                   904 subnets
-#                   904 lines
+#                   902 subnets
+#                   902 lines
 #   @asn            AS1239, AS7421, AS1802, AS150389, AS3643
 #                   AS1790, AS1803, AS1806, AS6177, AS1791
 #                   AS1794, AS1799, AS1793, AS1805, AS4999
@@ -554,10 +554,8 @@
 173.244.48.0/24
 176.57.58.0/23
 178.159.94.0/24
-178.171.48.0/23
-178.171.50.0/23
-178.171.60.0/23
-178.171.62.0/23
+178.171.48.0/22
+178.171.60.0/22
 178.253.237.0/24
 185.38.248.0/22
 185.83.202.0/23

@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/sony_all.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/sony_all.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/sony_all.ipset
+#   @source         None
 #   @id             privacy_sony_all_ipset
 #   @uuid           9cba2c77-319b-3e89-8acc-d8dd2476a08a
-#   @updated        Wed Apr 29 10:19:19 UTC 2026
+#   @updated        Thu Apr 30 02:20:39 UTC 2026
 #   @entries        3,927,322 ips
 #                   181 subnets
 #                   181 lines

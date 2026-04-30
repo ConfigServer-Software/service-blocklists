@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/isp/isp_comcast.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_comcast.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_comcast.ipset
+#   @source         None
 #   @id             isp_isp_comcast_ipset
 #   @uuid           ad227b3a-37d1-3b5f-8818-66c40a447192
-#   @updated        Wed Apr 29 10:23:38 UTC 2026
-#   @entries        69,913,140 ips
-#                   898 subnets
-#                   898 lines
+#   @updated        Thu Apr 30 02:25:28 UTC 2026
+#   @entries        69,972,020 ips
+#                   892 subnets
+#                   892 lines
 #   @asn            AS7922, AS33491, AS33651, AS7015, AS33667
 #                   AS33287, AS33657, AS7016, AS33659, AS13367
 #                   AS33668, AS33652, AS33650, AS7725, AS33660
@@ -120,9 +120,6 @@
 45.39.232.0/24
 45.58.208.0/24
 45.58.210.0/23
-45.58.212.0/22
-45.58.232.0/21
-45.58.240.0/22
 45.58.244.0/24
 45.58.245.0/24
 45.58.250.0/24
@@ -506,10 +503,7 @@
 165.188.0.0/16
 166.88.179.0/24
 166.90.253.0/24
-167.29.0.0/22
-167.29.4.0/24
-167.29.8.0/24
-167.29.12.0/22
+167.29.0.0/16
 167.135.0.0/16
 167.136.33.0/24
 167.160.158.0/24
