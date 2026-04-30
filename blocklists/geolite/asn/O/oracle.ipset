@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed Apr 29 04:52:08 UTC 2026
-#   @entries        5,552,165 ips
-#                   1,938 subnets
-#                   1,938 lines
+#   @updated        Thu Apr 30 04:56:48 UTC 2026
+#   @entries        5,552,164 ips
+#                   1,937 subnets
+#                   1,937 lines
 #   @asn            AS31898, AS54253, AS1219, AS20054, AS6142
 #                   AS46558, AS11049, AS11506, AS1218, AS1215
 #                   AS14544, AS15519, AS11479, AS4184, AS20037
@@ -1943,7 +1943,6 @@
 2a06:9801::/48
 2a06:b7c2::/32
 2a09:a447:ac1e::/48
-2a0a:6044:8ffc::/48
 2a0c:9a40:8eaa::/48
 2a0e:46c4:24a1::/48
 2a0e:97c0:aba::/48
