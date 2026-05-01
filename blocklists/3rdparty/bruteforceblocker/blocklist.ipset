@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             3rdparty_bruteforceblocker_blocklist_ipset
 #   @uuid           fe9d9942-beab-34a1-8e9a-20523944a425
-#   @updated        Fri May  1 09:30:19 UTC 2026
-#   @entries        378 ips
+#   @updated        Fri May  1 13:00:23 UTC 2026
+#   @entries        377 ips
 #                   0 subnets
-#                   378 lines
+#                   377 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -352,7 +352,6 @@
 180.76.143.27
 180.76.175.142
 180.165.29.129
-182.23.36.166
 182.66.193.212
 183.6.91.151
 183.98.76.106
