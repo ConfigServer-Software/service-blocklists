@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             privacy_colocrossing_hostpapa_ipset
 #   @uuid           10aa1c2b-bb21-3432-8c76-ebd4afdb0336
-#   @updated        Fri May  1 13:14:16 UTC 2026
-#   @entries        1,249,820 ips
-#                   463 subnets
-#                   463 lines
+#   @updated        Fri May  1 17:02:41 UTC 2026
+#   @entries        1,250,332 ips
+#                   465 subnets
+#                   465 lines
 #   @asn            AS36352, AS394738
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -193,6 +193,8 @@
 103.91.107.0/24
 103.92.210.0/24
 103.92.211.0/24
+103.252.50.0/24
+103.252.51.0/24
 104.129.0.0/24
 104.129.1.0/24
 104.129.2.0/24
