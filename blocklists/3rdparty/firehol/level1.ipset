@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             3rdparty_firehol_level1_ipset
 #   @uuid           24a6cf25-6e33-36a1-8828-a4a57e0cede2
-#   @updated        Thu Apr 30 20:55:54 UTC 2026
-#   @entries        611,411,777 ips
-#                   4,449 subnets
-#                   4,450 lines
+#   @updated        Fri May  1 02:04:36 UTC 2026
+#   @entries        611,409,217 ips
+#                   4,452 subnets
+#                   4,453 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -1565,8 +1565,11 @@
 161.60.0.0/16
 161.248.170.0/24
 161.248.178.0/23
-162.4.56.0/21
-162.4.64.0/18
+162.4.66.0/23
+162.4.68.0/22
+162.4.72.0/21
+162.4.80.0/20
+162.4.96.0/19
 162.4.128.0/17
 162.71.0.0/19
 162.249.20.0/22
