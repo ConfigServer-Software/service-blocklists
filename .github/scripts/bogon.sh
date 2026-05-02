@@ -1589,15 +1589,18 @@ dedup_cidr( )
     ' v4="$_fnDedupV4" v6="$_fnDedupV6" ot="$_fnDedupOther" "$_fnDedupWorkFile"
 
     # #
-    #   IPv4 containment dedup
+    #   IPv4 containment & adjacency aggregation dedup
     #   
-    #   Is a bit complex, need to add a few more things later.
+    #   Ensure that we keep blocklists as small as possible. Not only for each
+    #   individual set, but for the blocklist as a whole.
     #   
-    #   Does the following:
-    #       (1) awk:    convert each CIDR to  "<10-digit network int> <3-digit prefix> <original line>"
-    #                   aligns to the true network boundary so host-bit noise is ignored.
-    #       (2) sort:   network ascending, then prefix ascending (wider ranges first).
-    #       (3) awk:    walk the list; skip any entry whose end address <= max_end.
+    #   Without this, blocklists are significantly bigger and can cause load
+    #   delays in CSF or other 3rd party apps loading these lists.
+    #   
+    #       Convert each entry to normalized [start,end] range
+    #       Sort by start/end
+    #       Merge overlapping and adjacent ranges
+    #       Emit minimal covering CIDR set
     # #
 
     if [ -s "$_fnDedupV4" ]; then
@@ -1608,22 +1611,72 @@ dedup_cidr( )
             if (pfx < 0 || pfx > 32) { printf "_ %s\n", $0; next }
             size = int(2^(32 - pfx))
             net  = int(ip / size) * size
-            printf "%010.0f %03d %s\n", net, pfx, $0
+            end  = net + size - 1
+            printf "%010.0f %010.0f\n", net, end
+            next
         }
         NF < 5 { printf "_ %s\n", $0 }
         ' "$_fnDedupV4" \
-        | sort -t' ' -k1,1n -k2,2n \
+        | sort -k1,1n -k2,2n \
         | awk '
-        /^_ / { sub(/^_ /, ""); print; next }
-        {
-            net = $1 + 0; pfx = $2 + 0
-            e   = net + int(2^(32 - pfx)) - 1
-            if (NR == 1 || e > max_end) {
-                orig = $3
-                if (pfx == 32) sub(/\/32$/, "", orig)
-                print orig
-                max_end = e
+        function int_to_ip(n, o1, o2, o3, o4) {
+            o1 = int(n / 16777216); n -= o1 * 16777216
+            o2 = int(n / 65536);    n -= o2 * 65536
+            o3 = int(n / 256);      o4 = n - (o3 * 256)
+            return o1 "." o2 "." o3 "." o4
+        }
+        function max_aligned_block(start, block) {
+            if (start == 0) return 4294967296
+            block = 1
+            while ((block * 2) <= 4294967296 && (start % (block * 2)) == 0) {
+                block *= 2
             }
+            return block
+        }
+        function emit_range(start, end, remaining, block, prefix, tmp, cidr) {
+            while (start <= end) {
+                remaining = (end - start) + 1
+                block = max_aligned_block(start)
+                while (block > remaining) block /= 2
+
+                prefix = 32
+                tmp = block
+                while (tmp > 1) { tmp /= 2; prefix-- }
+
+                cidr = int_to_ip(start)
+                if (prefix == 32) print cidr
+                else print cidr "/" prefix
+
+                start += block
+            }
+        }
+        /^_ / {
+            sub(/^_ /, "")
+            print
+            next
+        }
+        {
+            s = $1 + 0
+            e = $2 + 0
+
+            if (!have) {
+                cur_s = s
+                cur_e = e
+                have = 1
+                next
+            }
+
+            if (s <= (cur_e + 1)) {
+                if (e > cur_e) cur_e = e
+                next
+            }
+
+            emit_range(cur_s, cur_e)
+            cur_s = s
+            cur_e = e
+        }
+        END {
+            if (have) emit_range(cur_s, cur_e)
         }
         ' >> "$_fnDedupOut"
     fi
