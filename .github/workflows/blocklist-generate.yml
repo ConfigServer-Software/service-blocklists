@@ -616,7 +616,7 @@ jobs:
                   # #
                   #   3rd Party › DShield
                   #   
-                  #   @ref    https://www.dshield.org/feeds_doc.html
+                  #   @ref      https://www.dshield.org/feeds_doc.html
                   # #
 
             # #
@@ -657,7 +657,7 @@ jobs:
                   # #
                   #   3rd Party › Bitwire-IT
                   #   
-                  #   @ref    https://github.com/bitwire-it/ipblocklist
+                  #   @ref      https://github.com/bitwire-it/ipblocklist
                   # #
 
                   curl -sSL "${{ vars.BL_3PARTY_BITWIRE_INBOUND }}" \
@@ -713,7 +713,7 @@ jobs:
                   # #
                   #   3rd Party › BruteForceBlocker (Daniel Gerzo)
                   #   
-                  #   @ref    https://danger.rulez.sk/index.php/bruteforceblocker/faq/
+                  #   @ref      https://danger.rulez.sk/index.php/bruteforceblocker/faq/
                   # #
 
                   curl -sSL "${{ vars.BL_3PARTY_BRUTEFORCEBLOCKER_LIST }}" \
@@ -722,7 +722,7 @@ jobs:
                   # #
                   #   3rd Party › DShield
                   #   
-                  #   @ref    https://www.dshield.org/feeds_doc.html
+                  #   @ref      https://www.dshield.org/feeds_doc.html
                   # #
 
                   curl -sSL https://www.dshield.org/block.txt \
@@ -1200,7 +1200,7 @@ jobs:
                   #   - Germany Cloud
                   #   - China Cloud
                   #   
-                  #   @ref    https://azservicetags.azurewebsites.net/
+                  #   @ref      https://azservicetags.azurewebsites.net/
                   # #
 
                   MS_AZURE_URL_PUBLIC=$( curl -sSL "${{ vars.BL_MICROSOFT_AZURE_PUBLIC_URL }}" | grep -o 'https://download.microsoft.com/download[^"]*ServiceTags_Public_[0-9]\+\.json' | head -n1 )
@@ -1262,6 +1262,8 @@ jobs:
 
                   # #
                   #   Privacy › Perplexity › All
+                  #   
+                  #   @ref      https://docs.perplexity.ai/docs/resources/perplexity-crawlers
                   # #
 
                   curl -sSL https://www.perplexity.ai/perplexitybot.json https://www.perplexity.ai/perplexity-user.json \
