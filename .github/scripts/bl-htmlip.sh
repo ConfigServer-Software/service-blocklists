@@ -24,7 +24,7 @@
 #                       eval "./$run_yandex"
 #
 #   @command            bl-html.sh
-#                           <ARG_SAVEFILE>
+#                           <argFileSaveto>
 #                           <URL_1>
 #                           <URL_2>
 #                           {...}
@@ -39,301 +39,2340 @@
 #
 # #
 
-APP_THIS_FILE=$(basename "$0")                          # current script file
-APP_THIS_DIR="${PWD}"                                   # current script directory
-APP_GITHUB_DIR="${APP_THIS_DIR}/.github"                # .github folder
+# #
+#   Define › Set PATH
+# #
+
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+export LC_NUMERIC=en_US.UTF-8
 
 # #
-#   vars > colors
-#
+#   Define › Files
+# #
+
+app_file_this=$(basename "$0")                                                  # bl-format.sh   (with ext)
+app_file_bin="${app_file_this%.*}"                                              # bl-format      (without ext)
+
+# #
+#   Define › Folders
+# #
+
+app_dir="$(cd "$(dirname "$0")" >/dev/null 2>&1 && pwd)"                        # path where script was last found in
+app_dir_this_dir="${PWD}"                                                       # current script directory
+app_dir_github="${app_dir_this_dir}/.github"                                    # .github folder
+
+# #
+#   Define › Arguments
+#   
+#   This bash script has the following arguments:
+#   
+#   @param  argFileSaveto       str         File to save IP addresses into
+#           argUrl              str         URL to grab text from
+# #
+
+argFileSaveto=$1
+argUrl=$2
+argPattern=${3:-'^#|^;|^$'}
+
+# #
+#   Define › App
+# #
+
+file_ipset_temp="${argFileSaveto}.tmp"                                          # Temp file when building ipset list
+file_ipset_target="${argFileSaveto}"                                            # Perm file when building ipset list
+folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
+
+# #
+#   Define › Colors
+#   
 #   Use the color table at:
 #       - https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 # #
 
-RESET="\e[0m"
-WHITE="\e[97m"
-BOLD="\e[1m"
-DIM="\e[2m"
-UNDERLINE="\e[4m"
-BLINK="\e[5m"
-INVERTED="\e[7m"
-HIDDEN="\e[8m"
-BLACK="\e[38;5;0m"
-FUCHSIA1="\e[38;5;125m"
-FUCHSIA2="\e[38;5;198m"
-RED1="\e[38;5;160m"
-RED2="\e[38;5;196m"
-ORANGE1="\e[38;5;202m"
-ORANGE2="\e[38;5;208m"
-MAGENTA="\e[38;5;5m"
-BLUE1="\e[38;5;033m"
-BLUE2="\e[38;5;39m"
-CYAN="\e[38;5;6m"
-GREEN1="\e[38;5;2m"
-GREEN2="\e[38;5;76m"
-YELLOW1="\e[38;5;184m"
-YELLOW2="\e[38;5;190m"
-YELLOW3="\e[38;5;193m"
-GREY1="\e[38;5;240m"
-GREY2="\e[38;5;244m"
-GREY3="\e[38;5;250m"
+esc=$(printf '\033')
+end="${esc}[0m"
+bgEnd="${esc}[49m"
+fgEnd="${esc}[39m"
+bold="${esc}[1m"
+dim="${esc}[2m"
+underline="${esc}[4m"
+blink="${esc}[5m"
+white="${esc}[97m"
+black="${esc}[0;30m"
+redl="${esc}[0;91m"
+redd="${esc}[38;5;196m"
+magental="${esc}[38;5;197m"
+magentad="${esc}[38;5;161m"
+fuchsial="${esc}[38;5;206m"
+fuchsiad="${esc}[38;5;199m"
+bluel="${esc}[38;5;33m"
+blued="${esc}[38;5;27m"
+greenl="${esc}[38;5;47m"
+greend="${esc}[38;5;35m"
+orangel="${esc}[38;5;208m"
+oranged="${esc}[38;5;202m"
+yellowl="${esc}[38;5;226m"
+yellowd="${esc}[38;5;214m"
+greyl="${esc}[38;5;250m"
+greym="${esc}[38;5;244m"
+greyd="${esc}[38;5;240m"
+navy="${esc}[38;5;62m"
+olive="${esc}[38;5;144m"
+peach="${esc}[38;5;204m"
+cyan="${esc}[38;5;6m"
+bgVerbose="${esc}[1;38;5;15;48;5;125m"
+bgDebug="${esc}[1;38;5;15;48;5;237m"
+bgInfo="${esc}[1;38;5;15;48;5;27m"
+bgOk="${esc}[1;38;5;15;48;5;64m"
+bgWarn="${esc}[1;38;5;16;48;5;214m"
+bgDanger="${esc}[1;38;5;15;48;5;202m"
+bgError="${esc}[1;38;5;15;48;5;160m"
 
 # #
-#   print an error and exit with failure
-#   $1: error message
+#   Define › App
 # #
 
-function error()
+app_name="Blocklist › Html 2 IP"                                                # name of app
+app_desc="Filters IP addresses from HTML code"                                  # desc
+app_ver="1.2.0.0"                                                               # current script version
+app_repo="configserver-software/service-blocklists"                             # repository
+app_repo_branch="main"                                                          # repository branch
+app_repo_curl_storage="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github"
+app_agent="Mozilla/5.0 (Windows NT 10.0; WOW64) "\
+"AppleWebKit/537.36 (KHTML, like Gecko) "\
+"Chrome/51.0.2704.103 Safari/537.36 "\
+"ConfigServer Security (hello@configserver.dev)"                                # user agent used with curl
+
+# #
+#   Define › Args
+# #
+
+argDryrun="false"                                                               # dryrun mode
+argDevMode="false"                                                              # dev mode
+argVerbose="false"                                                              # verbose mode
+argIncludeBogon="false"                                                         # filter out BOGON IP addresses from list
+argTrustedInput="false"                                                         # trusted input mode (skip validation loop)
+argSkipBogonFilter="false"                                                      # skip bogon filter loop
+argSkipCidrDedup="false"                                                        # skip overlapping CIDR dedupe loop
+argIncludeComments="false"                                                      # preserve inline comments in output
+argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
+argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
+did_load_fallback="false"                                                       # track whether fallback lists were merged
+sort_cmd_opts=()                                                                # optional sort command tuning
+
+# #
+#   Optional Parameters
+#   
+#   The following list outlines the optional parameters that can be passed
+#   when generating a blocklist using this script.
+#   
+#       CFG_TRUSTED_INPUT=<true|false>                                          Skip per-line IP/CIDR validation loop. Only enable if we trust the source.
+#       CFG_SKIP_BOGON_FILTER=<true|false>                                      Skip bogon filtering loop.
+#       CFG_SKIP_CIDR_DEDUPE=<true|false>                                       Skip overlapping CIDR dedupe loop.
+#       CFG_INCLUDE_COMMENTS=<true|false>                                       Preserve inline # and ; comments after each IP/CIDR entry.
+#                                                                                   true                            Automatically enables CFG_SKIP_CIDR_DEDUPE
+#       CFG_SORT_PARALLEL=<N>                                                   Pass --parallel=<N> to sort command (if supported).
+#                                                                                   sort --parallel                 change the number of sorts run concurrently to N
+#       CFG_SORT_BUFFER_SIZE=<size>                                             Pass -S <size> to sort command (example: 50%, 1G).
+#                                                                                   sort -S, --buffer-size=SIZE     use SIZE for main memory buffer
+#   Usage:
+#       curl -sSL -A "${{ env.USERAGENT }}" ${{ vars.BL_APPLE_INC_PROXY_URL }} \
+#           | awk -F',' 'NR>1{print $1}' \
+#           | CFG_TRUSTED_INPUT=true CFG_SKIP_BOGON_FILTER=true .github/scripts/bl-format.sh blocklists/privacy/privacy_apple_icloud.ipset
+# #
+
+case "${CFG_TRUSTED_INPUT:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argTrustedInput="true"
+        ;;
+esac
+
+case "${CFG_SKIP_BOGON_FILTER:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argSkipBogonFilter="true"
+        ;;
+esac
+
+case "${CFG_SKIP_CIDR_DEDUPE:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argSkipCidrDedup="true"
+        ;;
+esac
+
+case "${CFG_INCLUDE_COMMENTS:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argIncludeComments="true"
+        ;;
+esac
+
+# #
+#   If preserving comments from the source; turn off dedupe. Otherwise some
+#   comments will be missing since we're merging CIDRs together.
+# #
+
+if [ "${argIncludeComments}" = "true" ]; then
+    argSkipCidrDedup="true"
+fi
+
+# #
+#   Define › Time
+# #
+
+time_start=$( date +%s )                                                        # record start time of script
+SECONDS=0                                                                       # set seconds count for beginning of script
+
+# #
+#   Define › Regex (Anchored)
+#   
+#   These patterns are STRICT matchers, which use ^ and $ anchors; meaning the 
+#   ENTIRE string must match exactly.
+#   
+#   Example:
+#       "1.2.3.4"       MATCH
+#       "foo 1.2.3.4"   NO MATCH
+# #
+
+regex_url='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]\.[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]$'
+regex_ipv4='^([0-9]{1,3}\.){3}[0-9]{1,3}$'
+regex_ipv4_cidr='^([0-9]{1,3}\.){3}[0-9]{1,3}/([0-9]{1,2})$'
+#regex_ipv6='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*$'
+regex_ipv6='^(([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}|(([0-9A-Fa-f]{1,4}:){1,7}:)|(([0-9A-Fa-f]{1,4}:){1,6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,5}(:[0-9A-Fa-f]{1,4}){1,2})|(([0-9A-Fa-f]{1,4}:){1,4}(:[0-9A-Fa-f]{1,4}){1,3})|(([0-9A-Fa-f]{1,3}:){1,3}(:[0-9A-Fa-f]{1,4}){1,4})|(([0-9A-Fa-f]{1,4}:){1,2}(:[0-9A-Fa-f]{1,4}){1,5})|([0-9A-Fa-f]{1,4}:)((:[0-9A-Fa-f]{1,4}){1,6})|(:)((:[0-9A-Fa-f]{1,4}){1,7}|:))$'
+regex_ipv6_cidr='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*/([0-9]{1,3})$'
+regex_ipv4_range='([0-9]{1,3}\.){3}[0-9]{1,3}[[:space:]]*-[[:space:]]*([0-9]{1,3}\.){3}[0-9]{1,3}'
+
+# #
+#   Define › Regex (Unanchored)
+#   
+#   These patterns are derived from the anchored validators above; which remove 
+#   ^ and $ so that the regex can match values inside text.
+#   
+#   Mainly these are used for stripping html and matching IP addresses which are
+#   extracted.
+# #
+
+regex_ipv4_extract="${regex_ipv4#^}"
+regex_ipv4_extract="${regex_ipv4_extract%\$}"
+regex_ipv4_cidr_extract="${regex_ipv4_cidr#^}"
+regex_ipv4_cidr_extract="${regex_ipv4_cidr_extract%\$}"
+regex_ipv6_extract="${regex_ipv6#^}"
+regex_ipv6_extract="${regex_ipv6_extract%\$}"
+regex_ipv6_cidr_extract="${regex_ipv6_cidr#^}"
+regex_ipv6_cidr_extract="${regex_ipv6_cidr_extract%\$}"
+regex_ip_extract="${regex_ipv4_extract}|${regex_ipv4_cidr_extract}|${regex_ipv6_extract}|${regex_ipv6_cidr_extract}"
+
+# #
+#   Define › Defaults
+# #
+
+total_lines=0                                                                   # number of lines in doc
+total_subnets=0                                                                 # number of IPs in all subnets combined
+total_ips=0                                                                     # number of single IPs (counts each line)
+
+# #
+#   Define › Logging functions
+#   
+#   verbose "This is an verbose message"
+#   debug "This is an debug message"
+#   info "This is an info message"
+#   ok "This is an ok message"
+#   warn "This is a warn message"
+#   danger "This is a danger message"
+#   error "This is an error message"
+# #
+
+info( )
 {
-    echo -e "  ⭕ ${GREY2}${APP_THIS_FILE}${RESET}: \n     ${BOLD}${RED}Error${NORMAL}: ${RESET}$1"
-    echo -e
+    printf '\033[0m%-41s %-65s\n' "   ${bgInfo} INFO ${end}" "${greym} $1 ${end}"
+}
+
+ok( )
+{
+    printf '\033[0m%-41s %-65s\n' "   ${bgOk} PASS ${end}" "${greym} $1 ${end}"
+}
+
+warn( )
+{
+    printf '\033[0m%-42s %-65s\n' "   ${bgWarn} WARN ${end}" "${greym} $1 ${end}"
+}
+
+danger( )
+{
+    printf '\033[0m%-42s %-65s\n' "   ${bgDanger} DNGR ${end}" "${greym} $1 ${end}"
+}
+
+error( )
+{
+    printf '\033[0m%-42s %-65s\n' "   ${bgError} FAIL ${end}" "${greym} $1 ${end}"
+}
+
+debug( )
+{
+    if [ "$argDevMode" = "true" ] || [ "$argDryrun" = "true" ]; then
+        printf '\033[0m%-42s %-65s\n' "   ${bgDebug} DBUG ${end}" "${greym} $1 ${end}"
+    fi
+}
+
+verbose( )
+{
+    case "${argVerbose:-0}" in
+        1|true|TRUE|yes|YES)
+            printf '\033[0m%-42s %-65s\n' "   ${bgVerbose} VRBO ${end}" "${greym} $1 ${end}"
+            ;;
+    esac
+}
+
+label( )
+{
+    printf '\033[0m%-31s %-65s\n' "   ${greyd}        ${end}" "${greyd} $1 ${end}"
+}
+
+print( )
+{
+    echo "${greym}$1${end}"
+}
+
+# #
+#   Define › Elapsed Time
+#       Capture end time
+#       Calculate elapsed time
+#       Calculate days, hours, etc.
+#       Output to console
+# #
+
+time_elapsed( )
+{
+    local T=$1
+    D=$(( T / 86400 ))
+    H=$(( (T % 86400) / 3600 ))
+    M=$(( (T % 3600) / 60 ))
+    S=$(( T % 60 ))
+}
+
+# #
+#   Verify › Arguments
+# #
+
+if [ -z "${argFileSaveto}" ]; then
+    error "    ⭕  No target file specified ${yellowd}${app_file_this}${greym}; aborting${end}"
     exit 0
+fi
+
+if [ -z "${argUrl}" ]; then
+    error "    ⭕  No ${yellowd}URL${greym} specified; aborting${end}"
+    exit 0
+fi
+
+# #
+#   Print › Demo Notifications
+#   
+#   Outputs a list of example notifications
+#   
+#   @usage          demoNoti
+# #
+
+demoNoti()
+{
+    verbose "This is an verbose message"
+    debug "This is an debug message"
+    info "This is an info message"
+    ok "This is an ok message"
+    warn "This is a warn message"
+    danger "This is a danger message"
+    error "This is an error message"
+}
+
+# #
+#   truncate text; add ...
+#   
+#   @usage
+#       truncate "This is a long string" 10 "..."
+# #
+
+truncate()
+{
+    _text=$1
+    _maxlen=$2
+    _suffix=${3:-}
+
+    _len=$(printf %s "${_text}" | wc -c | tr -d '[:space:]')
+
+    if [ "${_len}" -gt "${_maxlen}" ]; then
+        printf '%s%s\n' "$(printf %s "${_text}" | cut -c1-"${_maxlen}")" "${_suffix}"
+    else
+        printf '%s\n' "${_text}"
+    fi
+
+    # #
+    #   Unset
+    # #
+
+    unset   _text _maxlen _suffix _len
+}
+
+# #
+#   Print › Line
+#   
+#   Prints single line horizontal line, no text
+#   
+#   @usage          prin0
+# #
+
+prin0()
+{
+    _indent="  "
+    _box_width=110
+    _line_width=$(( _box_width + 2 ))
+
+    _line=""
+    _i=1
+    while [ "$_i" -le "${_line_width}" ]; do
+        _line="${_line}─"
+        _i=$(( _i + 1 ))
+    done
+
+    printf '\n'
+    printf "%b%s%s%b\n" "${greyd}" "${_indent}" "${_line}" "${end}"
+    printf '\n'
+
+    # #
+    #   Unset
+    # #
+
+    unset   _indent _box_width _line_width _line _i
+}
+
+# #
+#   Print › Box › Single
+#   
+#   Prints single line with a box surrounding it.
+#   
+#   @usage          prinb "${APP_NAME_SHORT:-CSF} › Customize csf.config"
+# #
+
+prinb()
+{
+    _title="$*"
+    _indent="   "                                                               # Left padding
+    _padding=6                                                                  # Extra horizontal space around text
+    _title_length=${#_title}
+    _inner_width=$(( _title_length + _padding ))
+    _box_width=110
+
+    # #
+    #   Minimum width for aesthetics
+    # #
+
+    if [ "$_inner_width" -lt "$_box_width" ]; then
+        _inner_width=$_box_width
+    fi
+
+    # #
+    #   Horizontal border
+    # #
+
+    _line=""
+    _i=1
+    while [ "$_i" -le "$_inner_width" ]; do
+        _line="${_line}─"
+        _i=$(( _i + 1 ))
+    done
+
+    # #
+    #   Draw box
+    # #
+
+    printf '\n'
+    printf '\n'
+    printf "%b%s┌%s┐\n" "${greym}" "$_indent" "$_line"
+    printf "%b%s│  %-${_inner_width}s \n" "${greym}" "$_indent" "$_title"
+    printf "%b%s└%s┘%b\n" "${greym}" "$_indent" "$_line" "${end}"
+    printf '\n'
+
+    # #
+    #   Unset
+    # #
+
+    unset   _title _indent _padding \
+            _title_length _inner_width _box_width \
+            _line _i
+}
+
+# #
+#   Print › Box › Paragraph
+#   
+#   Places an ASCII box around text. Supports multi-lines with \n, and also emojis.
+#   Func determines the character count if color codes are used and ensures that
+#       the box borders are aligned properly.
+#   
+#   If using emojis; adjust the spacing so that the far-right line will align
+#       with the rest. Add the number of spaces to increase the value, which is
+#       represented with a number enclosed in square brackets.
+#           [1]     add 1 space to the right.
+#           [2]     add 2 spaces to the right.
+#           [-1]    remove 1 space to the right (needed for some emojis depending on if the emoji is 1 or 2 bytes)
+#   
+#   You can also hide the last verticle scrollbar by appending the bool "false" as the latest argument.
+#       prinp "🎌[41] Finished!" false
+#   
+#   @usage          prinp "Certificate Generation Successful" "Your new certificate and keys have been generated successfully.\n\nYou can find them in the ${greenl}${app_dir_output}${greyd} folder."
+#                   prinp "🎗️[1]  ${file_domain_base}" "The following description will show on multiple lines with a ASCII box around it."
+#                   prinp "📄[-1] File Overview" "The following list outlines the files that you have generated using this utility, and what certs/keys may be missing."
+#                   prinp "➡️[15]  ${bluel}Paths${end}"
+#   
+#   @arg    title   Text to show in box.
+#           false   (optional) hide right-side │ on title line
+#                   prinp "Title" false
+#                   prinp "Title" false "Body text"
+# #
+
+prinp()
+{
+    _title="$1"
+    _show_right_border=true
+
+    if [ "$2" = "false" ]; then
+        _show_right_border=false
+        shift 2
+    else
+        shift
+    fi
+
+    _text="$*"
+    _indent="  "
+    _box_width=110
+    _pad=1
+    _content_width=$(( _box_width ))
+    _inner_width=$(( _box_width - _pad*2 ))
+    _hline=$(printf '─%.0s' $(seq 1 "$_content_width"))
+    _emoji_adjust=0
+
+    print
+    printf "${greyd}%s┌%s┐\n" "$_indent" "$_hline"
+
+    # #
+    #   Title
+    #   
+    #   Extract optional [N] adjustment from title (signed integer), portably
+    # #
+
+    _display_title="$_title"
+
+    # #
+    #   Get content inside first [...] (if present)
+    # #
+
+    if printf '%s\n' "$_title" | grep -q '\[[[:space:]]*[-0-9][-0-9[:space:]]*\]'; then
+
+        # #
+        #   Extract numeric inside brackets (allow optional leading -)
+        #       - use sed to capture first bracketed token, then strip non-digit except leading -
+        # #
+
+        _bracket=$(printf '%s' "$_title" | sed -n 's/.*\[\([-0-9][-0-9]*\)\].*/\1/p')
+
+        # #
+        #   Validate numeric and assign, otherwise fallback to 0
+        # #
+    
+        if printf '%s\n' "$_bracket" | grep -qE '^-?[0-9]+$'; then
+            _emoji_adjust=$_bracket
+        else
+            _emoji_adjust=0
+        fi
+
+        # #
+        #   Remove the first [...] token from the display_title
+        # #
+    
+        _display_title=$(printf '%s' "$_title" | sed 's/\[[^]]*\]//')
+    fi
+
+    # #
+    #   Ensure emoji_adjust is a decimal integer so math works
+    # #
+
+    case "$_emoji_adjust" in
+        ''|*[!0-9-]*)
+            _emoji_adjust=0
+            ;;
+    esac
+
+    _title_width=$(( _content_width - _pad ))
+
+    # #
+    #   Account for emoji adjustment in visible length calculation
+    #   Inner line containing content and trailing |
+    # #
+  
+    _title_vis_len=$(( ${#_display_title} - _emoji_adjust ))
+
+    if [ "$_show_right_border" = "true" ]; then
+        printf "${greyd}%s│%*s${bluel}%s${greyd}%*s│\n" \
+            "$_indent" "$_pad" "" "$_display_title" "$(( _title_width - _title_vis_len ))" ""
+    else
+        printf "${greyd}%s│%*s${bluel}%s\n" \
+            "$_indent" "$_pad" "" "$_display_title"
+    fi
+
+    # #
+    #   Only render body text if provided
+    # #
+
+    if [ -n "$_text" ]; then
+        printf "${greyd}%s│%-${_content_width}s│\n" "$_indent" ""
+
+        # #
+        #   Convert literal \n to real newlines
+        # #
+
+        _text=$(printf "%b" "$_text")
+
+        # #
+        #   Handle each line with ANSI-aware wrapping and true padding
+        # #
+
+        printf "%s" "$_text" | while IFS= read -r line || [ -n "$line" ]; do
+
+        # #
+        #   Blank line
+        # #
+    
+        if [ -z "$line" ]; then
+            printf "${greyd}%s│%-*s│\n" "$_indent" "$_content_width" ""
+            continue
+        fi
+
+        # #
+        #   Optional [N] spacing adjustment in body line (same thing done for title)
+        # #    
+
+        _line_emoji_adjust=0
+        if printf '%s\n' "$line" | grep -q '\[[[:space:]]*[-0-9][-0-9[:space:]]*\]'; then
+            _line_bracket=$(printf '%s' "$line" | sed -n 's/.*\[\([-0-9][-0-9]*\)\].*/\1/p')
+
+            if printf '%s\n' "$_line_bracket" | grep -qE '^-?[0-9]+$'; then
+                _line_emoji_adjust=$_line_bracket
+            else
+                _line_emoji_adjust=0
+            fi
+
+            line=$(printf '%s' "$line" | sed 's/\[[^]]*\]//')
+        fi
+
+        case "$_line_emoji_adjust" in
+            ''|*[!0-9-]*)
+                _line_emoji_adjust=0
+                ;;
+        esac
+
+        _out=""
+        for word in $line; do
+
+            # #
+            #   Strip ANSI for visible width
+            # #
+        
+            _vis_out=$(printf "%s" "$_out" | sed 's/\x1B\[[0-9;]*[A-Za-z]//g')
+            _vis_word=$(printf "%s" "$word" | sed 's/\x1B\[[0-9;]*[A-Za-z]//g')
+            _vis_len=$(( ${#_vis_out} + ( ${#_vis_out} > 0 ? 1 : 0 ) + ${#_vis_word} - _line_emoji_adjust ))
+
+            if [ -z "$_out" ]; then
+                _out="$word"
+            elif [ $_vis_len -le $_inner_width ]; then
+                _out="$_out $word"
+            else
+
+                # #
+                #   Print and pad manually based on visible length
+                # #
+
+                _vis_len_full=$(printf "%s" "$_out" | sed 's/\x1B\[[0-9;]*[A-Za-z]//g' | wc -c | tr -d ' ')
+                _vis_len_full=$(( _vis_len_full - _line_emoji_adjust ))
+                [ $_vis_len_full -lt 0 ] && _vis_len_full=0
+                _pad_spaces=$(( _inner_width - _vis_len_full ))
+                [ $_pad_spaces -lt 0 ] && _pad_spaces=0
+                printf "${greyd}%s│%*s%s%*s│\n" "$_indent" "$_pad" "" "$_out" "$(( _pad + _pad_spaces ))" ""
+                _out="$word"
+            fi
+        done
+
+        # #
+        #   Final flush line
+        # #
+    
+        if [ -n "$_out" ]; then
+            _vis_len_full=$(printf "%s" "$_out" | sed 's/\x1B\[[0-9;]*[A-Za-z]//g' | wc -c | tr -d ' ')
+            _vis_len_full=$(( _vis_len_full - _line_emoji_adjust ))
+            [ $_vis_len_full -lt 0 ] && _vis_len_full=0
+            _pad_spaces=$(( _inner_width - _vis_len_full ))
+            [ $_pad_spaces -lt 0 ] && _pad_spaces=0
+            printf "${greyd}%s│%*s%s%*s│\n" "$_indent" "$_pad" "" "$_out" "$(( _pad + _pad_spaces ))" ""
+        fi
+
+        done
+    fi
+
+    printf "${greyd}%s└%s┘${end}\n" "$_indent" "$_hline"
+    print
+
+    # #
+    #   Unset
+    # #
+
+    unset   _title _title_width _text _indent _pad _padding _content_width \
+            _title_length _inner_width _box_width _emoji_adjust \
+            _hline _line _out _i _display_title _vis_out _vis_word _vis_len _vis_len_full \
+            _line_bracket _line_emoji_adjust _pad_spaces _bracket \
+            _show_right_border
+}
+
+# #
+#   Define › Logging › Verbose
+# #
+
+log( )
+{
+    case "${argVerbose:-0}" in
+        1|true|TRUE|yes|YES)
+            verbose "$@"
+            ;;
+    esac
+}
+
+# #
+#   Define › Sudo
+# #
+
+check_sudo( )
+{
+    if [ "$(id -u)" != "0" ]; then
+        error "    ❌ Must run script with ${redl}sudo${end}"
+        exit 1
+    fi
+}
+
+# #
+#   Define › Run Command
+#   
+#   Added when dryrun mode was added to the install.sh.
+#   Allows for a critical command to be skipped if in --dryrun mode.
+#       Throws a debug message instead of executing.
+#   
+#   argDryrun comes from global export in csf/install.sh
+#   
+#   @usage          run /sbin/chkconfig csf off
+#                   run echo "ConfigServer"
+#                   run chmod -v 700 "./${CSF_AUTO_GENERIC}"
+# #
+
+run()
+{
+    if [ "${argDryrun}" = "true" ]; then
+        debug "    Drymode (skip): $*"
+    else
+        debug "    Run: $*"
+        "$@"
+    fi
+}
+
+# #
+#   Configure sort options
+#   
+#   Builds the options array for the `sort` command based on user settings:
+#       If `argSortParallel` is valid number and the system supports it, enable parallel sorting with that value.
+#       If `argSortBufferSize` is set, apply it as the sort buffer size (-S).
+#       Log what gets enabled or warns if values are invalid or unsupported.
+# #
+
+configure_sort_options( )
+{
+    sort_cmd_opts=()
+
+    if [ -n "${argSortParallel}" ]; then
+        if [[ "${argSortParallel}" =~ ^[1-9][0-9]*$ ]]; then
+            if sort --help 2>/dev/null | grep -q -- '--parallel'; then
+                sort_cmd_opts+=( "--parallel=${argSortParallel}" )
+                info "    ⚙️  Sort parallelism enabled (${yellowl}${argSortParallel}${greym})"
+            else
+                warn "    ⚠️  sort --parallel unsupported; running with default sort options"
+            fi
+        else
+            warn "    ⚠️  Invalid CFG_SORT_PARALLEL value ${yellowl}${argSortParallel}${greym}; ignoring"
+        fi
+    fi
+
+    if [ -n "${argSortBufferSize}" ]; then
+        sort_cmd_opts+=( "-S" "${argSortBufferSize}" )
+        info "    ⚙️  Sort buffer size set to ${yellowl}${argSortBufferSize}${greym}"
+    fi
+}
+
+# #
+#   Extract canonical IP/CIDR entry from a line
+#       Strip inline # / ; comments
+#       Normalize whitespace
+#       If IPv4 range supplied (A - B), return A
+# #
+
+extract_ip_entry( )
+{
+    _fnEntry="$1"
+
+    _fnEntry="${_fnEntry%%#*}"
+    _fnEntry="${_fnEntry%%;*}"
+
+    # #
+    #   Trim leading and trailing whitespace
+    # #
+
+    _fnEntry="${_fnEntry#"${_fnEntry%%[![:space:]]*}"}"
+    _fnEntry="${_fnEntry%"${_fnEntry##*[![:space:]]}"}"
+
+    # #
+    #   If IPv4 range is supplied (A - B), keep A
+    # #
+
+    if [[ "${_fnEntry}" =~ ^(([0-9]{1,3}\.){3}[0-9]{1,3})[[:space:]]*-[[:space:]]*([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+        _fnEntry="${BASH_REMATCH[1]}"
+    fi
+
+    printf '%s\n' "${_fnEntry}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnEntry
 }
 
 # #
 #   Sort Results
-#
-#   @usage          line=$(parse_spf_record "${ip}" | sort_results)
+#   
+#   @usage          sort_results < "${file_ipset_target}" > "${file_ipset_target}.sort"
+#                   grep -vE '^[[:space:]]*(#|;|$)' "${file_ipset_target}" | sort_results > "${file_ipset_target}.sort"
 # #
 
 sort_results()
 {
-	declare -a ipv4 ipv6
+    # Temp files for input and split output
+    _in_tmp=$(mktemp) || exit 1
+    _ipv4_tmp=$(mktemp) || exit 1
+    _ipv6_tmp=$(mktemp) || exit 1
 
-	while read -r line ; do
-		if [[ ${line} =~ : ]] ; then
-			ipv6+=("${line}")
-		else
-			ipv4+=("${line}")
-		fi
-	done
+    cat > "${_in_tmp}"
 
-	[[ -v ipv4[@] ]] && printf '%s\n' "${ipv4[@]}" | sort -g -t. -k1,1 -k 2,2 -k 3,3 -k 4,4 | uniq
-	[[ -v ipv6[@] ]] && printf '%s\n' "${ipv6[@]}" | sort -g -t: -k1,1 -k 2,2 -k 3,3 -k 4,4 -k 5,5 -k 6,6 -k 7,7 -k 8,8 | uniq
+    if [ ! -s "${_in_tmp}" ]; then
+        rm -f "${_in_tmp}" "${_ipv4_tmp}" "${_ipv6_tmp}"
+        unset   _in_tmp _ipv4_tmp _ipv6_tmp
+        return 0
+    fi
+
+    if [ "${argIncludeComments}" = "true" ]; then
+
+        # #
+        #   Read stdin line by line
+        # #
+
+        while IFS= read -r line; do
+            _fnSortKey=$(extract_ip_entry "${line}")
+            [ -z "${_fnSortKey}" ] && continue
+            _fnSortPriority=1
+
+            case "${line}" in
+                *"#"*|*";"*)
+                    _fnSortPriority=0
+                    ;;
+            esac
+
+            case "${_fnSortKey}" in
+                *:*)
+                    printf '%s\t%s\t%s\n' "${_fnSortKey}" "${_fnSortPriority}" "${line}" >> "${_ipv6_tmp}"
+                    ;;
+                *)
+                    _fnSortIpv4="${_fnSortKey%%/*}"
+                    if [[ "${_fnSortIpv4}" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+                        IFS='.' read -r _fnSortO1 _fnSortO2 _fnSortO3 _fnSortO4 <<< "${_fnSortIpv4}"
+                        printf '%03d\t%03d\t%03d\t%03d\t%s\t%s\t%s\n' \
+                            "${_fnSortO1}" "${_fnSortO2}" "${_fnSortO3}" "${_fnSortO4}" "${_fnSortKey}" "${_fnSortPriority}" "${line}" >> "${_ipv4_tmp}"
+                    fi
+                    ;;
+            esac
+        done < "${_in_tmp}"
+
+        # #
+        #   Sort IPv4 numerically, remove duplicates by canonical key
+        # #
+
+        if [ -s "${_ipv4_tmp}" ]; then
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -s -t$'\t' -n -k1,1 -k2,2 -k3,3 -k4,4 -k5,5 -k6,6n "${_ipv4_tmp}" \
+                | awk -F '\t' '!seen[$5]++ { print $7 }'
+        fi
+
+        # #
+        #   Sort IPv6 lexicographically, remove duplicates by canonical key
+        # #
+
+        if [ -s "${_ipv6_tmp}" ]; then
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -s -t$'\t' -k1,1 -k2,2n "${_ipv6_tmp}" \
+                | awk -F '\t' '!seen[$1]++ { print $3 }'
+        fi
+
+        # #
+        #   Clean up temp files
+        # #
+    
+        rm -f "${_in_tmp}" "${_ipv4_tmp}" "${_ipv6_tmp}"
+
+        # #
+        #   Unset
+        # #
+
+        unset   _in_tmp _ipv4_tmp _ipv6_tmp _fnSortKey _fnSortPriority _fnSortIpv4 _fnSortO1 _fnSortO2 _fnSortO3 _fnSortO4
+        return 0
+    fi
+
+    # #
+    #   Fast path › pure IPv4
+    # #
+
+    if ! grep -q ':' "${_in_tmp}"; then
+        LC_ALL=C sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}" | uniq
+
+    # #
+    #   Fast path › pure IPv6
+    # #
+
+    elif ! grep -q '\.' "${_in_tmp}"; then
+        LC_ALL=C sort "${sort_cmd_opts[@]}" "${_in_tmp}" | uniq
+
+    # #
+    #   Mixed IPv4/IPv6
+    # #
+
+    else
+        awk '
+        index($0, ":") { print > v6; next }
+                        { print > v4 }
+        ' v4="${_ipv4_tmp}" v6="${_ipv6_tmp}" "${_in_tmp}"
+
+        # #
+        #   Sort IPv4 numerically, remove duplicates
+        # #
+
+        if [ -s "${_ipv4_tmp}" ]; then
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}" | uniq
+        fi
+
+        # #
+        #   Sort IPv6 lexicographically, remove duplicates
+        # #
+    
+        if [ -s "${_ipv6_tmp}" ]; then
+            LC_ALL=C sort "${sort_cmd_opts[@]}" "${_ipv6_tmp}" | uniq
+        fi
+    fi
+
+    # #
+    #   Clean up temp files
+    # #
+
+    rm -f "${_in_tmp}" "${_ipv4_tmp}" "${_ipv6_tmp}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _in_tmp _ipv4_tmp _ipv6_tmp
 }
 
 # #
-#   Arguments
-#
-#   This bash script has the following arguments:
-#
-#       ARG_SAVEFILE        (str)       file to save IP addresses into
-#       ARG_URL             (str)       url to grab text from
+#   Validate › IPv4 › Single
+#   
+#   @usage          is_valid_ipv4 "${_fnEntry}" && return 0
+#                       return 0    success (valid IP)
+#                       return 1    failure (invalid IP)
 # #
 
-ARG_SAVEFILE=$1
-ARG_URL=$2
+is_valid_ipv4()
+{
+    _fnIp=$1
+
+    [[ ${_fnIp} =~ ${regex_ipv4} ]] || return 1
+
+    IFS='.' read -r _fnO1 _fnO2 _fnO3 _fnO4 <<< "${_fnIp}"
+    for _fnOctet in "${_fnO1}" "${_fnO2}" "${_fnO3}" "${_fnO4}"; do
+        [ "${_fnOctet}" -ge 0 ] 2>/dev/null || return 1
+        [ "${_fnOctet}" -le 255 ] || return 1
+    done
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnIp _fnO1 _fnO2 _fnO3 _fnO4 _fnOctet
+    return 0
+}
 
 # #
-#   Arguments > Validate
+#   Validate › IPv4 › CIDR
+#   
+#   Validates IPV4 CIDR such as 192.168.1.1/24.
+#   
+#   @usage          is_valid_ipv4_cidr "${_fnEntry}" && return 0
+#                       return 0    success (valid IP / CIDR)
+#                       return 1    failure (invalid IP / CIDR)
 # #
 
-if [[ -z "${ARG_SAVEFILE}" ]]; then
-    echo -e
-    echo -e "  ⭕ ${YELLOW1}[${APP_THIS_FILE}]${RESET}: No target file specified"
-    echo -e
-    exit 0
+is_valid_ipv4_cidr()
+{
+    _fnIpCidr=$1
+    _fnIp="${_fnIpCidr%/*}"
+    _fnCidr="${_fnIpCidr#*/}"
+
+    [[ ${_fnIpCidr} =~ ${regex_ipv4_cidr} ]] || return 1
+    is_valid_ipv4 "${_fnIp}" || return 1
+    [ "${_fnCidr}" -ge 0 ] 2>/dev/null || return 1
+    [ "${_fnCidr}" -le 32 ] || return 1
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnIpCidr _fnIp _fnCidr
+    return 0
+}
+
+# #
+#   Validate › IPv6 › Single
+#   
+#   Validates IPV6 address.
+#   
+#   @usage          is_valid_ipv6 "${_fnEntry}" && return 0
+#                       return 0    success (valid IP)
+#                       return 1    failure (invalid IP)
+# #
+
+is_valid_ipv6()
+{
+    _fnIp=$1
+    _fnColonCount=0
+
+    [[ ${_fnIp} =~ ${regex_ipv6} ]] || return 1
+    printf '%s' "${_fnIp}" | grep -Eq '^[0-9A-Fa-f:.]+$' || return 1
+    _fnColonCount=$(printf '%s' "${_fnIp}" | awk -F':' '{print NF-1}')
+    [ "${_fnColonCount}" -ge 2 ] || return 1
+
+    # #
+    #   Unset
+    # #
+    unset   _fnIp _fnColonCount
+    return 0
+}
+
+# #
+#   Validate › IPv6 › CIDR
+#   
+#   Validates IPV6 CIDR address.
+#   
+#   @usage          is_valid_ipv6_cidr "${_fnEntry}" && return 0
+#                       return 0    success (valid IP / CIDR)
+#                       return 1    failure (invalid IP / CIDR)
+# #
+
+is_valid_ipv6_cidr()
+{
+    _fnIpCidr=$1
+    _fnIp="${_fnIpCidr%/*}"
+    _fnCidr="${_fnIpCidr#*/}"
+
+    [[ ${_fnIpCidr} =~ ${regex_ipv6_cidr} ]] || return 1
+    is_valid_ipv6 "${_fnIp}" || return 1
+    [ "${_fnCidr}" -ge 0 ] 2>/dev/null || return 1
+    [ "${_fnCidr}" -le 128 ] || return 1
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnIpCidr _fnIp _fnCidr
+    return 0
+}
+
+# #
+#   Validate › Generic IP Entry
+# #
+
+is_valid_ip_entry()
+{
+    _fnEntry=$1
+
+    is_valid_ipv4       "${_fnEntry}" && return 0
+    is_valid_ipv4_cidr  "${_fnEntry}" && return 0
+    is_valid_ipv6       "${_fnEntry}" && return 0
+    is_valid_ipv6_cidr  "${_fnEntry}" && return 0
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnEntry
+
+    return 1
+}
+
+# #
+#   Filter invalid IP entries from file
+# #
+
+filter_valid_ip_entries()
+{
+    _fnValidateFile=$1
+    _fnValidateTemp="${_fnValidateFile}.valid"
+    _fnValidateRemoved=0
+
+    > "${_fnValidateTemp}"
+
+    while IFS= read -r _fnValidateLine || [ -n "${_fnValidateLine}" ]; do
+        [ -z "${_fnValidateLine}" ] && continue
+    
+        if [ "${argIncludeComments}" = "true" ]; then
+            _fnValidateEntry=$(extract_ip_entry "${_fnValidateLine}")
+
+            if [ -n "${_fnValidateEntry}" ] && is_valid_ip_entry "${_fnValidateEntry}"; then
+                printf '%s\n' "${_fnValidateLine}" >> "${_fnValidateTemp}"
+            else
+                _fnValidateRemoved=$(( _fnValidateRemoved + 1 ))
+            fi
+        else
+            if is_valid_ip_entry "${_fnValidateLine}"; then
+                printf '%s\n' "${_fnValidateLine}" >> "${_fnValidateTemp}"
+            else
+                _fnValidateRemoved=$(( _fnValidateRemoved + 1 ))
+            fi
+        fi
+    done < "${_fnValidateFile}"
+
+    mv "${_fnValidateTemp}" "${_fnValidateFile}"
+
+    if [ "${_fnValidateRemoved}" -gt 0 ]; then
+        warn "    ⚠️  Removed ${orangel}${_fnValidateRemoved}${greym} invalid IP/CIDR entries"
+    fi
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnValidateFile _fnValidateTemp _fnValidateRemoved _fnValidateLine _fnValidateEntry
+}
+
+# #
+#   Count file statistics
+#       IPv4 CIDR contributes all IPv4 addresses in the subnet
+#       IPv6 CIDR contributes one entry (do not expand)
+#       Single IPv4/IPv6 contributes one entry
+# #
+
+count_ip_stats( )
+{
+    _fnCountFile=$1
+    _fnStatsLine=""
+    _fnTotalIps=0
+    _fnTotalSubnets=0
+
+    if [ ! -s "${_fnCountFile}" ]; then
+        total_ips=0
+        total_subnets=0
+        unset   _fnCountFile _fnStatsLine _fnTotalIps _fnTotalSubnets
+        return 0
+    fi
+
+    _fnStatsLine=$(awk -v include_comments="${argIncludeComments}" '
+        function trim(s) {
+            sub(/^[[:space:]]+/, "", s)
+            sub(/[[:space:]]+$/, "", s)
+            return s
+        }
+        function is_ipv4(ip, octets, i) {
+            if (index(ip, ":") > 0) {
+                return 0
+            }
+            if (split(ip, octets, ".") != 4) {
+                return 0
+            }
+            for (i = 1; i <= 4; i++) {
+                if (octets[i] !~ /^[0-9]+$/) {
+                    return 0
+                }
+                if (length(octets[i]) < 1 || length(octets[i]) > 3) {
+                    return 0
+                }
+            }
+            return 1
+        }
+        function is_ipv6(ip) {
+            return (index(ip, ":") > 0 && ip ~ /^[0-9A-Fa-f:.]+$/)
+        }
+        BEGIN {
+            total_ips = 0
+            total_subnets = 0
+        }
+        {
+            entry = $0
+
+            if (include_comments == "true") {
+                sub(/[[:space:]]*[#;].*$/, "", entry)
+            }
+
+            entry = trim(entry)
+            if (entry == "") {
+                next
+            }
+
+            if (index(entry, "/") > 0) {
+                if (split(entry, parts, "/") != 2) {
+                    next
+                }
+                base = parts[1]
+                cidr = parts[2]
+
+                if (cidr !~ /^[0-9]+$/) {
+                    next
+                }
+                cidr += 0
+
+                if (is_ipv4(base)) {
+                    if (cidr <= 32) {
+                        total_ips += (2 ^ (32 - cidr))
+                        total_subnets++
+                    }
+                } else if (is_ipv6(base)) {
+                    if (cidr <= 128) {
+                        total_ips++
+                        total_subnets++
+                    }
+                }
+
+                next
+            }
+
+            if (is_ipv4(entry) || is_ipv6(entry)) {
+                total_ips++
+            }
+        }
+        END {
+            printf "%.0f %.0f\n", total_ips, total_subnets
+        }
+    ' "${_fnCountFile}")
+
+    _fnTotalIps=${_fnStatsLine%% *}
+    _fnTotalSubnets=${_fnStatsLine##* }
+
+    total_ips=${_fnTotalIps:-0}
+    total_subnets=${_fnTotalSubnets:-0}
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnCountFile _fnStatsLine _fnTotalIps _fnTotalSubnets
+}
+
+# #
+#   IPSET › Filter BOGON › IPv4
+#   
+#   Check if IPv4 matches known bogon ranges
+# #
+
+is_bogon_ipv4( )
+{
+    _fnBogonIp=$1
+
+    case "${_fnBogonIp}" in
+        0.*|10.*|127.*|127.0.53.53|169.254.*|192.168.*|255.255.255.255)
+            return 0
+            ;;
+
+        100.6[4-9].*|100.[7-9][0-9].*|100.1[01][0-9].*|100.12[0-7].*)           # 100.64.0.0/10
+            return 0
+            ;;
+
+        172.1[6-9].*|172.2[0-9].*|172.3[0-1].*)                                 # 172.16.0.0/12
+            return 0
+            ;;
+
+        192.0.0.*|192.0.2.*|198.18.*|198.19.*|198.51.100.*|203.0.113.*)
+            return 0
+            ;;
+
+        22[4-9].*|23[0-9].*|24[0-9].*|25[0-5].*)                                # 224.0.0.0/4 + 240.0.0.0/4
+            return 0
+            ;;
+    esac
+
+    return 1
+}
+
+# #
+#   IPSET › Filter BOGON › IPv6
+#   
+#   Check if IPv6 matches known bogon ranges
+# #
+
+is_bogon_ipv6( )
+{
+    _fnBogonIp="${1,,}"
+    _fnBogonIp="${_fnBogonIp%%/*}"
+
+    case "${_fnBogonIp}" in
+        ::|::1|::ffff:*|::*)                                                        # ::/128 ::1/128 ::ffff:0:0/96 ::/96
+            return 0
+            ;;
+
+        100:*|100::*)                                                               # 100::/64
+            return 0
+            ;;
+
+        2001:1[0-9a-f]:*|2001:01[0-9a-f]:*|2001:001[0-9a-f]:*|2001:0001[0-9a-f]:*)  # 2001:10::/28
+            return 0
+            ;;
+
+        2001:db8:*|3fff:*|fc*|fd*|fe8*|fe9*|fea*|feb*|fec*|fed*|fee*|fef*|ff*)
+            return 0
+            ;;
+    esac
+
+    return 1
+}
+
+# #
+#   IPSET › Filter BOGON Addresses
+#   
+#   Some of our IPSETs will include BOGON addresses which may cause issues with
+#   users who are not expecting such IPs to be included.
+#   
+#   This functionality removes the BOGON addresses completely before the list is
+#   counted.
+#   
+#       - Runs only when argIncludeBogon=false
+#       - Run before count_ip_stats to ensure count accuracy
+# #
+
+filter_bogon_ips( )
+{
+    _fnBogonFile=$1
+    _fnBogonTemp="${1}.bogon"
+    _fnBogonLine=""
+    _fnBogonBase=""
+    _fnBogonBefore=0
+    _fnBogonAfter=0
+    _fnBogonRemoved=0
+
+    if [ "${argSkipBogonFilter}" = "true" ]; then
+        info "    ⚡ Skipping bogon filtering (CFG_SKIP_BOGON_FILTER=true)"
+        return 0
+    fi
+
+    case "${argIncludeBogon:-true}" in
+        1|true|TRUE|yes|YES)
+            return 0
+            ;;
+    esac
+
+    if [ ! -f "${_fnBogonFile}" ]; then
+        warn "    ⚠️  Bogon filter skipped; file not found ${yellowl}${_fnBogonFile}${greym}"
+        return 0
+    fi
+
+    info "    🚫 Filtering bogon IP ranges from ${bluel}${PWD}/${_fnBogonFile}${greym}"
+
+    _fnBogonBefore=$(wc -l < "${_fnBogonFile}")
+    > "${_fnBogonTemp}"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=true
+    #       curl -s https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3 | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+    # #
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        while IFS= read -r _fnBogonLine || [ -n "${_fnBogonLine}" ]; do
+            [ -z "${_fnBogonLine}" ] && continue
+            _fnBogonEntry=$(extract_ip_entry "${_fnBogonLine}")
+            [ -z "${_fnBogonEntry}" ] && continue
+            _fnBogonBase="${_fnBogonEntry%%/*}"
+
+            if [[ "${_fnBogonBase}" == *:* ]]; then
+                if is_bogon_ipv6 "${_fnBogonEntry}"; then
+                    label "        ${bluel}${_fnBogonLine}${greym}"
+                    _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
+                    continue
+                fi
+            elif [[ "${_fnBogonBase}" == *.* ]]; then
+                if is_bogon_ipv4 "${_fnBogonBase}"; then
+                    label "        ${bluel}${_fnBogonLine}${greym}"
+                    _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
+                    continue
+                fi
+            fi
+
+            printf '%s\n' "${_fnBogonLine}" >> "${_fnBogonTemp}"
+        done < "${_fnBogonFile}"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
+    # #
+
+    else
+        while IFS= read -r _fnBogonLine || [ -n "${_fnBogonLine}" ]; do
+            [ -z "${_fnBogonLine}" ] && continue
+            _fnBogonBase="${_fnBogonLine%%/*}"
+
+            if [[ "${_fnBogonBase}" == *:* ]]; then
+                if is_bogon_ipv6 "${_fnBogonLine}"; then
+                    label "       ${bluel}${_fnBogonLine}${greym}"
+                    _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
+                    continue
+                fi
+            elif [[ "${_fnBogonBase}" == *.* ]]; then
+                if is_bogon_ipv4 "${_fnBogonBase}"; then
+                    label "       ${bluel}${_fnBogonLine}${greym}"
+                    _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
+                    continue
+                fi
+            fi
+
+            printf '%s\n' "${_fnBogonLine}" >> "${_fnBogonTemp}"
+        done < "${_fnBogonFile}"
+    fi
+
+    mv "${_fnBogonTemp}" "${_fnBogonFile}"
+
+    _fnBogonAfter=$(wc -l < "${_fnBogonFile}")
+
+    ok "    🚫 Removed ${greenl}${_fnBogonRemoved}${greym} bogon entries from ${bluel}${PWD}/${_fnBogonFile}${greym}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnBogonFile _fnBogonTemp _fnBogonLine _fnBogonEntry _fnBogonBase _fnBogonBefore _fnBogonAfter _fnBogonRemoved _fnBogonIp
+}
+
+# #
+#   IPSET › Dedup Contained CIDRs
+#   
+#   Attempts to compress list of CIDRs so that our blocklists are not
+#   insanely large with overlapping subnets.
+#   
+#   Remove any CIDR entry whose address range is fully contained within a
+#   larger CIDR that is already in the list.  Also check single IPs (treated
+#   as /32 or /128) against existing CIDRs.
+#   
+#   Supports both IPv4 and IPv6
+#   
+#   For tests; see python script `verify_cidr.py`:
+#       The test script requires two (2) files.
+#           1. Original source list of IPs
+#           2. New list
+#       Test by running:
+#           python verify_cidr.py alibaba_old.txt alibaba_new.txt
+#   
+#   Examples (IPv4):
+#       8.217.0.0/16    = keep
+#       8.217.0.0/17    = remove  (same base, narrower)
+#       8.217.0.0/24    = remove  (same base, narrower)
+#   
+#       43.106.48.0/20  = keep
+#       43.106.49.0/24  = remove  (different base, but /20 covers it)
+#       43.106.50.0/23  = remove  (different base, but /20 covers it)
+#   
+#   Algorithm:
+#       Align each entry to true network boundary
+#       Sort by network start ascending, then prefix ascending (wider first)
+#       Walk the sorted list keeping a running "max covered" end address;
+#           any entry whose end less than or equal to max_end is fully contained; skip
+#   
+#   Notes:
+#       Run AFTER sort/dedupe for best results
+#       Run BEFORE count_ip_stats for accurate totals
+#   
+#   Usage:
+#       dedup_cidr "${_fnFileTemp}"
+# #
+
+dedup_cidr( )
+{
+    _fnDedupFile=$1
+    _fnDedupWorkFile=$1
+    _fnDedupLogFile=$1
+    _fnDedupUseCommentRemap="false"
+
+    _fnDedupCommentMap=""
+    _fnDedupCommentCanon=""
+    _fnDedupCommentOut=""
+    _fnDedupCommentLine=""
+    _fnDedupCommentEntry=""
+    _fnDedupCommentBase=""
+
+    if [ "${argSkipCidrDedup}" = "true" ]; then
+        info "    ⚡ Skipping overlapping CIDR dedupe (CFG_SKIP_CIDR_DEDUPE=true)"
+        return 0
+    fi
+
+    if [ ! -f "${_fnDedupFile}" ] || [ ! -s "${_fnDedupFile}" ]; then
+        return 0
+    fi
+
+    # #
+    #   Notes:
+    #       Must preserve original commented lines in output.
+    #       CIDR overlap dedupe must still run on canonical IP/CIDR keys.
+    #       This keeps counts and final entries consistent with non-comment mode.
+    # #
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        _fnDedupUseCommentRemap="true"
+        _fnDedupCommentMap=$(mktemp) || return 1
+        _fnDedupCommentCanon=$(mktemp) || { rm -f "${_fnDedupCommentMap}"; return 1; }
+        _fnDedupCommentOut=$(mktemp) || { rm -f "${_fnDedupCommentMap}" "${_fnDedupCommentCanon}"; return 1; }
+
+        > "${_fnDedupCommentMap}"
+        > "${_fnDedupCommentCanon}"
+
+        while IFS= read -r _fnDedupCommentLine || [ -n "${_fnDedupCommentLine}" ]; do
+            [ -z "${_fnDedupCommentLine}" ] && continue
+            _fnDedupCommentEntry=$(extract_ip_entry "${_fnDedupCommentLine}")
+            [ -z "${_fnDedupCommentEntry}" ] && continue
+
+            printf '%s\t%s\n' "${_fnDedupCommentEntry}" "${_fnDedupCommentLine}" >> "${_fnDedupCommentMap}"
+
+            case "${_fnDedupCommentEntry}" in
+                */32)
+                    _fnDedupCommentBase="${_fnDedupCommentEntry%%/*}"
+                    if [[ "${_fnDedupCommentBase}" == *.* ]]; then
+                        printf '%s\t%s\n' "${_fnDedupCommentBase}" "${_fnDedupCommentLine}" >> "${_fnDedupCommentMap}"
+                    fi
+                    ;;
+                */128)
+                    _fnDedupCommentBase="${_fnDedupCommentEntry%%/*}"
+                    if [[ "${_fnDedupCommentBase}" == *:* ]]; then
+                        printf '%s\t%s\n' "${_fnDedupCommentBase}" "${_fnDedupCommentLine}" >> "${_fnDedupCommentMap}"
+                    fi
+                    ;;
+            esac
+
+            printf '%s\n' "${_fnDedupCommentEntry}" >> "${_fnDedupCommentCanon}"
+        done < "${_fnDedupFile}"
+
+        if [ ! -s "${_fnDedupCommentCanon}" ]; then
+            > "${_fnDedupFile}"
+            rm -f "${_fnDedupCommentMap}" "${_fnDedupCommentCanon}" "${_fnDedupCommentOut}"
+            unset   _fnDedupFile _fnDedupWorkFile _fnDedupLogFile _fnDedupUseCommentRemap \
+                    _fnDedupCommentMap _fnDedupCommentCanon _fnDedupCommentOut \
+                    _fnDedupCommentLine _fnDedupCommentEntry _fnDedupCommentBase
+            return 0
+        fi
+
+        _fnDedupWorkFile="${_fnDedupCommentCanon}"
+    fi
+
+    # #
+    #   Create all our vars
+    # #
+
+    _fnDedupV4=$(mktemp) || return 1
+    _fnDedupV6=$(mktemp) || return 1
+    _fnDedupOther=$(mktemp) || return 1
+    _fnDedupOut=$(mktemp) || return 1
+    _fnDedupBefore=0
+    _fnDedupAfter=0
+    _fnDedupRemoved=0
+
+    if [ ! -f "$_fnDedupWorkFile" ] || [ ! -s "$_fnDedupWorkFile" ]; then
+        rm -f "$_fnDedupV4" "$_fnDedupV6" "$_fnDedupOther" "$_fnDedupOut"
+        if [ "${_fnDedupUseCommentRemap}" = "true" ]; then
+            > "${_fnDedupFile}"
+            rm -f "${_fnDedupCommentMap}" "${_fnDedupCommentCanon}" "${_fnDedupCommentOut}"
+        fi
+        unset   _fnDedupFile _fnDedupWorkFile _fnDedupLogFile _fnDedupUseCommentRemap \
+                _fnDedupCommentMap _fnDedupCommentCanon _fnDedupCommentOut \
+                _fnDedupCommentLine _fnDedupCommentEntry _fnDedupCommentBase \
+                _fnDedupV4 _fnDedupV6 _fnDedupOther _fnDedupOut \
+                _fnDedupBefore _fnDedupAfter _fnDedupRemoved
+        return 0
+    fi
+
+    info "    🔍 Removing overlapping CIDR ranges from ${bluel}${_fnDedupLogFile}${greym}"
+    _fnDedupBefore=$(wc -l < "$_fnDedupWorkFile")
+
+    # #
+    #   Classify lines
+    #       IPv4 CIDR / single      _fnDedupV4       (singles promoted to /32)
+    #       IPv6 CIDR / single      _fnDedupV6       (singles promoted to /128)
+    #       Other                   _fnDedupOther    (pass-through)
+    # #
+
+    awk '
+    /\// && /:/  { print > v6; next }
+    /:/          { print $0 "/128" > v6; next }
+    /\// && /\./ { print > v4; next }
+    /\./         { print $0 "/32" > v4; next }
+                 { print > ot }
+    ' v4="$_fnDedupV4" v6="$_fnDedupV6" ot="$_fnDedupOther" "$_fnDedupWorkFile"
+
+    # #
+    #   IPv4 containment dedup
+    #   
+    #   Is a bit complex, need to add a few more things later.
+    #   
+    #   Does the following:
+    #       (1) awk:    convert each CIDR to  "<10-digit network int> <3-digit prefix> <original line>"
+    #                   aligns to the true network boundary so host-bit noise is ignored.
+    #       (2) sort:   network ascending, then prefix ascending (wider ranges first).
+    #       (3) awk:    walk the list; skip any entry whose end address <= max_end.
+    # #
+
+    if [ -s "$_fnDedupV4" ]; then
+        awk -F'[./]' '
+        NF >= 5 {
+            ip  = $1*16777216 + $2*65536 + $3*256 + $4
+            pfx = int($5)
+            if (pfx < 0 || pfx > 32) { printf "_ %s\n", $0; next }
+            size = int(2^(32 - pfx))
+            net  = int(ip / size) * size
+            printf "%010.0f %03d %s\n", net, pfx, $0
+        }
+        NF < 5 { printf "_ %s\n", $0 }
+        ' "$_fnDedupV4" \
+        | sort -t' ' -k1,1n -k2,2n \
+        | awk '
+        /^_ / { sub(/^_ /, ""); print; next }
+        {
+            net = $1 + 0; pfx = $2 + 0
+            e   = net + int(2^(32 - pfx)) - 1
+            if (NR == 1 || e > max_end) {
+                orig = $3
+                if (pfx == 32) sub(/\/32$/, "", orig)
+                print orig
+                max_end = e
+            }
+        }
+        ' >> "$_fnDedupOut"
+    fi
+
+    # #
+    #   IPv6 containment dedup
+    #   
+    #   Same algorithm v4; but uses fully-expanded 32-char lowercase hex for
+    #   network/end addresses so that lexicographic comparison == numeric.
+    # #
+
+    if [ -s "$_fnDedupV6" ]; then
+        awk '
+        function expand_v6(addr,    a, nl, nr, miss, j, i, n, g, res, lg, rg, groups) {
+            sub(/\/.*/, "", addr); addr = tolower(addr)
+            if (index(addr, "::")) {
+                split(addr, a, "::")
+                nl = split(a[1], lg, ":"); if (a[1] == "") nl = 0
+                nr = split(a[2], rg, ":"); if (a[2] == "") nr = 0
+                miss = 8 - nl - nr; j = 0
+                for (i = 1; i <= nl; i++) groups[++j] = lg[i]
+                for (i = 1; i <= miss; i++) groups[++j] = "0"
+                for (i = 1; i <= nr; i++) groups[++j] = rg[i]
+                n = j
+            } else { n = split(addr, groups, ":") }
+            res = ""
+            for (i = 1; i <= n; i++) {
+                g = groups[i]; while (length(g) < 4) g = "0" g; res = res g
+            }
+            while (length(res) < 32) res = res "0"
+            return res
+        }
+
+        function v6_net_hex(hex32, pfx,    fc, rem, c, v, nv, res) {
+            fc = int(pfx / 4); rem = pfx % 4
+            res = substr(hex32, 1, fc)
+            if (rem > 0) {
+                c = substr(hex32, fc + 1, 1)
+                v = index("0123456789abcdef", c) - 1
+                if      (rem == 1) nv = int(v/8)*8
+                else if (rem == 2) nv = int(v/4)*4
+                else               nv = int(v/2)*2
+                res = res substr("0123456789abcdef", nv + 1, 1)
+                fc++
+            }
+            while (length(res) < 32) res = res "0"
+            return res
+        }
+
+        function v6_end_hex(hex32, pfx,    fc, rem, c, v, nv, res) {
+            fc = int(pfx / 4); rem = pfx % 4
+            res = substr(hex32, 1, fc)
+            if (rem > 0) {
+                c = substr(hex32, fc + 1, 1)
+                v = index("0123456789abcdef", c) - 1
+                if      (rem == 1) nv = int(v/8)*8 + 7
+                else if (rem == 2) nv = int(v/4)*4 + 3
+                else               nv = int(v/2)*2 + 1
+                res = res substr("0123456789abcdef", nv + 1, 1)
+                fc++
+            }
+            while (length(res) < 32) res = res "f"
+            return res
+        }
+
+        {
+            line = $0
+            addr = line; sub(/\/[0-9]+$/, "", addr)
+            pfx  = line; sub(/.*\//, "", pfx); pfx = int(pfx)
+            if (pfx < 0 || pfx > 128) { printf "_ %s\n", line; next }
+            hex = expand_v6(addr)
+            net = v6_net_hex(hex, pfx)
+            e   = v6_end_hex(hex, pfx)
+            printf "%s %03d %s %s\n", net, pfx, e, line
+        }
+        ' "$_fnDedupV6" \
+        | sort -k1,1 -k2,2n \
+        | awk '
+        /^_ / { sub(/^_ /, ""); print; next }
+        {
+            e = $3; pfx = $2 + 0
+            orig = ""; for (i = 4; i <= NF; i++) orig = (i == 4 ? $i : orig " " $i)
+            if (NR == 1 || (e "") > (me "")) {
+                if (pfx == 128) sub(/\/128$/, "", orig)
+                print orig
+                me = e
+            }
+        }
+        ' >> "$_fnDedupOut"
+    fi
+
+    # #
+    #   Other lines (pass-through)
+    # #
+
+    if [ -s "$_fnDedupOther" ]; then
+        cat "$_fnDedupOther" >> "$_fnDedupOut"
+    fi
+
+    mv "$_fnDedupOut" "$_fnDedupWorkFile"
+    rm -f "$_fnDedupV4" "$_fnDedupV6" "$_fnDedupOther"
+
+    _fnDedupAfter=$(wc -l < "$_fnDedupWorkFile")
+    _fnDedupRemoved=$(( _fnDedupBefore - _fnDedupAfter ))
+
+    if [ "${_fnDedupUseCommentRemap}" = "true" ]; then
+        awk -F'\t' '
+        NR == FNR {
+            key = $1
+            sub(/^[^\t]*\t/, "", $0)
+            if (!(key in line_by_key)) line_by_key[key] = $0
+            next
+        }
+        {
+            if ($0 in line_by_key) print line_by_key[$0]
+        }
+        ' "${_fnDedupCommentMap}" "${_fnDedupCommentCanon}" > "${_fnDedupCommentOut}"
+
+        mv "${_fnDedupCommentOut}" "${_fnDedupFile}"
+        rm -f "${_fnDedupCommentMap}" "${_fnDedupCommentCanon}"
+    fi
+
+    if [ "$_fnDedupRemoved" -gt 0 ]; then
+        ok "    🔍 Removed ${greenl}${_fnDedupRemoved}${greym} overlapping CIDR entries from ${bluel}${_fnDedupLogFile}${greym}"
+    else
+        ok "    🔍 No overlapping CIDRs found in ${bluel}${_fnDedupLogFile}${greym}"
+    fi
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnDedupFile _fnDedupWorkFile _fnDedupLogFile _fnDedupUseCommentRemap \
+            _fnDedupCommentMap _fnDedupCommentCanon _fnDedupCommentOut \
+            _fnDedupCommentLine _fnDedupCommentEntry _fnDedupCommentBase \
+            _fnDedupV4 _fnDedupV6 _fnDedupOther _fnDedupOut \
+            _fnDedupBefore _fnDedupAfter _fnDedupRemoved
+}
+
+# #
+#   Check if specified file contains valid IP entries.
+#   
+#   Requires an input file to be passed as argument:
+#       has_valid_ip_entries "${file_ipset_target}"
+# #
+
+has_valid_ip_entries()
+{
+    _fnArgFile=$1
+    _fnValidLine=""
+    _fnValidEntry=""
+
+    if [ ! -f "${_fnArgFile}" ]; then
+        return 1
+    fi
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=true
+    #       curl -s https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3 | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+    # #
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        while IFS= read -r _fnValidLine || [ -n "${_fnValidLine}" ]; do
+            _fnValidEntry=$(extract_ip_entry "${_fnValidLine}")
+            [ -z "${_fnValidEntry}" ] && continue
+
+            if is_valid_ip_entry "${_fnValidEntry}"; then
+                unset _fnArgFile _fnValidLine _fnValidEntry
+                return 0
+            fi
+        done < "${_fnArgFile}"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
+    # #
+
+    else
+
+        # #
+        #   use grep instead of is_valid_ip_entry; avoid large slowdown from per-line read
+        # #
+
+        if grep -Eq "^(${regex_ipv4}|${regex_ipv4_cidr}|${regex_ipv6}|${regex_ipv6_cidr})$" "${_fnArgFile}"; then
+            unset _fnArgFile _fnValidLine _fnValidEntry
+            return 0
+        fi
+    fi
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnArgFile _fnValidLine _fnValidEntry
+
+    return 1
+}
+
+# #
+#   Cleanup Garbage
+#   
+#   Removes old ipv4 and ipv6 folders
+# #
+
+gcc( )
+{
+    info "    🗑️  Starting ${bluel}GCC${greym} cleanup"
+
+    rm -rf "${app_dir_github}/${folder_target_temp}"
+
+    if [ ! -d "${app_dir_github}/${folder_target_temp}" ]; then
+        ok "    🗑️  Removed folder ${bluel}${app_dir_github}/${folder_target_temp}"
+    else
+        error "    ❌ Failed to remove folder ${greenl}${app_dir_github}/${folder_target_temp}"
+    fi
+}
+
+# #
+#   Developer › Test IP Sorting
+# #
+
+if [ "$argDevMode" = true ]; then
+
+sort_results <<'EOF'
+192.168.1.5
+10.0.0.1
+192.168.1.10
+fe80::1
+::1
+2001:db8::1
+10.0.0.2
+EOF
+
+# #
+#   Developer › IPv6 Regex Test
+#   
+#   Outputs an ipv6 test to ensure our regex is matching correctly.
+# #
+
+cat << 'EOF' | while IFS= read -r ip; do
+# #
+#   Valid
+# #
+
+2001:db8::1
+::1
+fe80::1234:5678:abcd:ef12
+2001:0db8:85a3:0000:0000:8a2e:0370:7334
+::
+1234:5678:9abc:def0:1234:5678:9abc:def0
+
+# #
+#   Invalid
+# #
+
+:::::
+abc:def
+12345::1
+1:2:3:4:5:6:7:8:9
+EOF
+    # Preserve blank lines
+    [[ -z "$ip" ]] && { printf "\n"; continue; }
+
+    # Skip empty lines
+    [[ -z "$ip" ]] && continue
+
+    # Print comments (with leading space preserved)
+    [[ "$ip" =~ ^[[:space:]]*# ]] && { printf "${greym} %s\n" "$ip"; continue; }
+
+    if [[ "$ip" =~ $regex_ipv6 ]]; then
+        printf "${greenl} OK   %s${end}\n" "$ip"
+    else
+        printf "${redd} BAD  %s${end}\n" "$ip"
+    fi
+done
+
 fi
 
-if [[ -z "${ARG_URL}" ]]; then
-    echo -e
-    echo -e "  ⭕  ${YELLOW1}[${APP_THIS_FILE}]${RESET}: Aborting -- no url specified for ${YELLOW1}${ARG_SAVEFILE}${RESET}"
-    echo -e
-    exit 0
+# #
+#   Blocklist › Main › Load
+#   
+#   @usage          list_main_load "${file_ipset_target}" "$i"
+#   @args           _fnArgFile          output filename to add ips to
+#                   _fnListNum          blocklist number (#1 out of #2) - visual only
+# #
+
+list_main_load()
+{
+    _fnArgUrl=$1
+    _fnArgFile=$2
+    _fnArgPattern=$3
+    _fnListNum=${4:-1}
+
+    # #
+    #   Define › Generic
+    # #
+
+    _fnFileTemp="${_fnArgFile}.tmp"
+    _count_total_ips=0
+    _count_total_subnets=0
+
+    # #
+    #   Create the file if it doesn't exist
+    # #
+
+    prinp "📄[-1] Processing list #${_fnListNum}"
+
+    if [ ! -f "${_fnFileTemp}" ]; then
+        touch "${_fnFileTemp}"
+
+        if [ -f "${_fnFileTemp}" ]; then
+            ok "    📄 Created temp file ${greenl}${PWD}/${_fnFileTemp}${greym}"
+        else
+            error "    ⭕ Failed to create temp file ${bluel}${PWD}/${_fnFileTemp}${greym}"
+            exit 1
+        fi
+    fi
+
+    info "    🌎 Downloading IP blacklist to ${bluel}${PWD}/${_fnFileTemp}${greym}"
+    info "    🔍 Filtering HTML text with exclude pattern ${yellowl}${_fnArgPattern}${greym}"
+
+    # #
+    #   Download file
+    # #
+
+    curl -sSL -k -A "${app_agent}" "${_fnArgUrl}" \
+        | html2text \
+        | grep -viE "${_fnArgPattern}" \
+        | grep -Eo "${regex_ip_extract}" \
+        > "${_fnFileTemp}"
+
+    # #
+    #   Running sed
+    # #
+
+    info "    ✴️  Performing sed operations on ${bluel}${_fnFileTemp}${greym}"
+
+    # #
+    #   Perform sed actions on downloaded file.
+    # #
+
+    # normalize CRLF
+    sed -i 's/\r$//' "${_fnFileTemp}"
+
+    # remove right side from IPv4 ranges when format is "1.2.3.4 - 1.2.3.5"
+    sed -E -i 's/^([[:space:]]*[0-9]{1,3}(\.[0-9]{1,3}){3})[[:space:]]*-[[:space:]]*[0-9]{1,3}(\.[0-9]{1,3}){3}/\1/' "${_fnFileTemp}"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=true
+    #       curl -s https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3 | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+    # #
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        info "    ⚡ Preserving inline comments (CFG_INCLUDE_COMMENTS=true)"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
+    # #
+
+    else
+        # remove inline comments (strip ' # comment' or ' ; comment' from end of lines ; collapse whitespace, trim)
+        sed -i 's/[[:space:]]*[#;].*$//' "${_fnFileTemp}"
+
+        # collapse multiple whitespace into a single space
+        sed -i 's/[[:space:]]\+/ /g' "${_fnFileTemp}"
+    fi
+
+    # trim leading and trailing whitespace
+    sed -i 's/^[[:space:]]*//;s/[[:space:]]*$//' "${_fnFileTemp}"
+
+    # remove empty lines (after trimming/comment removal)
+    sed -i '/^$/d' "${_fnFileTemp}"
+
+    # #
+    #   apply optional grep exclude filter
+    # #
+
+    info "    ✴️  Apply grep exclude filters on ${bluel}${_fnFileTemp}${greym}"
+
+    if [ -n "${argGrepFilter}" ]; then
+        if grep -viE "${argGrepFilter}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
+            mv "${_fnFileTemp}.grep" "${_fnFileTemp}"
+        else
+            rm -f "${_fnFileTemp}.grep"
+        fi
+    fi    
+
+    # #
+    #   Drop malformed entries before sorting (optional trusted-input fast path)
+    # #
+
+    if [ "${argTrustedInput}" = "true" ]; then
+        info "    ⚡ Trusted input mode enabled; skipping per-line IP validation"
+    else
+        info "    ✴️  Verify valid ip entries in ${bluel}${_fnFileTemp}${greym}. This may take some time."
+        filter_valid_ip_entries "${_fnFileTemp}"
+    fi
+
+    # #
+    #   Dedupe, Sort: Move from .tmp to .sort
+    # #
+
+    info "    🔃 Sorting and deduplicating results"
+
+    if [ "${argIncludeComments}" = "true" ]; then
+        grep -vE '^[[:space:]]*(#|;|$)' "${_fnFileTemp}" | sort_results > "${_fnFileTemp}.sort"
+    else
+        sort_results < "${_fnFileTemp}" > "${_fnFileTemp}.sort"
+    fi
+
+    # #
+    #   Move from .sort to .tmp
+    # #
+
+    mv "${_fnFileTemp}.sort" "${_fnFileTemp}"
+
+    # #
+    #   IPSET › Dedup Contained CIDRs
+    #   
+    #   Combine CIDRs to save on number of lines:
+    #       Remove CIDRs fully contained within a larger CIDR.
+    #       Run before count_ip_stats for accurate totals.
+    # #
+
+    dedup_cidr "${_fnFileTemp}"
+
+    # #
+    #   IPSET › Filter BOGON
+    #   
+    #   Removes any BOGON addresses that may be within the list.
+    #       Optional
+    #       Run before count_ip_stats for accurate totals
+    # #
+
+    filter_bogon_ips "${_fnFileTemp}"
+
+    # #
+    #   Calculate list statistics
+    #       local only (global totals are calculated after final dedupe)
+    # #
+
+    info "    📊 Fetching statistics for clean file ${bluel}${PWD}/${_fnFileTemp}${greym}"
+
+    count_ip_stats "${_fnFileTemp}"
+    _count_total_ips=$total_ips
+    _count_total_subnets=$total_subnets
+
+    _count_total_ips=$(printf "%'d" "$_count_total_ips")                        # LOCAL add commas to thousands
+    _count_total_subnets=$(printf "%'d" "$_count_total_subnets")                # LOCAL add commas to thousands
+
+    # #
+    #   Move to target
+    # #
+
+    info "    🚛 Move ${bluel}${_fnFileTemp}${greym} to ${bluel}${_fnArgFile}${greym}"
+
+    # #
+    #   Ensure dest file ends with newline before append
+    # #
+
+    if [ -s "${_fnArgFile}" ] && [ "$(tail -c1 "${_fnArgFile}")" != "" ]; then
+        echo >> "${_fnArgFile}"
+    fi
+
+    cat "${_fnFileTemp}" >> "${_fnArgFile}"                                     # Copy .tmp to permanent file
+    rm -f "${_fnFileTemp}"                                                      # Delete temp file
+
+    if [ ! -f "${_fnFileTemp}" ]; then
+        ok "    📄 Removed temp file ${greenl}${PWD}/${_fnFileTemp}${greym}"
+    else
+        error "    ⭕  Unable to delete temp file ${redl}${PWD}/${_fnFileTemp}${greym}"
+    fi
+
+    ok "    ➕ Added ${greenl}${_count_total_ips}${greym} IP addresses and ${greenl}${_count_total_subnets}${greym} subnets to ${greenl}${PWD}/${_fnArgFile}${greym}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnArgUrl _fnArgFile _fnArgPattern _fnFileTemp _fnListNum \
+            _count_total_ips _count_total_subnets
+}
+
+# #
+#   Create Temp Folder
+# #
+
+mkdir -p "${app_dir_github}/${folder_target_temp}"
+if [ -d "${app_dir_github}/${folder_target_temp}" ]; then
+    ok "    📂 Created TEMPDIR ${greenl}${app_dir_github}/${folder_target_temp}"
+else
+    error "    ❌ Failed to create ${redl}${app_dir_github}/${folder_target_temp}"
 fi
 
 # #
-#    Define > General
+#   Define › Template
 # #
 
-SECONDS=0                                               # set seconds count for beginning of script
-APP_VER=("1" "0" "0" "0")                               # current script version
-APP_DEBUG=false                                         # debug mode
-APP_REPO="configserver-software/service-blocklists"     # repository
-APP_REPO_BRANCH="main"                                  # repository branch
-APP_OUT=""                                              # results of curl command
-APP_FILE_TEMP="${ARG_SAVEFILE}.tmp"                     # temp file when building ipset list
-APP_FILE_PERM="${ARG_SAVEFILE}"                         # perm file when building ipset list
-COUNT_LINES=0                                           # number of lines in doc
-COUNT_TOTAL_SUBNET=0                                    # number of IPs in all subnets combined
-COUNT_TOTAL_IP=0                                        # number of single IPs (counts each line)
-BLOCKS_COUNT_TOTAL_IP=0                                 # number of ips for one particular file
-BLOCKS_COUNT_TOTAL_SUBNET=0                             # number of subnets for one particular file
-APP_AGENT="Mozilla/5.0 (Windows NT 10.0; WOW64) "\
-"AppleWebKit/537.36 (KHTML, like Gecko) "\
-"Chrome/51.0.2704.103 Safari/537.36"                    # user agent used with curl
-TEMPL_NOW=`date -u`                                     # get current date in utc format
-TEMPL_ID=$(basename -- ${APP_FILE_PERM})                # ipset id, get base filename
-TEMPL_ID="${TEMPL_ID//[^[:alnum:]]/_}"                  # ipset id, only allow alphanum and underscore, /description/* and /category/* files must match this value
-TEMPL_UUID=$(uuidgen -m -N "${TEMPL_ID}" -n @url)       # uuid associated to each release
-TEMPL_DESC=$(curl -sSL -A "${APP_AGENT}" "https://raw.githubusercontent.com/${APP_REPO}/${APP_REPO_BRANCH}/.github/descriptions/${TEMPL_ID}.txt")
-TEMPL_CAT=$(curl -sSL -A "${APP_AGENT}" "https://raw.githubusercontent.com/${APP_REPO}/${APP_REPO_BRANCH}/.github/categories/${TEMPL_ID}.txt")
-TEMPL_EXP=$(curl -sSL -A "${APP_AGENT}" "https://raw.githubusercontent.com/${APP_REPO}/${APP_REPO_BRANCH}/.github/expires/${TEMPL_ID}.txt")
-templ_url_service=$(curl -sSL -A "${APP_AGENT}" "https://raw.githubusercontent.com/${APP_REPO}/${APP_REPO_BRANCH}/.github/url-source/${TEMPL_ID}.txt")
-REGEX_URL='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]\.[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]$'
-REGEX_ISNUM='^[0-9]+$'
+templ_now="$(date -u)"                                                          # Get current date in utc format
+templ_path="${file_ipset_target#blocklists/}"                                   # privacy/twitter_x.ipset
+templ_path="${templ_path%.ipset}"                                               # remove extension
+templ_id="${templ_path//\//_}"                                                  # privacy_twitter_x
+templ_id="${templ_id//[^[:alnum:]]/_}"                                          # sanitize
+templ_id="${templ_id}_ipset"                                                    # match your existing format
+templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # UUID associated to each release
+templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 
 # #
-#   Default Values
+#   Template › External Sources
 # #
 
-if [[ "$TEMPL_DESC" == *"404: Not Found"* ]]; then
-    TEMPL_DESC="#   No description provided"
+info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
+
+info "    ⭐ Downloading external template sources"
+label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+
+# #
+#   Template › Get
+# #
+
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
+wait
+
+# #
+#   Template › Write Variable from Temp File
+# #
+
+templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
+templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
+templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
+templ_src=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+
+# #
+#   Template › Remove Temp File
+# #
+
+if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" "${app_dir_github}/${folder_target_temp}/cat.txt" "${app_dir_github}/${folder_target_temp}/exp.txt" "${app_dir_github}/${folder_target_temp}/src.txt"; then
+    ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
+else
+    error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
+    exit 1
 fi
 
-if [[ "$TEMPL_CAT" == *"404: Not Found"* ]]; then
-    TEMPL_CAT="Uncategorized"
+# #
+#   Template › Default Values
+# #
+
+[ -z "$templ_desc" ] || [[ "$templ_desc" == *"404: Not Found"* ]] && templ_desc="#   No description provided"
+[ -z "$templ_cat"  ] || [[ "$templ_cat"  == *"404: Not Found"* ]] && templ_cat="Uncategorized"
+[ -z "$templ_exp"  ] || [[ "$templ_exp"  == *"404: Not Found"* ]] && templ_exp="6 hours"
+[ -z "$templ_src"  ] || [[ "$templ_src"  == *"404: Not Found"* ]] && templ_src="None"
+
+# #
+#   Output › Header
+# #
+
+echo
+prinp "📄[-1] ${file_ipset_target}" \
+"${greym}File: 	    ${greyd}.............${yellowl} ${file_ipset_target}${greyd} \
+${greyd}\n${greym}Id: 	    ${greyd}...............${yellowl} ${templ_id}${greyd} \
+${greyd}\n${greym}UUID:	        ${greyd}.............${yellowl} ${templ_uuid}${greyd} \
+${greyd}\n${greym}Category:	        ${greyd}.........${yellowl} ${templ_cat}${greyd} \
+${greyd}\n${greym}Script:	       ${greyd}...........${yellowl} ${app_file_this}${greyd} \
+${greyd}\n${greym}Source:	         ${greyd}...........${yellowl} ${templ_src}${greyd}"
+
+# #
+#   Start
+# #
+
+info "    ⭐ Starting script ${bluel}${app_file_this}${greym}"
+
+if [ "${argTrustedInput}" = "true" ]; then
+    info "    ⚡ Fast mode: trusted input enabled"
 fi
 
-if [[ "$TEMPL_EXP" == *"404: Not Found"* ]]; then
-    TEMPL_EXP="6 hours"
+if [ "${argSkipBogonFilter}" = "true" ]; then
+    info "    ⚡ Fast mode: bogon filtering disabled"
 fi
 
-if [[ "$templ_url_service" == *"404: Not Found"* ]]; then
-    templ_url_service="None"
+if [ "${argSkipCidrDedup}" = "true" ]; then
+    info "    ⚡ Fast mode: overlapping CIDR dedupe disabled"
+fi
+
+if [ "${argIncludeComments}" = "true" ]; then
+    info "    ⚡ Fast mode: inline comments preserved"
 fi
 
 # #
-#   Output > Header
+#   Config Sort Options
 # #
 
-echo -e
-echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
-echo -e "  ${YELLOW1}${APP_FILE_PERM}${RESET}"
-echo -e
-echo -e "  ${GREY2}ID:          ${TEMPL_ID}${RESET}"
-echo -e "  ${GREY2}UUID:        ${TEMPL_UUID}${RESET}"
-echo -e "  ${GREY2}CATEGORY:    ${TEMPL_CAT}${RESET}"
-echo -e "  ${GREY2}ACTION:      ${APP_THIS_FILE}${RESET}"
-echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
-
-# #
-#   output
-# #
-
-echo -e
-echo -e "  ⭐ Starting script ${GREEN1}${APP_THIS_FILE}${RESET}"
+configure_sort_options
 
 # #
 #   Create or Clean file
 # #
 
-if [ -f $APP_FILE_PERM ]; then
-    echo -e "  📄 Clean ${BLUE2}${APP_FILE_PERM}${RESET}"
-    echo -e
-   > ${APP_FILE_PERM}       # clean file
+if [ -f "${file_ipset_target}" ]; then
+    info "    📄 Clean ${bluel}${PWD}/${file_ipset_target}${greym}"
+   > "${file_ipset_target}"       # clean file
 else
-    echo -e "  📁 Create ${BLUE2}${APP_FILE_PERM}${RESET}"
-    echo -e
-    mkdir -p $(dirname "${APP_FILE_PERM}")
-    touch ${APP_FILE_PERM}
+    info "    📁 Create ${bluel}${PWD}/${file_ipset_target}${greym}"
+    mkdir -p "$(dirname "${file_ipset_target}")"
+
+    if [ -d "$(dirname "${file_ipset_target}")" ]; then
+        ok "    📁 Created ${greenl}$( dirname "${file_ipset_target}" )${greym}"
+    else
+        error "    ⭕  Failed to create directory ${redl}$( dirname "${file_ipset_target}" )${greym}; aborting${greym}"
+        exit 1
+    fi
+
+    touch "${file_ipset_target}"
+    if [ -f "${file_ipset_target}" ]; then
+        ok "    📄 Created perm file ${greenl}${PWD}/${file_ipset_target}${greym}"
+    else
+        error "    ⭕ Failed to create perm file ${bluel}${PWD}/${file_ipset_target}${greym}"
+        exit 1
+    fi
 fi
 
 # #
-#   Get IP list
+#   Download lists
 # #
 
-echo -e "  🌎 Downloading IP blacklist to ${ORANGE2}${APP_FILE_TEMP}${RESET}"
+i=1
+list_main_load "${argUrl}" "${file_ipset_target}" "${argPattern}" "${i}"
 
 # #
-#   Get IP list
-# #
-
-APP_OUT=$(curl -sSL -A "${APP_AGENT}" ${ARG_URL} | html2text | grep -vi "^#|^;|^$" | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | sort -n | awk '{if (++dup[$0] == 1) print $0;}' > ${APP_FILE_TEMP})
-sed -i '/[#;]/{s/#.*//;s/;.*//;/^$/d}' ${APP_FILE_TEMP}                 # remove # and ; comments
-sed -i 's/\-.*//' ${APP_FILE_TEMP}                                      # remove hyphens for ip ranges
-sed -i 's/[[:blank:]]*$//' ${APP_FILE_TEMP}                             # remove space / tab from EOL
-sed -i '/^\s*$/d' ${APP_FILE_TEMP}                                      # remove empty lines
-
-# #
-#   calculate how many IPs are in a subnet
-#   if you want to calculate the USABLE IP addresses, subtract -2 from any subnet not ending with 31 or 32.
+#   Fallback List › Load
 #   
-#   for our purpose, we want to block them all in the event that the network has reconfigured their network / broadcast IPs,
-#   so we will count every IP in the block.
+#   If IPs cannot be obtained from the URL source; use a local static file to
+#   populate the blocklist.
+#   
+#   .github/scripts/bl-format.sh blocklists/privacy/proton_vpn.ipset proton_vpn
 # #
 
-echo -e "  📊 Fetching statistics for clean file ${ORANGE2}${APP_FILE_TEMP}${RESET}"
-for line in $(cat ${APP_FILE_TEMP}); do
+if ! has_valid_ip_entries "${file_ipset_target}"; then
+    did_load_fallback="true"
+    warn "    ⚠️  Blocklist does not contain valid IPs; aborting${greym}"
+    exit 0
+fi
 
-    # is ipv6
-    if [ "$line" != "${line#*:[0-9a-fA-F]}" ]; then
-        if [[ $line =~ /[0-9]{1,3}$ ]]; then
-            COUNT_TOTAL_SUBNET=$(( $COUNT_TOTAL_SUBNET + 1 ))                       # GLOBAL count subnet
-            BLOCKS_COUNT_TOTAL_SUBNET=$(( $BLOCKS_COUNT_TOTAL_SUBNET + 1 ))         # LOCAL count subnet
+# #
+#   Sort
+#       Remove downloaded comment/blank lines.
+#       Sort/dedupe IPv4 and IPv6 separately.
+#       Move sorted text over to permanent file.
+#       Delete temp sort file.
+# #
+
+if [ -f "${file_ipset_target}" ]; then
+    if [ "${did_load_fallback}" = "true" ]; then
+        info "    🧹 Sorting and removing duplicate IP entries from ${bluel}${PWD}/${file_ipset_target}${greym}"
+        if [ "${argIncludeComments}" = "true" ]; then
+            grep -vE '^[[:space:]]*(#|;|$)' "${file_ipset_target}" | sort_results > "${file_ipset_target}.sort"
         else
-            COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + 1 ))                               # GLOBAL count ip
-            BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP + 1 ))                 # LOCAL count ip
+            sort_results < "${file_ipset_target}" > "${file_ipset_target}.sort"
         fi
-
-    # is subnet
-    elif [[ $line =~ /[0-9]{1,2}$ ]]; then
-        ips=$(( 1 << (32 - ${line#*/}) ))
-
-        if [[ $ips =~ $REGEX_ISNUM ]]; then
-            # CIDR=$(echo $line | sed 's:.*/::')
-
-            # uncomment if you want to count ONLY usable IP addresses
-            # subtract - 2 from any cidr not ending with 31 or 32
-            # if [[ $CIDR != "31" ]] && [[ $CIDR != "32" ]]; then
-                # BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP - 2 ))
-                # COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP - 2 ))
-            # fi
-
-            BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP + $ips ))              # LOCAL count IPs in subnet
-            BLOCKS_COUNT_TOTAL_SUBNET=$(( $BLOCKS_COUNT_TOTAL_SUBNET + 1 ))         # LOCAL count subnet
-
-            COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + $ips ))                            # GLOBAL count IPs in subnet
-            COUNT_TOTAL_SUBNET=$(( $COUNT_TOTAL_SUBNET + 1 ))                       # GLOBAL count subnet
-        fi
-
-    # is normal IP
-    elif [[ $line =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-        BLOCKS_COUNT_TOTAL_IP=$(( $BLOCKS_COUNT_TOTAL_IP + 1 ))
-        COUNT_TOTAL_IP=$(( $COUNT_TOTAL_IP + 1 ))
+        > "${file_ipset_target}"
+        cat "${file_ipset_target}.sort" >> "${file_ipset_target}"
+        rm "${file_ipset_target}.sort"
+        ok "    ✅ Duplicate IPs removed"
+    else
+        info "    ⚡ Skipping final global sort/dedupe (single source already normalized)"
     fi
-done
+fi
 
 # #
-#   Count lines and subnets
+#   IPSET › Dedup Contained CIDRs (final pass across all IPs)
 # #
 
-COUNT_LINES=$(wc -l < ${APP_FILE_TEMP})                                             # GLOBAL count ip lines
-COUNT_LINES=$(printf "%'d" "$COUNT_LINES")                                          # GLOBAL add commas to thousands
-COUNT_TOTAL_IP=$(printf "%'d" "$COUNT_TOTAL_IP")                                    # GLOBAL add commas to thousands
-COUNT_TOTAL_SUBNET=$(printf "%'d" "$COUNT_TOTAL_SUBNET")                            # GLOBAL add commas to thousands
-
-BLOCKS_COUNT_TOTAL_IP=$(printf "%'d" "$BLOCKS_COUNT_TOTAL_IP")                      # LOCAL add commas to thousands
-BLOCKS_COUNT_TOTAL_SUBNET=$(printf "%'d" "$BLOCKS_COUNT_TOTAL_SUBNET")              # LOCAL add commas to thousands
-
-echo -e "  🚛 Move ${ORANGE2}${APP_FILE_TEMP}${RESET} to ${BLUE2}${APP_FILE_PERM}${RESET}"
-cat ${APP_FILE_TEMP} >> ${APP_FILE_PERM}                                            # copy .tmp contents to real file
-rm ${APP_FILE_TEMP}                                                                 # delete temp file
-
-echo -e "  ➕ Added ${FUCHSIA2}${BLOCKS_COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${BLOCKS_COUNT_TOTAL_SUBNET} Subnets${RESET} to ${BLUE2}${APP_FILE_PERM}${RESET}"
+if [ -f "${file_ipset_target}" ] && [ -s "${file_ipset_target}" ]; then
+    dedup_cidr "${file_ipset_target}"
+fi
 
 # #
-#   ed
-#       0a  top of file
+#   Final Counts (from final cleaned + deduped file)
 # #
 
-ed -s ${APP_FILE_PERM} <<END_ED
+if [ -f "${file_ipset_target}" ]; then
+    count_ip_stats "${file_ipset_target}"
+    total_ips=$total_ips
+    total_subnets=$total_subnets
+
+    total_lines=$(wc -l < "${file_ipset_target}")                               # Count ip lines
+    total_lines=$(printf "%'d" "$total_lines")                                  # GLOBAL add commas to thousands
+    total_subnets=$(printf "%'d" "$total_subnets")                              # GLOBAL add commas to thousands
+    total_ips=$(printf "%'d" "$total_ips")                                      # GLOBAL add commas to thousands
+fi
+
+# #
+#   Template › Header
+#   
+#   0a      place at top of file
+# #
+
+ed -s "${file_ipset_target}" <<END_ED
 0a
 # #
-#   🧱 Firewall Blocklist - ${APP_FILE_PERM}
+#   🧱 Firewall Blocklist - ${file_ipset_target}
 #
-#   @repo           https://raw.githubusercontent.com/${APP_REPO}/${APP_REPO_BRANCH}/${APP_FILE_PERM}
-#   @service        ${templ_url_service}
-#   @id             ${TEMPL_ID}
-#   @uuid           ${TEMPL_UUID}
-#   @updated        ${TEMPL_NOW}
-#   @entries        ${COUNT_TOTAL_IP} ips
-#                   ${COUNT_TOTAL_SUBNET} subnets
-#                   ${COUNT_LINES} lines
-#   @expires        ${TEMPL_EXP}
-#   @category       ${TEMPL_CAT}
+#   @blocklist      https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}
+#   @source         ${templ_src}
+#   @id             ${templ_id}
+#   @uuid           ${templ_uuid}
+#   @updated        ${templ_now}
+#   @entries        ${total_ips} ips
+#                   ${total_subnets} subnets
+#                   ${total_lines} lines
+#   @expires        ${templ_exp}
+#   @category       ${templ_cat}
 #
-${TEMPL_DESC}
+${templ_desc}
 # #
 
 .
@@ -342,24 +2381,23 @@ q
 END_ED
 
 # #
+#   Cleanup
+# #
+
+gcc
+
+# #
 #   Finished
+#       Capture end time
+#       Calculate elapsed time
+#       Calculate days, hours, etc.
+#       Output to console
 # #
 
-T=$SECONDS
-D=$((T/86400))
-H=$((T/3600%24))
-M=$((T/60%60))
-S=$((T%60))
-
-echo -e
-echo -e "  🎌 ${GREY2}Finished! ${YELLOW2}${D} days ${H} hrs ${M} mins ${S} secs${RESET}"
+time_elapsed $(( $( date +%s ) - time_start ))
 
 # #
-#   Output
+#   Output › Footer
 # #
 
-echo -e
-echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
-echo -e "  #️⃣ ${BLUE2}${APP_FILE_PERM}${RESET} | Added ${FUCHSIA2}${COUNT_TOTAL_IP} IPs${RESET} and ${FUCHSIA2}${COUNT_TOTAL_SUBNET} Subnets${RESET}"
-echo -e " ──────────────────────────────────────────────────────────────────────────────────────────────"
-echo -e
+prinp "🎌[41] Finished!   ${fuchsiad}IPs: ${yellowl}${total_ips}${fuchsiad}   Subnets: ${yellowl}${total_subnets}${greyd}${fuchsiad}   Duration: ${yellowl}${D} days ${H} hrs ${M} mins ${S} secs${greyd}" false

@@ -132,8 +132,8 @@ argSkipCidrDedup="false"                                                        
 argIncludeComments="false"                                                      # preserve inline comments in output
 argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
 argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
-sort_cmd_opts=()                                                                # optional sort command tuning
 did_load_fallback="false"                                                       # track whether fallback lists were merged
+sort_cmd_opts=()                                                                # optional sort command tuning
 
 # #
 #   Optional Parameters
@@ -197,7 +197,14 @@ time_start=$( date +%s )                                                        
 SECONDS=0                                                                       # set seconds count for beginning of script
 
 # #
-#   Define › Regex
+#   Define › Regex (Anchored)
+#   
+#   These patterns are STRICT matchers, which use ^ and $ anchors; meaning the 
+#   ENTIRE string must match exactly.
+#   
+#   Example:
+#       "1.2.3.4"       MATCH
+#       "foo 1.2.3.4"   NO MATCH
 # #
 
 regex_url='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]\.[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]$'
@@ -206,6 +213,26 @@ regex_ipv4_cidr='^([0-9]{1,3}\.){3}[0-9]{1,3}/([0-9]{1,2})$'
 regex_ipv6='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*$'
 regex_ipv6_cidr='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*/([0-9]{1,3})$'
 regex_ipv4_range='([0-9]{1,3}\.){3}[0-9]{1,3}[[:space:]]*-[[:space:]]*([0-9]{1,3}\.){3}[0-9]{1,3}'
+
+# #
+#   Define › Regex (Unanchored)
+#   
+#   These patterns are derived from the anchored validators above; which remove 
+#   ^ and $ so that the regex can match values inside text.
+#   
+#   Mainly these are used for stripping html and matching IP addresses which are
+#   extracted.
+# #
+
+regex_ipv4_extract="${regex_ipv4#^}"
+regex_ipv4_extract="${regex_ipv4_extract%\$}"
+regex_ipv4_cidr_extract="${regex_ipv4_cidr#^}"
+regex_ipv4_cidr_extract="${regex_ipv4_cidr_extract%\$}"
+regex_ipv6_extract="${regex_ipv6#^}"
+regex_ipv6_extract="${regex_ipv6_extract%\$}"
+regex_ipv6_cidr_extract="${regex_ipv6_cidr#^}"
+regex_ipv6_cidr_extract="${regex_ipv6_cidr_extract%\$}"
+regex_ip_extract="${regex_ipv4_extract}|${regex_ipv4_cidr_extract}|${regex_ipv6_extract}|${regex_ipv6_cidr_extract}"
 
 # #
 #   Define › Defaults
@@ -751,9 +778,9 @@ configure_sort_options( )
 
 # #
 #   Extract canonical IP/CIDR entry from a line
-#       - Strip inline # / ; comments
-#       - Normalize whitespace
-#       - If IPv4 range supplied (A - B), return A
+#       Strip inline # / ; comments
+#       Normalize whitespace
+#       If IPv4 range supplied (A - B), return A
 # #
 
 extract_ip_entry( )
@@ -878,14 +905,14 @@ sort_results()
     # #
 
     if ! grep -q ':' "${_in_tmp}"; then
-        LC_ALL=C sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}"
+        LC_ALL=C sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}" | uniq
 
     # #
     #   Fast path › pure IPv6
     # #
 
     elif ! grep -q '\.' "${_in_tmp}"; then
-        LC_ALL=C sort "${sort_cmd_opts[@]}" -u "${_in_tmp}"
+        LC_ALL=C sort "${sort_cmd_opts[@]}" "${_in_tmp}" | uniq
 
     # #
     #   Mixed IPv4/IPv6
@@ -902,7 +929,7 @@ sort_results()
         # #
 
         if [ -s "${_ipv4_tmp}" ]; then
-            LC_ALL=C sort "${sort_cmd_opts[@]}" -u -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}"
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}" | uniq
         fi
 
         # #
@@ -910,7 +937,7 @@ sort_results()
         # #
     
         if [ -s "${_ipv6_tmp}" ]; then
-            LC_ALL=C sort "${sort_cmd_opts[@]}" -u "${_ipv6_tmp}"
+            LC_ALL=C sort "${sort_cmd_opts[@]}" "${_ipv6_tmp}" | uniq
         fi
     fi
 
@@ -997,15 +1024,17 @@ is_valid_ipv4_cidr()
 is_valid_ipv6()
 {
     _fnIp=$1
+    _fnColonCount=0
 
     [[ ${_fnIp} =~ ${regex_ipv6} ]] || return 1
     printf '%s' "${_fnIp}" | grep -Eq '^[0-9A-Fa-f:.]+$' || return 1
+    _fnColonCount=$(printf '%s' "${_fnIp}" | awk -F':' '{print NF-1}')
+    [ "${_fnColonCount}" -ge 2 ] || return 1
 
     # #
     #   Unset
     # #
-
-    unset   _fnIp
+    unset   _fnIp _fnColonCount
     return 0
 }
 
@@ -1104,24 +1133,6 @@ filter_valid_ip_entries()
 
     unset   _fnValidateFile _fnValidateTemp _fnValidateRemoved _fnValidateLine _fnValidateEntry
 }
-
-# #
-#   Developer › Test IP Sorting
-# #
-
-if [ "$argDevMode" = true ]; then
-
-sort_results <<'EOF'
-192.168.1.5
-10.0.0.1
-192.168.1.10
-fe80::1
-::1
-2001:db8::1
-10.0.0.2
-EOF
-
-fi
 
 # #
 #   Count file statistics
@@ -1805,7 +1816,7 @@ has_valid_ip_entries()
     #   Unset
     # #
 
-    unset _fnArgFile _fnValidLine _fnValidEntry
+    unset   _fnArgFile _fnValidLine _fnValidEntry
 
     return 1
 }
@@ -1813,12 +1824,11 @@ has_valid_ip_entries()
 # #
 #   Cleanup Garbage
 #   
-#   Removes old ipv4 and ipv5 folders
+#   Removes old ipv4 and ipv6 folders
 # #
 
 gcc( )
 {
-    echo
     info "    🗑️  Starting ${bluel}GCC${greym} cleanup"
 
     rm -rf "${app_dir_github}/${folder_target_temp}"
@@ -1831,12 +1841,82 @@ gcc( )
 }
 
 # #
-#   Func › Download List
+#   Developer › Test IP Sorting
 # #
 
-download_list()
+if [ "$argDevMode" = true ]; then
+
+sort_results <<'EOF'
+192.168.1.5
+10.0.0.1
+192.168.1.10
+fe80::1
+::1
+2001:db8::1
+10.0.0.2
+EOF
+
+# #
+#   Developer › IPv6 Regex Test
+#   
+#   Outputs an ipv6 test to ensure our regex is matching correctly.
+# #
+
+cat << 'EOF' | while IFS= read -r ip; do
+# #
+#   Valid
+# #
+
+2001:db8::1
+::1
+fe80::1234:5678:abcd:ef12
+2001:0db8:85a3:0000:0000:8a2e:0370:7334
+::
+1234:5678:9abc:def0:1234:5678:9abc:def0
+
+# #
+#   Invalid
+# #
+
+:::::
+abc:def
+12345::1
+1:2:3:4:5:6:7:8:9
+EOF
+    # Preserve blank lines
+    [[ -z "$ip" ]] && { printf "\n"; continue; }
+
+    # Skip empty lines
+    [[ -z "$ip" ]] && continue
+
+    # Print comments (with leading space preserved)
+    [[ "$ip" =~ ^[[:space:]]*# ]] && { printf "${greym} %s\n" "$ip"; continue; }
+
+    if [[ "$ip" =~ $regex_ipv6 ]]; then
+        printf "${greenl} OK   %s${end}\n" "$ip"
+    else
+        printf "${redd} BAD  %s${end}\n" "$ip"
+    fi
+done
+
+fi
+
+# #
+#   Blocklist › Main › Load
+#   
+#   @usage          list_main_load "${file_ipset_target}" "$i"
+#   @args           _fnArgFile          Output filename to add ips to
+#                   _fnListNum          Blocklist number (#1 out of #2) - visual only
+# #
+
+list_main_load()
 {
     _fnArgFile=$1
+
+    # #
+    #   Define › Generic
+    # #
+
     _fnFileTemp="${_fnArgFile}.tmp"
     _count_total_ips=0
     _count_total_subnets=0
@@ -1945,6 +2025,20 @@ EOF
     sed -i '/^$/d' "${_fnFileTemp}"
 
     # #
+    #   apply optional grep exclude filter
+    # #
+
+    info "    ✴️  Apply grep exclude filters on ${bluel}${_fnFileTemp}${greym}"
+
+    if [ -n "${argGrepFilter}" ]; then
+        if grep -viE "${argGrepFilter}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
+            mv "${_fnFileTemp}.grep" "${_fnFileTemp}"
+        else
+            rm -f "${_fnFileTemp}.grep"
+        fi
+    fi
+
+    # #
     #   Drop malformed entries before sorting (optional trusted-input fast path)
     # #
 
@@ -1976,7 +2070,7 @@ EOF
 
     # #
     #   Calculate list statistics
-    #       - local only (global totals are calculated after final dedupe)
+    #       local only (global totals are calculated after final dedupe)
     # #
 
     info "    📊 Fetching statistics for clean file ${bluel}${PWD}/${_fnFileTemp}${greym}"
@@ -2168,7 +2262,7 @@ fi
 #   Download lists
 # #
 
-download_list "${file_ipset_target}"
+list_main_load "${file_ipset_target}"
 
 # #
 #   Sort
@@ -2247,6 +2341,12 @@ ${templ_desc}
 w
 q
 END_ED
+
+# #
+#   Cleanup
+# #
+
+gcc
 
 # #
 #   Finished

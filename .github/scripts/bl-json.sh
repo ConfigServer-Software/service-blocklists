@@ -1,36 +1,30 @@
 #!/bin/bash
 
 # #
-#   @script             Blocklist › JSON
+#   @script             Blocklist › JSON List Formatter
 #   @repo               https://github.com/ConfigServer-Software/service-blocklists
 #   @workflow           blocklist-generate.yml
-#   @type               Bash script
-#   
+#   @type               bash script
 #   @summary            Generate ipset from webserver which formats IP list in 
 #                           json structure.
 #                           Requires url and jq query | URLs: SINGLE
 #                           Structures one-ip-per-line.
-#   
-#   @execute            Run with the following commands:
-#                           .github/scripts/bl-json.sh blocklists/02_privacy_google.ipset
-#                               https://spamhaus.org/drop/drop.txt \
-#                               https://developers.google.com/search/apis/ipranges/googlebot.json '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty'
-#   
-#   @workflow           chmod +x ".github/scripts/bl-json.sh"
-#                       run_google=".github/scripts/bl-json.sh 02_privacy_google.ipset https://developers.google.com/search/apis/ipranges/googlebot.json '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty'"
-#                       eval "./$run_google"
-#   
-#   @usage              .github/scripts/bl-json.sh
-#                           <argFileSaveto>     str         required
-#                           <argUrl>            str         required
-#                           <argJsonPattern>    str         optional            default: 'map(.[]) | .[]'
-#   
-#   @demo               .github/scripts/bl-json.sh blocklists/privacy/privacy_google.ipset https://developers.google.com/search/apis/ipranges/googlebot.json '.prefixes | .[] |.ipv4Prefix//empty,.ipv6Prefix//empty'
-#                       .github/scripts/bl-json.sh blocklists/privacy/privacy_microsoft365.ipset https://endpoints.office.com/endpoints/worldwide?clientrequestid=XXXXX-XXX-XXX-XXX-XXXXXX '.[] | .ips[]?'
-#   
+#   @path               .github/scripts/bl-format.sh
+#   @args               bl-format.sh <argFileSaveto> <argUrl> <argPattern>
+#   @commands           1.  ./.github/scripts/bl-json.sh blocklists/privacy/amazon_aws.ipset "https://ip-ranges.amazonaws.com/ip-ranges.json" '.prefixes[] | select(.service=="AMAZON") | .ip_prefix'
+#                       2.  CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-json.sh blocklists/privacy/amazon_aws.ipset "https://ip-ranges.amazonaws.com/ip-ranges.json" '.prefixes[] | select(.service=="AMAZON") | .ip_prefix'
 #   @structure          📁 .github
 #                           📁 scripts
 #                               📄 bl-json.sh
+#                           📁 templates
+#                               📁 categories
+#                                   📄 *
+#                               📁 descriptions
+#                                   📄 *
+#                               📁 expires
+#                                   📄 *
+#                               📁 sources
+#                                   📄 *
 #                           📁 workflows
 #                               📄 blocklist-generate.yml
 # #
@@ -63,13 +57,13 @@ app_dir_github="${app_dir_this_dir}/.github"                                    
 #   This bash script has the following arguments:
 #   
 #   @param  argFileSaveto       str         File to save IP addresses into
-#           argJsonUrl          str         Direct url to json file to download
-#           argJsonPattern      str         JQ rules which pull the needed ip addresses
+#           argUrl              str         Direct url to json file to download
+#           argPattern          str         JQ rules which pull the needed ip addresses
 # #
 
 argFileSaveto=$1
-argJsonUrl=$2
-argJsonPattern=${3:-'map(.[]) | .[]'}
+argUrl=$2
+argPattern=${3:-'map(.[]) | .[]'}
 
 # #
 #   Define › App
@@ -129,7 +123,7 @@ bgError="${esc}[1;38;5;15;48;5;160m"
 #   Define › App
 # #
 
-app_name="Blocklist › JSON Source"                                              # name of app
+app_name="Blocklist › JSON"                                                     # name of app
 app_desc="Fetch list of IP addresses utilizing json source"                     # desc
 app_ver="1.2.0.0"                                                               # current script version
 app_repo="configserver-software/service-blocklists"                             # repository
@@ -219,7 +213,14 @@ time_start=$( date +%s )                                                        
 SECONDS=0                                                                       # set seconds count for beginning of script
 
 # #
-#   Define › Regex
+#   Define › Regex (Anchored)
+#   
+#   These patterns are STRICT matchers, which use ^ and $ anchors; meaning the 
+#   ENTIRE string must match exactly.
+#   
+#   Example:
+#       "1.2.3.4"       MATCH
+#       "foo 1.2.3.4"   NO MATCH
 # #
 
 regex_url='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]\.[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]$'
@@ -228,6 +229,26 @@ regex_ipv4_cidr='^([0-9]{1,3}\.){3}[0-9]{1,3}/([0-9]{1,2})$'
 regex_ipv6='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*$'
 regex_ipv6_cidr='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*/([0-9]{1,3})$'
 regex_ipv4_range='([0-9]{1,3}\.){3}[0-9]{1,3}[[:space:]]*-[[:space:]]*([0-9]{1,3}\.){3}[0-9]{1,3}'
+
+# #
+#   Define › Regex (Unanchored)
+#   
+#   These patterns are derived from the anchored validators above; which remove 
+#   ^ and $ so that the regex can match values inside text.
+#   
+#   Mainly these are used for stripping html and matching IP addresses which are
+#   extracted.
+# #
+
+regex_ipv4_extract="${regex_ipv4#^}"
+regex_ipv4_extract="${regex_ipv4_extract%\$}"
+regex_ipv4_cidr_extract="${regex_ipv4_cidr#^}"
+regex_ipv4_cidr_extract="${regex_ipv4_cidr_extract%\$}"
+regex_ipv6_extract="${regex_ipv6#^}"
+regex_ipv6_extract="${regex_ipv6_extract%\$}"
+regex_ipv6_cidr_extract="${regex_ipv6_cidr#^}"
+regex_ipv6_cidr_extract="${regex_ipv6_cidr_extract%\$}"
+regex_ip_extract="${regex_ipv4_extract}|${regex_ipv4_cidr_extract}|${regex_ipv6_extract}|${regex_ipv6_cidr_extract}"
 
 # #
 #   Define › Defaults
@@ -326,12 +347,12 @@ if [ -z "${argFileSaveto}" ]; then
     exit 0
 fi
 
-if [ -z "${argJsonUrl}" ]; then
+if [ -z "${argUrl}" ]; then
     error "    ⭕  No valid URL argument specified for ${yellowd}${argFileSaveto}${greym}; aborting${end}"
     exit 0
 fi
 
-case "${argJsonUrl}" in
+case "${argUrl}" in
     http://*|https://*|ftp://*|file://*)
         ;;
     *)
@@ -340,7 +361,7 @@ case "${argJsonUrl}" in
         ;;
 esac
 
-if [ -z "${argJsonPattern}" ]; then
+if [ -z "${argPattern}" ]; then
     error "    ⭕  No specified jq filter argument specified for ${yellowd}${argFileSaveto}${greym}; aborting${end}"
     exit 0
 fi
@@ -1038,15 +1059,17 @@ is_valid_ipv4_cidr()
 is_valid_ipv6()
 {
     _fnIp=$1
+    _fnColonCount=0
 
     [[ ${_fnIp} =~ ${regex_ipv6} ]] || return 1
     printf '%s' "${_fnIp}" | grep -Eq '^[0-9A-Fa-f:.]+$' || return 1
+    _fnColonCount=$(printf '%s' "${_fnIp}" | awk -F':' '{print NF-1}')
+    [ "${_fnColonCount}" -ge 2 ] || return 1
 
     # #
     #   Unset
     # #
-
-    unset   _fnIp
+    unset   _fnIp _fnColonCount
     return 0
 }
 
@@ -1145,24 +1168,6 @@ filter_valid_ip_entries()
 
     unset   _fnValidateFile _fnValidateTemp _fnValidateRemoved _fnValidateLine _fnValidateEntry
 }
-
-# #
-#   Developer › Test IP Sorting
-# #
-
-if [ "$argDevMode" = true ]; then
-
-sort_results <<'EOF'
-192.168.1.5
-10.0.0.1
-192.168.1.10
-fe80::1
-::1
-2001:db8::1
-10.0.0.2
-EOF
-
-fi
 
 # #
 #   Count file statistics
@@ -1846,7 +1851,7 @@ has_valid_ip_entries()
     #   Unset
     # #
 
-    unset _fnArgFile _fnValidLine _fnValidEntry
+    unset   _fnArgFile _fnValidLine _fnValidEntry
 
     return 1
 }
@@ -1854,12 +1859,11 @@ has_valid_ip_entries()
 # #
 #   Cleanup Garbage
 #   
-#   Removes old ipv4 and ipv5 folders
+#   Removes old ipv4 and ipv6 folders
 # #
 
 gcc( )
 {
-    echo
     info "    🗑️  Starting ${bluel}GCC${greym} cleanup"
 
     rm -rf "${app_dir_github}/${folder_target_temp}"
@@ -1872,15 +1876,87 @@ gcc( )
 }
 
 # #
-#   Func › Download List
+#   Developer › Test IP Sorting
 # #
 
-download_list()
+if [ "$argDevMode" = true ]; then
+
+sort_results <<'EOF'
+192.168.1.5
+10.0.0.1
+192.168.1.10
+fe80::1
+::1
+2001:db8::1
+10.0.0.2
+EOF
+
+# #
+#   Developer › IPv6 Regex Test
+#   
+#   Outputs an ipv6 test to ensure our regex is matching correctly.
+# #
+
+cat << 'EOF' | while IFS= read -r ip; do
+# #
+#   Valid
+# #
+
+2001:db8::1
+::1
+fe80::1234:5678:abcd:ef12
+2001:0db8:85a3:0000:0000:8a2e:0370:7334
+::
+1234:5678:9abc:def0:1234:5678:9abc:def0
+
+# #
+#   Invalid
+# #
+
+:::::
+abc:def
+12345::1
+1:2:3:4:5:6:7:8:9
+EOF
+    # Preserve blank lines
+    [[ -z "$ip" ]] && { printf "\n"; continue; }
+
+    # Skip empty lines
+    [[ -z "$ip" ]] && continue
+
+    # Print comments (with leading space preserved)
+    [[ "$ip" =~ ^[[:space:]]*# ]] && { printf "${greym} %s\n" "$ip"; continue; }
+
+    if [[ "$ip" =~ $regex_ipv6 ]]; then
+        printf "${greenl} OK   %s${end}\n" "$ip"
+    else
+        printf "${redd} BAD  %s${end}\n" "$ip"
+    fi
+done
+
+fi
+
+# #
+#   Blocklist › Main › Load
+#   
+#   @usage          list_main_load "${argUrl}" "${file_ipset_target}" "${argPattern}" "${i}"
+#   @args           _fnArgUrl           url to use for curl
+#                   _fnArgFile          output filename to add ips to
+#                   _fnArgPattern       pattern to use for jq after curl called to extract Ips
+#                   _fnListNum          blocklist number (#1 out of #2) - visual only
+# #
+
+list_main_load()
 {
     _fnArgUrl=$1
     _fnArgFile=$2
     _fnArgPattern=$3
-    _fnListNum=$4
+    _fnListNum=${4:-1}
+
+    # #
+    #   Define › Generic
+    # #
+
     _fnFileTemp="${_fnArgFile}.tmp"
     _count_total_ips=0
     _count_total_subnets=0
@@ -1903,13 +1979,19 @@ download_list()
     fi
 
     info "    🌎 Downloading IP blacklist to ${bluel}${PWD}/${_fnFileTemp}${greym}"
-    info "    🔍 Filtering json IPSET with pattern ${yellowl}${argJsonPattern}${greym}"
+    info "    🔍 Filtering json IPSET with pattern ${yellowl}${argPattern}${greym}"
 
     # #
     #   Download file
     # #
 
     curl -sSL -k -A "${app_agent}" "${_fnArgUrl}" | jq -r "${_fnArgPattern}" > "${_fnFileTemp}"
+
+    # #
+    #   Running sed
+    # #
+
+    info "    ✴️  Performing sed operations on ${bluel}${_fnFileTemp}${greym}"
 
     # #
     #   Perform sed actions on downloaded file.
@@ -1946,6 +2028,20 @@ download_list()
 
     # remove empty lines (after trimming/comment removal)
     sed -i '/^$/d' "${_fnFileTemp}"
+
+    # #
+    #   apply optional grep exclude filter
+    # #
+
+    info "    ✴️  Apply grep exclude filters on ${bluel}${_fnFileTemp}${greym}"
+
+    if [ -n "${argGrepFilter}" ]; then
+        if grep -viE "${argGrepFilter}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
+            mv "${_fnFileTemp}.grep" "${_fnFileTemp}"
+        else
+            rm -f "${_fnFileTemp}.grep"
+        fi
+    fi
 
     # #
     #   Drop malformed entries before sorting (optional trusted-input fast path)
@@ -2191,7 +2287,7 @@ fi
 # #
 
 i=1
-download_list "${argJsonUrl}" "${file_ipset_target}" "${argJsonPattern}" "${i}"
+list_main_load "${argUrl}" "${file_ipset_target}" "${argPattern}" "${i}"
 
 # #
 #   Sort
@@ -2270,6 +2366,12 @@ ${templ_desc}
 w
 q
 END_ED
+
+# #
+#   Cleanup
+# #
+
+gcc
 
 # #
 #   Finished

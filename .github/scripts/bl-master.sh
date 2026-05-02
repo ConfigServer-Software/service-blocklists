@@ -127,6 +127,7 @@ app_desc="Build master blocklist"                                               
 app_ver="1.2.0.0"                                                               # current script version
 app_repo="configserver-software/service-blocklists"                             # repository
 app_repo_branch="main"                                                          # repository branch
+app_repo_curl_storage="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github"
 app_agent="Mozilla/5.0 (Windows NT 10.0; WOW64) "\
 "AppleWebKit/537.36 (KHTML, like Gecko) "\
 "Chrome/51.0.2704.103 Safari/537.36 "\
@@ -1066,40 +1067,82 @@ download_list()
 
 file_ipset_temp="${argFileSaveto}.tmp"                                          # Temp file when building ipset list
 file_ipset_target="${argFileSaveto}"                                            # Perm file when building ipset list
+folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
+
+# #
+#   Create Temp Folder
+# #
+
+mkdir -p "${app_dir_github}/${folder_target_temp}"
+if [ -d "${app_dir_github}/${folder_target_temp}" ]; then
+    ok "    📂 Created TEMPDIR ${greenl}${app_dir_github}/${folder_target_temp}"
+else
+    error "    ❌ Failed to create ${redl}${app_dir_github}/${folder_target_temp}"
+fi
 
 # #
 #   Define › Template
 # #
 
 templ_now="$(date -u)"                                                          # Get current date in utc format
-templ_id=$(basename -- "${file_ipset_target}")                                  # Ipset id, get base filename
-templ_id="${templ_id//[^[:alnum:]]/_}"                                          # Ipset id, only allow alphanum and underscore, /description/* and /category/* files must match this value
+templ_path="${file_ipset_target#blocklists/}"                                   # privacy/twitter_x.ipset
+templ_path="${templ_path%.ipset}"                                               # remove extension
+templ_id="${templ_path//\//_}"                                                  # privacy_twitter_x
+templ_id="${templ_id//[^[:alnum:]]/_}"                                          # sanitize
+templ_id="${templ_id}_ipset"                                                    # match your existing format
 templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # UUID associated to each release
 templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 
 # #
-#   Define › Template › External Sources
+#   Template › External Sources
 # #
 
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/descriptions/${templ_id}.txt" > desc.txt &
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/categories/${templ_id}.txt" > cat.txt &
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/expires/${templ_id}.txt" > exp.txt &
-curl "${templ_curl_opts[@]}" "https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/.github/url-source/${templ_id}.txt" > src.txt &
+info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
+
+info "    ⭐ Downloading external template sources"
+label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+
+# #
+#   Template › Get
+# #
+
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
+curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
 wait
-templ_desc=$(<desc.txt)
-templ_cat=$(<cat.txt)
-templ_exp=$(<exp.txt)
-templ_url_service=$(<src.txt)
-rm -f desc.txt cat.txt exp.txt src.txt
 
 # #
-#   Define › Template › Default Values
+#   Template › Write Variable from Temp File
 # #
 
-case "$templ_desc" in *"404: Not Found"*) templ_desc="#   No description provided";; esac
-case "$templ_cat" in *"404: Not Found"*) templ_cat="Uncategorized";; esac
-case "$templ_exp" in *"404: Not Found"*) templ_exp="6 hours";; esac
-case "$templ_url_service" in *"404: Not Found"*) templ_url_service="None";; esac
+templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
+templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
+templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
+templ_src=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+
+# #
+#   Template › Remove Temp File
+# #
+
+if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" "${app_dir_github}/${folder_target_temp}/cat.txt" "${app_dir_github}/${folder_target_temp}/exp.txt" "${app_dir_github}/${folder_target_temp}/src.txt"; then
+    ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
+else
+    error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
+    exit 1
+fi
+
+# #
+#   Template › Default Values
+# #
+
+[ -z "$templ_desc" ] || [[ "$templ_desc" == *"404: Not Found"* ]] && templ_desc="#   No description provided"
+[ -z "$templ_cat"  ] || [[ "$templ_cat"  == *"404: Not Found"* ]] && templ_cat="Uncategorized"
+[ -z "$templ_exp"  ] || [[ "$templ_exp"  == *"404: Not Found"* ]] && templ_exp="6 hours"
+[ -z "$templ_src"  ] || [[ "$templ_src"  == *"404: Not Found"* ]] && templ_src="None"
 
 # #
 #   Output › Header
@@ -1112,7 +1155,7 @@ ${greyd}\n${greym}Id: 	    ${greyd}...............${yellowl} ${templ_id}${greyd}
 ${greyd}\n${greym}UUID:	        ${greyd}.............${yellowl} ${templ_uuid}${greyd} \
 ${greyd}\n${greym}Category:	        ${greyd}.........${yellowl} ${templ_cat}${greyd} \
 ${greyd}\n${greym}Script:	       ${greyd}...........${yellowl} ${app_file_this}${greyd} \
-${greyd}\n${greym}Service:	        ${greyd}..........${yellowl} ${templ_url_service}${greyd}"
+${greyd}\n${greym}Source:	         ${greyd}...........${yellowl} ${templ_src}${greyd}"
 
 # #
 #   Start
@@ -1229,8 +1272,8 @@ ed -s "${file_ipset_target}" <<END_ED
 # #
 #   🧱 Firewall Blocklist - ${file_ipset_target}
 #
-#   @repo           https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}
-#   @service        ${templ_url_service}
+#   @blocklist      https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}
+#   @source         ${templ_src}
 #   @id             ${templ_id}
 #   @uuid           ${templ_uuid}
 #   @updated        ${templ_now}
