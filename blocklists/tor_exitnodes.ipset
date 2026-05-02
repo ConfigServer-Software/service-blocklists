@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             tor_exitnodes_ipset
 #   @uuid           9d63ca5e-2c49-3352-bc9f-3d6ace1edd1e
-#   @updated        Sat May  2 01:51:37 UTC 2026
-#   @entries        1,243 ips
+#   @updated        Sat May  2 06:04:06 UTC 2026
+#   @entries        1,244 ips
 #                   0 subnets
-#                   1,243 lines
+#                   1,244 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -792,6 +792,7 @@
 185.100.87.166
 185.100.87.174
 185.100.87.192
+185.100.87.250
 185.106.102.102
 185.112.144.11
 185.112.146.167

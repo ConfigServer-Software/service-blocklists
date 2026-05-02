@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             3rdparty_bruteforceblocker_blocklist_ipset
 #   @uuid           fe9d9942-beab-34a1-8e9a-20523944a425
-#   @updated        Sat May  2 01:53:22 UTC 2026
-#   @entries        384 ips
+#   @updated        Sat May  2 06:05:42 UTC 2026
+#   @entries        388 ips
 #                   0 subnets
-#                   384 lines
+#                   388 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -72,9 +72,11 @@
 34.22.216.80
 34.22.219.80
 34.22.249.41
+34.34.163.200
 34.38.5.115
 34.38.6.243
 34.38.64.123
+34.38.185.18
 34.38.220.109
 34.52.204.179
 34.52.208.122
@@ -119,6 +121,8 @@
 35.195.40.98
 35.195.69.175
 35.195.85.179
+35.195.90.213
+35.195.148.6
 35.195.162.79
 35.195.165.181
 35.205.78.141
