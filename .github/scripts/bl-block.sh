@@ -2344,7 +2344,7 @@ fi
 #   Define › Template
 # #
 
-templ_now="$(date -u)"                                                          # Get current date in utc format
+templ_now="$(date -u '+%a %b %d %T %Z %Y')"                                     # Get current date in utc format
 templ_path="${file_ipset_target#blocklists/}"                                   # privacy/twitter_x.ipset
 templ_path="${templ_path%.ipset}"                                               # remove extension
 templ_id="${templ_path//\//_}"                                                  # privacy_twitter_x

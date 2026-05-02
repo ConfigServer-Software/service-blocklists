@@ -2517,7 +2517,7 @@ ipsets_Finalize()
                 # #
 
                 templ_url="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${folder_target_storage}/${relative_subfolder}/${basename_tmp}.${ext_target_ipset}"
-                templ_now="$(date -u)"                                                          # Get current date in utc format
+                templ_now="$(date -u '+%a %b %d %T %Z %Y')"                                     # Get current date in utc format
                 templ_id='asn'                                                                  # Ipset id, get base filename
                 # templ_id=$(basename -- "${basename_tmp}.${ext_target_ipset}")                 # Ipset id, get base filename
                 templ_id="${templ_id//[^[:alnum:]]/_}"                                          # Ipset id, only allow alphanum and underscore, /description/* and /category/* files must match this value
@@ -2768,7 +2768,7 @@ ipsets_Finalize()
         # #
 
         templ_url="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${folder_target_storage}/${folder_target_aggressive}/${file_target_aggressive}.${ext_target_ipset}"
-        templ_now="$(date -u)"                                                          # Get current date in utc format
+        templ_now="$(date -u '+%a %b %d %T %Z %Y')"                                     # Get current date in utc format
         templ_id='asn'                                                                  # Ipset id, get base filename
         # templ_id=$(basename -- "${file_target_aggressive}.${ext_target_ipset}")       # Ipset id, get base filename
         templ_id="${templ_id//[^[:alnum:]]/_}"                                          # Ipset id, only allow alphanum and underscore, /description/* and /category/* files must match this value
