@@ -586,7 +586,7 @@ jobs:
                   #   Main › BOGON
                   # #
 
-                  ./.github/scripts/bogon.sh blocklists/bogon.ipset
+                  CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/bogon.sh blocklists/bogon.ipset
 
                   # #
                   #   Main › IANA Reserved
@@ -867,7 +867,7 @@ jobs:
                   #   Privacy › General
                   # #
   
-                  ./.github/scripts/bl-block.sh blocklists/privacy/@general.ipset privacy
+                  CFG_SKIP_CIDR_DEDUPE=true CFG_SKIP_BOGON_FILTER=true ./.github/scripts/bl-block.sh blocklists/privacy/@general.ipset privacy
 
                   # #
                   #   Privacy › Activision
@@ -1178,7 +1178,7 @@ jobs:
                   #   Privacy › Linode
                   # #
 
-                  curl -fsSL "${{ vars.BL_LINODE_URL }}" | awk -F',' '{print $1}' | sort -u | .github/scripts/bl-format.sh blocklists/privacy/linode.ipset
+                  curl -sSL "${{ vars.BL_LINODE_URL }}" | awk -F',' '{print $1}' | sort -u | .github/scripts/bl-format.sh blocklists/privacy/linode.ipset
 
                   # #
                   #   Privacy › Microsoft › 365
@@ -1198,16 +1198,16 @@ jobs:
                   #   @ref    https://azservicetags.azurewebsites.net/
                   # #
 
-                  MS_AZURE_URL_PUBLIC=$( curl -fsSL "${{ vars.BL_MICROSOFT_AZURE_PUBLIC_URL }}" | grep -o 'https://download.microsoft.com/download[^"]*ServiceTags_Public_[0-9]\+\.json' | head -n1 )
+                  MS_AZURE_URL_PUBLIC=$( curl -sSL "${{ vars.BL_MICROSOFT_AZURE_PUBLIC_URL }}" | grep -o 'https://download.microsoft.com/download[^"]*ServiceTags_Public_[0-9]\+\.json' | head -n1 )
                   ./.github/scripts/bl-json.sh blocklists/privacy/microsoft_azure_public.ipset $MS_AZURE_URL_PUBLIC '.values[].properties.addressPrefixes[]'
 
-                  MS_AZURE_URL_USGOV=$( curl -fsSL "${{ vars.BL_MICROSOFT_AZURE_USGOV_URL }}" | grep -o 'https://download.microsoft.com/download[^"]*ServiceTags_AzureGovernment_[0-9]\+\.json' | head -n1 )
+                  MS_AZURE_URL_USGOV=$( curl -sSL "${{ vars.BL_MICROSOFT_AZURE_USGOV_URL }}" | grep -o 'https://download.microsoft.com/download[^"]*ServiceTags_AzureGovernment_[0-9]\+\.json' | head -n1 )
                   ./.github/scripts/bl-json.sh blocklists/privacy/microsoft_azure_usgov.ipset $MS_AZURE_URL_USGOV '.values[].properties.addressPrefixes[]'
 
-                  MS_AZURE_URL_GERMANY=$( curl -fsSL "${{ vars.BL_MICROSOFT_AZURE_GERMANY_URL }}" | grep -o 'https://download.microsoft.com/download[^"]*ServiceTags_AzureGermany_[0-9]\+\.json' | head -n1 )
+                  MS_AZURE_URL_GERMANY=$( curl -sSL "${{ vars.BL_MICROSOFT_AZURE_GERMANY_URL }}" | grep -o 'https://download.microsoft.com/download[^"]*ServiceTags_AzureGermany_[0-9]\+\.json' | head -n1 )
                   ./.github/scripts/bl-json.sh blocklists/privacy/microsoft_azure_usgov.ipset $MS_AZURE_URL_GERMANY '.values[].properties.addressPrefixes[]'
 
-                  MS_AZURE_URL_CHINA=$( curl -fsSL "${{ vars.BL_MICROSOFT_AZURE_CHINA_URL }}" | grep -o 'https://download.microsoft.com/download[^"]*ServiceTags_China_[0-9]\+\.json' | head -n1 )
+                  MS_AZURE_URL_CHINA=$( curl -sSL "${{ vars.BL_MICROSOFT_AZURE_CHINA_URL }}" | grep -o 'https://download.microsoft.com/download[^"]*ServiceTags_China_[0-9]\+\.json' | head -n1 )
                   ./.github/scripts/bl-json.sh blocklists/privacy/microsoft_azure_china.ipset $MS_AZURE_URL_CHINA '.values[].properties.addressPrefixes[]'
 
                   # #
@@ -1407,45 +1407,45 @@ jobs:
               run: |
 
                   #   ISP › AOL
-                  ./.github/scripts/bl-block.sh blocklists/isp/isp_aol.ipset isp/aol.ipset
+                  ./.github/scripts/bl-block.sh blocklists/isp/aol.ipset isp/aol.ipset
 
                   #   ISP › ATT
-                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_att.ipset "${{ vars.BL_ATT_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/att.ipset "${{ vars.BL_ATT_ASN }}"
 
                   #   ISP › Cablevision | Later merged with Suddenlink
-                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_cablevision.ipset "${{ vars.BL_CABLEVISION_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/cablevision.ipset "${{ vars.BL_CABLEVISION_ASN }}"
 
                   #   ISP › Charter & Spectrum (Previously Time Warner Cable)
-                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_charter_spectrum_timewarnercable.ipset "${{ vars.BL_CHARTER_SPECTRUM_TIMEWARNERCABLE_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/charter_spectrum_timewarnercable.ipset "${{ vars.BL_CHARTER_SPECTRUM_TIMEWARNERCABLE_ASN }}"
 
                   #   ISP › Comcast
-                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_comcast.ipset "${{ vars.BL_COMCAST_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/comcast.ipset "${{ vars.BL_COMCAST_ASN }}"
 
                   #   ISP › Cox Communications
                   #   https://networksdb.io/ip-addresses-of/cox-communications-inc
-                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_cox_communications.ipset "${{ vars.BL_COX_COMMUNICATIONS_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/cox_communications.ipset "${{ vars.BL_COX_COMMUNICATIONS_ASN }}"
 
                   #   ISP › Embarq
-                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_embarq.ipset "${{ vars.BL_EMBARQ_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/embarq.ipset "${{ vars.BL_EMBARQ_ASN }}"
 
                   #   ISP › Frontier Communications
-                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_frontier_communications.ipset "${{ vars.BL_FRONTIER_COMMUNICATIONS_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/frontier_communications.ipset "${{ vars.BL_FRONTIER_COMMUNICATIONS_ASN }}"
 
                   #   ISP › Qwest / CenturyLink
-                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_qwest_centurylink.ipset "${{ vars.BL_QWEST_CENTURYLINK_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/qwest_centurylink.ipset "${{ vars.BL_QWEST_CENTURYLINK_ASN }}"
 
                   #   ISP › Sprint
-                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_sprint.ipset "${{ vars.BL_SPRINT_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/sprint.ipset "${{ vars.BL_SPRINT_ASN }}"
 
                   #   ISP › Verizon
                   #   https://networksdb.io/search/org/verizon
-                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_verizon.ipset "${{ vars.BL_VERIZON_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/verizon.ipset "${{ vars.BL_VERIZON_ASN }}"
 
                   #   ISP › SpaceX Starlink
-                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/isp_spacex_starlink.ipset "${{ vars.BL_SPACEX_STARLINK_ASN }}"
+                  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/isp/spacex_starlink.ipset "${{ vars.BL_SPACEX_STARLINK_ASN }}"
 
                   #   ISP › Suddenlink / Altice / Optiumum
-                  ./.github/scripts/bl-json.sh blocklists/isp/isp_suddenlink_altice_optimum.ipset https://ip.guide/AS19108 '.routes | .v4//empty,.v6//empty | .[]'
+                  ./.github/scripts/bl-json.sh blocklists/isp/suddenlink_altice_optimum.ipset https://ip.guide/AS19108 '.routes | .v4//empty,.v6//empty | .[]'
 
             # #
             #   Generate › Geographical › Geolite2 › Setup
