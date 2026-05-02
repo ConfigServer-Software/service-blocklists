@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri May  1 05:05:05 UTC 2026
-#   @entries        73 ips
-#                   57 subnets
-#                   57 lines
+#   @updated        Sat May  2 04:34:21 UTC 2026
+#   @entries        69 ips
+#                   53 subnets
+#                   53 lines
 #   @country        Western Sahara (EH)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -16,7 +16,6 @@
 #   No description provided
 # #
 
-5.175.190.185/32
 46.243.148.240/28
 104.28.9.164/31
 104.28.9.166/32
@@ -67,9 +66,6 @@
 2a09:bac4:208::/45
 2a09:bac4:1208::/45
 2a0b:4e07:3:7320::/60
-2a0f:1cc5:1f6c::/48
 2a13:a5c7:2542::/48
 2a13:a5c7:25ff:4100::/56
 2a14:7580:cf41::/48
-2a14:7581:3bfc::/48
-2a14:7584:eff1::/48

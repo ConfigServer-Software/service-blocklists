@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri May  1 05:05:46 UTC 2026
-#   @entries        6,413 ips
-#                   121 subnets
-#                   121 lines
+#   @updated        Sat May  2 04:35:01 UTC 2026
+#   @entries        6,404 ips
+#                   113 subnets
+#                   113 lines
 #   @country        Saint Pierre Miquelon (PM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -16,9 +16,6 @@
 #   No description provided
 # #
 
-5.62.63.93/32
-5.62.63.94/31
-5.175.190.62/32
 5.252.112.0/22
 45.62.191.240/28
 70.36.0.0/20
@@ -47,7 +44,6 @@
 104.28.239.88/31
 104.28.239.90/32
 136.23.9.32/32
-136.23.15.32/32
 140.248.56.179/32
 140.248.57.179/32
 140.248.58.179/32
@@ -129,11 +125,7 @@
 2a09:bac6:5090::/45
 2a0a:6044:665b::/48
 2a0a:6044:665c::/46
-2a0a:6044:f65b::/48
-2a0a:6044:f65c::/46
 2a0b:4e07:3:6660::/60
-2a0f:1cc5:1f40::/48
 2a13:a5c7:25b4::/48
 2a13:a5c7:25ff:b300::/56
 2a14:7580:cfb3::/48
-2a14:7581:3bc5::/48
