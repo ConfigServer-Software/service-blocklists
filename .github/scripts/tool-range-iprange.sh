@@ -4,16 +4,30 @@
 #   @script             Blocklist › Range Converter (iprange)
 #   @repo               https://github.com/ConfigServer-Software/service-blocklists
 #   @workflow           blocklist-generate.yml
-#   @type               Bash script
-#   
+#   @type               bash script
 #   @summary            Convert IPv4 start-end ranges to CIDR blocks using `iprange`,
 #                           then output cleaned, deduped, counted ipset format.
 #                           Source supports local file path or URL.
-#   
-#   @usage              .github/scripts/tool-range-iprange.sh
+#   @path               .github/scripts/helper-iprange.sh
+#   @args               .github/scripts/helper-iprange.sh
 #                           <argFileSaveto>     str         required
 #                           <argSourceFile>     str         required
 #                           <argGrepFilter>     str         optional            default: '^#|^;|^$'
+#   @commands           1.  .github/scripts/microsoft365.sh blocklists/privacy/microsoft365.ipset
+#   @structure          📁 .github
+#                           📁 scripts
+#                               📄 helper-iprange.sh
+#                           📁 templates
+#                               📁 categories
+#                                   📄 *
+#                               📁 descriptions
+#                                   📄 *
+#                               📁 expires
+#                                   📄 *
+#                               📁 sources
+#                                   📄 *
+#                           📁 workflows
+#                               📄 blocklist-generate.yml
 # #
 
 # #
@@ -27,8 +41,8 @@ export LC_NUMERIC=en_US.UTF-8
 #   Define › Files
 # #
 
-app_file_this=$(basename "$0")                                                  # tool-range-iprange.sh (with ext)
-app_file_bin="${app_file_this%.*}"                                              # tool-range-iprange    (without ext)
+app_file_this=$(basename "$0")                                                  # helper-iprange.sh     (with ext)
+app_file_bin="${app_file_this%.*}"                                              # helper-iprange.sh     (without ext)
 
 # #
 #   Define › Folders
@@ -637,7 +651,7 @@ prinp()
 
         # #
         #   Optional [N] spacing adjustment in body line (same thing done for title)
-        # #    
+        # #
 
         _line_emoji_adjust=0
         if printf '%s\n' "$line" | grep -q '\[[[:space:]]*[-0-9][-0-9[:space:]]*\]'; then
@@ -1992,6 +2006,11 @@ list_main_load()
     _fnArgFile=$2
     _fnArgFilter=$3
     _fnListNum=${4:-1}
+
+    # #
+    #   Define › Generic
+    # #
+
     _fnFileTemp="${_fnArgFile}.tmp"
     _fnFileRaw="${_fnArgFile}.raw"
     _fnFileSrc="${_fnArgFile}.src"
@@ -2374,6 +2393,19 @@ fi
 
 i=1
 list_main_load "${argSourceFile}" "${file_ipset_target}" "${argGrepFilter}" "${i}"
+
+# #
+#   Fallback List › Load
+#   
+#   If IPs cannot be obtained from the URL source; use a local static file to
+#   populate the blocklist.
+# #
+
+if ! has_valid_ip_entries "${file_ipset_target}"; then
+    did_load_fallback="true"
+    warn "    ⚠️  Blocklist does not contain valid IPs; aborting${greym}"
+    exit 0
+fi
 
 # #
 #   Sort
