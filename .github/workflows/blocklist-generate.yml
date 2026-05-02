@@ -1256,6 +1256,27 @@ jobs:
                   ./.github/scripts/tool-range-iprange.sh blocklists/privacy/pandora.ipset "${{ vars.BL_PANDORA_URL }}"
 
                   # #
+                  #   Privacy › Perplexity › All
+                  # #
+
+                  curl -sSL https://www.perplexity.ai/perplexitybot.json https://www.perplexity.ai/perplexity-user.json \
+                    | jq -r '.prefixes[] | select(.ipv4Prefix or .ipv6Prefix) | (.ipv4Prefix // .ipv6Prefix)' \
+                    | sort -u \
+                    | ./.github/scripts/bl-format.sh blocklists/privacy/perplexity_all.ipset
+
+                  # #
+                  #   Privacy › Perplexity › Bot
+                  # #
+
+                  ./.github/scripts/bl-json.sh blocklists/privacy/perplexity_bot.ipset "https://www.perplexity.ai/perplexitybot.json" '.prefixes[] | select(.ipv4Prefix or .ipv6Prefix) | (.ipv4Prefix // .ipv6Prefix)'
+
+                  # #
+                  #   Privacy › Perplexity › User
+                  # #
+
+                  ./.github/scripts/bl-json.sh blocklists/privacy/perplexity_user.ipset "https://www.perplexity.ai/perplexity-user.json" '.prefixes[] | select(.ipv4Prefix or .ipv6Prefix) | (.ipv4Prefix // .ipv6Prefix)'
+
+                  # #
                   #   Privacy › Pingdom
                   # #
 
