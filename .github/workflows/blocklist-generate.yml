@@ -885,6 +885,11 @@ jobs:
                   #   Privacy › AI › ChatGPT
                   # #
 
+                  curl -sSL ${{ vars.BL_AI_OPENAI_GPTBOT_URL }} ${{ vars.BL_AI_OPENAI_GPTCHAT_URL }} ${{ vars.BL_AI_OPENAI_SEARCHBOT_URL }} \
+                    | jq -r '.prefixes[] | .ipv4Prefix // .ipv6Prefix' \
+                    | sort -u \
+                    | .github/scripts/bl-format.sh blocklists/privacy/ai_openai_gpt_all.ipset
+
                   curl -sSL "${{ vars.BL_AI_OPENAI_GPTBOT_URL }}" \
                     | jq -r '.prefixes[] | .ipv4Prefix // .ipv6Prefix' \
                     | sort -u \
