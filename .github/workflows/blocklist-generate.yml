@@ -815,7 +815,7 @@ jobs:
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/linuxtracker/blocklist.ipset
 
                   # #
-                  #   3rd Party › Myip.ms
+                  #   3rd Party › Myip.ms › Full Database
                   # #
 
                   tmp_zip="$(mktemp)"
@@ -824,9 +824,37 @@ jobs:
                   [ -z "${zip_entry}" ] && { echo "full_blacklist_database.txt not found in zip" >&2; rm -f "${tmp_zip}"; exit 1; }
 
                   unzip -p "${tmp_zip}" "${zip_entry}" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/myip.ms/blocklist.ipset
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/myip.ms/blocklist_full.ipset
 
                   rm -f "${tmp_zip}"
+
+                  # #
+                  #   3rd Party › Myip.ms › CSF / cPanel Specific
+                  # #
+
+                  curl -sSL "https://myip.ms/files/blacklist/csf/latest_blacklist.txt" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/myip.ms/blocklist_configserver.ipset
+
+                  # #
+                  #   3rd Party › Myip.ms › htaccess
+                  # #
+
+                  curl -sSL "https://myip.ms/files/blacklist/htaccess/latest_blacklist.txt" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/myip.ms/blocklist_htaccess.ipset
+
+                  # #
+                  #   3rd Party › Myip.ms › General
+                  # #
+
+                  curl -sSL "https://myip.ms/files/blacklist/general/latest_blacklist.txt" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/myip.ms/blocklist_general.ipset
+
+                  # #
+                  #   3rd Party › Myip.ms › Web Crawlers
+                  # #
+
+                  curl -sSL "https://myip.ms/files/bots/live_webcrawlers.txt" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/myip.ms/blocklist_web_crawlers.ipset
 
                   # #
                   #   3rd Party › Rutgers
