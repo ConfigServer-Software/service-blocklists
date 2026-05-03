@@ -1,0 +1,1 @@
+https://blocklist.configserver.dev/spam/forums.ipset
