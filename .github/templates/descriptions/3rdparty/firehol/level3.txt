@@ -1,1 +1,31 @@
-4 hours
+#   FireHOL IP Blocklist › Level 3
+#   
+#   This blocklist is sourced from FireHOL and aggregates IP addresses
+#   which provide maximum protection with minimum false positives. Suitable for
+#   basic protection on all internet facing servers, routers and firewalls. 
+#   
+#   The objective is to create a blacklist that can be safe enough to be used
+#   on all systems, with a firewall, to block access entirely, from and to its
+#   listed IPs. 
+#   
+#   This blocklist includes the following IP lists:
+#   
+#   bruteforceblocker   IPs detected performing SSH bruteforce attacks.
+#   ciarmy              Scoring system for IP addresses based on the volume and
+#                       frequency of unwanted traffic.
+#   dshield_30d         All IPs reported by dshield over the last 30 days.
+#   myip                IPs identified as web bots, crawlers, and spammers.
+#   vxvault             Latest malware hosting IPs. 
+#   
+#   This list casts a wider net than firehol_level2 and may include some false
+#   positives, especially for IPs that were flagged weeks ago but may no longer
+#   be malicious. 
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malformed data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.

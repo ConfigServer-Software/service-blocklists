@@ -1,13 +1,15 @@
-#   FireHOL IP Blocklist › DShield (30 days)
+#   FireHOL IP Blocklist › Sblam!
 #   
 #   This blocklist is sourced from FireHOL and aggregates IP addresses
-#   from the top 20 attacking class C (/24) subnets over the last thirty days.
+#   from the Sblam! project.
 #   
-#   DShield is an intrusion detection system for data collection and analysis.
-#   The project collects data about malicious activity from across the Internet.
-#   This data is cataloged and summarized and can be used to discover trends
-#   in activity, confirm widespread attacks, or assist in preparing better
-#   firewall rules.
+#   Sblam! is a service that effectively secures forms for comments on blogs,
+#   forums and guest books before spam : advertisements for drugs, porn,
+#   casinos and other junk messages mass-sent by bots. Automatically detects
+#   and rejects unwanted messages in a way that is invisible to normal users.
+#   
+#   As of May 2026, this list is no longer being updated by Sblam. IPs within
+#   this list will grow static and unchanged.
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

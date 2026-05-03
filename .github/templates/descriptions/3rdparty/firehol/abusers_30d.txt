@@ -1,1 +1,15 @@
-4 hours
+#   FireHOL IP Blocklist › Abusers (30 day)
+#   
+#   This blocklist is sourced from FireHOL and aggregates IP addresses
+#   associated with known abusers in the last 24 hours.
+#   
+#   Abusers can be either spammers, harvesters, known malicious attempts, etc.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.

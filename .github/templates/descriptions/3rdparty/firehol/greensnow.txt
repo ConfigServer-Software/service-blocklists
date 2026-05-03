@@ -1,13 +1,16 @@
-#   FireHOL IP Blocklist › DShield (30 days)
+#   FireHOL IP Blocklist › GreenSnow
 #   
 #   This blocklist is sourced from FireHOL and aggregates IP addresses
-#   from the top 20 attacking class C (/24) subnets over the last thirty days.
+#   from the project GreenSnow.
 #   
-#   DShield is an intrusion detection system for data collection and analysis.
-#   The project collects data about malicious activity from across the Internet.
-#   This data is cataloged and summarized and can be used to discover trends
-#   in activity, confirm widespread attacks, or assist in preparing better
-#   firewall rules.
+#   GreenSnow is a team harvesting a large number of IPs from different
+#   computers located around the world. GreenSnow is comparable with
+#   SpamHaus.org for attacks of any kind except for spam.
+#   
+#   Their list is updated automatically and you can withdraw at any time
+#   your IP address if it has been listed. Attacks / bruteforce that are
+#   monitored are:
+#       Scan Port, FTP, POP3, mod_security, IMAP, SMTP, SSH, cPanel, etc.
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

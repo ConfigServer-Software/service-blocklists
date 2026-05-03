@@ -1,12 +1,15 @@
-#   FireHOL IP Blocklist › Web Client
+#   FireHOL IP Blocklist › Web Server
 #   
-#   This blocklist is sourced from FireHOL and aggregates IP addresses
-#   from blocklists that track IPs that a web client should never talk to.
+#   A web server IP blacklist made from blocklists that track IPs that should
+#   never be used by your web users. (This list includes IPs that are servers
+#   hosting malware, bots, etc or users having a long criminal history.
 #   
-#   This list is to be used on top of firehol_level1.
+#   This list is to be used on top of firehol_level1, firehol_level2,
+#   firehol_level3 and possibly firehol_proxies or firehol_anonymous).
 #   
 #   This list is integrated with other firehol lists:
-#       - cybercrime
+#       - myip
+#       - stopforumspam_toxic
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

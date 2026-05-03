@@ -1,1 +1,32 @@
-4 hours
+#   FireHOL IP Blocklist › Level 4
+#   
+#   This blocklist is sourced from FireHOL and aggregates IP addresses
+#   which provide maximum protection with minimum false positives. Suitable for
+#   basic protection on all internet facing servers, routers and firewalls. 
+#   
+#   This list is more strict than level1, level2, and level3. It may contain
+#   false positives.
+#   
+#   This blocklist includes the following IP lists:
+#   
+#   blocklist_net_ua        IPs that have been observed performing attacks,
+#                           collected by Ukrainian honeypots.
+#   botscout_30d            Bots caught registering on forums and polluting
+#                           databases over the last 30 days.
+#   cybercrime              IPs used by malware Command and Control servers.
+#   iblocklist_hijacked     List of hijacked IP ranges
+#   iblocklist_spyware      IPs associated with known spyware.
+#   iblocklist_webexploit   IPs associated with web exploits.
+#   
+#   This is the most aggressive of the firehol levels. It includes lists that
+#   may have significant false positive rates. Use with caution and only if
+#   you understand the risk. 
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malformed data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.

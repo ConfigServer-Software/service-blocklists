@@ -1,1 +1,20 @@
-4 hours
+#   FireHOL IP Blocklist › BotScout (1 day)
+#   
+#   BotScout helps prevent automated web scripts, known as bots, from
+#   registering on forums, polluting databases, spreading spam, and abusing
+#   forms on web sites. They do this by tracking the names, IPs, and email
+#   addresses that bots use and logging them as unique signatures for future
+#   reference.
+#   
+#   They also provide a simple yet powerful API that you can use to test
+#   forms when they're submitted on your site. This list is composed of the
+#   most recently-caught bots. 
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.

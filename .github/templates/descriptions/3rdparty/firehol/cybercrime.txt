@@ -1,1 +1,14 @@
-4 hours
+#   FireHOL IP Blocklist › CyberCrime
+#   
+#   This blocklist is sourced from FireHOL and aggregates IP addresses
+#   from the CyberCrime project, which is a project aimed at tracking command
+#   and control.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malformed data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.

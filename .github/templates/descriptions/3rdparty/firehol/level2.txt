@@ -1,1 +1,33 @@
-4 hours
+#   FireHOL IP Blocklist › Level 2
+#   
+#   This blocklist is sourced from FireHOL and aggregates IP addresses
+#   which provide maximum protection with minimum false positives. Suitable for
+#   basic protection on all internet facing servers, routers and firewalls. 
+#   
+#   The objective is to create a blacklist that can be safe enough to be used
+#   on all systems, with a firewall, to block access entirely, from and to its
+#   listed IPs. 
+#   
+#   This blocklist includes the following IP lists:
+#   
+#   blocklist_de        Free and voluntary service provided by a
+#                       Fraud/Abuse-specialist, whose servers are often attacked
+#                       via SSH, mail-login, FTP, webserver and other services.
+#   dshield_1d          All IPs reported by dshield (SANS Internet Storm Center)
+#                       over the last 24 hours. This typically includes 60k-120k
+#                       unique IPs per day.
+#   greensnow           IPs attempting to brute-force: Scan Port, FTP, POP3,
+#                       mod_security, IMAP, SMTP, SSH, cPanel, etc.
+#   
+#   This list is suitable for servers that need to block recent attack sources
+#   without being too aggressive. It is meant to be used on top of
+#   firehol_level1. 
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malformed data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.

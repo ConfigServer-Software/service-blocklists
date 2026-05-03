@@ -1,1 +1,13 @@
-4 hours
+#   FireHOL IP Blocklist › Anonymous
+#   
+#   This blocklist is sourced from FireHOL and aggregates IP addresses
+#   for known anonymizers around the world.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.

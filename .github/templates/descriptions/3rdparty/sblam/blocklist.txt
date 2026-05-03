@@ -1,12 +1,12 @@
-#   FireHOL IP Blocklist › Web Client
+#   Sblam!
 #   
-#   This blocklist is sourced from FireHOL and aggregates IP addresses
-#   from blocklists that track IPs that a web client should never talk to.
+#   Sblam! is a service that effectively secures forms for comments on blogs,
+#   forums and guest books before spam : advertisements for drugs, porn,
+#   casinos and other junk messages mass-sent by bots. Automatically detects
+#   and rejects unwanted messages in a way that is invisible to normal users.
 #   
-#   This list is to be used on top of firehol_level1.
-#   
-#   This list is integrated with other firehol lists:
-#       - cybercrime
+#   As of May 2026, this list is no longer being updated by Sblam. IPs within
+#   this list will grow static and unchanged.
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

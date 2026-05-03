@@ -1,1 +1,13 @@
-4 hours
+#   FireHOL IP Blocklist › Proxies
+#   
+#   This blocklist is sourced from FireHOL and aggregates IP addresses
+#   from all sources that track open proxies.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malformed data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
