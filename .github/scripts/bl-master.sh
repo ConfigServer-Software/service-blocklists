@@ -9,7 +9,7 @@
 #   @summary            Generate master ipset from blocklist webserver
 #                           Only use with main 01_master ipset file.
 #                           At the end, also fetches any ips in local folder 
-#                           `github/blocks/bruteforce/*`
+#                           `github/blocks/master/*`
 #                           and adds those IPs to the end of the file.
 #                           Removes any lines starting with ';' and '#'.
 #                           Supports multiple URLs as args.
@@ -2356,7 +2356,7 @@ if [ -d ".github/blocks/" ]; then
     #   Expand files into an array and ensure the first element exists
     # #
 
-    files=( .github/blocks/bruteforce/*.ipset )
+    files=( .github/blocks/master/*.ipset )
 
     if [ -e "${files[0]}" ]; then
         for app_file_temp in "${files[@]}"; do
@@ -2364,8 +2364,8 @@ if [ -d ".github/blocks/" ]; then
             i=$(( i + 1 ))
         done
     else
-        prinp "📄[-1]Processing Static List ${yellowl}.github/blocks/bruteforce/"
-        warn "    ⚠️  No static block files found in ${yellowl}.github/blocks/bruteforce/${greym}; skipping${greym}"
+        prinp "📄[-1]Processing Static List ${yellowl}.github/blocks/master/"
+        warn "    ⚠️  No static block files found in ${yellowl}.github/blocks/master/${greym}; skipping${greym}"
     fi
 fi
 
