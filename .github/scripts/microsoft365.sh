@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 # #
 #   @script             Blocklist › Microsoft365 Blocklist
 #   @repo               https://github.com/ConfigServer-Software/service-blocklists

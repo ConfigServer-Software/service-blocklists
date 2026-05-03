@@ -644,7 +644,7 @@ prinp()
 
         # #
         #   Optional [N] spacing adjustment in body line (same thing done for title)
-        # #    
+        # #
 
         _line_emoji_adjust=0
         if printf '%s\n' "$line" | grep -q '\[[[:space:]]*[-0-9][-0-9[:space:]]*\]'; then
