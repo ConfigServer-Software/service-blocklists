@@ -1,0 +1,29 @@
+#   Tor Exit Node Blocklist
+#   
+#   This list contains known Tor exit node IP addresses used to route
+#   anonymized traffic from the Tor network to the public internet.
+#   
+#   Tor exit nodes are the final relay point in the Tor network where
+#   encrypted traffic is decrypted and forwarded to its destination.
+#   As a result, the destination server sees the exit node IP rather
+#   than the original client IP.
+#   
+#   While Tor is a legitimate tool, it is also frequently abused for 
+#   malicious activity due to its anonymity.
+#   
+#   This list is commonly used to restrict or filter traffic from
+#   Tor exit nodes for security, abuse prevention, and risk reduction
+#   purposes.
+#   
+#   Typical activities originating from Tor exit nodes may include:
+#      - Credential stuffing and brute-force attempts
+#      - Web application scanning and exploitation attempts
+#      - Spam and automated bot traffic
+#      - Fraudulent account creation
+#      - Data scraping and reconnaissance
+#   
+#   Blocking Tor exit nodes will prevent access from the public Tor
+#   network but will not affect internal Tor routing or non-exit relays.
+#   
+#   This list is sourced from publicly available Tor network data and
+#   updated regularly as exit nodes change frequently.
