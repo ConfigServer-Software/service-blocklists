@@ -1,0 +1,19 @@
+## About
+
+This folder should house all of the static `.ipset` blocklists that you wish to
+have automatically included when the `master.ipset` blocklist is generated.
+
+Each blocklist loaded in this folder may be any name, but the file must have the
+extension `.ipset` in order to be included when your blocklist is generated.
+
+These blocklists are loaded from the workflow script:
+
+- `.github\scripts\master.sh`
+
+## Structure
+
+📁 .github
+    📁 blocks
+        📁 master
+            📄 blocklist1.ipset
+            📄 blocklist2.ipset
