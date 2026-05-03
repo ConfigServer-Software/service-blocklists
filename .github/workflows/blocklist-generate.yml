@@ -791,6 +791,16 @@ jobs:
                   curl -sSL "https://iplists.firehol.org/files/firehol_webserver.netset" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/webservert.ipset
 
+                  curl -sSL "https://iplists.firehol.org/files/greensnow.ipset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/greensnow.ipset
+
+                  # #
+                  #   3rd Party › GreenSnow
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_GREENSNOW }}" \
+                    | .github/scripts/bl-format.sh blocklists/3rdparty/greensnow/blocklist.ipset
+
                   # #
                   #   3rd Party › Hagezi
                   # #
