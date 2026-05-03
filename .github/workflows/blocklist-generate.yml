@@ -734,6 +734,42 @@ jobs:
                   #   3rd Party › Firehol
                   # #
 
+                  curl -sSL "https://iplists.firehol.org/files/firehol_abusers_1d.netset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/abusers_1d.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/firehol_abusers_30d.netset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/abusers_30d.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/firehol_anonymous.netset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/anonymous.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/botscout.ipset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/botscout_1d.ipset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout_1d.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/botscout_30d.ipset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout_30d.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/botscout_7d.ipset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout_7d.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/cybercrime.ipset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/cybercrime.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/dshield.netset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/dshield.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/dshield_1d.netset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/dshield_1d.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/dshield_30d.netset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/dshield_30d.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/dshield_7d.netset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/dshield_7d.ipset
+
                   curl -sSL "https://iplists.firehol.org/files/firehol_level1.netset" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/level1.ipset
 
@@ -749,65 +785,11 @@ jobs:
                   curl -sSL "https://iplists.firehol.org/files/firehol_proxies.netset" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/proxies.ipset
 
-                  curl -sSL "https://iplists.firehol.org/files/firehol_abusers_1d.netset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/abusers_1d.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/firehol_abusers_30d.netset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/abusers_30d.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/firehol_anonymous.netset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/anonymous.ipset
-
                   curl -sSL "https://iplists.firehol.org/files/firehol_webclient.netset" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/webclient.ipset
 
                   curl -sSL "https://iplists.firehol.org/files/firehol_webserver.netset" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/webservert.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/botscout.ipset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/botscout_1d.ipset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout_1d.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/botscout_30d.ipset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout_30d.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/botscout_7d.ipset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout_7d.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/dshield.netset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/dshield.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/dshield_1d.netset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/dshield_1d.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/dshield_30d.netset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/dshield_30d.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/dshield_7d.netset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/dshield_7d.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/cybercrime.ipset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/cybercrime.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/firehol_abusers_1d.netset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/abusers_1d.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/firehol_abusers_30d.netset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/abusers_30d.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/botscout.ipset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/botscout_1d.ipset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout_1d.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/botscout_30d.ipset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout_30d.ipset
-
-                  curl -sSL "https://iplists.firehol.org/files/botscout_7d.ipset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout_7d.ipset
 
                   # #
                   #   3rd Party › Hagezi
@@ -842,7 +824,7 @@ jobs:
                   [ -z "${zip_entry}" ] && { echo "full_blacklist_database.txt not found in zip" >&2; rm -f "${tmp_zip}"; exit 1; }
 
                   unzip -p "${tmp_zip}" "${zip_entry}" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/Myip.ms/blocklist.ipset
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/myip.ms/blocklist.ipset
 
                   rm -f "${tmp_zip}"
 
