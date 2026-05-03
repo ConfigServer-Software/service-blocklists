@@ -573,8 +573,7 @@ jobs:
                   #   Main › Master
                   # #
 
-                  run_master=".github/scripts/bl-master.sh blocklists/master.ipset ${{ secrets.API_01_FILE_01 }} ${{ secrets.API_01_FILE_02 }} ${{ secrets.API_01_FILE_03 }} ${{ secrets.API_01_FILE_04 }} ${{ secrets.API_01_FILE_05 }} ${{ secrets.API_01_FILE_06 }} ${{ secrets.API_01_FILE_07 }} ${{ secrets.API_01_FILE_08 }} ${{ secrets.API_01_FILE_09 }}"
-                  eval "./$run_master"
+                  ./.github/scripts/bl-master.sh blocklists/master.ipset ${{ secrets.API_01_FILE_01 }} ${{ secrets.API_01_FILE_02 }} ${{ secrets.API_01_FILE_03 }} ${{ secrets.API_01_FILE_04 }} ${{ secrets.API_01_FILE_05 }} ${{ secrets.API_01_FILE_06 }} ${{ secrets.API_01_FILE_07 }} ${{ secrets.API_01_FILE_08 }} ${{ secrets.API_01_FILE_09 }}"
 
                   # #
                   #   Main › Highrisk
@@ -1397,7 +1396,7 @@ jobs:
               id: task_blocklist_generate_spam
               if: steps.task_blocklist_generate_run_mode.outputs.run_core == 'true'
               run: |
-                  ./.github/scripts/bl-plain.sh blocklists/spam/spamhaus.ipset ${{ vars.BL_SPAM_SPAMHAUS_SRC }}
+                  ./.github/scripts/bl-plain.sh blocklists/spam/spamhaus.ipset ${{ vars.BL_SPAM_SPAMHAUS_URL }}
 
             # #
             #   Generate › Spam › Forums
@@ -1410,7 +1409,7 @@ jobs:
               if: steps.task_blocklist_generate_run_mode.outputs.run_daily == 'true'
               run: |
                   chmod +x ".github/scripts/bl-plain.sh"
-                  ./.github/scripts/bl-plain.sh blocklists/spam/forums.ipset ${{ vars.BL_SPAM_FORUMS_SRC }}
+                  ./.github/scripts/bl-plain.sh blocklists/spam/forums.ipset ${{ vars.BL_SPAM_FORUMS_URL }}
 
             # #
             #   Generate › Internet Service Provider
