@@ -1,18 +1,35 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/firehol/webclient.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/firehol/webclient.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/firehol/webclient.ipset
+#   @source         https://iplists.firehol.org/files/firehol_webclient.netset
 #   @id             3rdparty_firehol_webclient_ipset
 #   @uuid           63e8ab7f-8133-3dac-bd85-b0ab53e25e00
-#   @updated        Sat May  2 16:42:57 UTC 2026
-#   @entries        313 ips
+#   @updated        Sun May 03 11:11:25 UTC 2026
+#   @entries        314 ips
 #                   0 subnets
-#                   313 lines
-#   @expires        6 hours
-#   @category       Uncategorized
+#                   314 lines
+#   @expires        4 hours
+#   @category       3rdParty
 #
-#   No description provided
+#   FireHOL IP Blocklist › Web Client
+#   
+#   This blocklist is sourced from FireHOL and aggregates IP addresses
+#   from blocklists that track IPs that a web client should never talk to.
+#   
+#   This list is to be used on top of firehol_level1.
+#   
+#   This list is integrated with other firehol lists:
+#       - cybercrime
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malformed data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 
 1.12.77.136
@@ -30,6 +47,7 @@
 13.232.181.15
 13.250.49.163
 15.235.51.198
+15.235.181.154
 20.29.76.13
 20.41.86.14
 20.63.83.113

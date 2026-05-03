@@ -1,18 +1,20 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/apple_bot.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/apple_bot.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/apple_bot.ipset
 #   @source         None
 #   @id             privacy_apple_bot_ipset
 #   @uuid           4401e591-9273-376c-b9dd-c7388b1a6493
-#   @updated        Sat May  2 16:44:10 UTC 2026
+#   @updated        Sun May 03 11:12:40 UTC 2026
 #   @entries        2,400 ips
 #                   12 subnets
 #                   12 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
-#   No description provided
+#   This list contains ip addresses associated with Apple bots / crawlers.
+#   
+#   These are useful if you do not wish for Apple to crawl your data.
 # #
 
 17.22.237.0/24

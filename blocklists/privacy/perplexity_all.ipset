@@ -1,0 +1,29 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/privacy/perplexity_all.ipset
+#
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/perplexity_all.ipset
+#   @source         None
+#   @id             privacy_perplexity_all_ipset
+#   @uuid           c1809076-8179-35c7-8aa6-f0f157670f49
+#   @updated        Sun May 03 11:30:40 UTC 2026
+#   @entries        32 ips
+#                   4 subnets
+#                   12 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+3.211.124.183
+3.222.232.239
+3.224.62.45
+3.231.139.107
+18.97.1.228/30
+18.97.9.96/29
+18.97.21.0/30
+18.97.43.80/29
+18.210.92.235
+34.193.163.52
+44.208.221.197
+107.20.236.150

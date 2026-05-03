@@ -1,19 +1,39 @@
 # #
-#   🧱 Firewall Blocklist - blocklists/isp/isp_cablevision.ipset
+#   🧱 Firewall Blocklist - blocklists/isp/cablevision.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_cablevision.ipset
-#   @source         None
-#   @id             isp_isp_cablevision_ipset
-#   @uuid           afdf68d8-d3a6-3f39-8344-07149ac9142d
-#   @updated        Sat May  2 17:05:15 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/isp/cablevision.ipset
+#   @source         whois.radb.net
+#   @id             isp_cablevision_ipset
+#   @uuid           6de5a872-560e-3446-914e-b3818263d0c9
+#   @updated        Sun May 03 11:33:52 UTC 2026
 #   @entries        5,580,040 ips
-#                   111 subnets
-#                   111 lines
+#                   95 subnets
+#                   95 lines
 #   @asn            AS6128, AS13490, AS19720
-#   @expires        6 hours
-#   @category       Uncategorized
+#   @expires        7 days
+#   @category       Internet Service Provider (ISP)
 #
-#   No description provided
+#   Cablevision (Internet Service Provider)
+#   
+#   Website               https://cablevision.com
+#   Founded               1973
+#   Status                Acquired by Altice (June 21, 2016)
+#   
+#   If you wish to block this internet service provider, it is recommended that
+#   you use both this blocklist, as well as the blocklist for Suddenlink / 
+#   Optimum.
+#      - https://blocklist.configserver.dev/isp_suddenlink_altice_optimum.ipset
+#   
+#   After Altice acquired Cablevision Systems Corporation on November 30, 2016,
+#   Suddenlink was combined with Cablevision. Together with Optimum, the name
+#   used by Cablevision for its products, Altice USA became the United States' 
+#   fourth largest cable operator with 4.6 million subscribers, and the sixth
+#   largest Pay TV service provider with 3.5 million subscribers. On August 1,
+#   2022, Suddenlink rebranded into Optimum.
+#   
+#   This blocklist contains mostly Cablevision IP addresses, however, it also
+#   includes some blocks which carried over from the acquisition of Suddenlink
+#   and Optimum which are registered as the same ASN.
 # #
 
 12.231.155.0/24
@@ -27,11 +47,9 @@
 24.89.128.0/18
 24.146.128.0/17
 24.157.32.0/19
-24.184.0.0/14
-24.188.0.0/14
+24.184.0.0/13
 24.228.0.0/16
-24.229.16.0/24
-24.229.17.0/24
+24.229.16.0/23
 24.229.32.0/24
 24.229.41.0/24
 24.229.55.0/24
@@ -39,8 +57,7 @@
 24.246.96.0/19
 38.101.101.0/24
 38.106.88.0/24
-47.16.0.0/14
-47.20.0.0/14
+47.16.0.0/13
 50.29.0.0/17
 63.142.16.0/20
 63.175.135.0/24
@@ -49,8 +66,7 @@
 66.152.128.0/24
 66.152.159.0/24
 67.80.0.0/13
-67.211.166.0/24
-67.211.167.0/24
+67.211.166.0/23
 68.70.183.0/24
 68.192.0.0/13
 69.27.224.0/19
@@ -76,13 +92,7 @@
 142.54.64.0/18
 144.62.128.0/17
 148.74.0.0/15
-148.76.0.0/18
-148.76.64.0/18
-148.76.128.0/18
-148.76.192.0/19
-148.76.224.0/19
-148.77.0.0/17
-148.77.128.0/17
+148.76.0.0/15
 159.116.0.0/16
 161.129.184.0/23
 162.216.56.0/21
@@ -100,19 +110,13 @@
 198.49.102.0/24
 198.90.117.0/24
 198.182.247.0/24
-198.185.100.0/24
-198.185.101.0/24
-198.185.102.0/24
-198.185.103.0/24
+198.185.100.0/22
 199.83.104.0/21
 199.191.112.0/21
 205.204.1.0/24
 205.204.5.0/24
 207.53.251.0/24
-208.78.12.0/24
-208.78.13.0/24
-208.78.14.0/24
-208.78.15.0/24
+208.78.12.0/22
 208.108.200.0/21
 209.140.32.0/19
 216.2.192.0/22

@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/dreamhost.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/dreamhost.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/dreamhost.ipset
 #   @source         None
 #   @id             privacy_dreamhost_ipset
 #   @uuid           f840eb20-fd04-339f-8e70-de9c4e374695
-#   @updated        Sat May  2 16:59:02 UTC 2026
+#   @updated        Sun May 03 11:26:07 UTC 2026
 #   @entries        176,130 ips
 #                   13 subnets
 #                   13 lines

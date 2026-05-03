@@ -1,18 +1,30 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/duckduckgo.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/duckduckgo.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/duckduckgo.ipset
+#   @source         https://raw.githubusercontent.com/duckduckgo/duckduckgo-help-pages/master/_docs/results/duckduckbot.md
 #   @id             privacy_duckduckgo_ipset
 #   @uuid           dc7c973c-d5dc-36f4-80d2-9d1296d45935
-#   @updated        Sat May  2 16:59:09 UTC 2026
+#   @updated        Sun May 03 11:26:13 UTC 2026
 #   @entries        319 ips
-#                   0 subnets
-#                   319 lines
+#                   2 subnets
+#                   317 lines
 #   @expires        6 hours
-#   @category       Uncategorized
+#   @category       Privacy
 #
-#   No description provided
+#   DuckDuckBot is the web crawler used by DuckDuckGo to index sites
+#   for its search results. It continuously scans websites via web
+#   crawling to collect content for search engine listings.
+#   
+#   Web crawlers, or spiders, are automated bots run by search engines
+#   like DuckDuckGo, Google, and Bing. Their goal is to index website
+#   content so it can appear in search results.
+#   
+#   DuckDuckBot identifies itself with the user agent:
+#       DuckDuckBot/1.1; (+http://duckduckgo.com/duckduckbot.html)
+#   
+#   Use this IP list if you want to prevent DuckDuckGo from crawling
+#   your server.
 # #
 
 4.144.182.50
@@ -302,10 +314,8 @@
 74.179.232.116
 74.242.194.48
 104.43.54.127
-104.43.55.116
-104.43.55.117
-104.43.55.166
-104.43.55.167
+104.43.55.116/31
+104.43.55.166/31
 108.141.83.74
 128.203.132.152
 130.107.228.224

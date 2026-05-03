@@ -1,18 +1,24 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/rssapi.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/rssapi.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/rssapi.ipset
+#   @source         https://rssapi.net/ips.txt
 #   @id             privacy_rssapi_ipset
 #   @uuid           25f8a230-2869-3380-b3b4-cf05e212a968
-#   @updated        Sat May  2 17:02:12 UTC 2026
+#   @updated        Sun May 03 11:30:45 UTC 2026
 #   @entries        2 ips
 #                   1 subnets
 #                   2 lines
 #   @expires        6 hours
-#   @category       Uncategorized
+#   @category       Privacy
 #
-#   No description provided
+#   RSS Webhook API
+#   
+#   Subscribe to RSS feeds and receive near real-time updates via webhooks.
+#   
+#   This service allows you to consume RSS, ATOM, and JSON feeds from any
+#   source, enabling automated content updates and integration into your
+#   applications or services.
 # #
 
 168.119.254.124

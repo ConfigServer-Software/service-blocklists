@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/bluehost_eig.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/bluehost_eig.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/bluehost_eig.ipset
 #   @source         None
 #   @id             privacy_bluehost_eig_ipset
 #   @uuid           54f1dc61-d87d-3324-8569-943ad9473105
-#   @updated        Sat May  2 16:45:17 UTC 2026
+#   @updated        Sun May 03 11:13:37 UTC 2026
 #   @entries        1,274,368 ips
-#                   92 subnets
-#                   92 lines
+#                   90 subnets
+#                   90 lines
 #   @asn            AS46606
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -20,8 +20,7 @@
 23.91.64.0/20
 23.91.112.0/20
 45.113.120.0/22
-50.6.0.0/17
-50.6.128.0/17
+50.6.0.0/16
 50.87.0.0/16
 50.116.64.0/18
 50.118.0.0/17
@@ -84,8 +83,7 @@
 173.254.0.0/17
 185.195.12.0/22
 192.84.36.0/23
-192.163.192.0/19
-192.163.224.0/19
+192.163.192.0/18
 192.169.48.0/20
 192.185.0.0/16
 192.232.192.0/18

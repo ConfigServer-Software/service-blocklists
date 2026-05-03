@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/pandora.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/pandora.ipset
-#   @service        None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/pandora.ipset
+#   @source         None
 #   @id             privacy_pandora_ipset
 #   @uuid           4ecaa598-16b1-361f-b556-774eecbd9da9
-#   @updated        Sat May  2 17:02:07 UTC 2026
+#   @updated        Sun May 03 11:30:40 UTC 2026
 #   @entries        2,048 ips
 #                   1 subnets
 #                   1 lines

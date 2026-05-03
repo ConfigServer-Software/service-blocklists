@@ -1,23 +1,41 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/firehol/dshield_1d.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/firehol/dshield_1d.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/firehol/dshield_1d.ipset
+#   @source         https://iplists.firehol.org/files/dshield_1d.netset
 #   @id             3rdparty_firehol_dshield_1d_ipset
 #   @uuid           8e2edd40-0b83-3882-a580-8f20b158d709
-#   @updated        Sat May  2 16:43:01 UTC 2026
-#   @entries        7,936 ips
-#                   31 subnets
-#                   31 lines
-#   @expires        6 hours
-#   @category       Uncategorized
+#   @updated        Sun May 03 11:10:37 UTC 2026
+#   @entries        6,144 ips
+#                   24 subnets
+#                   24 lines
+#   @expires        4 hours
+#   @category       3rdParty
 #
-#   No description provided
+#   FireHOL IP Blocklist › DShield (1 day)
+#   
+#   This blocklist is sourced from FireHOL and aggregates IP addresses
+#   from the top 20 attacking class C (/24) subnets over the last one day.
+#   
+#   DShield is an intrusion detection system for data collection and analysis.
+#   The project collects data about malicious activity from across the Internet.
+#   This data is cataloged and summarized and can be used to discover trends
+#   in activity, confirm widespread attacks, or assist in preparing better
+#   firewall rules.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malformed data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 
+45.142.154.0/24
 45.142.193.0/24
 45.148.10.0/24
-45.156.129.0/24
 45.205.1.0/24
 64.62.156.0/24
 64.62.197.0/24
@@ -27,22 +45,15 @@
 66.132.195.0/24
 66.132.224.0/24
 79.124.40.0/24
-85.11.167.0/24
-87.121.84.0/24
 87.251.64.0/24
 91.196.152.0/24
-91.230.168.0/24
-100.29.192.0/24
 147.185.132.0/24
-160.119.76.0/24
-167.94.146.0/24
+167.94.145.0/24
 176.65.139.0/24
 176.65.148.0/24
-178.20.210.0/24
 193.163.125.0/24
 195.178.110.0/24
 195.184.76.0/24
 198.235.24.0/24
 199.45.154.0/24
 205.210.31.0/24
-216.25.89.0/24

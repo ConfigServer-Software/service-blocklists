@@ -1,14 +1,14 @@
 # #
-#   🧱 Firewall Blocklist - blocklists/isp/isp_suddenlink_altice_optimum.ipset
+#   🧱 Firewall Blocklist - blocklists/isp/suddenlink_altice_optimum.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/isp/isp_suddenlink_altice_optimum.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/isp/suddenlink_altice_optimum.ipset
 #   @source         None
-#   @id             isp_isp_suddenlink_altice_optimum_ipset
-#   @uuid           fa594ff8-a2f1-3b47-8477-68ee04905206
-#   @updated        Sat May  2 17:23:26 UTC 2026
+#   @id             isp_suddenlink_altice_optimum_ipset
+#   @uuid           10b6335a-b4db-3e3e-a5f9-80a82a8db3f9
+#   @updated        Sun May 03 11:50:08 UTC 2026
 #   @entries        2,848,265 ips
-#                   98 subnets
-#                   98 lines
+#                   90 subnets
+#                   90 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -20,10 +20,7 @@
 24.49.194.0/24
 24.49.200.0/24
 24.54.114.0/24
-24.54.116.0/24
-24.54.117.0/24
-24.54.118.0/24
-24.54.119.0/24
+24.54.116.0/22
 24.72.175.0/24
 24.72.186.0/23
 24.75.113.0/24
@@ -87,15 +84,10 @@
 207.254.224.0/20
 207.254.240.0/23
 207.254.245.0/24
-207.254.246.0/24
-207.254.247.0/24
-207.254.248.0/24
-207.254.249.0/24
-207.254.250.0/24
-207.254.251.0/24
+207.254.246.0/23
+207.254.248.0/22
 207.254.253.0/24
-207.254.254.0/24
-207.254.255.0/24
+207.254.254.0/23
 208.91.57.0/24
 208.180.0.0/16
 209.33.0.0/17

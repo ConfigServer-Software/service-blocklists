@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/bytedance.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/bytedance.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/bytedance.ipset
 #   @source         None
 #   @id             privacy_bytedance_ipset
 #   @uuid           2812b2c7-ef89-317d-9384-532828085f39
-#   @updated        Sat May  2 16:45:24 UTC 2026
+#   @updated        Sun May 03 11:13:44 UTC 2026
 #   @entries        403,281 ips
-#                   59 subnets
-#                   59 lines
+#                   56 subnets
+#                   56 lines
 #   @asn            AS396986, AS138699, AS150436
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -23,14 +23,12 @@
 98.98.103.0/24
 101.45.0.0/16
 101.47.0.0/18
-101.47.64.0/20
-101.47.80.0/20
+101.47.64.0/19
 101.47.96.0/21
 101.47.128.0/18
 101.47.253.0/24
 103.136.220.0/22
-103.228.66.0/24
-103.228.67.0/24
+103.228.66.0/23
 118.26.132.0/24
 128.1.127.0/24
 128.1.169.0/24
@@ -45,8 +43,7 @@
 163.7.0.0/17
 163.7.160.0/19
 163.7.192.0/18
-179.6.235.64/27
-179.6.235.96/27
+179.6.235.64/26
 180.240.232.0/22
 187.42.0.0/17
 192.64.14.0/23

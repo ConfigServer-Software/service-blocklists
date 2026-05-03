@@ -1,18 +1,31 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/stripe_webhooks.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/stripe_webhooks.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/stripe_webhooks.ipset
+#   @source         https://stripe.com/files/ips/ips_webhooks.txt
 #   @id             privacy_stripe_webhooks_ipset
 #   @uuid           6fa1c39a-fe72-35c2-81ee-2f3ca15f40d7
-#   @updated        Sat May  2 17:03:10 UTC 2026
+#   @updated        Sun May 03 11:31:35 UTC 2026
 #   @entries        15 ips
 #                   0 subnets
 #                   15 lines
 #   @expires        6 hours
-#   @category       Uncategorized
+#   @category       Privacy
 #
-#   No description provided
+#   Stripe Webhook API
+#   
+#   Stripe is a payment service provider that enables merchants to accept
+#   credit cards, debit cards, and other forms of payment. Its Stripe
+#   Payments platform is designed for businesses that conduct most of their
+#   sales online, with features specifically geared toward e-commerce
+#   transactions.
+#   
+#   The Stripe Webhook API allows developers to receive real-time payment
+#   notifications and integrate them directly into their applications or
+#   services.
+#   
+#   Service URL:
+#       https://api.stripe.com
 # #
 
 3.18.12.63

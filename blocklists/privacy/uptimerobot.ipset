@@ -1,18 +1,28 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/uptimerobot.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/uptimerobot.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/uptimerobot.ipset
+#   @source         https://uptimerobot.com/inc/files/ips/IPv4andIPv6.txt
 #   @id             privacy_uptimerobot_ipset
 #   @uuid           0dc165b7-5bfc-32de-ab69-c4b8b99332dc
-#   @updated        Sat May  2 17:03:37 UTC 2026
+#   @updated        Sun May 03 11:32:02 UTC 2026
 #   @entries        232 ips
-#                   0 subnets
-#                   232 lines
+#                   4 subnets
+#                   226 lines
 #   @expires        6 hours
-#   @category       Uncategorized
+#   @category       Privacy
 #
-#   No description provided
+#   UptimeRobot API
+#   
+#   UptimeRobot is a service that monitors your websites’ uptime and sends
+#   alerts when a site goes down. By integrating UptimeRobot with RunCloud,
+#   you can track all websites hosted on RunCloud servers and leverage
+#   features from both platforms.
+#   
+#   The service works by sending requests to your sites at regular intervals,
+#   checking response status codes, response times, and keyword presence.
+#   If a response is unsatisfactory, UptimeRobot notifies you via email, SMS,
+#   webhooks, or other preferred methods.
 # #
 
 3.12.251.153
@@ -118,17 +128,11 @@
 209.38.51.43
 209.38.53.7
 209.38.124.252
-216.144.248.18
-216.144.248.19
+216.144.248.18/31
 216.144.248.21
-216.144.248.22
-216.144.248.23
-216.144.248.24
-216.144.248.25
-216.144.248.26
-216.144.248.27
-216.144.248.28
-216.144.248.29
+216.144.248.22/31
+216.144.248.24/30
+216.144.248.28/31
 216.144.248.30
 216.245.221.83
 2400:6180:10:200::56a0:b000

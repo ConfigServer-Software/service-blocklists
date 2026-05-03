@@ -1,24 +1,50 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/bogon.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/bogon.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/bogon.ipset
+#   @source         https://blocklist.configserver.dev/bogon.ipset
 #   @id             bogon_ipset
 #   @uuid           6a335245-924c-3fa2-bc51-ba0ffbffda42
-#   @updated        Sat May  2 16:39:44 UTC 2026
-#   @entries        592,708,617 ips
-#                   23 subnets
-#                   23 lines
-#   @expires        6 hours
-#   @category       Uncategorized
+#   @updated        Sun May 03 11:07:49 UTC 2026
+#   @entries        592,708,620 ips
+#                   25 subnets
+#                   26 lines
+#   @expires        7 days
+#   @category       Special
 #
-#   No description provided
+#   Bogon IP Address List
+#   
+#   This list contains all bogon IP address ranges that should not appear
+#   as valid source addresses on the public internet. Bogon addresses are
+#   either unallocated, reserved, or designated for special internal use
+#   and are therefore considered invalid for external routing.
+#   
+#   These addresses are commonly filtered to prevent spoofed traffic,
+#   misconfigured networks, and malicious actors from using non-routable
+#   or fake source IPs when communicating with public infrastructure.
+#   
+#   Blocking bogon traffic helps reduce noise, prevent unnecessary processing
+#   of invalid packets, and improve overall network hygiene and security.
+#   
+#   This list includes:
+#      - Unallocated IPv4 and IPv6 address space (not assigned by IANA)
+#      - Reserved private network ranges (RFC1918)
+#      - Loopback addresses
+#      - Link-local addresses
+#      - Multicast and broadcast ranges
+#      - Experimental or future-use address blocks
+#      - Deprecated or historically invalid routing space
+#   
+#   Bogon lists should be regularly updated to reflect changes in global
+#   IP allocation, as previously unallocated ranges may become publicly
+#   assigned over time.
 # #
 
 0.0.0.0/8
 10.0.0.0/8
 100.64.0.0/10
 127.0.0.0/8
+127.0.53.53
 169.254.0.0/16
 172.16.0.0/12
 192.0.0.0/24
@@ -29,12 +55,14 @@
 203.0.113.0/24
 224.0.0.0/4
 240.0.0.0/4
-::/96
-::ffff:0:0/96
 100::/64
-2001:2::/48
 2001:10::/28
+2001:2::/48
 2001:db8::/32
+::/128
+::/96
+::1/128
+::ffff:0:0/96
 fc00::/7
 fe80::/10
 ff00::/8

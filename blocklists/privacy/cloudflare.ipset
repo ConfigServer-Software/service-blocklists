@@ -1,18 +1,27 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/cloudflare.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/cloudflare.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/cloudflare.ipset
+#   @source         https://cloudflare.com/ips-v4 | https://cloudflare.com/ips-v6
 #   @id             privacy_cloudflare_ipset
 #   @uuid           9bff5966-157e-3428-9dc9-4fc7c00d929a
-#   @updated        Sat May  2 16:57:43 UTC 2026
+#   @updated        Sun May 03 11:24:52 UTC 2026
 #   @entries        1,524,743 ips
 #                   22 subnets
 #                   22 lines
 #   @expires        6 hours
-#   @category       Uncategorized
+#   @category       Privacy
 #
-#   No description provided
+#   Cloudflare operates as a content delivery network (CDN) that
+#   provides tools to improve website performance and reliability.
+#   When a domain is added to Cloudflare, site traffic is routed
+#   through Cloudflare's global network of data centers.
+#   
+#   Cloudflare speeds up content delivery by caching static assets
+#   such as CSS, JavaScript, and images on its servers. Content is
+#   served from the data center closest to the visitor, reducing
+#   page load times. If a server is under heavy load, traffic is
+#   automatically routed to the next closest location.
 # #
 
 103.21.244.0/22

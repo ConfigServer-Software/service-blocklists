@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/ai_openai_gpt_searchbot.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/ai_openai_gpt_searchbot.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/ai_openai_gpt_searchbot.ipset
 #   @source         None
 #   @id             privacy_ai_openai_gpt_searchbot_ipset
 #   @uuid           2642903c-7215-39e8-95d9-038ef1b81cdd
-#   @updated        Sat May  2 16:43:40 UTC 2026
+#   @updated        Sun May 03 11:12:12 UTC 2026
 #   @entries        2,496 ips
-#                   35 subnets
-#                   35 lines
+#                   32 subnets
+#                   32 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -29,10 +29,7 @@
 40.90.214.16/28
 51.8.102.0/24
 74.7.175.128/25
-74.7.228.0/25
-74.7.228.128/25
-74.7.229.0/25
-74.7.229.128/25
+74.7.228.0/23
 74.7.230.0/25
 74.7.241.128/25
 74.7.242.128/25

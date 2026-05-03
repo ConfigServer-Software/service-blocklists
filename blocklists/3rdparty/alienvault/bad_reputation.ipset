@@ -1,18 +1,30 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/alienvault/bad_reputation.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/alienvault/bad_reputation.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/alienvault/bad_reputation.ipset
+#   @source         http://reputation.alienvault.com/reputation.data
 #   @id             3rdparty_alienvault_bad_reputation_ipset
 #   @uuid           6819b770-fe10-320d-9dac-de21c26f18bb
-#   @updated        Sat May  2 16:39:46 UTC 2026
+#   @updated        Sun May 03 11:07:51 UTC 2026
 #   @entries        609 ips
-#                   0 subnets
-#                   609 lines
-#   @expires        6 hours
-#   @category       Uncategorized
+#                   7 subnets
+#                   602 lines
+#   @expires        4 hours
+#   @category       3rdParty
 #
-#   No description provided
+#   AlienVault IP Reputation Database
+#   
+#   This blocklist is sourced from AlienVault and contains IP addresses
+#   that have been observed engaging in abusive or malicious activity.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 
 1.34.58.110
@@ -147,8 +159,7 @@
 61.242.40.245
 61.242.54.5
 61.242.54.16
-61.242.54.48
-61.242.54.49
+61.242.54.48/31
 61.242.54.60
 61.242.54.62
 61.242.54.126
@@ -164,8 +175,7 @@
 61.242.58.12
 61.242.58.14
 61.242.58.47
-61.242.58.66
-61.242.58.67
+61.242.58.66/31
 61.242.58.104
 61.242.58.135
 61.242.58.178
@@ -215,8 +225,7 @@
 94.156.58.17
 95.137.248.182
 100.27.42.241
-100.27.42.242
-100.27.42.243
+100.27.42.242/31
 100.27.42.244
 101.0.32.22
 101.0.41.25
@@ -255,8 +264,7 @@
 103.136.82.50
 103.170.92.5
 103.170.92.7
-103.170.92.10
-103.170.92.11
+103.170.92.10/31
 103.170.92.22
 103.206.21.107
 103.215.240.1
@@ -467,8 +475,7 @@
 157.61.212.64
 157.61.212.78
 157.61.212.82
-157.61.212.84
-157.61.212.85
+157.61.212.84/31
 157.61.212.87
 157.61.212.88
 157.61.212.95
@@ -502,8 +509,7 @@
 165.227.84.230
 167.71.249.184
 167.172.59.207
-170.247.76.178
-170.247.76.179
+170.247.76.178/31
 174.83.73.163
 175.9.135.33
 175.10.19.32
@@ -566,8 +572,7 @@
 201.71.186.178
 201.184.16.244
 201.184.49.234
-201.184.54.178
-201.184.54.179
+201.184.54.178/31
 201.184.54.180
 201.184.64.238
 201.184.89.98

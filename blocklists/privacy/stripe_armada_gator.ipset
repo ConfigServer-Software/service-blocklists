@@ -1,18 +1,26 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/stripe_armada_gator.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/stripe_armada_gator.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/stripe_armada_gator.ipset
+#   @source         https://stripe.com/files/ips/ips_armada_gator.txt
 #   @id             privacy_stripe_armada_gator_ipset
 #   @uuid           eefbeb4d-cbbd-39b2-8d1c-3c02fb029cf8
-#   @updated        Sat May  2 17:03:09 UTC 2026
+#   @updated        Sun May 03 11:31:35 UTC 2026
 #   @entries        548 ips
 #                   2 subnets
 #                   38 lines
 #   @expires        6 hours
-#   @category       Uncategorized
+#   @category       Privacy
 #
-#   No description provided
+#   Stripe Webhook API
+#   
+#   Stripe is a payment service provider that allows merchants to accept credit
+#   cards, debit cards, and other payment types. Its Stripe Payments platform
+#   is optimized for businesses that primarily sell online, providing features
+#   specifically designed for e-commerce transactions.
+#   
+#   Service URL:
+#       https://armada.stripe.com
 # #
 
 3.94.14.82

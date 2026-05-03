@@ -1,18 +1,27 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/fastly.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/fastly.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/fastly.ipset
+#   @source         https://api.fastly.com/public-ip-list
 #   @id             privacy_fastly_ipset
 #   @uuid           bc39e07e-ba7f-3724-bb6a-d250b2d443ff
-#   @updated        Sat May  2 16:59:25 UTC 2026
+#   @updated        Sun May 03 11:26:27 UTC 2026
 #   @entries        304,130 ips
 #                   21 subnets
 #                   21 lines
 #   @expires        6 hours
-#   @category       Uncategorized
+#   @category       Privacy
 #
-#   No description provided
+#   This list contains IP addresses associated with Fastly.
+#   
+#   Fastly operates as a content delivery network (CDN), similar to
+#   Cloudflare. It caches and serves content such as CSS, JavaScript,
+#   static pages, and other cacheable assets.
+#   
+#   Fastly is not typically a service you would want to block. Its IP
+#   addresses are not used for port scanning, SSH brute-force attempts,
+#   or other abusive behavior, and are intended solely for content
+#   delivery.
 # #
 
 23.235.32.0/20

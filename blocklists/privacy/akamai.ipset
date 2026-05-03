@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/akamai.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/akamai.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/akamai.ipset
 #   @source         None
 #   @id             privacy_akamai_ipset
 #   @uuid           cb91e0fe-b9de-3f51-b432-d768fb98f552
-#   @updated        Sat May  2 16:43:42 UTC 2026
+#   @updated        Sun May 03 11:12:13 UTC 2026
 #   @entries        6,422,531 ips
 #                   9 subnets
 #                   9 lines

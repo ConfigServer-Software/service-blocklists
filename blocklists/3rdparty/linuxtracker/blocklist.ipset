@@ -1,18 +1,32 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/linuxtracker/blocklist.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/linuxtracker/blocklist.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/linuxtracker/blocklist.ipset
+#   @source         https://raw.githubusercontent.com/LinuxTracker/Blocklists/master/HancitorIPs.txt
 #   @id             3rdparty_linuxtracker_blocklist_ipset
 #   @uuid           5e12a53c-a12b-344a-96cf-5f605ae19f4f
-#   @updated        Sat May  2 16:43:25 UTC 2026
+#   @updated        Sun May 03 11:11:47 UTC 2026
 #   @entries        777 ips
 #                   0 subnets
 #                   777 lines
-#   @expires        6 hours
-#   @category       Uncategorized
+#   @expires        4 hours
+#   @category       3rdParty
 #
-#   No description provided
+#   LinuxTracker › HancitorIPs
+#   
+#   List of IPs sending Hancitor malspam.
+#   
+#   This list has not been updated since 2019, and should be used only
+#   if you have verified that these IPs are attempting to attack you.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 
 4.16.101.182

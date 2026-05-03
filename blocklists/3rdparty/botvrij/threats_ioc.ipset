@@ -1,18 +1,30 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/botvrij/threats_ioc.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/botvrij/threats_ioc.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/botvrij/threats_ioc.ipset
+#   @source         http://www.botvrij.eu/data/ioclist.ip-dst.raw
 #   @id             3rdparty_botvrij_threats_ioc_ipset
 #   @uuid           5d583ce2-60ac-3dff-a28a-b60d6709b3d6
-#   @updated        Sat May  2 16:41:33 UTC 2026
+#   @updated        Sun May 03 11:09:46 UTC 2026
 #   @entries        4 ips
 #                   0 subnets
 #                   4 lines
-#   @expires        6 hours
-#   @category       Uncategorized
+#   @expires        4 hours
+#   @category       3rdParty
 #
-#   No description provided
+#   botvrij › IOC (Indicator of Compromise)
+#   
+#   Botvrij.eu provides different sets of open source IOCs that you can use
+#   in your security devices to detect possible malicious activity.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 
 59.110.7.32

@@ -1,21 +1,36 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/3rdparty/dshield/blocklist.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/3rdparty/dshield/blocklist.ipset
-#   @source         None
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/dshield/blocklist.ipset
+#   @source         https://www.dshield.org/block.txt
 #   @id             3rdparty_dshield_blocklist_ipset
 #   @uuid           462df9b1-e6f9-3f42-a83d-856f7f67b603
-#   @updated        Sat May  2 16:41:35 UTC 2026
+#   @updated        Sun May 03 11:09:48 UTC 2026
 #   @entries        5,120 ips
 #                   20 subnets
 #                   20 lines
-#   @expires        6 hours
-#   @category       Uncategorized
+#   @expires        4 hours
+#   @category       3rdParty
 #
-#   No description provided
+#   DShield › SSH Bruteforce Attacks
+#   
+#   This list summarizes the top 20 attacking class C (/24) subnets
+#   over the last three days.
+#   
+#   All blocklists available at:
+#       https://www.dshield.org/feeds_doc.html
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 
-45.142.193.0/24
+45.142.154.0/24
 45.148.10.0/24
 45.205.1.0/24
 64.62.156.0/24
@@ -25,13 +40,13 @@
 66.132.186.0/24
 66.132.195.0/24
 66.132.224.0/24
-79.124.40.0/24
+77.90.185.0/24
 87.251.64.0/24
-91.196.152.0/24
 147.185.132.0/24
 176.65.139.0/24
 176.65.148.0/24
 193.163.125.0/24
-195.178.110.0/24
+195.184.76.0/24
+198.235.24.0/24
 199.45.154.0/24
 205.210.31.0/24

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/privacy/censys_io.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/privacy/censys_io.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/censys_io.ipset
 #   @source         None
 #   @id             privacy_censys_io_ipset
 #   @uuid           b1420874-4ab4-3b72-b5e7-883d31d03cef
-#   @updated        Sat May  2 16:45:35 UTC 2026
+#   @updated        Sun May 03 11:13:57 UTC 2026
 #   @entries        6,147 ips
-#                   27 subnets
-#                   27 lines
+#                   24 subnets
+#                   24 lines
 #   @asn            AS398324
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -36,10 +36,7 @@
 162.142.125.0/24
 167.94.138.0/24
 167.248.133.0/24
-206.168.32.0/24
-206.168.33.0/24
-206.168.34.0/24
-206.168.35.0/24
+206.168.32.0/22
 2001:470:1a6::/48
 2602:80d:1000::/44
 2620:96:e000::/48
