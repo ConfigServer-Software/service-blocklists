@@ -1,0 +1,26 @@
+#   Bogon IP Address List
+#   
+#   This list contains all bogon IP address ranges that should not appear
+#   as valid source addresses on the public internet. Bogon addresses are
+#   either unallocated, reserved, or designated for special internal use
+#   and are therefore considered invalid for external routing.
+#   
+#   These addresses are commonly filtered to prevent spoofed traffic,
+#   misconfigured networks, and malicious actors from using non-routable
+#   or fake source IPs when communicating with public infrastructure.
+#   
+#   Blocking bogon traffic helps reduce noise, prevent unnecessary processing
+#   of invalid packets, and improve overall network hygiene and security.
+#   
+#   This list includes:
+#      - Unallocated IPv4 and IPv6 address space (not assigned by IANA)
+#      - Reserved private network ranges (RFC1918)
+#      - Loopback addresses
+#      - Link-local addresses
+#      - Multicast and broadcast ranges
+#      - Experimental or future-use address blocks
+#      - Deprecated or historically invalid routing space
+#   
+#   Bogon lists should be regularly updated to reflect changes in global
+#   IP allocation, as previously unallocated ranges may become publicly
+#   assigned over time.
