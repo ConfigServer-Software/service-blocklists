@@ -1,6 +1,12 @@
-#   BBcan177 Malicious Threats
+#   IPSum › Threat Intelligence Feeds
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   A threat intelligence feed based on 30+ different publicly available
+#   lists of suspicious and/or malicious IP addresses. All lists are
+#   automatically retrieved and parsed on a daily (every 24 hours) basis
+#   and the final result is pushed to this repository.
+#   
+#   Github Repository:
+#       https://github.com/stamparm/ipsum
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

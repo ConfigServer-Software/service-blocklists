@@ -1,0 +1,28 @@
+#   myip.ms › cPanel / ConfigServer Firewall
+#   
+#   List of IP addresses within the last 10 days that have been confirmed by
+#   myip.ms to be bots / malicious.
+#   
+#   Compatible with cPanel and CSF Firewall.
+#   
+#   Notes for CSF Firewall: 
+#       Add/Replace Blacklist IPs in /etc/csf/csf.deny
+#       DENY_IP_LIMIT       Max number of IPs that can be saved in /etc/csf/csf.deny
+#                           (default: 100)
+#   
+#       To Increase Limit   [WHM]       Plugins => Configserver Security &
+#                                       firewall => Firewall configuration 
+#                           
+#                           [MANUAL     Edit => /etc/csf/csf.conf; change value. 
+#                                       DENY_IP_LIMIT = 0 (unlimited).
+#   
+#                           Restart firewall after making changes.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.

@@ -1,6 +1,7 @@
-#   BBcan177 Malicious Threats
+#   myip.ms › Full
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   List of IP addresses detected by myip.ms which have been flagged as spam
+#   bots or malicious over many years.
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

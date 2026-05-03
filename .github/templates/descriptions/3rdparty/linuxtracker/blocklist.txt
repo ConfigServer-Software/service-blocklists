@@ -1,6 +1,9 @@
-#   BBcan177 Malicious Threats
+#   LinuxTracker › HancitorIPs
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   List of IPs sending Hancitor malspam.
+#   
+#   This list has not been updated since 2019, and should be used only
+#   if you have verified that these IPs are attempting to attack you.
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

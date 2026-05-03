@@ -1,6 +1,11 @@
-#   BBcan177 Malicious Threats
+#   blocklist.de › SSH
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   All IP addresses which have been reported within the last 48 hours as
+#   having run attacks on the service SSH. 
+#   
+#   blocklist.de is a free and voluntary service provided by a 
+#   Fraud/Abuse-specialist, whose servers are often attacked via 
+#   SSH-, Mail-Login-, FTP-, Webserver- and other services. 
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

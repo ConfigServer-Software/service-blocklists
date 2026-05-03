@@ -1,6 +1,10 @@
-#   BBcan177 Malicious Threats
+#   DShield › SSH Bruteforce Attacks
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   This list summarizes the top 20 attacking class C (/24) subnets
+#   over the last three days.
+#   
+#   All blocklists available at:
+#       https://www.dshield.org/feeds_doc.html
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

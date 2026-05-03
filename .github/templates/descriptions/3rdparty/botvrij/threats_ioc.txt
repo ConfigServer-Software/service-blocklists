@@ -1,6 +1,7 @@
-#   BBcan177 Malicious Threats
+#   botvrij › IOC (Indicator of Compromise)
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   Botvrij.eu provides different sets of open source IOCs that you can use
+#   in your security devices to detect possible malicious activity.
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

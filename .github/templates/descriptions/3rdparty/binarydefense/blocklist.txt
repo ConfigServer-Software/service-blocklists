@@ -1,6 +1,11 @@
-#   BBcan177 Malicious Threats
+#   Binary Defense Systems Artillery Threat Intelligence Feed and Banlist Feed
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   A list of known attacker IP addresses detected by their Artillery honeypot
+#   and monitoring platform. IPs in this feed have been observed actively
+#   attacking Artillery sensors.
+#   
+#   Artillery is an open-source honeypot and endpoint monitoring tool that
+#   detects port scanning, brute force attacks, and other malicious activity.
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

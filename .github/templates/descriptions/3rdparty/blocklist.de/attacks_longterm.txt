@@ -1,6 +1,10 @@
-#   BBcan177 Malicious Threats
+#   blocklist.de › Long Term / Strong IPs
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   All IPs which are older then 2 month and have more then 5.000 attacks.
+#   
+#   blocklist.de is a free and voluntary service provided by a 
+#   Fraud/Abuse-specialist, whose servers are often attacked via 
+#   SSH-, Mail-Login-, FTP-, Webserver- and other services. 
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

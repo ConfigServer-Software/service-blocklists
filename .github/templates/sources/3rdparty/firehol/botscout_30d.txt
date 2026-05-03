@@ -1,0 +1,1 @@
+https://iplists.firehol.org/files/botscout_30d.ipset

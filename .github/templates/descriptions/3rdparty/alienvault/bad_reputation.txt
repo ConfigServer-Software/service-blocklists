@@ -1,6 +1,7 @@
-#   BBcan177 Malicious Threats
+#   AlienVault IP Reputation Database
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   This blocklist is sourced from AlienVault and contains IP addresses
+#   that have been observed engaging in abusive or malicious activity.
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

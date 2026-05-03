@@ -1,6 +1,9 @@
-#   BBcan177 Malicious Threats
+#   Rutgers › Department of Computer Science
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   Blocklist managed by Rutgers University in New Brunswick, NJ.
+#   
+#   Confirm current blocklist status for an IP:
+#       https://report.cs.rutgers.edu/myip/
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

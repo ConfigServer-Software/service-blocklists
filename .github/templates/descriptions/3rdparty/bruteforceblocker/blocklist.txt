@@ -1,6 +1,9 @@
-#   BBcan177 Malicious Threats
+#   Daniel Gerzo › SSH Bruteforce Attacks
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   A curated list of SSH bruteforce attacks, maintained by bruteforceblocker.
+#   
+#   A custom perl script is available at:
+#       https://github.com/dgerzo/bruteforceblocker
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

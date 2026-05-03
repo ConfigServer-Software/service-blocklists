@@ -1,6 +1,13 @@
-#   BBcan177 Malicious Threats
+#   blocklist.de › SIP
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   All IP addresses that tried to login in a SIP-, VOIP- or Asterisk-Server
+#   and are inclueded in the IPs
+#   
+#   List from http://www.infiltrated.net/ (Twitter). 
+#   
+#   blocklist.de is a free and voluntary service provided by a 
+#   Fraud/Abuse-specialist, whose servers are often attacked via 
+#   SSH-, Mail-Login-, FTP-, Webserver- and other services. 
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

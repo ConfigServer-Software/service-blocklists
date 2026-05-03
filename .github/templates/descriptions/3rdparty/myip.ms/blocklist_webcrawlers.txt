@@ -1,6 +1,7 @@
-#   BBcan177 Malicious Threats
+#   myip.ms › Web Bots & Spiders
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   List of IP addresses associated with various web crawlers such as Google,
+#   Yahoo, Claude, MSN, DuckDuckGo, etc.
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the

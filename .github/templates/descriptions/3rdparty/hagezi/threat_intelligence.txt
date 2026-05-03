@@ -1,6 +1,8 @@
-#   BBcan177 Malicious Threats
+#   Hagezi › Threat Intelligence Feeds
 #   
-#   This list is curated by BBcan177 and contains known malicious threats.
+#   Blocklist for blocking Malware, Cryptojacking, Scam, Spam and Phishing.
+#   Blocks domains known to spread malware, launch phishing attacks and host
+#   command-and-control servers.
 #   
 #   This third-party blocklist is not maintained by ConfigServer; IPs are
 #   sourced externally and not curated by us. We do however, validate the
