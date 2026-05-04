@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             privacy_apple_icloud_ipset
 #   @uuid           355d923c-c66f-3da3-a931-ad44da0c9d42
-#   @updated        Sun May 03 20:41:04 UTC 2026
-#   @entries        350,791 ips
-#                   247,941 subnets
-#                   248,392 lines
+#   @updated        Mon May 04 02:01:24 UTC 2026
+#   @entries        350,820 ips
+#                   247,942 subnets
+#                   248,394 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -1743,8 +1743,10 @@
 104.28.137.2/31
 104.28.137.4/30
 104.28.137.8/29
-104.28.137.16/29
-104.28.137.24/30
+104.28.137.16/28
+104.28.137.32/28
+104.28.137.48/29
+104.28.137.56
 104.28.138.1
 104.28.138.2/31
 104.28.138.4/30
