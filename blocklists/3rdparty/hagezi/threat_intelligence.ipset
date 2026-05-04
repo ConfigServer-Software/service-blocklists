@@ -5,7 +5,7 @@
 #   @source         https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/ips/tif.txt
 #   @id             3rdparty_hagezi_threat_intelligence_ipset
 #   @uuid           3a43bc64-4409-32a4-bc29-61afb1182bd3
-#   @updated        Mon May 04 13:28:34 UTC 2026
+#   @updated        Mon May 04 17:29:45 UTC 2026
 #   @entries        60,173 ips
 #                   2,134 subnets
 #                   54,025 lines
