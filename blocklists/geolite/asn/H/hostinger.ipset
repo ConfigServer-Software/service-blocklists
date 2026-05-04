@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/H/hostinger.ipset
 #
-#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/H/hostinger.ipset
+#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/H/hostinger.ipset
 #   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat May  2 04:39:53 UTC 2026
-#   @entries        1,066,521 ips
-#                   403 subnets
-#                   403 lines
+#   @updated        Mon May 04 05:02:33 UTC 2026
+#   @entries        1,075,226 ips
+#                   407 subnets
+#                   407 lines
 #   @asn            AS47583
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -17,7 +17,9 @@
 # #
 
 2.24.16.0/20
+2.24.160.0/19
 2.24.192.0/19
+2.25.25.0/24
 2.57.88.0/22
 2.59.150.0/24
 5.180.60.0/24
@@ -315,6 +317,7 @@
 187.124.96.0/20
 187.124.112.0/21
 187.124.120.0/23
+187.124.122.0/24
 187.124.128.0/21
 187.124.144.0/20
 187.124.160.0/19
@@ -419,3 +422,4 @@
 2a02:4780:8::/45
 2a02:4780::/47
 2a02:4780:d053::/48
+2a02:4780:d9::/48

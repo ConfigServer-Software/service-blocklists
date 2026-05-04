@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_sudan.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_sudan.ipset
+#   @repo           https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/country/country_sudan.ipset
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Sat May  2 04:35:06 UTC 2026
+#   @updated        Mon May  4 04:57:52 UTC 2026
 #   @entries        1,897,589 ips
 #                   190 subnets
 #                   190 lines

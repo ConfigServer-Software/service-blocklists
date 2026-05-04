@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/O/ovh_cloud.ipset
 #
-#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/O/ovh_cloud.ipset
+#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/O/ovh_cloud.ipset
 #   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat May  2 04:40:06 UTC 2026
-#   @entries        4,683,786 ips
-#                   552 subnets
-#                   552 lines
+#   @updated        Mon May 04 05:02:46 UTC 2026
+#   @entries        4,684,042 ips
+#                   553 subnets
+#                   553 lines
 #   @asn            AS16276, AS35540
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -24,13 +24,13 @@
 5.39.0.0/17
 5.133.101.0/24
 5.135.0.0/16
-5.175.164.0/24
 5.175.168.0/24
 5.175.179.0/24
 5.175.195.0/24
 5.178.106.0/24
 5.178.110.0/24
 5.182.19.0/24
+5.183.214.0/24
 5.196.0.0/16
 5.231.207.0/24
 8.7.244.0/24
@@ -296,6 +296,7 @@
 123.100.227.0/24
 128.0.118.0/24
 132.243.197.0/24
+134.195.148.0/24
 135.125.0.0/16
 135.148.0.0/16
 136.0.95.0/24

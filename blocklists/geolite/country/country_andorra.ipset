@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_andorra.ipset
 #
-#   @repo           https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/country/country_andorra.ipset
+#   @repo           https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/country/country_andorra.ipset
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Sat May  2 04:33:57 UTC 2026
+#   @updated        Mon May  4 04:56:42 UTC 2026
 #   @entries        69,887 ips
 #                   356 subnets
 #                   356 lines

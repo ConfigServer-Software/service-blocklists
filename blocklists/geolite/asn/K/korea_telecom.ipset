@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/K/korea_telecom.ipset
 #
-#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/K/korea_telecom.ipset
+#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/K/korea_telecom.ipset
 #   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat May  2 04:39:57 UTC 2026
-#   @entries        46,387,980 ips
-#                   5,484 subnets
-#                   5,484 lines
+#   @updated        Mon May 04 05:02:37 UTC 2026
+#   @entries        46,388,236 ips
+#                   5,482 subnets
+#                   5,482 lines
 #   @asn            AS4766, AS45400, AS4040
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -3505,9 +3505,7 @@
 211.46.156.0/22
 211.46.160.0/19
 211.46.192.0/18
-211.47.0.0/23
-211.47.2.0/24
-211.47.4.0/22
+211.47.0.0/21
 211.47.8.0/22
 211.47.14.0/23
 211.47.17.0/24

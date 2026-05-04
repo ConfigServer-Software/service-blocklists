@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/F/fastly.ipset
 #
-#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/F/fastly.ipset
+#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/F/fastly.ipset
 #   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat May  2 04:39:40 UTC 2026
-#   @entries        343,053 ips
-#                   619 subnets
-#                   619 lines
+#   @updated        Mon May 04 05:02:22 UTC 2026
+#   @entries        349,202 ips
+#                   629 subnets
+#                   629 lines
 #   @asn            AS54113, AS394192, AS895
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -25,6 +25,9 @@
 23.235.42.0/23
 23.235.44.0/22
 43.249.72.0/22
+45.58.212.0/22
+45.58.232.0/21
+45.58.240.0/22
 63.245.216.0/22
 63.245.220.0/23
 63.245.222.0/24
@@ -56,6 +59,7 @@
 140.248.124.0/23
 140.248.128.0/17
 146.75.0.0/16
+149.143.184.0/22
 151.101.0.0/16
 157.52.64.0/22
 157.52.68.0/23
@@ -105,6 +109,7 @@
 185.199.108.0/22
 185.221.87.0/24
 198.54.216.0/24
+198.145.136.0/22
 199.27.74.0/23
 199.27.76.0/23
 199.36.158.0/24
@@ -132,6 +137,11 @@
 2a00:8c40:f000::/42
 2a00:8c40:f040::/43
 2a00:8c40:f060::/44
+2a00:8c40:f090::/44
+2a00:8c40:f0b0::/44
+2a00:8c40:f0f0::/44
+2a00:8c40:f120::/43
+2a00:8c40:f1b0::/44
 2a04:4e40:1000::/48
 2a04:4e40:100::/44
 2a04:4e40:1010::/48

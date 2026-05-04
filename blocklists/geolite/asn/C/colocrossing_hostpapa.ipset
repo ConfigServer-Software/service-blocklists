@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/C/colocrossing_hostpapa.ipset
 #
-#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/C/colocrossing_hostpapa.ipset
+#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/C/colocrossing_hostpapa.ipset
 #   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat May  2 04:39:00 UTC 2026
-#   @entries        908,816 ips
-#                   932 subnets
-#                   932 lines
+#   @updated        Mon May 04 05:01:41 UTC 2026
+#   @entries        909,072 ips
+#                   933 subnets
+#                   933 lines
 #   @asn            AS36352, AS394738
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -271,6 +271,7 @@
 75.127.12.0/22
 76.74.47.0/24
 85.31.54.0/24
+91.234.36.0/24
 96.8.112.0/20
 96.44.128.0/21
 96.44.136.0/22

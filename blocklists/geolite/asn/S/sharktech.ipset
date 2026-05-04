@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/S/sharktech.ipset
 #
-#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/S/sharktech.ipset
+#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/S/sharktech.ipset
 #   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat May  2 04:40:20 UTC 2026
-#   @entries        124,422 ips
-#                   57 subnets
-#                   57 lines
+#   @updated        Mon May 04 05:02:59 UTC 2026
+#   @entries        124,678 ips
+#                   58 subnets
+#                   58 lines
 #   @asn            AS46844
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -61,6 +61,7 @@
 191.101.48.0/24
 198.148.80.0/20
 199.115.96.0/21
+204.136.11.0/24
 204.188.192.0/18
 208.98.0.0/21
 208.98.32.0/19

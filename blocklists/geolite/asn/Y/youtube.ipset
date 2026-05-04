@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/Y/youtube.ipset
 #
-#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/Y/youtube.ipset
+#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/Y/youtube.ipset
 #   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat May  2 04:41:34 UTC 2026
+#   @updated        Mon May 04 05:04:15 UTC 2026
 #   @entries        35,372 ips
-#                   115 subnets
-#                   115 lines
+#                   117 subnets
+#                   117 lines
 #   @asn            AS11344, AS43515, AS36561, AS1026, AS36040
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -46,7 +46,9 @@
 104.237.165.0/24
 104.237.166.0/24
 104.237.167.0/24
-104.237.168.0/22
+104.237.168.0/24
+104.237.169.0/24
+104.237.170.0/23
 104.237.172.0/24
 104.237.173.0/24
 104.237.174.0/23

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/C/china_tencent_net.ipset
 #
-#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/C/china_tencent_net.ipset
+#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/C/china_tencent_net.ipset
 #   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat May  2 04:38:52 UTC 2026
-#   @entries        8,354,707 ips
-#                   717 subnets
-#                   717 lines
+#   @updated        Mon May 04 05:01:34 UTC 2026
+#   @entries        8,355,218 ips
+#                   712 subnets
+#                   712 lines
 #   @asn            AS132203, AS45090, AS137876, AS132591, AS139341
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -167,8 +167,7 @@
 43.164.128.0/17
 43.165.0.0/16
 43.166.0.0/15
-43.168.0.0/23
-43.168.4.0/22
+43.168.0.0/21
 43.168.8.0/24
 43.168.10.0/23
 43.168.12.0/22
@@ -184,7 +183,7 @@
 43.168.68.0/24
 43.168.71.0/24
 43.168.72.0/24
-43.168.74.0/24
+43.168.74.0/23
 43.168.80.0/22
 43.168.85.0/24
 43.168.86.0/24
@@ -509,7 +508,6 @@
 150.158.0.0/16
 152.136.0.0/16
 154.8.128.0/17
-156.240.88.0/22
 159.75.0.0/16
 162.14.0.0/19
 162.14.32.0/21
@@ -569,9 +567,7 @@
 203.205.157.0/24
 203.205.188.0/24
 203.205.191.0/24
-203.205.193.0/24
-203.205.194.0/23
-203.205.196.0/23
+203.205.192.0/21
 203.205.218.0/23
 203.205.220.0/22
 203.205.224.0/24
@@ -649,9 +645,7 @@
 240d:c010:184::/47
 240d:c010:18::/48
 240d:c010:18d::/48
-240d:c010:190::/46
-240d:c010:195::/48
-240d:c010:196::/47
+240d:c010:190::/45
 240d:c010:198::/48
 240d:c010:19a::/47
 240d:c010:19c::/46
@@ -659,6 +653,7 @@
 240d:c010:1a4::/47
 240d:c010:1a6::/48
 240d:c010:1a9::/48
+240d:c010:1aa::/48
 240d:c010:1ae::/47
 240d:c010:1b2::/48
 240d:c010:1b4::/47

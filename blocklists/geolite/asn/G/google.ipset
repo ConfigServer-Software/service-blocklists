@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/G/google.ipset
 #
-#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/G/google.ipset
+#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/G/google.ipset
 #   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat May  2 04:39:49 UTC 2026
-#   @entries        2,518,107 ips
-#                   248 subnets
-#                   248 lines
+#   @updated        Mon May 04 05:02:30 UTC 2026
+#   @entries        2,517,851 ips
+#                   249 subnets
+#                   249 lines
 #   @asn            AS15169, AS36040, AS19425, AS22859, AS36039
 #                   AS40873, AS13949, AS26684, AS22577
 #   @expires        6 hours
@@ -106,7 +106,8 @@
 74.125.0.0/16
 104.237.164.0/24
 104.237.167.0/24
-104.237.168.0/22
+104.237.168.0/24
+104.237.170.0/23
 104.237.172.0/24
 104.237.188.0/23
 104.237.190.0/24

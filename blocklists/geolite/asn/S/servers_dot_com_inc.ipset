@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/S/servers_dot_com_inc.ipset
 #
-#   @url            https://raw.githubusercontent.com/configserver-software/service-blocklists/main/blocklists/geolite/asn/S/servers_dot_com_inc.ipset
+#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/S/servers_dot_com_inc.ipset
 #   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Sat May  2 04:40:17 UTC 2026
-#   @entries        490,513 ips
-#                   351 subnets
-#                   351 lines
+#   @updated        Mon May 04 05:02:56 UTC 2026
+#   @entries        489,745 ips
+#                   353 subnets
+#                   353 lines
 #   @asn            AS7979
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -47,7 +47,11 @@
 23.109.96.0/20
 23.109.112.0/21
 23.109.120.0/22
-23.109.128.0/19
+23.109.128.0/21
+23.109.136.0/23
+23.109.139.0/24
+23.109.140.0/22
+23.109.144.0/20
 23.109.160.0/22
 23.109.164.0/23
 23.109.168.0/23
@@ -312,8 +316,6 @@
 203.195.120.0/22
 204.52.242.0/24
 204.74.224.0/19
-204.155.155.0/24
-204.155.157.0/24
 205.147.26.0/24
 206.127.212.0/24
 208.71.105.0/24
