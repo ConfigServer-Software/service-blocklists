@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May  5 04:35:29 UTC 2026
-#   @entries        216,951 ips
-#                   326 subnets
-#                   326 lines
+#   @updated        Wed May  6 04:53:26 UTC 2026
+#   @entries        216,823 ips
+#                   329 subnets
+#                   329 lines
 #   @country        United States Virgin Islands (VI)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -162,7 +162,10 @@
 208.30.48.0/23
 208.30.50.0/24
 208.30.52.0/22
-208.30.56.0/21
+208.30.56.128/25
+208.30.57.0/24
+208.30.58.0/23
+208.30.60.0/22
 208.30.64.0/21
 208.30.72.0/23
 208.30.74.0/24

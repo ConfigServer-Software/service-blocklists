@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May  5 04:34:53 UTC 2026
-#   @entries        1,314,650 ips
-#                   370 subnets
-#                   370 lines
+#   @updated        Wed May  6 04:52:47 UTC 2026
+#   @entries        1,310,554 ips
+#                   369 subnets
+#                   369 lines
 #   @country        Syria (SY)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -300,7 +300,6 @@
 198.51.143.0/24
 198.51.144.0/23
 198.51.146.0/24
-205.209.64.0/20
 212.11.192.0/19
 212.107.20.0/22
 213.177.185.0/24

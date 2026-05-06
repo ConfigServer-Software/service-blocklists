@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May  5 04:34:06 UTC 2026
-#   @entries        169,796 ips
-#                   426 subnets
-#                   426 lines
+#   @updated        Wed May  6 04:52:00 UTC 2026
+#   @entries        169,797 ips
+#                   427 subnets
+#                   427 lines
 #   @country        Europe (EU)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -398,6 +398,7 @@
 2001:470:59e7::/48
 2001:470:6820::/48
 2001:470:69aa::/48
+2001:470:71dd::/48
 2001:470:82dd::/48
 2001:470:88ed::/48
 2001:470:fded::/48

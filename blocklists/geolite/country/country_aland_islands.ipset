@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May  5 04:33:45 UTC 2026
-#   @entries        45,562 ips
-#                   173 subnets
-#                   173 lines
+#   @updated        Wed May  6 04:51:39 UTC 2026
+#   @entries        42,490 ips
+#                   175 subnets
+#                   175 lines
 #   @country        Aland Islands (AX)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -18,7 +18,9 @@
 
 45.138.10.60/30
 79.133.0.0/19
-82.199.160.0/19
+82.199.160.0/20
+82.199.176.0/23
+82.199.182.0/23
 91.210.154.0/24
 104.28.8.84/31
 104.28.8.86/32

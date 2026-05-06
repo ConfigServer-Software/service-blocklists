@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May  5 04:35:29 UTC 2026
-#   @entries        23,573 ips
-#                   129 subnets
-#                   129 lines
+#   @updated        Wed May  6 04:53:26 UTC 2026
+#   @entries        23,574 ips
+#                   130 subnets
+#                   130 lines
 #   @country        Samoa (WS)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -95,6 +95,7 @@
 2001:470:f9b0::/48
 2001:de8:8000::/48
 2001:df1:4c40::/48
+2001:df1:8780::/48
 2001:df7:500::/48
 2001:3786:7001:100::/56
 2401:ae60::/32

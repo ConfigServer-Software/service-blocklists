@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May  5 04:34:45 UTC 2026
-#   @entries        810 ips
-#                   43 subnets
-#                   43 lines
+#   @updated        Wed May  6 04:52:39 UTC 2026
+#   @entries        554 ips
+#                   42 subnets
+#                   42 lines
 #   @country        Pitcairn (PN)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -32,7 +32,6 @@
 162.120.228.75/32
 179.65.132.0/23
 194.50.99.182/32
-206.83.126.0/24
 2001:470:36:7bf::/64
 2001:470:36:87e::/64
 2001:470:1f29:a5::/64
