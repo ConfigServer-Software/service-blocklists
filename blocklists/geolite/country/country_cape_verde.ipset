@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri May  8 04:31:41 UTC 2026
-#   @entries        55,571 ips
-#                   168 subnets
-#                   168 lines
+#   @updated        Sat May  9 04:41:18 UTC 2026
+#   @entries        55,569 ips
+#                   166 subnets
+#                   166 lines
 #   @country        Cape Verde (CV)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -57,8 +57,6 @@
 104.28.237.234/31
 104.28.237.236/31
 104.28.237.238/32
-136.23.4.96/32
-136.23.21.24/32
 140.248.40.20/31
 140.248.56.51/32
 140.248.57.51/32

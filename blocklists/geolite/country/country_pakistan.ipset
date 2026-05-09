@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri May  8 04:32:27 UTC 2026
-#   @entries        5,786,802 ips
-#                   2,513 subnets
-#                   2,513 lines
+#   @updated        Sat May  9 04:42:05 UTC 2026
+#   @entries        5,787,316 ips
+#                   2,517 subnets
+#                   2,517 lines
 #   @country        Pakistan (PK)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -550,6 +550,8 @@
 103.255.128.0/22
 103.255.148.0/22
 104.22.5.0/24
+104.22.96.0/24
+104.22.122.0/24
 104.28.12.115/32
 104.28.12.116/30
 104.28.15.175/32
@@ -1630,6 +1632,8 @@
 2400:cb00:687::/48
 2400:cb00:700::/48
 2400:cb00:1225::/48
+2400:cb00:1330::/48
+2400:cb00:1332::/48
 2400:d7c0::/32
 2400:d860::/32
 2400:dce0::/32

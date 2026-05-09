@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri May  8 04:32:39 UTC 2026
-#   @entries        11,315 ips
-#                   106 subnets
-#                   106 lines
+#   @updated        Sat May  9 04:42:17 UTC 2026
+#   @entries        11,314 ips
+#                   105 subnets
+#                   105 lines
 #   @country        Tuvalu (TV)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -36,7 +36,6 @@
 104.28.252.236/30
 104.28.252.240/31
 104.167.192.0/24
-136.23.21.19/32
 140.248.20.22/31
 140.248.56.226/32
 140.248.57.226/32

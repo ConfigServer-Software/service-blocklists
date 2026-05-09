@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri May  8 04:31:54 UTC 2026
-#   @entries        5,558 ips
-#                   97 subnets
-#                   97 lines
+#   @updated        Sat May  9 04:41:31 UTC 2026
+#   @entries        5,557 ips
+#                   96 subnets
+#                   96 lines
 #   @country        Falkland Islands Malvinas (FK)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -31,7 +31,6 @@
 104.28.214.154/32
 104.28.246.152/31
 104.28.246.154/32
-136.23.0.155/32
 136.23.20.7/32
 140.248.6.80/31
 140.248.40.206/31

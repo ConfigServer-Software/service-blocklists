@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri May  8 04:32:26 UTC 2026
-#   @entries        595,960 ips
+#   @updated        Sat May  9 04:42:03 UTC 2026
+#   @entries        596,214 ips
 #                   704 subnets
 #                   704 lines
 #   @country        Nepal (NP)
@@ -16,6 +16,7 @@
 #   No description provided
 # #
 
+5.62.24.0/24
 27.34.0.0/17
 27.111.16.0/20
 36.0.4.0/22
@@ -368,7 +369,6 @@
 160.30.132.0/24
 160.30.180.0/23
 160.250.254.0/23
-161.69.19.50/31
 161.248.156.0/23
 161.248.216.0/23
 162.120.184.56/32

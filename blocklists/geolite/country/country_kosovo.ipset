@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri May  8 04:33:15 UTC 2026
-#   @entries        158,966 ips
-#                   93 subnets
-#                   93 lines
+#   @updated        Sat May  9 04:42:53 UTC 2026
+#   @entries        158,837 ips
+#                   91 subnets
+#                   91 lines
 #   @country        Kosovo (XK)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -33,7 +33,6 @@
 94.100.53.0/24
 95.86.40.0/22
 95.210.238.0/24
-135.136.24.0/25
 147.78.160.0/22
 152.53.227.214/32
 178.132.217.245/32
@@ -107,5 +106,4 @@
 2a03:4b80::/32
 2a0b:6300::/29
 2a0c:b340::/29
-2a0d:5600:269::/48
 2a13:a5c7:25f4::/48

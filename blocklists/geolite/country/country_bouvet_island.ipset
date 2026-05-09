@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri May  8 04:31:34 UTC 2026
-#   @entries        299 ips
-#                   43 subnets
-#                   43 lines
+#   @updated        Sat May  9 04:41:10 UTC 2026
+#   @entries        298 ips
+#                   42 subnets
+#                   42 lines
 #   @country        Bouvet Island (BV)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -19,7 +19,6 @@
 69.30.251.141/32
 104.28.8.236/31
 104.28.8.238/32
-136.23.6.122/32
 136.23.20.50/32
 140.248.56.33/32
 140.248.57.33/32

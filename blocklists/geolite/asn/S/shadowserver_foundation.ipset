@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             asn
 #   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Fri May 08 04:37:51 UTC 2026
-#   @entries        38,663 ips
-#                   70 subnets
-#                   70 lines
+#   @updated        Sat May 09 04:47:20 UTC 2026
+#   @entries        38,407 ips
+#                   69 subnets
+#                   69 lines
 #   @asn            AS22168, AS394161
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -78,7 +78,6 @@
 205.234.11.0/24
 209.133.79.0/24
 213.244.145.0/24
-216.23.63.0/24
 2001:550:d0c::/48
 2620:137:d000::/46
 2620:137:d004::/47

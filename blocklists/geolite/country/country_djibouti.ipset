@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri May  8 04:31:47 UTC 2026
-#   @entries        59,465 ips
-#                   140 subnets
-#                   140 lines
+#   @updated        Sat May  9 04:41:24 UTC 2026
+#   @entries        59,464 ips
+#                   139 subnets
+#                   139 lines
 #   @country        Djibouti (DJ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -43,7 +43,6 @@
 104.28.231.72/31
 104.28.231.74/32
 105.21.128.0/19
-136.23.0.147/32
 136.23.3.239/32
 140.248.34.70/31
 140.248.36.82/31

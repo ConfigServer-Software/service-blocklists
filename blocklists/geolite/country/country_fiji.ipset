@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri May  8 04:31:54 UTC 2026
-#   @entries        149,252 ips
-#                   204 subnets
-#                   204 lines
+#   @updated        Sat May  9 04:41:31 UTC 2026
+#   @entries        149,251 ips
+#                   203 subnets
+#                   203 lines
 #   @country        Fiji (FJ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -65,7 +65,6 @@
 119.235.64.0/19
 119.235.96.0/21
 124.108.24.0/21
-136.23.21.18/32
 140.248.20.6/31
 140.248.56.70/32
 140.248.57.70/32
