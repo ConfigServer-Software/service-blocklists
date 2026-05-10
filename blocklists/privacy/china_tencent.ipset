@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             privacy_china_tencent_ipset
 #   @uuid           484c5ca9-c6b1-34dd-b49e-e06a79cc845b
-#   @updated        Sun May 10 06:47:02 UTC 2026
+#   @updated        Sun May 10 09:45:41 UTC 2026
 #   @entries        9,683,786 ips
 #                   132 subnets
-#                   133 lines
+#                   132 lines
 #   @asn            AS132203, AS45090, AS137876, AS132591, AS139341
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -16,7 +16,6 @@
 #   No description provided
 # #
 
-chcity.comifyouhaveany/32
 1.12.0.0/14
 1.116.0.0/15
 1.201.184.0/22
