@@ -1579,7 +1579,7 @@ jobs:
                   ./.github/scripts/bl-geolite2_asn.sh --folder A --file akamai_linode --asn ${{ vars.BL_AKAMAI_LINODE_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder A --file alibaba --asn ${{ vars.BL_CHINA_ALIBABA_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder A --file amazon_core --asn ${{ vars.BL_AMAZON_CORE_ASN }}
-                  ./.github/scripts/bl-geolite2_asn.sh --folder C --file amazon_cloudfront --asn ${{ vars.BL_AMAZON_CLOUDFRONT_ASN }}
+                  ./.github/scripts/bl-geolite2_asn.sh --folder A --file amazon_cloudfront --asn ${{ vars.BL_AMAZON_CLOUDFRONT_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder A --file apple_inc --asn ${{ vars.BL_APPLE_INC_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder A --file att --asn ${{ vars.BL_ATT_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder A --file automattic --asn ${{ vars.BL_AUTOMATTIC_WP_ASN }}
