@@ -650,7 +650,7 @@ jobs:
                   #   3rd Party › Binary Defense
                   # #
 
-                  curl -sSL "https://binarydefense.com/banlist.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_BINARYDEFENSE_L1 }}" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/binarydefense/blocklist.ipset
 
                   # #
@@ -706,7 +706,7 @@ jobs:
                   #   3rd Party › Botvrij
                   # #
 
-                  curl -sSL "http://www.botvrij.eu/data/ioclist.ip-dst.raw" \
+                  curl -sSL "${{ vars.BL_3PARTY_BOTVRIJ_L1 }}" \
                     | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/botvrij/threats_ioc.ipset
 
                   # #
@@ -715,7 +715,7 @@ jobs:
                   #   @ref      https://danger.rulez.sk/index.php/bruteforceblocker/faq/
                   # #
 
-                  curl -sSL "${{ vars.BL_3PARTY_BRUTEFORCEBLOCKER_LIST }}" \
+                  curl -sSL "${{ vars.BL_3PARTY_BRUTEFORCEBLOCKER_L1 }}" \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/bruteforceblocker/blocklist.ipset
 
                   # #
@@ -818,7 +818,7 @@ jobs:
                   #   3rd Party › Hagezi
                   # #
 
-                  curl -sSL "${{ vars.BL_3PARTY_HAGEZI_LIST }}" \
+                  curl -sSL "${{ vars.BL_3PARTY_HAGEZI_L1 }}" \
                     | cut -d'#' -f1 \
                     | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/hagezi/threat_intelligence.ipset
@@ -827,15 +827,72 @@ jobs:
                   #   3rd Party › IPSum
                   # #
 
-                  curl -sSL "https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_IPSUM_L1 }}" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/ipsum/blocklist.ipset
 
                   # #
                   #   3rd Party › LinuxTracker
                   # #
 
-                  curl -sSL "https://raw.githubusercontent.com/LinuxTracker/Blocklists/master/HancitorIPs.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_LINUXTRACKER_L1 }}" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/linuxtracker/blocklist.ipset
+
+                  # #
+                  #   3rd Party › Mikrotik › Core
+                  #   
+                  #   Url             https://github.com/multiduplikator/mikrotik_blocklist
+                  #   Entries         ~20k
+                  #   Update          Every 3 hours
+                  #   Sources         Core threat feeds
+                  #                       Tor Exit Nodes            Tor exit node IPs                           https://github.com/SecOps-Institute/Tor-IP-Addresses
+                  #                       Spamhaus DROP             "Don't Route Or Peer" list                  https://www.spamhaus.org/drop/
+                  #                       SSL Blacklist             Botnet C&C servers                          https://sslbl.abuse.ch/
+                  #                       Blocklist.de              Fail2ban reported IPs                       https://lists.blocklist.de/
+                  #                       Feodo Tracker             Banking trojan C&C servers                  https://feodotracker.abuse.ch/
+                  #                       FireHOL Level 1           Aggregated threat intelligence              https://github.com/stamparm/ipsum
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_MULTIDUPLIKATOR_CORE }}" \
+                    | CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/multiduplikator/blocklist_core.ipset
+
+                  # #
+                  #   3rd Party › Mikrotik › Large
+                  #   
+                  #   Url             https://github.com/multiduplikator/mikrotik_blocklist
+                  #   Entries         ~25k
+                  #   Update          Every 3 hours
+                  #   Sources         Core + CINS Army
+                  #                       Tor Exit Nodes            Tor exit node IPs                           https://github.com/SecOps-Institute/Tor-IP-Addresses
+                  #                       Spamhaus DROP             "Don't Route Or Peer" list                  https://www.spamhaus.org/drop/
+                  #                       SSL Blacklist             Botnet C&C servers                          https://sslbl.abuse.ch/
+                  #                       Blocklist.de              Fail2ban reported IPs                       https://lists.blocklist.de/
+                  #                       Feodo Tracker             Banking trojan C&C servers                  https://feodotracker.abuse.ch/
+                  #                       FireHOL Level 1           Aggregated threat intelligence              https://github.com/stamparm/ipsum
+                  #                       CINS Army                 Collective Intelligence Network Security    https://cinsscore.com/
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_MULTIDUPLIKATOR_LARGE }}" \
+                    | CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/multiduplikator/blocklist_large.ipset
+
+                  # #
+                  #   3rd Party › Mikrotik › Extra Large
+                  #   
+                  #   Url             https://github.com/multiduplikator/mikrotik_blocklist
+                  #   Entries         ~68k
+                  #   Update          Every 3 hours
+                  #   Sources         Core + CINS Army + IPsum L1
+                  #                       Tor Exit Nodes            Tor exit node IPs                           https://github.com/SecOps-Institute/Tor-IP-Addresses
+                  #                       Spamhaus DROP             "Don't Route Or Peer" list                  https://www.spamhaus.org/drop/
+                  #                       SSL Blacklist             Botnet C&C servers                          https://sslbl.abuse.ch/
+                  #                       Blocklist.de              Fail2ban reported IPs                       https://lists.blocklist.de/
+                  #                       Feodo Tracker             Banking trojan C&C servers                  https://feodotracker.abuse.ch/
+                  #                       FireHOL Level 1           Aggregated threat intelligence              https://github.com/stamparm/ipsum
+                  #                       CINS Army                 Collective Intelligence Network Security    https://cinsscore.com/
+                  #                       IPsum Level 1             Broader threat IPs (1+ hits)                https://github.com/stamparm/ipsum
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_MULTIDUPLIKATOR_EXLARGE }}" \
+                    | CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/multiduplikator/blocklist_extralarge.ipset
 
                   # #
                   #   3rd Party › Myip.ms › Full Database
@@ -859,18 +916,18 @@ jobs:
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/myip.ms/blocklist_configserver.ipset
 
                   # #
-                  #   3rd Party › Myip.ms › htaccess
-                  # #
-
-                  curl -sSL "${{ vars.BL_3PARTY_MYIPMS_HTACCESS }}" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/myip.ms/blocklist_htaccess.ipset
-
-                  # #
                   #   3rd Party › Myip.ms › General
                   # #
 
                   curl -sSL "${{ vars.BL_3PARTY_MYIPMS_GENERAL }}" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/myip.ms/blocklist_general.ipset
+
+                  # #
+                  #   3rd Party › Myip.ms › htaccess
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_MYIPMS_HTACCESS }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/myip.ms/blocklist_htaccess.ipset
 
                   # #
                   #   3rd Party › Myip.ms › Web Crawlers
@@ -890,7 +947,7 @@ jobs:
                   #   3rd Party › Sblam
                   # #
 
-                  curl -sSL "http://sblam.com/blacklist.txt" \
+                  curl -sSL "${{ vars.BL_3PARTY_SBLAM_L1 }}" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/sblam/blocklist.ipset
 
             # #
