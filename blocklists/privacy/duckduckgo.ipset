@@ -5,10 +5,10 @@
 #   @source         https://raw.githubusercontent.com/duckduckgo/duckduckgo-help-pages/master/_docs/results/duckduckbot.md
 #   @id             privacy_duckduckgo_ipset
 #   @uuid           dc7c973c-d5dc-36f4-80d2-9d1296d45935
-#   @updated        Tue May 12 10:47:47 UTC 2026
-#   @entries        319 ips
+#   @updated        Tue May 12 17:30:44 UTC 2026
+#   @entries        320 ips
 #                   2 subnets
-#                   317 lines
+#                   318 lines
 #   @expires        6 hours
 #   @category       Privacy
 #
@@ -113,6 +113,7 @@
 20.80.129.80
 20.80.156.88
 20.93.28.24
+20.99.154.113
 20.99.255.235
 20.100.136.36
 20.100.140.155
