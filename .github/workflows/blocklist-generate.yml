@@ -731,6 +731,16 @@ jobs:
                     | .github/scripts/bl-format.sh blocklists/3rdparty/dshield/blocklist.ipset
 
                   # #
+                  #   3rd Party › Emerging Threats
+                  #   
+                  #   @ref      https://rules.emergingthreats.net/blockrules/compromised-ips.txt
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_EMERGINGTHREATS_COMPROMISED }}" \
+                    | grep -v '^#' \
+                    | .github/scripts/bl-format.sh blocklists/3rdparty/emergingthreats/compromised.ipset
+
+                  # #
                   #   3rd Party › Firehol
                   # #
 
