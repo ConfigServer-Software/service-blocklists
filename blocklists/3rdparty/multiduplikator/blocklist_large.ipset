@@ -1,0 +1,18 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/3rdparty/multiduplikator/blocklist_large.ipset
+#
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/multiduplikator/blocklist_large.ipset
+#   @source         None
+#   @id             3rdparty_multiduplikator_blocklist_large_ipset
+#   @uuid           9fa90f87-d136-36b6-81d8-f29f65e9618e
+#   @updated        Tue May 12 17:12:20 UTC 2026
+#   @entries        0 ips
+#                   0 subnets
+#                   1 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+found00000000000000 128 128 0404 not found00000000000000 128 0404 not found000000000000000000 404: Not Found/128
