@@ -1671,7 +1671,7 @@ jobs:
                   ./.github/scripts/bl-geolite2_asn.sh --folder C --file comcast --asn ${{ vars.BL_COMCAST_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder C --file contabo_gmbh --asn ${{ vars.BL_CONTABO_GMBH_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder C --file cox_communications --asn ${{ vars.BL_COX_COMMUNICATIONS_ASN }}
-                  ./.github/scripts/bl-geolite2_asn.sh --folder D --file digital_ocean --asn ${{ vars.BL_DIGITAL_OCEAN_ASN }}
+                  ./.github/scripts/bl-geolite2_asn.sh --folder D --file digitalocean --asn ${{ vars.BL_DIGITAL_OCEAN_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder D --file dreamhost --asn ${{ vars.BL_DREAMHOST_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder E --file embarq --asn ${{ vars.BL_EMBARQ_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder F --file facebook --asn ${{ vars.BL_FACEBOOK_ASN }}
