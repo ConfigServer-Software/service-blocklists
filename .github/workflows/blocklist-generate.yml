@@ -1695,6 +1695,7 @@ jobs:
                   ./.github/scripts/bl-geolite2_asn.sh --folder O --file onyphe_io --asn ${{ vars.BL_ONYPHE_IO_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder O --file oracle --asn ${{ vars.BL_ORACLE_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder O --file ovh_cloud --asn ${{ vars.BL_OVH_CLOUD_ASN }}
+                  ./.github/scripts/bl-geolite2_asn.sh --folder P --file palo_alto_networks --asn ${{ vars.BL_PALO_ALTO_NETWORKS_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder P --file psychz_networks --asn ${{ vars.BL_PSYCHZ_NETWORKS_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder Q --file quadra_net --asn ${{ vars.BL_QUADRA_NET_ASN }}
                   ./.github/scripts/bl-geolite2_asn.sh --folder Q --file qwest_centurylink --asn ${{ vars.BL_QWEST_CENTURYLINK_ASN }}
