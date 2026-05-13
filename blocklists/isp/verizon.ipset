@@ -5,7 +5,7 @@
 #   @source         None
 #   @id             isp_verizon_ipset
 #   @uuid           edc3bdf1-3ff0-3351-8660-c0c428c0cb0e
-#   @updated        Tue May 12 17:58:23 UTC 2026
+#   @updated        Wed May 13 02:49:50 UTC 2026
 #   @entries        89,572,448 ips
 #                   1,560 subnets
 #                   1,560 lines
@@ -1572,12 +1572,12 @@
 2a02:2a98::/32
 2a02:2aa0::/29
 2a02:2aa8::/32
-2a02:2ab0::/32
+2a02:2ab0::/29
 2a02:2ab8::/32
 2a02:2ac0::/29
 2a02:2ac8::/29
 2a02:2ad0::/29
-2a02:2ad8::/32
+2a02:2ad8::/29
 2a02:2ae0::/29
 2a02:2ae8::/29
 2a02:2af0::/29

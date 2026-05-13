@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             privacy_china_networks_ipset
 #   @uuid           9f2371db-0cde-3d2c-bba7-890381e775ae
-#   @updated        Tue May 12 17:25:25 UTC 2026
-#   @entries        6,242,587 ips
-#                   461 subnets
-#                   461 lines
+#   @updated        Wed May 13 02:25:18 UTC 2026
+#   @entries        6,240,539 ips
+#                   459 subnets
+#                   459 lines
 #   @asn            AS4847
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -35,8 +35,6 @@
 43.254.88.0/22
 43.254.200.0/22
 45.112.132.0/22
-45.115.200.0/22
-45.116.152.0/22
 45.119.104.0/22
 45.121.52.0/24
 45.121.55.0/24
