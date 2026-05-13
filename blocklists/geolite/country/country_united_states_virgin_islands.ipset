@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May 12 04:57:27 UTC 2026
-#   @entries        216,769 ips
-#                   317 subnets
-#                   317 lines
+#   @updated        Wed May 13 05:08:13 UTC 2026
+#   @entries        220,865 ips
+#                   322 subnets
+#                   322 lines
 #   @country        United States Virgin Islands (VI)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -109,6 +109,7 @@
 192.102.82.0/24
 194.50.99.241/32
 198.36.28.0/22
+199.16.56.0/24
 199.27.96.197/32
 199.76.12.0/22
 199.76.32.0/22
@@ -217,6 +218,10 @@
 208.50.78.0/23
 208.50.120.0/21
 208.84.192.0/21
+209.59.96.0/24
+209.59.98.0/23
+209.59.100.0/22
+209.59.104.0/21
 209.209.11.200/32
 209.221.192.0/19
 216.252.220.104/29

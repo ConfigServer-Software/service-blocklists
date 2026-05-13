@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May 12 04:57:27 UTC 2026
-#   @entries        409,372 ips
-#                   740 subnets
-#                   740 lines
+#   @updated        Wed May 13 05:08:12 UTC 2026
+#   @entries        409,116 ips
+#                   739 subnets
+#                   739 lines
 #   @country        Uzbekistan (UZ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -373,7 +373,6 @@
 170.168.60.0/24
 170.168.63.0/24
 170.168.70.0/24
-170.168.90.0/24
 170.168.109.0/24
 170.168.162.0/24
 170.168.202.0/24

@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May 12 04:56:44 UTC 2026
-#   @entries        317,560 ips
+#   @updated        Wed May 13 05:07:29 UTC 2026
+#   @entries        317,816 ips
 #                   192 subnets
 #                   192 lines
 #   @country        Rwanda (RW)
@@ -16,11 +16,11 @@
 #   No description provided
 # #
 
-41.60.151.0/24
 41.74.160.0/20
 41.138.80.0/21
 41.173.28.0/22
 41.173.32.0/22
+41.173.168.0/23
 41.173.248.0/21
 41.186.0.0/16
 41.197.0.0/16

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May 12 04:56:22 UTC 2026
-#   @entries        153,510 ips
-#                   194 subnets
-#                   194 lines
+#   @updated        Wed May 13 05:07:06 UTC 2026
+#   @entries        155,558 ips
+#                   195 subnets
+#                   195 lines
 #   @country        Jersey (JE)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -76,6 +76,7 @@
 154.14.175.240/29
 155.46.182.0/24
 157.167.55.0/24
+159.255.208.0/21
 162.120.210.11/32
 162.120.214.12/32
 163.116.162.198/32

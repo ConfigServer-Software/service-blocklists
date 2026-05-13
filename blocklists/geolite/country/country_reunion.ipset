@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May 12 04:56:42 UTC 2026
-#   @entries        658,425 ips
-#                   263 subnets
-#                   263 lines
+#   @updated        Wed May 13 05:07:27 UTC 2026
+#   @entries        674,809 ips
+#                   264 subnets
+#                   264 lines
 #   @country        Reunion (RE)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -75,6 +75,7 @@
 90.10.254.74/32
 90.10.254.189/32
 92.130.0.0/16
+92.165.128.0/18
 92.168.1.75/32
 94.124.153.0/24
 94.124.157.0/24

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May 12 04:56:13 UTC 2026
-#   @entries        143,104 ips
-#                   171 subnets
-#                   171 lines
+#   @updated        Wed May 13 05:06:57 UTC 2026
+#   @entries        143,168 ips
+#                   172 subnets
+#                   172 lines
 #   @country        French Guiana (GF)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -84,6 +84,7 @@
 109.62.24.0/21
 109.62.56.0/21
 109.62.64.0/22
+109.62.69.64/26
 109.62.108.0/23
 109.62.110.0/24
 128.201.88.0/22
