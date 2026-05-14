@@ -1,42 +1,30 @@
 #!/bin/bash
 
 # #
-#   @for                https://github.com/ConfigServer-Software/service-blocklists
+#   @script             Blocklist › HTML Ip
+#   @repo               https://github.com/ConfigServer-Software/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
-#   @summary            generate ipset by fetching HTML in web url, pulls only ips with grep rule (cant be changed) | URLs: SINGLE
-#                       when running this script, specify a website URL. The script will fetch the HTML code from the
-#                       website. You should follow up with a grep filter/ rule to decide on what text to grab.
-#
-#                       There are two versions of this script:
-#                           bl-htmlip.sh        Uses a single URL and grep rule which are defined in the command to pull ANY text.
-#                                               Only supports a single URL
-#                           bl_htm              Supports multiple URLs, but doesn't allow you to specify a custom grep rule.
-#                                               It only grabs ipv4 and ipv6 addresses.
-#
-#   @terminal           .github/scripts/bl-htmlip.sh blocklists/ \
-#                           01_highrisk.ipset \
-#                           https://www.maxmind.com/en/high-risk-ip-sample-list \
-#                           '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'
-#
-#   @workflow           chmod +x ".github/scripts/bl-htmlip.sh"
-#                       run_yandex=".github/scripts/bl-htmlip.sh 02_privacy_yandex.ipset https://website.com/"
-#                       eval "./$run_yandex"
-#
-#   @command            bl-html.sh
-#                           <argFileSaveto>
-#                           <URL_1>
-#                           <URL_2>
-#                           {...}
-#
-#                       bl-htmlip.sh blocklists/01_highrisk.ipset https://maxmind.com/en/high-risk-ip-sample-list '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'
-#
-#                       📁 .github
+#   @summary            Generate ipset by fetching HTML in web url, pulls only ips with grep rule.
+#                       You should follow up with a grep filter/ rule to decide on what text to grab.
+#   @path               .github/scripts/bl-htmlip.sh
+#   @args               bl-block.sh <argFileSaveto> <argUrl> <argGrep>
+#   @commands           1.  ./.github/scripts/bl-htmlip.sh 01_highrisk.ipset https://www.maxmind.com/en/high-risk-ip-sample-list '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'
+#                       2.  CFG_SKIP_CIDR_DEDUPE=true CFG_SKIP_BOGON_FILTER=true ./.github/scripts/bl-htmlip.sh 01_highrisk.ipset https://www.maxmind.com/en/high-risk-ip-sample-list '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'
+#   @structure          📁 .github
 #                           📁 scripts
 #                               📄 bl-htmlip.sh
+#                           📁 templates
+#                               📁 categories
+#                                   📄 *
+#                               📁 descriptions
+#                                   📄 *
+#                               📁 expires
+#                                   📄 *
+#                               📁 sources
+#                                   📄 *
 #                           📁 workflows
 #                               📄 blocklist-generate.yml
-#
 # #
 
 # #
@@ -50,8 +38,8 @@ export LC_NUMERIC=en_US.UTF-8
 #   Define › Files
 # #
 
-app_file_this=$(basename "$0")                                                  # bl-format.sh   (with ext)
-app_file_bin="${app_file_this%.*}"                                              # bl-format      (without ext)
+app_file_this=$(basename "$0")                                                  # bl-htmlip.sh   (with ext)
+app_file_bin="${app_file_this%.*}"                                              # bl-htmlip      (without ext)
 
 # #
 #   Define › Folders
@@ -155,6 +143,7 @@ argTrustedInput="false"                                                         
 argSkipBogonFilter="false"                                                      # skip bogon filter loop
 argSkipCidrDedup="false"                                                        # skip overlapping CIDR dedupe loop
 argIncludeComments="false"                                                      # preserve inline comments in output
+argStdout="false"                                                               # output response to console instead of write to file
 argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
 argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
 did_load_fallback="false"                                                       # track whether fallback lists were merged
@@ -202,6 +191,12 @@ esac
 case "${CFG_INCLUDE_COMMENTS:-false}" in
     1|true|TRUE|yes|YES|on|ON)
         argIncludeComments="true"
+        ;;
+esac
+
+case "${CFG_STDOUT:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argStdout="true"
         ;;
 esac
 
@@ -1989,7 +1984,8 @@ fi
 #   Blocklist › Main › Load
 #   
 #   @usage          list_main_load "${file_ipset_target}" "$i"
-#   @args           _fnArgFile          output filename to add ips to
+#   @args           _fnArgUrl           url to download from
+#                   _fnArgFile          output filename to add ips to
 #                   _fnListNum          blocklist number (#1 out of #2) - visual only
 # #
 
@@ -2092,7 +2088,7 @@ list_main_load()
         else
             rm -f "${_fnFileTemp}.grep"
         fi
-    fi    
+    fi
 
     # #
     #   Drop malformed entries before sorting (optional trusted-input fast path)
@@ -2162,6 +2158,16 @@ list_main_load()
     # #
 
     info "    🚛 Move ${bluel}${_fnFileTemp}${greym} to ${bluel}${_fnArgFile}${greym}"
+
+    # #
+    #   Stdout
+    # #
+
+    if [ "${argStdout}" = "true" ]; then
+        cat "${_fnFileTemp}"
+        rm -f "${_fnFileTemp}"
+        return 0
+    fi
 
     # #
     #   Ensure dest file ends with newline before append
@@ -2339,6 +2345,14 @@ fi
 
 i=1
 list_main_load "${argUrl}" "${file_ipset_target}" "${argPattern}" "${i}"
+
+# #
+#   Requested Stdout; stop processing here
+# #
+
+if [ "${argStdout}" = "true" ]; then
+    exit 0
+fi
 
 # #
 #   Fallback List › Load
