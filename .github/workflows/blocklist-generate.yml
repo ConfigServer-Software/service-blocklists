@@ -613,7 +613,7 @@ jobs:
               run: |
 
                   # #
-                  #   3rd Party › DShield
+                  #   Threats › C&C Bots
                   #   
                   #   @ref      https://www.dshield.org/feeds_doc.html
                   # #
@@ -641,10 +641,10 @@ jobs:
                   # #
 
                   curl -sSL "${{ vars.BL_3PARTY_BBCAN177_MS1 }}" \
-                    | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms1.ipset
+                    | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/bbcan177/ms1.ipset
 
                   curl -sSL "${{ vars.BL_3PARTY_BBCAN177_MS3 }}" \
-                    | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+                    | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/bbcan177/ms3.ipset
 
                   # #
                   #   3rd Party › Binary Defense
@@ -739,6 +739,35 @@ jobs:
                   curl -sSL "${{ vars.BL_3PARTY_EMERGINGTHREATS_COMPROMISED }}" \
                     | grep -v '^#' \
                     | .github/scripts/bl-format.sh blocklists/3rdparty/emergingthreats/compromised.ipset
+
+                  # #
+                  #   3rd Party › Feodo Tracker › Botnet Command and Control (C2 or C&C)
+                  #   
+                  #   Dridex, Heodo (aka Emotet), TrickBot, QakBot (aka QuakBot / Qbot) and 
+                  #   BazarLoader (aka BazarBackdoor) botnet command&control servers (C2s).  
+                  #   
+                  #   blocklist_c2_recommended          C&C IP addresses (avoid false positives)
+                  #                                         Only contains active botnet C&C servers or active in past hours.
+                  #   blocklist_ioc_normal              Indicators Of Compromise (IOCs)
+                  #                                         Datasets contain additional info on tracked botnet C2s;
+                  #                                         also IP addresses acting as botnet C2 within last 30 days.
+                  #   blocklist_ioc_aggressive          Comprehensive list of all botnet C2s Feodo Tracker has.
+                  #                                         IP addresses are re-used/recycled; false positive are much higher.
+                  #   
+                  #   @ref      https://feodotracker.abuse.ch/blocklist/
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_FEODOTRACKER_RECOMMENDED }}" \
+                    | grep -v '^#' \
+                    | .github/scripts/bl-format.sh blocklists/3rdparty/feodotracker/blocklist_c2_recommended.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_FEODOTRACKER_IOC_NORMAL }}" \
+                    | grep -v '^#' \
+                    | .github/scripts/bl-format.sh blocklists/3rdparty/feodotracker/blocklist_ioc_normal.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_FEODOTRACKER_IOC_AGGRESSIVE }}" \
+                    | grep -v '^#' \
+                    | .github/scripts/bl-format.sh blocklists/3rdparty/feodotracker/blocklist_ioc_aggressive.ipset
 
                   # #
                   #   3rd Party › Firehol
