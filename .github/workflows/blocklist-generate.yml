@@ -719,6 +719,15 @@ jobs:
                     | .github/scripts/bl-format.sh blocklists/3rdparty/bruteforceblocker/blocklist.ipset
 
                   # #
+                  #   3rd Party › CINS Army (Collective Intelligence Network Security)
+                  #   
+                  #   @ref      https://cinsscore.com/list/ci-badguys.txt
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_CINSSCORE_BADGUYS }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/cinsscore/badguys.ipset
+
+                  # #
                   #   3rd Party › DShield
                   #   
                   #   @ref      https://www.dshield.org/feeds_doc.html
