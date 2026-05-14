@@ -1,0 +1,17 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/3rdparty/feodotracker/blocklist_ioc_aggressive.ipset
+#
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/feodotracker/blocklist_ioc_aggressive.ipset
+#   @source         None
+#   @id             3rdparty_feodotracker_blocklist_ioc_aggressive_ipset
+#   @uuid           2f99811b-7583-36ce-8a7a-8d4a9edf92ed
+#   @updated        Thu May 14 03:33:00 UTC 2026
+#   @entries        0 ips
+#                   0 subnets
+#                   0 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
