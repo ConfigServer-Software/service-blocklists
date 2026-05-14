@@ -670,6 +670,25 @@ jobs:
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/bitwire/outbound.ipset
 
                   # #
+                  #   3rd Party › Blacklist Monster
+                  #   
+                  #   @ref      https://blackhole.monster/
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_BLACKLIST_MONSTER_TODAY }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/blackhole.monster/blacklist_today.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_BLACKLIST_MONSTER_15D }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/blackhole.monster/blacklist_15d.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_BLACKLIST_MONSTER_30D }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/blackhole.monster/blacklist_30D.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_BLACKLIST_MONSTER_ALL}}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/blackhole.monster/blacklist_all.ipset
+
+
+                  # #
                   #   3rd Party › Blocklist.de
                   # #
 
@@ -794,6 +813,18 @@ jobs:
 
                   curl -sSL "https://iplists.firehol.org/files/firehol_anonymous.netset" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/anonymous.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/bitcoin_nodes.ipset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/bitcoin_nodes.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/bitcoin_nodes_1d.ipset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/bitcoin_nodes_1d.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/bitcoin_nodes_7d.ipset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/bitcoin_nodes_7d.ipset
+
+                  curl -sSL "https://iplists.firehol.org/files/bitcoin_nodes_30d.ipset" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/bitcoin_nodes_30d.ipset
 
                   curl -sSL "https://iplists.firehol.org/files/botscout.ipset" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/botscout.ipset
@@ -1012,6 +1043,22 @@ jobs:
 
                   curl -sSL "${{ vars.BL_3PARTY_SBLAM_L1 }}" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/sblam/blocklist.ipset
+
+                  # #
+                  #   3rd Party › Sekuripy › SSH auth log brute-force offenders
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_SEKURIPY_SSH_L1 }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/sekuripy/ssh-bruteforce-attackers.ipset
+
+                  # #
+                  #   3rd Party › Sentinel Turris
+                  # #
+
+                  curl -sSL "${{ vars.BL_3PARTY_SENTINEL_TURRIS_L1 }}" \
+                    | cut -d',' -f1 \
+                    | tail -n +2 \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/sentinel.turris/greylist.ipset
 
             # #
             #   Generate › Privacy › A - G
