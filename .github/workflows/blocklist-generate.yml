@@ -866,7 +866,28 @@ jobs:
                   # #
 
                   curl -sSL "${{ vars.BL_3PARTY_IPSUM_L1 }}" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/ipsum/blocklist.ipset
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/ipsum/level1.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_IPSUM_L2 }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/ipsum/level2.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_IPSUM_L3 }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/ipsum/level3.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_IPSUM_L4 }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/ipsum/level4.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_IPSUM_L5 }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/ipsum/level5.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_IPSUM_L6 }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/ipsum/level6.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_IPSUM_L7 }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/ipsum/level7.ipset
+
+                  curl -sSL "${{ vars.BL_3PARTY_IPSUM_L8 }}" \
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/ipsum/level8.ipset
 
                   # #
                   #   3rd Party › LinuxTracker
