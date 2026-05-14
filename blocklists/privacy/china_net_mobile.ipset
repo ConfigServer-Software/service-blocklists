@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             privacy_china_net_mobile_ipset
 #   @uuid           124b86ff-1092-3efd-a206-a54179067cb3
-#   @updated        Thu May 14 03:43:29 UTC 2026
-#   @entries        39,159,648 ips
-#                   325 subnets
-#                   325 lines
+#   @updated        Thu May 14 06:59:21 UTC 2026
+#   @entries        39,126,880 ips
+#                   324 subnets
+#                   324 lines
 #   @asn            AS9808, AS24400, AS24444, AS38019, AS24547
 #                   AS24445, AS24311
 #   @expires        6 hours
@@ -95,7 +95,6 @@
 114.118.0.0/17
 117.48.0.0/18
 117.48.64.0/19
-117.50.0.0/17
 117.73.0.0/20
 117.73.16.0/21
 117.128.0.0/10
