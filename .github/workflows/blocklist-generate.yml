@@ -595,11 +595,15 @@ jobs:
 
                   # #
                   #   Main › TOR Exit Nodes
+                  #   
+                  #   @ref      https://check.torproject.org/exit-addresses
+                  #                  curl -sSL "${{ vars.BL_TOR_EXITNODES }}" \
+                  #                     | grep '^ExitAddress' \
+                  #                     | awk '{print $2}' \
+                  #             https://check.torproject.org/cgi-bin/TorBulkExitList.py?ip=1.1.1.1
                   # #
 
-                  curl -sSL "${{ vars.BL_TOR_EXITNODES }}" \
-                    | grep '^ExitAddress' \
-                    | awk '{print $2}' \
+                  curl -sSL "${{ vars.BL_TOR_EXITNODES_BARE }}" \
                     | sort -u \
                     | .github/scripts/bl-format.sh blocklists/tor_exitnodes.ipset
 
