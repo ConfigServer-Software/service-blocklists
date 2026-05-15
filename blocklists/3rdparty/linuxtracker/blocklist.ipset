@@ -5,10 +5,10 @@
 #   @source         https://raw.githubusercontent.com/LinuxTracker/Blocklists/master/HancitorIPs.txt
 #   @id             3rdparty_linuxtracker_blocklist_ipset
 #   @uuid           5e12a53c-a12b-344a-96cf-5f605ae19f4f
-#   @updated        Fri May 15 06:58:33 UTC 2026
-#   @entries        57,042 ips
+#   @updated        Fri May 15 10:20:26 UTC 2026
+#   @entries        57,044 ips
 #                   1,918 subnets
-#                   51,486 lines
+#                   51,488 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
@@ -7637,6 +7637,7 @@
 41.228.33.227
 41.231.36.137
 41.231.85.75
+41.231.240.22
 41.239.4.12
 41.242.51.168
 41.242.115.83
@@ -19283,6 +19284,7 @@
 91.80.163.248
 91.80.188.11
 91.86.88.24
+91.92.21.24
 91.92.34.104
 91.92.34.113
 91.92.34.190
