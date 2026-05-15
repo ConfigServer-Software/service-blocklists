@@ -5,13 +5,18 @@
 #   @source         None
 #   @id             3rdparty_feodotracker_blocklist_ioc_normal_ipset
 #   @uuid           80c885f9-85aa-3089-a9d3-66f88496e52f
-#   @updated        Thu May 14 06:49:13 UTC 2026
-#   @entries        0 ips
+#   @updated        Fri May 15 02:13:02 UTC 2026
+#   @entries        5 ips
 #                   0 subnets
-#                   0 lines
+#                   5 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
 #   No description provided
 # #
 
+27.133.154.218
+34.204.119.63
+50.16.16.211
+162.243.103.246
+178.62.3.223
