@@ -579,7 +579,10 @@ jobs:
                   #   Main › Highrisk
                   # #
 
-                  ./.github/scripts/bl-block.sh blocklists/highrisk.ipset highrisk
+                  HIGHRISK_URL=$( CFG_STDOUT=true ./.github/scripts/bl-htmlip.sh _highrisk_null.ipset "${{ vars.BL_MAIN_HIGHRISK_L1 }}" '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' )
+                  HIGHRISK_LOCAL=$( CFG_STDOUT=true ./.github/scripts/bl-block.sh blocklists/highrisk.ipset highrisk )
+                  HIGHRISK_LIST=$( echo -e "${HIGHRISK_URL}\n${HIGHRISK_LOCAL}" | sort -u )
+                  echo "$HIGHRISK_LIST" | ./.github/scripts/bl-format.sh blocklists/highrisk.ipset
 
                   # #
                   #   Main › BOGON
