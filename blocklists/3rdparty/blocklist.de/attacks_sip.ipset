@@ -5,10 +5,10 @@
 #   @source         https://lists.blocklist.de/lists/sip.txt
 #   @id             3rdparty_blocklist_de_attacks_sip_ipset
 #   @uuid           cece620b-f239-39f3-b1ae-b450c71da695
-#   @updated        Sun May 17 16:51:30 UTC 2026
-#   @entries        22 ips
+#   @updated        Sun May 17 20:45:31 UTC 2026
+#   @entries        23 ips
 #                   0 subnets
-#                   22 lines
+#                   23 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
@@ -42,9 +42,10 @@
 45.89.60.81
 51.38.123.130
 62.60.130.186
+102.88.137.80
 103.93.161.178
 103.187.147.214
-108.181.6.46
+103.189.235.176
 111.238.174.6
 171.244.185.149
 172.110.223.147
