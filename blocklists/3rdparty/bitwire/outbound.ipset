@@ -5,16 +5,37 @@
 #   @source         https://raw.githubusercontent.com/bitwire-it/ipblocklist/main/outbound.txt
 #   @id             3rdparty_bitwire_outbound_ipset
 #   @uuid           8f021a02-9afc-34c9-9fea-36549d4bc169
-#   @updated        Mon May 18 08:00:25 UTC 2026
+#   @updated        Mon May 18 11:43:15 UTC 2026
 #   @entries        212,025 ips
 #                   5,721 subnets
 #                   194,959 lines
-#   @expires        429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @expires        4 hours
 #   @category       3rdParty
 #
-429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   Bitwire Aggregated IP Blocklist › Outbound
+#   
+#   A list of known malicious destination IPs. This includes C2 (Command &
+#   Control) servers, botnet controllers, malware drop sites, and phishing
+#   hosts.
+#   
+#   inbound.txt
+#       List of IPs/networks with a bad reputation for initiating malicious
+#       connections. This includes sources of spam, scanning, brute-force
+#       attacks (SSH, RDP), and web exploits.
+#   
+#   outbound.txt
+#       List of known malicious destination IPs. This includes C2 (Command &
+#       Control) servers, botnet controllers, malware drop sites, and phishing
+#       hosts.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 
 1.0.0.104
