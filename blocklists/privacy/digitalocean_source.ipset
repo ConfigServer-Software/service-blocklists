@@ -5,8 +5,8 @@
 #   @source         None
 #   @id             privacy_digitalocean_source_ipset
 #   @uuid           5a60c616-13fc-3996-bc28-f3ef852f3592
-#   @updated        Tue May 19 02:39:04 UTC 2026
-#   @entries        3,090,324 ips
+#   @updated        Tue May 19 08:08:26 UTC 2026
+#   @entries        3,094,420 ips
 #                   330 subnets
 #                   330 lines
 #   @expires        6 hours
@@ -162,7 +162,7 @@
 168.144.32.0/20
 168.144.48.0/22
 168.144.64.0/18
-168.144.128.0/20
+168.144.128.0/19
 170.64.128.0/17
 174.138.0.0/17
 178.62.0.0/16
