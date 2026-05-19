@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             privacy_shadowserver_ipset
 #   @uuid           1e020598-1b53-3795-8d12-34242a9f4bdf
-#   @updated        Tue May 19 11:20:54 UTC 2026
-#   @entries        60,693 ips
-#                   53 subnets
-#                   53 lines
+#   @updated        Tue May 19 15:04:15 UTC 2026
+#   @entries        61,206 ips
+#                   55 subnets
+#                   55 lines
 #   @asn            AS22168, AS394161
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -33,6 +33,7 @@
 108.165.44.0/24
 146.19.20.0/24
 149.106.192.0/19
+154.9.2.0/23
 154.16.223.0/24
 154.16.230.0/24
 154.16.240.0/24
@@ -67,5 +68,6 @@
 2001:470:2cc::/48
 2001:470:3f6::/48
 2001:470:574::/47
+2001:550:d0c::/48
 2620:24:c040::/48
 2620:137:d000::/40
