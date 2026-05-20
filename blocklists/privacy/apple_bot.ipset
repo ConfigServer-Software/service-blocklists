@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             privacy_apple_bot_ipset
 #   @uuid           4401e591-9273-376c-b9dd-c7388b1a6493
-#   @updated        Tue May 19 21:21:13 UTC 2026
-#   @entries        0 ips
-#                   0 subnets
-#                   0 lines
+#   @updated        Wed May 20 02:22:08 UTC 2026
+#   @entries        2,400 ips
+#                   12 subnets
+#                   12 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -17,3 +17,15 @@
 #   These are useful if you do not wish for Apple to crawl your data.
 # #
 
+17.22.237.0/24
+17.22.245.0/24
+17.22.253.0/24
+17.241.75.0/24
+17.241.193.160/27
+17.241.200.160/27
+17.241.208.160/27
+17.241.219.0/24
+17.241.227.0/24
+17.246.15.0/24
+17.246.19.0/24
+17.246.23.0/24
