@@ -120,7 +120,7 @@ env:
     BOT_NAME_RENOVATE:              renovate[bot]
     GPG_KEY_BASE64:                 ${{ secrets.ADMINSERV_GPG_KEY_B64 }}
     GPG_KEY_PASSPHRASE:             ${{ secrets.ADMINSERV_GPG_PASSPHRASE }}
-  
+
 # #
 #   jobs
 # #
@@ -594,7 +594,7 @@ jobs:
                   #   Main › IANA Reserved
                   # #
 
-                  ./.github/scripts/iprange.sh blocklists/iana.ipset "${{ vars.BL_IANA_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/iana.ipset "${{ vars.BL_IANA_URL }}"
 
                   # #
                   #   Main › TOR Exit Nodes
@@ -1082,7 +1082,7 @@ jobs:
                   #   Privacy › Activision
                   # #
 
-                  ./.github/scripts/iprange.sh blocklists/privacy/activision.ipset "${{ vars.BL_ACTIVISION_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/privacy/activision.ipset "${{ vars.BL_ACTIVISION_URL }}"
 
                   # #
                   #   Privacy › Ahrefs
@@ -1198,7 +1198,7 @@ jobs:
                   #   Privacy › Blizzard
                   # #
 
-                  ./.github/scripts/iprange.sh blocklists/privacy/blizzard.ipset "${{ vars.BL_BLIZZARD_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/privacy/blizzard.ipset "${{ vars.BL_BLIZZARD_URL }}"
 
                   # #
                   #   Privacy › Bluehost
@@ -1320,7 +1320,7 @@ jobs:
                   #   Privacy › Electronic Arts & IGN
                   # #
 
-                  ./.github/scripts/iprange.sh blocklists/privacy/electronicarts_ign.ipset "${{ vars.BL_ELECTRONICARTS_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/privacy/electronicarts_ign.ipset "${{ vars.BL_ELECTRONICARTS_URL }}"
 
                   # #
                   #   Privacy › Facebook
@@ -1429,7 +1429,7 @@ jobs:
                   #   Privacy › Nintendo
                   # #
 
-                  ./.github/scripts/iprange.sh blocklists/privacy/nintendo.ipset "${{ vars.BL_NINTENDO_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/privacy/nintendo.ipset "${{ vars.BL_NINTENDO_URL }}"
 
             # #
             #   Generate › Privacy › O - T
@@ -1468,7 +1468,7 @@ jobs:
                   #   Privacy › Pandora
                   # #
 
-                  ./.github/scripts/iprange.sh blocklists/privacy/pandora.ipset "${{ vars.BL_PANDORA_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/privacy/pandora.ipset "${{ vars.BL_PANDORA_URL }}"
 
                   # #
                   #   Privacy › Perplexity › All
@@ -1508,7 +1508,7 @@ jobs:
                   #   Privacy › Pirate Bay
                   # #
 
-                  ./.github/scripts/iprange.sh blocklists/privacy/piratebay.ipset "${{ vars.BL_PIRATEBAY_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/privacy/piratebay.ipset "${{ vars.BL_PIRATEBAY_URL }}"
 
                   # #
                   #   Privacy › ProtonVPN
@@ -1531,10 +1531,10 @@ jobs:
                   | .github/scripts/bl-format.sh blocklists/privacy/proton_vpn.ipset proton_vpn
 
                   #   Privacy › Punkbuster
-                  ./.github/scripts/iprange.sh blocklists/privacy/punkbuster.ipset "${{ vars.BL_PUNKBUSTER_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/privacy/punkbuster.ipset "${{ vars.BL_PUNKBUSTER_URL }}"
 
                   #   Privacy › Riot Games
-                  ./.github/scripts/iprange.sh blocklists/privacy/riot_games.ipset "${{ vars.BL_RIOTGAMES_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/privacy/riot_games.ipset "${{ vars.BL_RIOTGAMES_URL }}"
 
                   #   Privacy › RSS API
                   curl -sSL -A "${{ env.USERAGENT }}" "${{ vars.BL_RSSAPI_URL }}" | .github/scripts/bl-format.sh blocklists/privacy/rssapi.ipset
@@ -1555,10 +1555,10 @@ jobs:
                   CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/sony_pictures_technologies.ipset "${{ vars.BL_SONY_PICTURES_TECHNOLOGIES_ASN }}"
 
                   #   Privacy › Sony › User Reported
-                  ./.github/scripts/iprange.sh blocklists/privacy/sony_userflagged.ipset "${{ vars.BL_SONY_USERFLAGGED_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/privacy/sony_userflagged.ipset "${{ vars.BL_SONY_USERFLAGGED_URL }}"
 
                   #   Privacy › Steam
-                  ./.github/scripts/iprange.sh blocklists/privacy/steam.ipset "${{ vars.BL_STEAM_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/privacy/steam.ipset "${{ vars.BL_STEAM_URL }}"
 
                   #   Privacy › Stripe › API
                   curl -sSL -A "${{ env.USERAGENT }}" "${{ vars.BL_STRIPE_API_URL }}" | .github/scripts/bl-format.sh blocklists/privacy/stripe_api.ipset
@@ -1588,7 +1588,7 @@ jobs:
               run: |
   
                   #   Privacy › Ubisoft
-                  ./.github/scripts/iprange.sh blocklists/privacy/ubisoft.ipset "${{ vars.BL_UBISOFT_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/privacy/ubisoft.ipset "${{ vars.BL_UBISOFT_URL }}"
 
                   #   Privacy › Uptime Robot
                   curl -sSL -A "${{ env.USERAGENT }}" "${{ vars.BL_UPTIMEROBOT_URL }}" | .github/scripts/bl-format.sh blocklists/privacy/uptimerobot.ipset
@@ -1597,7 +1597,7 @@ jobs:
                   curl -sSLk -A "${{ env.USERAGENT }}" "${{ secrets.PROXY_WEB_URL_HTTPS }}/json?url=https%3A%2F%2Fwebpagetest.org%2Faddresses.php%3Ff%3Djson" | jq -r '.data[].addresses[] | select( . != null )' | .github/scripts/bl-format.sh blocklists/privacy/webpagetest.ipset
 
                   #   Privacy › Xfire
-                  ./.github/scripts/iprange.sh blocklists/privacy/xfire.ipset "${{ vars.BL_XFIRE_URL }}"
+                  ./.github/scripts/range-iprange.sh blocklists/privacy/xfire.ipset "${{ vars.BL_XFIRE_URL }}"
 
             # #
             #   Generate › Spam
