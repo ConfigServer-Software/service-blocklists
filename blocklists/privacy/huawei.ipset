@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             privacy_huawei_ipset
 #   @uuid           82f556dc-6e0f-353a-96ad-f52cf6d4a25a
-#   @updated        Thu May 21 02:34:33 UTC 2026
-#   @entries        3,860,242 ips
-#                   217 subnets
-#                   217 lines
+#   @updated        Thu May 21 08:08:13 UTC 2026
+#   @entries        3,860,498 ips
+#                   218 subnets
+#                   218 lines
 #   @asn            AS55990, AS136907, AS131444, AS141180, AS206204
 #                   AS206798, AS265443
 #   @expires        6 hours
@@ -64,6 +64,7 @@
 103.40.100.0/22
 103.69.140.0/22
 103.84.110.0/24
+103.148.106.0/24
 103.161.220.0/23
 103.198.203.0/24
 103.215.0.0/23

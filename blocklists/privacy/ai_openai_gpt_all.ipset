@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             privacy_ai_openai_gpt_all_ipset
 #   @uuid           e9c52625-1cd7-3288-9115-c30012135ad5
-#   @updated        Thu May 21 02:18:25 UTC 2026
-#   @entries        9,200 ips
-#                   257 subnets
-#                   257 lines
+#   @updated        Thu May 21 07:51:05 UTC 2026
+#   @entries        9,152 ips
+#                   254 subnets
+#                   254 lines
 #   @expires        6 hours
 #   @category       Uncategorized
 #
@@ -254,10 +254,7 @@
 172.212.159.64/28
 172.212.172.160/28
 172.213.11.144/28
-172.213.12.112/28
 172.213.21.16/28
-172.213.21.112/28
-172.213.21.144/28
 172.215.218.96/28
 191.233.1.112/28
 191.233.1.128/28
