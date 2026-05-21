@@ -5,19 +5,28 @@
 #   @repo               https://github.com/ConfigServer-Software/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
-#   @summary            Convert IPv4 start-end ranges to CIDR blocks using `iprange`,
+#   @summary            Convert IPv4 start-end ranges to CIDR blocks using `iprange`.
+#                           Supports downloading .gz, local gz archive, or stdin.
 #                           then output cleaned, deduped, counted ipset format.
-#                           Source supports local file path or URL.
-#   @path               .github/scripts/iprange.sh
-#   @args               .github/scripts/iprange.sh
+#                           Source supports local file path, URL, or stdin.
+#   @path               .github/scripts/range-iprange.sh
+#   @args               .github/scripts/range-iprange.sh
 #                           <argFileSaveTo>     str     req     Local file to save IP addresses.
-#                           <argSourceFile>     str     req     URL or local filename to extract ranges from.
+#                           <argSourceFile>     str     req     URL, local filename, or stdin (-|/dev/stdin|/dev/fd/0) to extract ranges from.
 #                           <argFilterGrep>     str     opt     Grep filter                                         default: '^#|^;|^$'
-#   @commands           1.  ./.github/scripts/iprange.sh blocklists/privacy/activision.ipset "http://list.iblocklist.com/?list=gfnxlhxsijzrcuxwzebb"
-#                       2.  CFG_STDOUT=true ./.github/scripts/iprange.sh blocklists/privacy/activision.ipset "http://list.iblocklist.com/?list=gfnxlhxsijzrcuxwzebb"
+#   @commands           1.  ./.github/scripts/range-iprange.sh blocklists/privacy/activision.ipset "http://list.iblocklist.com/?list=gfnxlhxsijzrcuxwzebb"
+#                       2.  CFG_STDOUT=true ./.github/scripts/range-iprange.sh blocklists/privacy/activision.ipset "http://list.iblocklist.com/?list=gfnxlhxsijzrcuxwzebb"
+#                       3.  ./.github/scripts/range-iprange.sh output.txt /dev/stdin <<'EOF'
+#                               ACTIVISION:62.17.29.192-62.17.29.255
+#                               62.17.140.16 - 62.17.140.31
+#                           EOF
+#                       4.  ./.github/scripts/range-iprange.sh /dev/stdin blocklists/privacy/activision.ipset <<EOF
+#                               ACTIVISION:62.17.29.192-62.17.29.255
+#                               62.17.140.16 - 62.17.140.31
+#                           EOF
 #   @structure          📁 .github
 #                           📁 scripts
-#                               📄 iprange.sh
+#                               📄 range-iprange.sh
 #                           📁 templates
 #                               📁 categories
 #                                   📄 *
@@ -42,8 +51,8 @@ export LC_NUMERIC=en_US.UTF-8
 #   Define › Files
 # #
 
-app_file_this=$(basename "$0")                                                  # helper-iprange.sh     (with ext)
-app_file_bin="${app_file_this%.*}"                                              # helper-iprange.sh     (without ext)
+app_file_this=$(basename "$0")                                                  # range-iprange.sh      (with ext)
+app_file_bin="${app_file_this%.*}"                                              # range-iprange.sh      (without ext)
 
 # #
 #   Define › Folders
@@ -66,6 +75,22 @@ app_dir_github="${app_dir_this_dir}/.github"                                    
 argFileSaveTo=$1
 argSourceFile=$2
 argFilterGrep=${3:-'^#|^;|^$'}
+# #
+#   Convenience arg order support:
+#       Allow stdin source passed first:
+#           range-iprange.sh /dev/stdin output.txt
+# #
+
+case "${argFileSaveTo}" in
+    -|/dev/stdin|/dev/fd/0)
+        if [ -n "${argSourceFile}" ]; then
+            _argSwapSource="${argFileSaveTo}"
+            argFileSaveTo="${argSourceFile}"
+            argSourceFile="${_argSwapSource}"
+            unset _argSwapSource
+        fi
+        ;;
+esac
 
 # #
 #   Define › App
@@ -365,7 +390,7 @@ if [ -z "${argSourceFile}" ]; then
 fi
 
 case "${argSourceFile}" in
-    http://*|https://*|ftp://*|file://*)
+    -|/dev/stdin|/dev/fd/0|http://*|https://*|ftp://*|file://*)
         ;;
     *)
         if [ ! -f "${argSourceFile}" ]; then
@@ -883,6 +908,46 @@ normalize_ip_lines( )
     # #
 
     unset   _fnNormFile _fnNormTmp
+}
+
+# #
+#   Extract IPv4 ranges from source lines
+#       Supports:
+#           LABEL:1.1.1.1-1.1.1.255
+#           LABEL:1.1.1.1 - 1.1.1.255
+#           1.1.1.1-1.1.1.255
+#           1.1.1.1 - 1.1.1.255
+# # 
+
+extract_ipv4_ranges( )
+{
+    _fnRangeFile=$1
+
+    # #
+    #   Noramlize ranges:
+    #       FROM        Cloudflare: 1.1.1.1 - 1.1.1.255   # comment
+    #       TO          1.1.1.1-1.1.1.255
+    #   
+    #   Remove Windows carriage returns (\r)
+    #   Remove inline comments beginning with # or ;
+    #   Remove empty or whitespace-only lines
+    #   Remove prefixes before a colon
+    #   Extract only valid IPv4 ranges
+    #   Normalize spacing around dashes
+    # # 
+
+    sed -E 's/\r$//' "${_fnRangeFile}" \
+        | sed -E 's/[[:space:]]*[#;].*$//' \
+        | sed -E '/^[[:space:]]*$/d' \
+        | sed -E 's/^[[:space:]]*[^:]+:[[:space:]]*//' \
+        | grep -oE "${regex_ipv4_range}" \
+        | sed -E 's/[[:space:]]*-[[:space:]]*/-/g'
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnRangeFile
 }
 
 # #
@@ -2077,9 +2142,14 @@ list_main_load()
     #           Must use wget to download gz files; otherwise you will be blocked
     #           by captcha.
     #       - Local gzip file
+    #       - stdin (/dev/stdin, /dev/fd/0, -)
     # #
 
     case "${_fnArgSource}" in
+        -|/dev/stdin|/dev/fd/0)
+            info "    📥 Reading source from ${bluel}stdin${greym}"
+            cat > "${_fnFileRaw}"
+            ;;
         http://*|https://*|ftp://*|file://*)
             info "    🌎 Downloading source ${bluel}${_fnFileRaw}${greym} ranges to ${bluel}${_fnFileRaw}${greym}"
             wget -q "${_fnArgSource}" -O "${_fnFileRaw}.gz"
@@ -2122,9 +2192,7 @@ list_main_load()
     fi
 
     info "    🔁 Converting IPv4 ranges to CIDR with ${yellowl}iprange${greym}"
-    grep -vE '^[[:space:]]*(#|;|$)' "${_fnFileSrc}.grep" \
-        | grep -oE "${regex_ipv4_range}" \
-        | sed 's/[[:space:]]*-[[:space:]]*/-/g' \
+    extract_ipv4_ranges "${_fnFileSrc}.grep" \
         | iprange > "${_fnFileTemp}" 2>/dev/null
 
     # #
