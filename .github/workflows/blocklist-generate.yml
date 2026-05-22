@@ -664,21 +664,46 @@ jobs:
                   zip -r "$ARTIFACT_NAME" ./*                                             # delete original zip before push
 
             # #
-            #   Generate › SFTP / SSH › Setup SSH Key
+            #   Generate › SFTP / SSH › Upload Artifact
             # #
 
             - name: 'SSH › Upload Artifacts'
+              env:
+                  username: github
+                  port: ${{ secrets.ARTIFACTS_PORT }}
+                  domain: ${{ secrets.ARTIFACTS_DOMAIN }}
+                  sshkey: ${{ secrets.ARTIFACTS_GITHUB_SSH_PRIVATE_KEY }}
+                  retention_copies: 4
               run: |
                   # Make sure the .ssh folder exists
                   mkdir -p ~/.ssh
-                  echo "${{ secrets.ARTIFACTS_GITHUB_SSH_PRIVATE_KEY }}" > "$HOME/.ssh/github_sftp_key"
+                  echo "$sshkey" > "$HOME/.ssh/github_sftp_key"
                   chmod 600 "$HOME/.ssh/github_sftp_key"
 
-                  # Upload to repo-specific directory
-                  sftp -P ${{ secrets.ARTIFACTS_PORT }} \
+                  # #
+                  #   Cleanup old artifacts (keep newest 4)
+                  # #
+
+                  ssh -p "$port" \
                       -i "$HOME/.ssh/github_sftp_key" \
                       -o StrictHostKeyChecking=no \
-                  github@${{ secrets.ARTIFACTS_DOMAIN }} <<EOF
+                      "$username@$domain" \
+                      "
+                      cd $REPO_NAME || exit 1
+
+                      ls -1t artifact_*.zip 2>/dev/null \
+                          | tail -n +$((retention_copies + 1)) \
+                          | xargs -r rm -f
+                      "
+
+                  # #
+                  #   Upload to repo-specific directory
+                  # #
+            
+                  sftp -P "$port" \
+                      -i "$HOME/.ssh/github_sftp_key" \
+                      -o StrictHostKeyChecking=no \
+                      "$username@$domain" <<EOF
                   mkdir $REPO_NAME
                   cd $REPO_NAME
                   put $ARTIFACT_NAME
@@ -724,11 +749,11 @@ jobs:
             #   Commit › Artifact › Setup SSH
             # #
 
-            #- name: '🎁 Commit › Setup SSH Artifact'
-            #  run: |
-            #      mkdir -p ~/.ssh
-            #      echo "${{ secrets.ARTIFACTS_GITHUB_SSH_PRIVATE_KEY }}" > "$HOME/.ssh/github_sftp_key"
-            #      chmod 600 "$HOME/.ssh/github_sftp_key"
+            - name: '🎁 Commit › Setup SSH Artifact'
+              run: |
+                  mkdir -p ~/.ssh
+                  echo "${{ secrets.ARTIFACTS_GITHUB_SSH_PRIVATE_KEY }}" > "$HOME/.ssh/github_sftp_key"
+                  chmod 600 "$HOME/.ssh/github_sftp_key"
 
             # #
             #   Commit › Artifact › Download
