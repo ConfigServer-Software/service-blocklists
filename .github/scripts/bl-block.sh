@@ -11,6 +11,7 @@
 #   @args               bl-block.sh <argFileSaveto> <argCategory>
 #   @commands           1.  ./.github/scripts/bl-block.sh blocklists/isp/isp_aol.ipset isp/aol.ipset
 #                       2.  CFG_SKIP_CIDR_DEDUPE=true CFG_SKIP_BOGON_FILTER=true ./.github/scripts/bl-block.sh blocklists/privacy/@general.ipset privacy
+#                       3.  CFG_STDOUT=true CFG_SKIP_CIDR_DEDUPE=true CFG_SKIP_BOGON_FILTER=true ./.github/scripts/bl-block.sh blocklists/privacy/@general.ipset privacy
 #   @structure          📁 .github
 #                           📁 scripts
 #                               📄 bl-block.sh
@@ -164,6 +165,8 @@ sort_cmd_opts=()                                                                
 #                                                                                   sort --parallel                 change the number of sorts run concurrently to N
 #       CFG_SORT_BUFFER_SIZE=<size>                                             Pass -S <size> to sort command (example: 50%, 1G).
 #                                                                                   sort -S, --buffer-size=SIZE     use SIZE for main memory buffer
+#       CFG_STDOUT=<true|false>                                                 Output list; do not write to file
+#   
 #   Usage:
 #       curl -sSL -A "${{ env.USERAGENT }}" ${{ vars.BL_APPLE_INC_PROXY_URL }} \
 #           | awk -F',' 'NR>1{print $1}' \
@@ -217,7 +220,14 @@ time_start=$( date +%s )                                                        
 SECONDS=0                                                                       # set seconds count for beginning of script
 
 # #
-#   Define › Regex
+#   Define › Regex (Anchored)
+#   
+#   These patterns are STRICT matchers, which use ^ and $ anchors; meaning the 
+#   ENTIRE string must match exactly.
+#   
+#   Example:
+#       "1.2.3.4"       MATCH
+#       "foo 1.2.3.4"   NO MATCH
 # #
 
 regex_url='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]\.[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]$'
@@ -831,6 +841,28 @@ extract_ip_entry( )
     # #
 
     unset   _fnEntry
+}
+
+# #
+#   Normalize whitespace-delimited input to one IP/CIDR per line
+#       Used in non-comment mode after comment stripping.
+# #
+
+normalize_ip_lines( )
+{
+    _fnNormFile=$1
+    _fnNormTmp=$(mktemp) || return 1
+
+    tr -s '[:space:]' '\n' < "${_fnNormFile}" > "${_fnNormTmp}"
+    sed -i '/^$/d' "${_fnNormTmp}"
+
+    mv "${_fnNormTmp}" "${_fnNormFile}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnNormFile _fnNormTmp
 }
 
 # #
@@ -1985,6 +2017,11 @@ list_fallback_download()
     _fnArgLocalFile=$1
     _fnArgFile=$2
     _fnListNum=${3:-1}
+
+    # #
+    #   Define › Generic
+    # #
+
     _fnFileTemp="${_fnArgFile}.tmp"
     _count_total_ips=0
     _count_total_subnets=0
@@ -2055,6 +2092,15 @@ list_fallback_download()
 
     # remove empty lines (after trimming/comment removal)
     sed -i '/^$/d' "${_fnFileTemp}"
+
+    # #
+    #   Normalize whitespace-delimited values into one IP/CIDR per line.
+    # #
+
+    if [ "${argIncludeComments}" != "true" ]; then
+        info "    ✴️  Normalize input to one IP/CIDR per line in ${bluel}${_fnFileTemp}${greym}"
+        normalize_ip_lines "${_fnFileTemp}"
+    fi
 
     # #
     #   Drop malformed entries before sorting (optional trusted-input fast path)
@@ -2157,6 +2203,11 @@ list_fallback_load()
     _fnArgFile=$1
     _fnCategory=$2
     _fnListNum=${3:-1}
+
+    # #
+    #   Define › Generic
+    # #
+
     _fnResolvedCategory="${_fnCategory}"
     _fnTargetParent=""
 
@@ -2306,13 +2357,22 @@ list_main_load()
     sed -i '/^$/d' "${_fnFileTemp}"
 
     # #
+    #   Normalize whitespace-delimited values into one IP/CIDR per line.
+    # #
+
+    if [ "${argIncludeComments}" != "true" ]; then
+        info "    ✴️  Normalize input to one IP/CIDR per line in ${bluel}${_fnFileTemp}${greym}"
+        normalize_ip_lines "${_fnFileTemp}"
+    fi
+
+    # #
     #   apply optional grep exclude filter
     # #
 
     info "    ✴️  Apply grep exclude filters on ${bluel}${_fnFileTemp}${greym}"
 
-    if [ -n "${argGrepFilter}" ]; then
-        if grep -viE "${argGrepFilter}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
+    if [ -n "${argFilterGrep}" ]; then
+        if grep -viE "${argFilterGrep}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
             mv "${_fnFileTemp}.grep" "${_fnFileTemp}"
         else
             rm -f "${_fnFileTemp}.grep"
@@ -2389,16 +2449,6 @@ list_main_load()
     info "    🚛 Move ${bluel}${_fnFileTemp}${greym} to ${bluel}${_fnArgFile}${greym}"
 
     # #
-    #   Stdout
-    # #
-
-    if [ "${argStdout}" = "true" ]; then
-        cat "${_fnFileTemp}"
-        rm -f "${_fnFileTemp}"
-        return 0
-    fi
-
-    # #
     #   Ensure dest file ends with newline before append
     # #
 
@@ -2446,7 +2496,9 @@ templ_path="${templ_path%.ipset}"                                               
 templ_id="${templ_path//\//_}"                                                  # privacy_twitter_x
 templ_id="${templ_id//[^[:alnum:]]/_}"                                          # sanitize
 templ_id="${templ_id}_ipset"                                                    # match your existing format
-templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # UUID associated to each release
+templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # stable release ID
+templ_run_uuid="$(uuidgen)"                                                     # UNIQUE per execution
+templ_tmp_prefix="${app_dir_github}/${folder_target_temp}/${templ_run_uuid}"
 templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 
 # #
@@ -2454,37 +2506,48 @@ templ_curl_opts=(-sSL -A "$app_agent")                                          
 # #
 
 info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
-
 info "    ⭐ Downloading external template sources"
-label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_src.txt${greym}"
 
 # #
 #   Template › Get
 # #
 
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_desc.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_cat.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_exp.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_src.txt" &
+
 wait
 
 # #
 #   Template › Write Variable from Temp File
 # #
 
-templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
-templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
-templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
-templ_src=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+templ_desc=$(<"${templ_tmp_prefix}_desc.txt")
+templ_cat=$(<"${templ_tmp_prefix}_cat.txt")
+templ_exp=$(<"${templ_tmp_prefix}_exp.txt")
+templ_src=$(<"${templ_tmp_prefix}_src.txt")
 
 # #
 #   Template › Remove Temp File
 # #
 
-if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" "${app_dir_github}/${folder_target_temp}/cat.txt" "${app_dir_github}/${folder_target_temp}/exp.txt" "${app_dir_github}/${folder_target_temp}/src.txt"; then
+if rm -f "${templ_tmp_prefix}_desc.txt" "${templ_tmp_prefix}_cat.txt" "${templ_tmp_prefix}_exp.txt" "${templ_tmp_prefix}_src.txt"; then
     ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
 else
     error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
@@ -2602,20 +2665,13 @@ else
 fi
 
 # #
-#   Requested Stdout; stop processing here
-# #
-
-if [ "${argStdout}" = "true" ]; then
-    exit 0
-fi
-
-# #
 #   Fallback List › Load
 #   
 #   If IPs cannot be obtained from the URL source; use a local static file to
 #   populate the blocklist.
 #   
 #   .github/scripts/bl-format.sh blocklists/privacy/proton_vpn.ipset proton_vpn
+#   echo "yandex.ru" | CFG_SKIP_CIDR_DEDUPE=true CFG_SKIP_BOGON_FILTER=true .github/scripts/bl-spf.sh blocklists/privacy/yandex.ipset yandex
 # #
 
 if ! has_valid_ip_entries "${file_ipset_target}"; then
@@ -2670,6 +2726,16 @@ if [ -f "${file_ipset_target}" ]; then
     total_lines=$(printf "%'d" "$total_lines")                                  # GLOBAL add commas to thousands
     total_subnets=$(printf "%'d" "$total_subnets")                              # GLOBAL add commas to thousands
     total_ips=$(printf "%'d" "$total_ips")                                      # GLOBAL add commas to thousands
+fi
+
+# #
+#   Stdout
+# #
+
+if [ "${argStdout}" = "true" ]; then
+    cat "${file_ipset_target}"
+    rm -f "${file_ipset_target}"
+    exit 0
 fi
 
 # #
