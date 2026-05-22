@@ -2524,6 +2524,9 @@ list_main_load "${argSourceFile}" "${file_ipset_target}" "${argFilterGrep}" "${i
 #   
 #   If IPs cannot be obtained from the URL source; use a local static file to
 #   populate the blocklist.
+#   
+#   .github/scripts/bl-format.sh blocklists/privacy/proton_vpn.ipset proton_vpn
+#   echo "yandex.ru" | CFG_SKIP_CIDR_DEDUPE=true CFG_SKIP_BOGON_FILTER=true .github/scripts/bl-spf.sh blocklists/privacy/yandex.ipset yandex
 # #
 
 if ! has_valid_ip_entries "${file_ipset_target}"; then
