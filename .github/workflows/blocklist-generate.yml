@@ -675,26 +675,13 @@ jobs:
                   sshkey: ${{ secrets.ARTIFACTS_GITHUB_SSH_PRIVATE_KEY }}
                   retention_copies: 4
               run: |
-                  # Make sure the .ssh folder exists
+                  # #
+                  #   Make sure the .ssh folder exists
+                  # #
+                
                   mkdir -p ~/.ssh
                   echo "$sshkey" > "$HOME/.ssh/github_sftp_key"
                   chmod 600 "$HOME/.ssh/github_sftp_key"
-
-                  # #
-                  #   Cleanup old artifacts (keep newest 4)
-                  # #
-
-                  ssh -p "$port" \
-                      -i "$HOME/.ssh/github_sftp_key" \
-                      -o StrictHostKeyChecking=no \
-                      "$username@$domain" \
-                      "
-                      cd $REPO_NAME || exit 1
-
-                      ls -1t artifact_*.zip 2>/dev/null \
-                          | tail -n +$((retention_copies + 1)) \
-                          | xargs -r rm -f
-                      "
 
                   # #
                   #   Upload to repo-specific directory
