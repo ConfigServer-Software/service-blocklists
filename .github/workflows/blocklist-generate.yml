@@ -701,13 +701,13 @@ jobs:
             #   Generate › Artifact › Upload
             # #
 
-            - name: "🎁 Generate › Upload Artifact"
-              id: task_blocklist_generate_artifact_upload
-              uses: actions/upload-artifact@v4
-              with:
-                  name: blocklist-latest
-                  path: ./
-                  retention-days: 1
+            #- name: "🎁 Generate › Upload Artifact"
+            #  id: task_blocklist_generate_artifact_upload
+            #  uses: actions/upload-artifact@v4
+            #  with:
+            #      name: blocklist-latest
+            #      path: ./
+            #      retention-days: 1
 
     # #
     #   Job › Commit
