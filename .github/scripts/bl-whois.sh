@@ -11,7 +11,7 @@
 #                           Supports custom GREP filter.
 #                           Removes any lines starting with ';' and '#'.
 #   @path               .github/scripts/bl-whois.sh
-#   @args               bl-whois.sh <argAsnList> <argServiceWhois> <argGrepFilter>
+#   @args               bl-whois.sh <argAsnList> <argServiceWhois> <argFilterGrep>
 #                           Note:   Arguments do not have to be in specific order.
 #                                   If specifying whois service, must start with word whois.*
 #   @commands           1.  CFG_TRUSTED_INPUT=true ./.github/scripts/bl-whois.sh blocklists/privacy/alibaba.ipset "AS37963 AS45102 AS24429 AS134963"
@@ -70,12 +70,12 @@ binary_whois=$( which whois || echo "/usr/bin/whois" )
 #   @param  argFileSaveto       str         File to save IP addresses into
 #           argAsnList          str         List of delimited ASNs to download IPs for.
 #           argServiceWhois     str         Specify an optional whois service to target specifically. Must start with whois.*
-#           argGrepFilter       str         JQ rules which pull the needed ip addresses
+#           argFilterGrep       str         JQ rules which pull the needed ip addresses
 # #
 
 argFileSaveto=$1
 argServiceWhois="${argServiceWhois:-whois.radb.net}"
-argGrepFilter="${argGrepFilter:-^#|^;|^$}"
+argFilterGrep="${argFilterGrep:-^#|^;|^$}"
 
 # #
 #   Define › Arguments › Passive
@@ -173,6 +173,7 @@ argTrustedInput="false"                                                         
 argSkipBogonFilter="false"                                                      # skip bogon filter loop
 argSkipCidrDedup="false"                                                        # skip overlapping CIDR dedupe loop
 argIncludeComments="false"                                                      # preserve inline comments in output
+argStdout="false"                                                               # output response to console instead of write to file
 argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
 argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
 did_load_fallback="false"                                                       # track whether fallback lists were merged
@@ -193,6 +194,8 @@ sort_cmd_opts=()                                                                
 #                                                                                   sort --parallel                 change the number of sorts run concurrently to N
 #       CFG_SORT_BUFFER_SIZE=<size>                                             Pass -S <size> to sort command (example: 50%, 1G).
 #                                                                                   sort -S, --buffer-size=SIZE     use SIZE for main memory buffer
+#       CFG_STDOUT=<true|false>                                                 Output list; do not write to file
+#   
 #   Usage:
 #       curl -sSL -A "${{ env.USERAGENT }}" ${{ vars.BL_APPLE_INC_PROXY_URL }} \
 #           | awk -F',' 'NR>1{print $1}' \
@@ -220,6 +223,12 @@ esac
 case "${CFG_INCLUDE_COMMENTS:-false}" in
     1|true|TRUE|yes|YES|on|ON)
         argIncludeComments="true"
+        ;;
+esac
+
+case "${CFG_STDOUT:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argStdout="true"
         ;;
 esac
 
@@ -880,6 +889,28 @@ extract_ip_entry( )
     # #
 
     unset   _fnEntry
+}
+
+# #
+#   Normalize whitespace-delimited input to one IP/CIDR per line
+#       Used in non-comment mode after comment stripping.
+# #
+
+normalize_ip_lines( )
+{
+    _fnNormFile=$1
+    _fnNormTmp=$(mktemp) || return 1
+
+    tr -s '[:space:]' '\n' < "${_fnNormFile}" > "${_fnNormTmp}"
+    sed -i '/^$/d' "${_fnNormTmp}"
+
+    mv "${_fnNormTmp}" "${_fnNormFile}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnNormFile _fnNormTmp
 }
 
 # #
@@ -2096,7 +2127,7 @@ list_main_load()
     # #
 
     for _whois_host in "${_whois_hosts[@]}"; do
-        info "    🌐 Querying WHOIS server ${bluel}${_whois_host}${greym} with grep ${yellowl}${argGrepFilter}${greym}"
+        info "    🌐 Querying WHOIS server ${bluel}${_whois_host}${greym} with grep ${yellowl}${argFilterGrep}${greym}"
         : > "${_whois_err_host}"
 
         if [ "${_whois_supports_ipv4_opt}" = true ]; then
@@ -2250,13 +2281,22 @@ list_main_load()
     sed -i '/^$/d' "${_fnFileTemp}"
 
     # #
+    #   Normalize whitespace-delimited values into one IP/CIDR per line.
+    # #
+
+    if [ "${argIncludeComments}" != "true" ]; then
+        info "    ✴️  Normalize input to one IP/CIDR per line in ${bluel}${_fnFileTemp}${greym}"
+        normalize_ip_lines "${_fnFileTemp}"
+    fi
+
+    # #
     #   apply optional grep exclude filter
     # #
 
     info "    ✴️  Apply grep exclude filters on ${bluel}${_fnFileTemp}${greym}"
 
-    if [ -n "${argGrepFilter}" ]; then
-        if grep -viE "${argGrepFilter}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
+    if [ -n "${argFilterGrep}" ]; then
+        if grep -viE "${argFilterGrep}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
             mv "${_fnFileTemp}.grep" "${_fnFileTemp}"
         else
             rm -f "${_fnFileTemp}.grep"
@@ -2372,7 +2412,7 @@ list_main_load()
 #                                           - if string arg is valid URL (checked by regex)
 #                                           - if string arg STARTS with `whois`
 #   
-#       argGrepFilter       (str)       specifies what grep pattern to use for filtering out results
+#       argFilterGrep       (str)       specifies what grep pattern to use for filtering out results
 #                                           - if string arg STARTS with ^
 #                                           - if string arg STARTS with (
 #                                           - if string arg ENDS with $
@@ -2441,7 +2481,7 @@ for arg in "${@:2}"; do
 
     case "$arg" in
         \^* | \(* | *\$ | *\))
-            argGrepFilter="$arg"
+            argFilterGrep="$arg"
             ;;
     esac
 done
@@ -2458,7 +2498,7 @@ done
 #   we need a default grep pattern if one is not provided.
 # #
 
-: "${argGrepFilter:=^#|^;|^$}"
+: "${argFilterGrep:=^#|^;|^$}"
 
 if [ ${#argAsnList[@]} -eq 0 ]; then
     error "    ⭕  Invalid ASN list specified for ${yellowd}${argFileSaveto}${greym}; aborting${end}"
@@ -2486,7 +2526,9 @@ templ_path="${templ_path%.ipset}"                                               
 templ_id="${templ_path//\//_}"                                                  # privacy_twitter_x
 templ_id="${templ_id//[^[:alnum:]]/_}"                                          # sanitize
 templ_id="${templ_id}_ipset"                                                    # match your existing format
-templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # UUID associated to each release
+templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # stable release ID
+templ_run_uuid="$(uuidgen)"                                                     # UNIQUE per execution
+templ_tmp_prefix="${app_dir_github}/${folder_target_temp}/${templ_run_uuid}"
 templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 templ_asns=""                                                                   # List of ASNs to include in template
 
@@ -2495,37 +2537,48 @@ templ_asns=""                                                                   
 # #
 
 info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
-
 info "    ⭐ Downloading external template sources"
-label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_src.txt${greym}"
 
 # #
 #   Template › Get
 # #
 
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_desc.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_cat.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_exp.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_src.txt" &
+
 wait
 
 # #
 #   Template › Write Variable from Temp File
 # #
 
-templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
-templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
-templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
-templ_src=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+templ_desc=$(<"${templ_tmp_prefix}_desc.txt")
+templ_cat=$(<"${templ_tmp_prefix}_cat.txt")
+templ_exp=$(<"${templ_tmp_prefix}_exp.txt")
+templ_src=$(<"${templ_tmp_prefix}_src.txt")
 
 # #
 #   Template › Remove Temp File
 # #
 
-if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" "${app_dir_github}/${folder_target_temp}/cat.txt" "${app_dir_github}/${folder_target_temp}/exp.txt" "${app_dir_github}/${folder_target_temp}/src.txt"; then
+if rm -f "${templ_tmp_prefix}_desc.txt" "${templ_tmp_prefix}_cat.txt" "${templ_tmp_prefix}_exp.txt" "${templ_tmp_prefix}_src.txt"; then
     ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
 else
     error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
@@ -2690,6 +2743,16 @@ if [ -f "${file_ipset_target}" ]; then
     total_lines=$(printf "%'d" "$total_lines")                                  # GLOBAL add commas to thousands
     total_subnets=$(printf "%'d" "$total_subnets")                              # GLOBAL add commas to thousands
     total_ips=$(printf "%'d" "$total_ips")                                      # GLOBAL add commas to thousands
+fi
+
+# #
+#   Stdout
+# #
+
+if [ "${argStdout}" = "true" ]; then
+    cat "${file_ipset_target}"
+    rm -f "${file_ipset_target}"
+    exit 0
 fi
 
 # #
