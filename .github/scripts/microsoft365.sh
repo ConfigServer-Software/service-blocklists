@@ -8,10 +8,12 @@
 #   @summary            Generate list of IP addresses strictly for Microsoft365
 #   @path               .github/scripts/microsoft365.sh
 #   @args               .github/scripts/microsoft365.sh
-#                           <argFileSaveto>     str         required
-#                           <argSourceFile>     str         required
-#                           <argGrepFilter>     str         optional            default: '^#|^;|^$'
+#                           <argFileSaveTo>     str         required
+#                           <argSourceUrl>      str         optional            default: https://endpoints.office.com/endpoints/worldwide
+#                           <argFilterJq>       str         optional            default: .[] | .ips[]?
+#                           <argFilterGrep>     str         optional            default: '^#|^;|^$'
 #   @commands           1.  .github/scripts/microsoft365.sh blocklists/privacy/microsoft365.ipset
+#                       2.  CFG_STDOUT=true .github/scripts/microsoft365.sh blocklists/privacy/microsoft365.ipset
 #   @structure          📁 .github
 #                           📁 scripts
 #                               📄 microsoft365.sh
@@ -54,17 +56,17 @@ app_dir_github="${app_dir_this_dir}/.github"                                    
 #   Define › Arguments
 # #
 
-argFileSaveto=$1
-argSourceFile=${2:-'https://endpoints.office.com/endpoints/worldwide'}
-argJqFilter=${3:-'.[] | .ips[]?'}
-argGrepFilter=${4:-'^#|^;|^$'}
+argFileSaveTo=$1
+argSourceUrl=${2:-'https://endpoints.office.com/endpoints/worldwide'}
+argFilterJq=${3:-'.[] | .ips[]?'}
+argFilterGrep=${4:-'^#|^;|^$'}
 
 # #
 #   Define › App
 # #
 
-file_ipset_temp="${argFileSaveto}.tmp"                                          # Temp file when building ipset list
-file_ipset_target="${argFileSaveto}"                                            # Perm file when building ipset list
+file_ipset_temp="${argFileSaveTo}.tmp"                                          # Temp file when building ipset list
+file_ipset_target="${argFileSaveTo}"                                            # Perm file when building ipset list
 folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
 
 # #
@@ -140,6 +142,7 @@ argTrustedInput="false"                                                         
 argSkipBogonFilter="false"                                                      # skip bogon filter loop
 argSkipCidrDedup="false"                                                        # skip overlapping CIDR dedupe loop
 argIncludeComments="false"                                                      # preserve inline comments in output
+argStdout="false"                                                               # output response to console instead of write to file
 argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
 argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
 did_load_fallback="false"                                                       # track whether fallback lists were merged
@@ -160,6 +163,8 @@ sort_cmd_opts=()                                                                
 #                                                                                   sort --parallel                 change the number of sorts run concurrently to N
 #       CFG_SORT_BUFFER_SIZE=<size>                                             Pass -S <size> to sort command (example: 50%, 1G).
 #                                                                                   sort -S, --buffer-size=SIZE     use SIZE for main memory buffer
+#       CFG_STDOUT=<true|false>                                                 Output list; do not write to file
+#   
 #   Usage:
 #       curl -sSL -A "${{ env.USERAGENT }}" ${{ vars.BL_APPLE_INC_PROXY_URL }} \
 #           | awk -F',' 'NR>1{print $1}' \
@@ -187,6 +192,12 @@ esac
 case "${CFG_INCLUDE_COMMENTS:-false}" in
     1|true|TRUE|yes|YES|on|ON)
         argIncludeComments="true"
+        ;;
+esac
+
+case "${CFG_STDOUT:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argStdout="true"
         ;;
 esac
 
@@ -220,7 +231,8 @@ SECONDS=0                                                                       
 regex_url='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]\.[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]$'
 regex_ipv4='^([0-9]{1,3}\.){3}[0-9]{1,3}$'
 regex_ipv4_cidr='^([0-9]{1,3}\.){3}[0-9]{1,3}/([0-9]{1,2})$'
-regex_ipv6='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*$'
+#regex_ipv6='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*$'
+regex_ipv6='^(([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}|(([0-9A-Fa-f]{1,4}:){1,7}:)|(([0-9A-Fa-f]{1,4}:){1,6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,5}(:[0-9A-Fa-f]{1,4}){1,2})|(([0-9A-Fa-f]{1,4}:){1,4}(:[0-9A-Fa-f]{1,4}){1,3})|(([0-9A-Fa-f]{1,3}:){1,3}(:[0-9A-Fa-f]{1,4}){1,4})|(([0-9A-Fa-f]{1,4}:){1,2}(:[0-9A-Fa-f]{1,4}){1,5})|([0-9A-Fa-f]{1,4}:)((:[0-9A-Fa-f]{1,4}){1,6})|(:)((:[0-9A-Fa-f]{1,4}){1,7}|:))$'
 regex_ipv6_cidr='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*/([0-9]{1,3})$'
 regex_ipv4_range='([0-9]{1,3}\.){3}[0-9]{1,3}[[:space:]]*-[[:space:]]*([0-9]{1,3}\.){3}[0-9]{1,3}'
 
@@ -336,22 +348,22 @@ time_elapsed( )
 #   Verify › Arguments
 # #
 
-if [ -z "${argFileSaveto}" ]; then
+if [ -z "${argFileSaveTo}" ]; then
     error "    ⭕  No target file specified ${yellowd}${app_file_this}${greym}; aborting${end}"
     exit 0
 fi
 
-if [ -z "${argSourceFile}" ]; then
-    error "    ⭕  No URL specified for ${yellowd}${argFileSaveto}${greym}; aborting${end}"
+if [ -z "${argSourceUrl}" ]; then
+    error "    ⭕  No URL specified for ${yellowd}${argFileSaveTo}${greym}; aborting${end}"
     exit 0
 fi
 
-case "${argSourceFile}" in
+case "${argSourceUrl}" in
     http://*|https://*|ftp://*|file://*)
         ;;
     *)
-        if [ ! -f "${argSourceFile}" ]; then
-            error "    ⭕  Invalid URL specified ${yellowd}${argSourceFile}${greym}; aborting${end}"
+        if [ ! -f "${argSourceUrl}" ]; then
+            error "    ⭕  Invalid URL specified ${yellowd}${argSourceUrl}${greym}; aborting${end}"
             exit 0
         fi
         ;;
@@ -838,6 +850,28 @@ extract_ip_entry( )
     # #
 
     unset   _fnEntry
+}
+
+# #
+#   Normalize whitespace-delimited input to one IP/CIDR per line
+#       Used in non-comment mode after comment stripping.
+# #
+
+normalize_ip_lines( )
+{
+    _fnNormFile=$1
+    _fnNormTmp=$(mktemp) || return 1
+
+    tr -s '[:space:]' '\n' < "${_fnNormFile}" > "${_fnNormTmp}"
+    sed -i '/^$/d' "${_fnNormTmp}"
+
+    mv "${_fnNormTmp}" "${_fnNormFile}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnNormFile _fnNormTmp
 }
 
 # #
@@ -1615,15 +1649,18 @@ dedup_cidr( )
     ' v4="$_fnDedupV4" v6="$_fnDedupV6" ot="$_fnDedupOther" "$_fnDedupWorkFile"
 
     # #
-    #   IPv4 containment dedup
+    #   IPv4 containment & adjacency aggregation dedup
     #   
-    #   Is a bit complex, need to add a few more things later.
+    #   Ensure that we keep blocklists as small as possible. Not only for each
+    #   individual set, but for the blocklist as a whole.
     #   
-    #   Does the following:
-    #       (1) awk:    convert each CIDR to  "<10-digit network int> <3-digit prefix> <original line>"
-    #                   aligns to the true network boundary so host-bit noise is ignored.
-    #       (2) sort:   network ascending, then prefix ascending (wider ranges first).
-    #       (3) awk:    walk the list; skip any entry whose end address <= max_end.
+    #   Without this, blocklists are significantly bigger and can cause load
+    #   delays in CSF or other 3rd party apps loading these lists.
+    #   
+    #       Convert each entry to normalized [start,end] range
+    #       Sort by start/end
+    #       Merge overlapping and adjacent ranges
+    #       Emit minimal covering CIDR set
     # #
 
     if [ -s "$_fnDedupV4" ]; then
@@ -1634,22 +1671,72 @@ dedup_cidr( )
             if (pfx < 0 || pfx > 32) { printf "_ %s\n", $0; next }
             size = int(2^(32 - pfx))
             net  = int(ip / size) * size
-            printf "%010.0f %03d %s\n", net, pfx, $0
+            end  = net + size - 1
+            printf "%010.0f %010.0f\n", net, end
+            next
         }
         NF < 5 { printf "_ %s\n", $0 }
         ' "$_fnDedupV4" \
-        | sort -t' ' -k1,1n -k2,2n \
+        | sort -k1,1n -k2,2n \
         | awk '
-        /^_ / { sub(/^_ /, ""); print; next }
-        {
-            net = $1 + 0; pfx = $2 + 0
-            e   = net + int(2^(32 - pfx)) - 1
-            if (NR == 1 || e > max_end) {
-                orig = $3
-                if (pfx == 32) sub(/\/32$/, "", orig)
-                print orig
-                max_end = e
+        function int_to_ip(n, o1, o2, o3, o4) {
+            o1 = int(n / 16777216); n -= o1 * 16777216
+            o2 = int(n / 65536);    n -= o2 * 65536
+            o3 = int(n / 256);      o4 = n - (o3 * 256)
+            return o1 "." o2 "." o3 "." o4
+        }
+        function max_aligned_block(start, block) {
+            if (start == 0) return 4294967296
+            block = 1
+            while ((block * 2) <= 4294967296 && (start % (block * 2)) == 0) {
+                block *= 2
             }
+            return block
+        }
+        function emit_range(start, end, remaining, block, prefix, tmp, cidr) {
+            while (start <= end) {
+                remaining = (end - start) + 1
+                block = max_aligned_block(start)
+                while (block > remaining) block /= 2
+
+                prefix = 32
+                tmp = block
+                while (tmp > 1) { tmp /= 2; prefix-- }
+
+                cidr = int_to_ip(start)
+                if (prefix == 32) print cidr
+                else print cidr "/" prefix
+
+                start += block
+            }
+        }
+        /^_ / {
+            sub(/^_ /, "")
+            print
+            next
+        }
+        {
+            s = $1 + 0
+            e = $2 + 0
+
+            if (!have) {
+                cur_s = s
+                cur_e = e
+                have = 1
+                next
+            }
+
+            if (s <= (cur_e + 1)) {
+                if (e > cur_e) cur_e = e
+                next
+            }
+
+            emit_range(cur_s, cur_e)
+            cur_s = s
+            cur_e = e
+        }
+        END {
+            if (have) emit_range(cur_s, cur_e)
         }
         ' >> "$_fnDedupOut"
     fi
@@ -1928,10 +2015,25 @@ done
 fi
 
 # #
+#   Blocklist › Fallback › Download
+#   
+#   If we cannot download from the source website, revert to a fallback list to 
+#   ensure our blocklist is not pushed empty.
+# #
+
+list_fallback_download()
+{
+    echo "Function placeholder"
+}
+
+# #
 #   Blocklist › Main › Load
 #   
 #   @usage          list_main_load "${file_ipset_target}" "$i"
-#   @args           _fnArgFile          Output filename to add ips to
+#   @args           _fnArgUrl           IP source URL
+#                   _fnArgFile          Output filename to add ips to
+#                   _fnArgFilterJq      Custom jq filter
+#                   _fnArgFilterGrep    Custom grep filter
 #                   _fnListNum          Blocklist number (#1 out of #2) - visual only
 # #
 
@@ -1939,8 +2041,8 @@ list_main_load()
 {
     _fnArgUrl=$1                    # https://endpoints.office.com/endpoints/worldwide
     _fnArgFile=$2                   # file_ipset_target
-    _fnArgJqFilter=$3               # '.[] | .ips[]?'
-    _fnArgGrepFilter=$4             # '^#|^;|^$'
+    _fnArgFilterJq=$3               # '.[] | .ips[]?'
+    _fnArgFilterGrep=$4             # '^#|^;|^$'
     _fnListNum=${5:-1}              # Process list count
 
     # #
@@ -1981,15 +2083,15 @@ list_main_load()
     #       - Local gzip file
     # #
 
-    _fnMs365Url+="${_fnArgUrl}?clientrequestid=${templ_uuid}"
-    info "    🌎 Downloading Microsoft365 IPs from ${bluel}${_fnMs365Url}${greym} to ${bluel}${_fnFileTemp}${greym}"
-    info "    🔍 Running jq filter ${bluel}${_fnArgJqFilter}${greym}"
+    _fnUrl+="${_fnArgUrl}?clientrequestid=${templ_uuid}"
+    info "    🌎 Downloading Microsoft365 IPs from ${bluel}${_fnUrl}${greym} to ${bluel}${_fnFileTemp}${greym}"
+    info "    🔍 Running jq filter ${bluel}${_fnArgFilterJq}${greym}"
 
     # #
     #   Download file
     # #
 
-    curl -sSL -k -A "${app_agent}" "${_fnMs365Url}" | jq -r "${_fnArgJqFilter}" > "${_fnFileTemp}"
+    curl -sSL -k -A "${app_agent}" "${_fnUrl}" | jq -r "${_fnArgFilterJq}" > "${_fnFileTemp}"
 
     # #
     #   Running sed
@@ -2034,13 +2136,22 @@ list_main_load()
     sed -i '/^$/d' "${_fnFileTemp}"
 
     # #
+    #   Normalize whitespace-delimited values into one IP/CIDR per line.
+    # #
+
+    if [ "${argIncludeComments}" != "true" ]; then
+        info "    ✴️  Normalize input to one IP/CIDR per line in ${bluel}${_fnFileTemp}${greym}"
+        normalize_ip_lines "${_fnFileTemp}"
+    fi
+
+    # #
     #   apply optional grep exclude filter
     # #
 
     info "    ✴️  Apply grep exclude filters on ${bluel}${_fnFileTemp}${greym}"
 
-    if [ -n "${argGrepFilter}" ]; then
-        if grep -viE "${argGrepFilter}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
+    if [ -n "${argFilterGrep}" ]; then
+        if grep -viE "${argFilterGrep}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
             mv "${_fnFileTemp}.grep" "${_fnFileTemp}"
         else
             rm -f "${_fnFileTemp}.grep"
@@ -2139,8 +2250,8 @@ list_main_load()
     #   Unset
     # #
 
-    unset _fnArgUrl _fnArgFile _fnArgGrepFilter _fnListNum _fnFileTemp _fnFileRaw _fnFileSrc \
-          _count_total_ips _count_total_subnets
+    unset _fnArgUrl _fnArgFile _fnArgFilterJq _fnArgFilterGrep _fnListNum _fnFileTemp _fnFileRaw _fnFileSrc \
+          _count_total_ips _count_total_subnets _fnUrl
 }
 
 # #
@@ -2172,37 +2283,48 @@ templ_curl_opts=(-sSL -A "$app_agent")                                          
 # #
 
 info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
-
 info "    ⭐ Downloading external template sources"
-label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_src.txt${greym}"
 
 # #
 #   Template › Get
 # #
 
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_desc.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_cat.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_exp.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_src.txt" &
+
 wait
 
 # #
 #   Template › Write Variable from Temp File
 # #
 
-templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
-templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
-templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
-templ_src=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+templ_desc=$(<"${templ_tmp_prefix}_desc.txt")
+templ_cat=$(<"${templ_tmp_prefix}_cat.txt")
+templ_exp=$(<"${templ_tmp_prefix}_exp.txt")
+templ_src=$(<"${templ_tmp_prefix}_src.txt")
 
 # #
 #   Template › Remove Temp File
 # #
 
-if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" "${app_dir_github}/${folder_target_temp}/cat.txt" "${app_dir_github}/${folder_target_temp}/exp.txt" "${app_dir_github}/${folder_target_temp}/src.txt"; then
+if rm -f "${templ_tmp_prefix}_desc.txt" "${templ_tmp_prefix}_cat.txt" "${templ_tmp_prefix}_exp.txt" "${templ_tmp_prefix}_src.txt"; then
     ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
 else
     error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
@@ -2291,7 +2413,7 @@ fi
 # #
 
 i=1
-list_main_load "${argSourceFile}" "${file_ipset_target}" "${argJqFilter}" "${argGrepFilter}" "${i}"
+list_main_load "${argSourceUrl}" "${file_ipset_target}" "${argFilterJq}" "${argFilterGrep}" "${i}"
 
 # #
 #   Fallback List › Load
@@ -2299,7 +2421,8 @@ list_main_load "${argSourceFile}" "${file_ipset_target}" "${argJqFilter}" "${arg
 #   If IPs cannot be obtained from the URL source; use a local static file to
 #   populate the blocklist.
 #   
-#   .github/scripts/bl-microsoft365.sh blocklists/privacy/proton_vpn.ipset proton_vpn
+#   .github/scripts/bl-format.sh blocklists/privacy/proton_vpn.ipset proton_vpn
+#   echo "yandex.ru" | CFG_SKIP_CIDR_DEDUPE=true CFG_SKIP_BOGON_FILTER=true .github/scripts/bl-spf.sh blocklists/privacy/yandex.ipset yandex
 # #
 
 if ! has_valid_ip_entries "${file_ipset_target}"; then
@@ -2354,6 +2477,16 @@ if [ -f "${file_ipset_target}" ]; then
     total_lines=$(printf "%'d" "$total_lines")                                  # GLOBAL add commas to thousands
     total_subnets=$(printf "%'d" "$total_subnets")                              # GLOBAL add commas to thousands
     total_ips=$(printf "%'d" "$total_ips")                                      # GLOBAL add commas to thousands
+fi
+
+# #
+#   Stdout
+# #
+
+if [ "${argStdout}" = "true" ]; then
+    cat "${file_ipset_target}"
+    rm -f "${file_ipset_target}"
+    exit 0
 fi
 
 # #

@@ -2019,8 +2019,8 @@ list_fallback_download()
 #   Load fallback static blocks from .github/blocks/<category>.
 #   
 #   Must define the category when calling this script with something such as:
-#       run_mip_anthropic=".github/scripts/bl-mip.sh blocklists/privacy/privacy_anthropic.ipset '${{ vars.BL_PRIVACY_MIP_ANTHROPIC_SRC }}' privacy/anthropic"
-#       eval "./$run_mip_anthropic"
+#       ./.github/scripts/bl-block.sh blocklists/privacy/@general.ipset privacy
+#       ./.github/scripts/bl-mip.sh blocklists/privacy/privacy_anthropic.ipset '${{ vars.BL_PRIVACY_MIP_ANTHROPIC_SRC }}' privacy/anthropic
 # #
 
 list_fallback_load()
