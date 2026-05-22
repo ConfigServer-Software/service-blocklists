@@ -4,31 +4,30 @@
 #   @script             Blocklist › Plain Text Web Source
 #   @repo               https://github.com/ConfigServer-Software/service-blocklists
 #   @workflow           blocklist-generate.yml
-#   @type               Bash script
-#   
+#   @type               bash script
 #   @summary            Generate ipset from online plain-text url / page.
 #                           Specify a URL to fetch a plain-text file from the internet.
 #                           Supports VARARG for URLS parameter.
 #                           Removes any lines starting with ';' and '#'.
 #                           Structures one-ip-per-line.
-#   
-#   @execute            Run with the following commands:
-#                           .github/scripts/bl-plain.sh blocklists/03_spam_spamhaus.ipset https://www.spamhaus.org/drop/drop.txt https://url2.com
-#   
-#   @workflow           chmod +x ".github/scripts/bl-plain.sh"
-#                       run_spamhaus=".github/scripts/bl-plain.sh 03_spam_spamhaus.ipset https://www.spamhaus.org/drop/drop.txt"
-#                       eval "./$run_spamhaus"
-#   
-#   @usage              .github/scripts/bl-plain.sh
-#                           <argFileSaveto>     str         required
-#                           <argUrl>            vararg      required
-#                           {...}
-#   
-#   @demo               .github/scripts/bl-plain.sh blocklists/spam/spam_spamhaus.ipset https://www.spamhaus.org/drop/drop.txt
-#   
+#   @path               .github/scripts/bl-plain.sh
+#   @params             .github/scripts/bl-plain.sh
+#                           <argFileSaveTo>     str     req     Local file to save IP addresses.
+#                           <argUrls>           vararg  req     List of URLs to generate blocklist from.
+#   @commands           1.  ./.github/scripts/bl-plain.sh blocklists/spam/spamhaus.ipset https://www.spamhaus.org/drop/drop.txt https://url2.com
+#                       2.  CFG_STDOUT=true ./.github/scripts/bl-plain.sh blocklists/spam/spamhaus.ipset https://www.spamhaus.org/drop/drop.txt https://url2.com
 #   @structure          📁 .github
 #                           📁 scripts
 #                               📄 bl-plain.sh
+#                           📁 templates
+#                               📁 categories
+#                                   📄 *
+#                               📁 descriptions
+#                                   📄 *
+#                               📁 expires
+#                                   📄 *
+#                               📁 sources
+#                                   📄 *
 #                           📁 workflows
 #                               📄 blocklist-generate.yml
 # #
@@ -60,18 +59,19 @@ app_dir_github="${app_dir_this_dir}/.github"                                    
 #   
 #   This bash script has the following arguments:
 #   
-#   @param  argFileSaveto       str         File to save IP addresses into
+#   @param  argFileSaveTo       str         Local file to save IP addresses.
 #           {...}               vararg      List of source file urls
 # #
 
-argFileSaveto=$1
+argFileSaveTo=$1
+argUrls=("$@")
 
 # #
 #   Define › App
 # #
 
-file_ipset_temp="${argFileSaveto}.tmp"                                          # Temp file when building ipset list
-file_ipset_target="${argFileSaveto}"                                            # Perm file when building ipset list
+file_ipset_temp="${argFileSaveTo}.tmp"                                          # Temp file when building ipset list
+file_ipset_target="${argFileSaveTo}"                                            # Perm file when building ipset list
 folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
 
 # #
@@ -147,6 +147,7 @@ argTrustedInput="false"                                                         
 argSkipBogonFilter="false"                                                      # skip bogon filter loop
 argSkipCidrDedup="false"                                                        # skip overlapping CIDR dedupe loop
 argIncludeComments="false"                                                      # preserve inline comments in output
+argStdout="false"                                                               # output response to console instead of write to file
 argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
 argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
 did_load_fallback="false"                                                       # track whether fallback lists were merged
@@ -167,6 +168,8 @@ sort_cmd_opts=()                                                                
 #                                                                                   sort --parallel                 change the number of sorts run concurrently to N
 #       CFG_SORT_BUFFER_SIZE=<size>                                             Pass -S <size> to sort command (example: 50%, 1G).
 #                                                                                   sort -S, --buffer-size=SIZE     use SIZE for main memory buffer
+#       CFG_STDOUT=<true|false>                                                 Output list; do not write to file
+#   
 #   Usage:
 #       curl -sSL -A "${{ env.USERAGENT }}" ${{ vars.BL_APPLE_INC_PROXY_URL }} \
 #           | awk -F',' 'NR>1{print $1}' \
@@ -194,6 +197,12 @@ esac
 case "${CFG_INCLUDE_COMMENTS:-false}" in
     1|true|TRUE|yes|YES|on|ON)
         argIncludeComments="true"
+        ;;
+esac
+
+case "${CFG_STDOUT:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argStdout="true"
         ;;
 esac
 
@@ -227,7 +236,8 @@ SECONDS=0                                                                       
 regex_url='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]\.[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]$'
 regex_ipv4='^([0-9]{1,3}\.){3}[0-9]{1,3}$'
 regex_ipv4_cidr='^([0-9]{1,3}\.){3}[0-9]{1,3}/([0-9]{1,2})$'
-regex_ipv6='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*$'
+#regex_ipv6='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*$'
+regex_ipv6='^(([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}|(([0-9A-Fa-f]{1,4}:){1,7}:)|(([0-9A-Fa-f]{1,4}:){1,6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,5}(:[0-9A-Fa-f]{1,4}){1,2})|(([0-9A-Fa-f]{1,4}:){1,4}(:[0-9A-Fa-f]{1,4}){1,3})|(([0-9A-Fa-f]{1,3}:){1,3}(:[0-9A-Fa-f]{1,4}){1,4})|(([0-9A-Fa-f]{1,4}:){1,2}(:[0-9A-Fa-f]{1,4}){1,5})|([0-9A-Fa-f]{1,4}:)((:[0-9A-Fa-f]{1,4}){1,6})|(:)((:[0-9A-Fa-f]{1,4}){1,7}|:))$'
 regex_ipv6_cidr='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*/([0-9]{1,3})$'
 regex_ipv4_range='([0-9]{1,3}\.){3}[0-9]{1,3}[[:space:]]*-[[:space:]]*([0-9]{1,3}\.){3}[0-9]{1,3}'
 
@@ -343,13 +353,13 @@ time_elapsed( )
 #   Verify › Arguments
 # #
 
-if [ -z "${argFileSaveto}" ]; then
+if [ -z "${argFileSaveTo}" ]; then
     error "    ⭕  No target file specified ${yellowd}${app_file_this}${greym}; aborting${end}"
     exit 0
 fi
 
 if test "$#" -lt 2; then
-    error "    ⭕  Did not provide valid URL arguments for sources to save to ${yellowd}${argFileSaveto}${greym}; aborting${end}"
+    error "    ⭕  Did not provide valid URL arguments for sources to save to ${yellowd}${argFileSaveTo}${greym}; aborting${end}"
     exit 0
 fi
 
@@ -834,6 +844,28 @@ extract_ip_entry( )
     # #
 
     unset   _fnEntry
+}
+
+# #
+#   Normalize whitespace-delimited input to one IP/CIDR per line
+#       Used in non-comment mode after comment stripping.
+# #
+
+normalize_ip_lines( )
+{
+    _fnNormFile=$1
+    _fnNormTmp=$(mktemp) || return 1
+
+    tr -s '[:space:]' '\n' < "${_fnNormFile}" > "${_fnNormTmp}"
+    sed -i '/^$/d' "${_fnNormTmp}"
+
+    mv "${_fnNormTmp}" "${_fnNormFile}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnNormFile _fnNormTmp
 }
 
 # #
@@ -1977,6 +2009,33 @@ done
 fi
 
 # #
+#   Blocklist › Fallback › Download
+#   
+#   If we cannot download from the source website, revert to a fallback list to 
+#   ensure our blocklist is not pushed empty.
+# #
+
+list_fallback_download()
+{
+    echo "Exec list_fallback_download"
+}
+
+# #
+#   Blocklist › Fallback › Load
+#   
+#   Load fallback static blocks from .github/blocks/<category>.
+#   
+#   Must define the category when calling this script with something such as:
+#       ./.github/scripts/bl-block.sh blocklists/privacy/@general.ipset privacy
+#       ./.github/scripts/bl-mip.sh blocklists/privacy/privacy_anthropic.ipset '${{ vars.BL_PRIVACY_MIP_ANTHROPIC_SRC }}' privacy/anthropic
+# #
+
+list_fallback_load()
+{
+    echo "Exec list_fallback_load"
+}
+
+# #
 #   Blocklist › Main › Load
 #   
 #   @usage          list_main_load "${file_ipset_target}" "$i"
@@ -2065,6 +2124,15 @@ list_main_load()
 
     # remove empty lines (after trimming/comment removal)
     sed -i '/^$/d' "${_fnFileTemp}"
+
+    # #
+    #   Normalize whitespace-delimited values into one IP/CIDR per line.
+    # #
+
+    if [ "${argIncludeComments}" != "true" ]; then
+        info "    ✴️  Normalize input to one IP/CIDR per line in ${bluel}${_fnFileTemp}${greym}"
+        normalize_ip_lines "${_fnFileTemp}"
+    fi
     
     # #
     #   apply optional grep exclude filter
@@ -2072,8 +2140,8 @@ list_main_load()
 
     info "    ✴️  Apply grep exclude filters on ${bluel}${_fnFileTemp}${greym}"
 
-    if [ -n "${argGrepFilter}" ]; then
-        if grep -viE "${argGrepFilter}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
+    if [ -n "${argFilterGrep}" ]; then
+        if grep -viE "${argFilterGrep}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
             mv "${_fnFileTemp}.grep" "${_fnFileTemp}"
         else
             rm -f "${_fnFileTemp}.grep"
@@ -2197,7 +2265,9 @@ templ_path="${templ_path%.ipset}"                                               
 templ_id="${templ_path//\//_}"                                                  # privacy_twitter_x
 templ_id="${templ_id//[^[:alnum:]]/_}"                                          # sanitize
 templ_id="${templ_id}_ipset"                                                    # match your existing format
-templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # UUID associated to each release
+templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # stable release ID
+templ_run_uuid="$(uuidgen)"                                                     # UNIQUE per execution
+templ_tmp_prefix="${app_dir_github}/${folder_target_temp}/${templ_run_uuid}"
 templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 
 # #
@@ -2205,37 +2275,48 @@ templ_curl_opts=(-sSL -A "$app_agent")                                          
 # #
 
 info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
-
 info "    ⭐ Downloading external template sources"
-label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_src.txt${greym}"
 
 # #
 #   Template › Get
 # #
 
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_desc.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_cat.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_exp.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_src.txt" &
+
 wait
 
 # #
 #   Template › Write Variable from Temp File
 # #
 
-templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
-templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
-templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
-templ_src=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+templ_desc=$(<"${templ_tmp_prefix}_desc.txt")
+templ_cat=$(<"${templ_tmp_prefix}_cat.txt")
+templ_exp=$(<"${templ_tmp_prefix}_exp.txt")
+templ_src=$(<"${templ_tmp_prefix}_src.txt")
 
 # #
 #   Template › Remove Temp File
 # #
 
-if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" "${app_dir_github}/${folder_target_temp}/cat.txt" "${app_dir_github}/${folder_target_temp}/exp.txt" "${app_dir_github}/${folder_target_temp}/src.txt"; then
+if rm -f "${templ_tmp_prefix}_desc.txt" "${templ_tmp_prefix}_cat.txt" "${templ_tmp_prefix}_exp.txt" "${templ_tmp_prefix}_src.txt"; then
     ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
 else
     error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
@@ -2324,7 +2405,7 @@ fi
 # #
 
 i=1
-for url in "$@"; do
+for url in "${argUrls[@]}"; do
     case "$url" in
         http://*|https://*)
             # Get the Nth entry from the table
@@ -2336,6 +2417,22 @@ for url in "$@"; do
             ;;
     esac
 done
+
+# #
+#   Fallback List › Load
+#   
+#   If IPs cannot be obtained from the URL source; use a local static file to
+#   populate the blocklist.
+#   
+#   .github/scripts/bl-format.sh blocklists/privacy/proton_vpn.ipset proton_vpn
+#   echo "yandex.ru" | CFG_SKIP_CIDR_DEDUPE=true CFG_SKIP_BOGON_FILTER=true .github/scripts/bl-spf.sh blocklists/privacy/yandex.ipset yandex
+# #
+
+if ! has_valid_ip_entries "${file_ipset_target}"; then
+    did_load_fallback="true"
+    warn "    ⚠️  Blocklist does not contain valid IPs; aborting${greym}"
+    exit 0
+fi
 
 # #
 #   Sort
@@ -2383,6 +2480,16 @@ if [ -f "${file_ipset_target}" ]; then
     total_lines=$(printf "%'d" "$total_lines")                                  # GLOBAL add commas to thousands
     total_subnets=$(printf "%'d" "$total_subnets")                              # GLOBAL add commas to thousands
     total_ips=$(printf "%'d" "$total_ips")                                      # GLOBAL add commas to thousands
+fi
+
+# #
+#   Stdout
+# #
+
+if [ "${argStdout}" = "true" ]; then
+    cat "${file_ipset_target}"
+    rm -f "${file_ipset_target}"
+    exit 0
 fi
 
 # #
