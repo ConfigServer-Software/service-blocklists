@@ -2192,8 +2192,19 @@ list_main_load()
     fi
 
     info "    🔁 Converting IPv4 ranges to CIDR with ${yellowl}iprange${greym}"
+
+    # #
+    #   Preserve each source range boundary:
+    #       Run iprange once per extracted range line.
+    #       This avoids global range aggregation into a single supernet
+    #       before later optional dedupe stages.
+    # #
+
     extract_ipv4_ranges "${_fnFileSrc}.grep" \
-        | iprange > "${_fnFileTemp}" 2>/dev/null
+        | while IFS= read -r _fnRangeLine || [ -n "${_fnRangeLine}" ]; do
+            [ -z "${_fnRangeLine}" ] && continue
+            printf '%s\n' "${_fnRangeLine}" | iprange 2>/dev/null
+        done > "${_fnFileTemp}"
 
     # #
     #   Running sed
