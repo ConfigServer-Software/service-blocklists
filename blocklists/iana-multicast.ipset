@@ -1,0 +1,18 @@
+# #
+#   🧱 Firewall Blocklist - blocklists/iana-multicast.ipset
+#
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/iana-multicast.ipset
+#   @source         None
+#   @id             iana_multicast_ipset
+#   @uuid           045c20fe-9c96-3c0f-aa34-91a3a16634d2
+#   @updated        Fri May 22 06:10:28 UTC 2026
+#   @entries        268,435,456 ips
+#                   1 subnets
+#                   1 lines
+#   @expires        6 hours
+#   @category       Uncategorized
+#
+#   No description provided
+# #
+
+224.0.0.0/4
