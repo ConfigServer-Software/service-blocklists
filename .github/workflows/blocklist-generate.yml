@@ -673,7 +673,6 @@ jobs:
                   port: ${{ secrets.ARTIFACTS_PORT }}
                   domain: ${{ secrets.ARTIFACTS_DOMAIN }}
                   sshkey: ${{ secrets.ARTIFACTS_GITHUB_SSH_PRIVATE_KEY }}
-                  retention_copies: 4
               run: |
                   # #
                   #   Make sure the .ssh folder exists
@@ -873,9 +872,14 @@ jobs:
             # #
 
             - name: '🎁 Commit › Cleanup Old Artifacts'
+              env:
+                  username: github
+                  port: ${{ secrets.ARTIFACTS_PORT }}
+                  domain: ${{ secrets.ARTIFACTS_DOMAIN }}
+                  sshkey: ${{ secrets.ARTIFACTS_GITHUB_SSH_PRIVATE_KEY }}
               run: |
-                  ssh -p ${{ secrets.ARTIFACTS_PORT }} \
-                  -i ~/.ssh/github_sftp_key \
+                  ssh -p "$port" \
+                  -i "$HOME/.ssh/github_sftp_key" \
                   -o StrictHostKeyChecking=no \
-                  github@${{ secrets.ARTIFACTS_DOMAIN }} \
-                  "find ~/public_html -name 'artifacts_*.zip' -type f -mtime +5 -delete"
+                  "$username@$domain" \
+                  "find /files/${{ github.event.repository.name }} -name 'artifacts_*.zip' -type f -mtime +2 -delete"
