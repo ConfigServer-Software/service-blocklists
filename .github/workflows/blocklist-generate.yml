@@ -591,10 +591,12 @@ jobs:
                   CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/bogon.sh blocklists/bogon.ipset
 
                   # #
-                  #   Main › IANA Reserved
+                  #   Main › IANA
                   # #
 
-                  ./.github/scripts/range-iprange.sh blocklists/iana.ipset "${{ vars.BL_IANA_URL }}"
+                  CFG_STDOUT=true CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/iprange.sh blocklists/iana-reserved.ipset .github/blocks/iana/reserved.ipset
+                  CFG_STDOUT=true CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/iprange.sh blocklists/iana-private.ipset .github/blocks/iana/private.ipset
+                  CFG_STDOUT=true CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/iprange.sh blocklists/iana-multicast.ipset .github/blocks/iana/multicast.ipset
 
                   # #
                   #   Main › TOR Exit Nodes
