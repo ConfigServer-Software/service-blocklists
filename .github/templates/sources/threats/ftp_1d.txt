@@ -1,0 +1,1 @@
+https://blocklist.configserver.dev/threats/ftp_1d.ipset

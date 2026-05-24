@@ -1,0 +1,22 @@
+#   ConfigServer Threat Database › FTP › 1 Day
+#   File Transfer Protocol
+#   
+#   These blocklists are maintained directly by ConfigServer and are
+#   compiled from connection attempts against our FTP honeypots, as
+#   well as unauthorized attempts targeting FTP services we operate.
+#   
+#   The threat feeds capture malicious FTP activity across exposed
+#   internet-facing infrastructure.
+#   
+#   IP addresses included in this dataset have been observed attempting
+#   actions such as brute force authentication, credential stuffing,
+#   directory probing, and automated scanning against FTP services.
+#   
+#   Blocklists prefixed with `_1d` represent activity observed within
+#   the most recent 24-hour period and reflect confirmed FTP connection
+#   attempts during that window, treated as high-confidence indicators
+#   of malicious behavior.
+#   
+#   Blocklists prefixed with `_365d` are cumulative datasets covering
+#   a one-year period and may include a higher rate of false positives
+#   due to IP reuse, NAT, and infrastructure changes across providers.

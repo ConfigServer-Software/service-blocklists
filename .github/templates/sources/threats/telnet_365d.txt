@@ -1,0 +1,1 @@
+https://blocklist.configserver.dev/threats/telnet_365d.ipset

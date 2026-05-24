@@ -1,0 +1,28 @@
+#   ConfigServer Threat Database › All Protocols › 1 Day
+#   
+#   These blocklists are maintained directly by ConfigServer and are
+#   compiled from connection attempts against our honeypots, as well
+#   as unauthorized access attempts targeting services we operate.
+#   
+#   The threat feeds capture malicious activity across a range of
+#   exposed network services, including SSH, FTP, Telnet, VNC, SIP,
+#   HTTP, RDP, SMTP, and similar internet-facing protocols.
+#   
+#   IP addresses included in these blocklists have been observed
+#   engaging in behaviors such as brute force attempts, credential
+#   stuffing, vulnerability scanning, automated exploitation, and
+#   unauthorized access attempts against monitored systems.
+#   
+#   Blocklists prefixed with `_1d` represent activity observed within
+#   the most recent 24-hour period. These entries reflect confirmed
+#   connection attempts recorded during that window and are treated
+#   as high-confidence indicators of malicious activity.
+#   
+#   Blocklists prefixed with `_365d` are cumulative datasets covering
+#   a one-year period and may include a higher rate of false positives
+#   due to IP reuse, NAT, and infrastructure changes across providers.
+#   
+#   The `all` blocklist aggregates observed connection attempts across
+#   all monitored services, combining IP addresses identified through
+#   SSH, FTP, VNC, RDP, SIP, and other tracked protocols into a single
+#   unified dataset.

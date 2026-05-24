@@ -1,0 +1,25 @@
+#   ConfigServer Threat Database › RDP › 365 Days
+#   Remote Desktop Protocol
+#   
+#   These blocklists are maintained directly by ConfigServer and are
+#   compiled from connection attempts against our RDP honeypots, as
+#   well as unauthorized access attempts targeting remote desktop
+#   services we operate.
+#   
+#   The threat feeds capture malicious RDP activity across exposed
+#   internet-facing infrastructure, including automated scanners and
+#   brute force tooling commonly used against remote desktop services.
+#   
+#   IP addresses included in this dataset have been observed attempting
+#   actions such as credential brute forcing, authentication bypass
+#   attempts, vulnerability scanning, and automated probing of RDP
+#   endpoints.
+#   
+#   Blocklists prefixed with `_1d` represent activity observed within
+#   the most recent 24-hour period and reflect confirmed RDP connection
+#   attempts during that window, treated as high-confidence indicators
+#   of malicious behavior.
+#   
+#   Blocklists prefixed with `_365d` are cumulative datasets covering
+#   a one-year period and may include a higher rate of false positives
+#   due to IP reuse, NAT, and infrastructure changes across providers.

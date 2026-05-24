@@ -1,0 +1,24 @@
+#   ConfigServer Threat Database › HTTP › 1 Day
+#   Hypertext Transfer Protocol
+#   
+#   These blocklists are maintained directly by ConfigServer and are
+#   compiled from connection attempts against our HTTP honeypots, as
+#   well as unauthorized requests targeting web services we operate.
+#   
+#   The threat feeds capture malicious HTTP activity across exposed
+#   internet-facing web infrastructure, including automated bots and
+#   scanning tools.
+#   
+#   IP addresses included in this dataset have been observed performing
+#   actions such as vulnerability scanning, exploitation attempts,
+#   brute force attacks against web endpoints, and automated probing
+#   of HTTP services.
+#   
+#   Blocklists prefixed with `_1d` represent activity observed within
+#   the most recent 24-hour period and reflect confirmed HTTP request
+#   attempts during that window, treated as high-confidence indicators
+#   of malicious behavior.
+#   
+#   Blocklists prefixed with `_365d` are cumulative datasets covering
+#   a one-year period and may include a higher rate of false positives
+#   due to IP reuse, NAT, and infrastructure changes across providers.

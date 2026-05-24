@@ -1,0 +1,1 @@
+https://blocklist.configserver.dev/threats/vnc_365d.ipset

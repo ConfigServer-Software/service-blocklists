@@ -1,0 +1,24 @@
+#   ConfigServer Threat Database › SIP › 1 Day
+#   Session Initiation Protocol
+#   
+#   These blocklists are maintained directly by ConfigServer and are
+#   compiled from connection attempts against our SIP honeypots, as
+#   well as unauthorized access attempts targeting VoIP services we
+#   operate.
+#   
+#   The threat feeds capture malicious SIP activity across exposed
+#   internet-facing VoIP infrastructure, including automated scanners,
+#   enumeration tools, and brute force attempts against SIP endpoints.
+#   
+#   IP addresses included in this dataset have been observed attempting
+#   actions such as SIP registration brute forcing, extension probing,
+#   credential stuffing, and automated scanning of VoIP services.
+#   
+#   Blocklists prefixed with `_1d` represent activity observed within
+#   the most recent 24-hour period and reflect confirmed SIP connection
+#   attempts during that window, treated as high-confidence indicators
+#   of malicious behavior.
+#   
+#   Blocklists prefixed with `_365d` are cumulative datasets covering
+#   a one-year period and may include a higher rate of false positives
+#   due to IP reuse, NAT, and infrastructure changes across providers.
