@@ -2,17 +2,51 @@
 #   🧱 Firewall Blocklist - blocklists/iana-private.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/iana-private.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/iana-private.ipset
 #   @id             iana_private_ipset
 #   @uuid           77fddc42-159f-330d-85de-1aabd03ec9ef
-#   @updated        Sun May 24 09:52:02 UTC 2026
+#   @updated        Sun May 24 13:01:10 UTC 2026
 #   @entries        51,643,646 ips
 #                   56 subnets
 #                   58 lines
-#   @expires        6 hours
-#   @category       Uncategorized
+#   @expires        14 days
+#   @category       Special
 #
-#   No description provided
+#   IANA Addresses › Private & Special-Purpose Networks
+#   
+#   This list contains private-use and special-purpose IPv4 address
+#   ranges designated by the Internet Assigned Numbers Authority
+#   (IANA) for non-public routing and internal network functions.
+#   
+#   The dataset includes address space reserved for purposes such as:
+#      - Private internal networking
+#      - Loopback and localhost communication
+#      - Link-local addressing
+#      - Documentation and example ranges
+#      - Benchmarking and protocol testing
+#      - Reserved protocol-assignment space
+#   
+#   Common ranges included within this dataset include:
+#      - 10.0.0.0/8
+#      - 127.0.0.0/8
+#      - 169.254.0.0/16
+#      - 172.16.0.0/12
+#      - 192.168.0.0/16
+#      - 198.18.0.0/15
+#      - 192.0.2.0/24
+#      - 198.51.100.0/24
+#      - 203.0.113.0/24
+#   
+#   These address ranges are not intended for standard public internet
+#   routing and are commonly filtered by routers, firewalls, and
+#   security systems.
+#   
+#   Public-facing traffic involving these ranges may indicate spoofed
+#   packets, malformed traffic, tunneling activity, abuse, or network
+#   misconfiguration.
+#   
+#   This list is sourced from officially assigned IANA special-purpose
+#   address registries and updated periodically as standards evolve.
 # #
 
 0.0.0.1

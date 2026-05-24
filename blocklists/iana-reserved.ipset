@@ -2,17 +2,40 @@
 #   🧱 Firewall Blocklist - blocklists/iana-reserved.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/iana-reserved.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/iana-reserved.ipset
 #   @id             iana_reserved_ipset
 #   @uuid           5ace3e36-f97d-3d61-a1d4-07f33dc3b9ac
-#   @updated        Sun May 24 09:52:02 UTC 2026
+#   @updated        Sun May 24 13:01:10 UTC 2026
 #   @entries        536,870,912 ips
 #                   54 subnets
 #                   56 lines
-#   @expires        6 hours
-#   @category       Uncategorized
+#   @expires        14 days
+#   @category       Special
 #
-#   No description provided
+#   IANA Addresses › Reserved Networks
+#   
+#   This list contains reserved and special-purpose IPv4 address ranges
+#   designated by the Internet Assigned Numbers Authority (IANA) for
+#   non-public routing and protocol-specific network functions.
+#   
+#   The ranges included within this dataset primarily cover:
+#      - 224.0.0.0/4     (IPv4 multicast space)
+#      - 240.0.0.0/4     (Reserved / future-use space)
+#      - 255.255.255.255 (Limited broadcast address)
+#   
+#   These address ranges are not intended for standard public internet
+#   host communication and are typically reserved for multicast traffic,
+#   broadcast behavior, protocol functions, or future allocation use.
+#   
+#   Traffic originating from or targeting these ranges on public-facing
+#   infrastructure may indicate spoofed packets, malformed traffic,
+#   amplification attempts, scanning activity, or network abuse.
+#   
+#   Many routers, firewalls, and operating systems treat these ranges
+#   as non-routable or restricted under standard networking behavior.
+#   
+#   This list is sourced from officially assigned IANA special-purpose
+#   address registries and updated periodically as standards evolve.
 # #
 
 224.0.0.0/8
