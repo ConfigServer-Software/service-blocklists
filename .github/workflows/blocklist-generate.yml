@@ -92,16 +92,24 @@ on:
               - core_only
               - daily_only
               - weekly_only
+              - biweekly_only
 
     # #
     #   Trigger › Cron Schedule
     # #
 
     schedule:
-    # - cron: '0 2,8,14,20 * * *'
+      # Every 4th hour of the day (00:00, 04:00, 08:00, 12:00, 16:00, 20:00)
       - cron: '0 */4 * * *'
+
+      # Once per day (01:15 AM)
       - cron: '15 1 * * *'
+
+      # Every week (00:00 on Sunday)
       - cron: '0 0 * * 0'
+
+      # Biweekly at midnight (every 14 days)
+      - cron: '0 0 */14 * *'
 
 # #
 #   concurrency
@@ -425,7 +433,7 @@ jobs:
             #   Generate › Cache Packages
             # #
 
-            - name: "🧱 Cache Packages"
+            - name: '🧱 Cache Packages'
               uses: awalsh128/cache-apt-pkgs-action@latest
               with:
                   packages: ipcalc ed html2text whois uuid-runtime
@@ -451,6 +459,7 @@ jobs:
                   run_core="false"
                   run_daily="false"
                   run_weekly="false"
+                  run_biweekly="false"
                   force_daily="false"
 
                   if [ "${{ github.event_name }}" = "schedule" ]; then
@@ -460,6 +469,8 @@ jobs:
                           run_daily="true"
                       elif [ "${{ github.event.schedule }}" = "0 0 * * 0" ]; then
                           run_weekly="true"
+                      elif [ "${{ github.event.schedule }}" = "0 0 */14 * *" ]; then
+                          run_biweekly="true"
                       fi
                   elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
                       if [ "${{ inputs.RUN_MODE }}" = "core_only" ]; then
@@ -469,12 +480,15 @@ jobs:
                           force_daily="true"
                       elif [ "${{ inputs.RUN_MODE }}" = "weekly_only" ]; then
                           run_weekly="true"
+                      elif [ "${{ inputs.RUN_MODE }}" = "biweekly_only" ]; then
+                          run_biweekly="true"
                       fi
                   fi
 
                   echo "run_core=${run_core}" >> "$GITHUB_OUTPUT"
                   echo "run_daily=${run_daily}" >> "$GITHUB_OUTPUT"
                   echo "run_weekly=${run_weekly}" >> "$GITHUB_OUTPUT"
+                  echo "run_biweekly=${run_biweekly}" >> "$GITHUB_OUTPUT"
                   echo "force_daily=${force_daily}" >> "$GITHUB_OUTPUT"
 
             # #
@@ -951,6 +965,25 @@ jobs:
 
                   # #
                   #   Weekly › IANA
+                  # #
+
+                  CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-reserved.ipset .github/blocks/iana/reserved.ipset
+                  CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-private.ipset .github/blocks/iana/private.ipset
+                  CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-multicast.ipset .github/blocks/iana/multicast.ipset
+
+            # #
+            #   Generate › Biweekly
+            #   
+            #   Only updated once every 2 weeks
+            # #
+
+            - name: '🧱 Generate › Weekly (14/days)'
+              id: task_blocklist_generate_biweekly
+              if: steps.task_blocklist_generate_run_mode.outputs.run_biweekly == 'true'
+              run: |
+
+                  # #
+                  #   Biweekly › IANA
                   # #
 
                   CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-reserved.ipset .github/blocks/iana/reserved.ipset
