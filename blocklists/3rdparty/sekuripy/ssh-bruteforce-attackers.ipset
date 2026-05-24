@@ -2,16 +2,34 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/sekuripy/ssh-bruteforce-attackers.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/sekuripy/ssh-bruteforce-attackers.ipset
-#   @source         None
+#   @source         https://www.sekuripy.hr/blacklist.txt
 #   @id             3rdparty_sekuripy_ssh_bruteforce_attackers_ipset
 #   @uuid           182ec471-cf4b-33e8-abfc-ec6e38dec938
-#   @updated        Thu May 21 21:31:08 UTC 2026
+#   @updated        Sun May 24 16:08:45 UTC 2026
 #   @entries        0 ips
 #                   0 subnets
 #                   0 lines
-#   @expires        6 hours
-#   @category       Uncategorized
+#   @expires        4 hours
+#   @category       3rdParty
 #
-#   No description provided
+#   Sekuripy › SSH Bruteforce Attackers
+#   
+#   This blocklist contains IP addresses identified through SSH authentication
+#   logs as sources of brute-force login attempts against exposed services.
+#   
+#   It is maintained by the same author as the IPSUM blocklist project and is
+#   intended to help mitigate repeated SSH password-guessing attacks.
+#   
+#   IPs in this list are derived from observed authentication failures and
+#   malicious login patterns targeting SSH endpoints.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malformed data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 

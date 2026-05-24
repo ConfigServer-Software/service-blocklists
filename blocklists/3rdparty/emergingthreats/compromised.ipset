@@ -2,20 +2,48 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/emergingthreats/compromised.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/emergingthreats/compromised.ipset
-#   @source         None
+#   @source         https://rules.emergingthreats.net/blockrules/compromised-ips.txt
 #   @id             3rdparty_emergingthreats_compromised_ipset
 #   @uuid           8d191a27-8d9e-3fef-a785-5a82541b07fe
-#   @updated        Thu May 21 21:28:24 UTC 2026
-#   @entries        502 ips
+#   @updated        Sun May 24 16:06:03 UTC 2026
+#   @entries        516 ips
 #                   0 subnets
-#                   502 lines
-#   @expires        6 hours
-#   @category       Uncategorized
+#                   516 lines
+#   @expires        4 hours
+#   @category       3rdParty
 #
-#   No description provided
+#   Emerging Threats › Compromised
+#   
+#   Rules to block known hostile or compromised hosts. These lists are updated
+#   daily or better from many sources.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
+#   
+#   Copyright (c) 2003-2026, Emerging Threats
+#   All rights reserved.
+#  
+#   Redistribution and use in source and binary forms, with or without
+#   modification, are permitted provided that the following conditions are met:
+#  
+#   * Redistributions of source code must retain the above copyright notice,
+#     this list of conditions and the following disclaimer.
+#   * Redistributions in binary form must reproduce the above copyright notice,
+#     this list of conditions and the following disclaimer in the documentation 
+#     and/or other materials provided with the distribution.
+#   * Neither the name of the nor the names of its contributors may be used to
+#     endorse or promote products derived from this software without specific
+#     prior written permission.
 # #
 
 2.26.0.198
+2.26.98.173
 3.101.118.175
 5.129.238.185
 5.253.59.171
@@ -175,9 +203,11 @@
 34.78.162.233
 34.78.182.9
 34.78.196.247
+34.78.205.101
 34.78.213.15
 34.79.2.177
 34.79.6.105
+34.79.30.206
 34.79.53.222
 34.79.62.169
 34.79.72.179
@@ -191,6 +221,7 @@
 34.118.255.39
 34.140.6.40
 34.140.15.108
+34.140.26.82
 34.140.57.124
 34.140.69.206
 34.140.77.166
@@ -201,6 +232,7 @@
 34.156.70.66
 34.156.101.139
 34.156.132.111
+34.156.137.33
 34.156.187.171
 34.173.87.191
 34.220.206.121
@@ -291,7 +323,6 @@
 45.153.34.205
 45.156.24.224
 45.192.99.43
-46.8.231.219
 46.62.207.157
 46.101.94.59
 46.101.107.202
@@ -319,10 +350,13 @@
 64.89.163.162
 68.183.8.104
 77.22.211.47
+77.68.25.99
+80.94.92.168
 82.26.104.60
 83.145.42.126
 83.248.155.53
 85.11.167.8
+85.30.212.24
 85.239.56.61
 86.48.25.218
 87.106.149.146
@@ -340,6 +374,7 @@
 94.183.177.120
 95.182.98.181
 96.126.188.55
+102.210.82.20
 103.147.14.125
 103.210.22.17
 103.228.36.205
@@ -355,6 +390,8 @@
 104.252.175.235
 107.174.1.138
 107.189.24.162
+110.43.37.72
+112.185.143.13
 112.203.68.87
 113.53.185.70
 115.140.161.61
@@ -362,9 +399,11 @@
 116.99.170.9
 116.99.170.93
 116.99.170.99
+116.99.170.173
 116.99.171.134
 116.99.171.245
 116.99.172.29
+116.99.172.116
 116.99.172.119
 116.99.172.175
 116.99.173.23
@@ -377,11 +416,10 @@
 116.110.13.197
 116.110.14.96
 116.110.19.247
-116.110.144.105
-116.110.145.99
 116.110.145.122
 116.110.147.23
 116.110.147.30
+116.110.151.7
 116.110.152.206
 116.110.155.45
 116.110.155.229
@@ -395,6 +433,7 @@
 116.110.219.1
 116.110.223.85
 117.36.231.242
+118.32.101.175
 118.145.243.156
 119.8.150.112
 120.92.10.155
@@ -416,7 +455,8 @@
 138.2.102.66
 138.68.40.82
 139.59.41.158
-139.59.66.69
+139.59.157.185
+142.93.103.244
 143.198.65.165
 144.2.91.96
 144.31.224.193
@@ -436,7 +476,6 @@
 159.89.2.106
 159.223.196.179
 160.119.249.227
-160.191.89.7
 161.35.98.97
 161.35.141.232
 161.97.66.49
@@ -451,6 +490,7 @@
 167.172.64.25
 168.144.79.32
 168.144.88.210
+168.222.140.218
 171.231.176.146
 171.231.182.74
 171.231.186.56
@@ -468,6 +508,7 @@
 171.243.150.172
 171.243.150.236
 171.243.151.49
+176.65.139.121
 178.20.210.186
 178.62.72.77
 178.62.100.247
@@ -507,6 +548,7 @@
 210.16.103.246
 210.116.111.28
 211.37.174.180
+212.58.184.17
 212.227.13.69
 212.227.146.182
 213.6.38.18
@@ -514,6 +556,5 @@
 217.154.10.47
 217.154.92.76
 217.160.162.192
-217.160.172.90
 218.250.28.248
 222.108.39.109
