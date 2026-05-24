@@ -1,0 +1,28 @@
+#   Emerging Threats › Compromised
+#   
+#   Rules to block known hostile or compromised hosts. These lists are updated
+#   daily or better from many sources.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
+#   
+#   Copyright (c) 2003-2026, Emerging Threats
+#   All rights reserved.
+#  
+#   Redistribution and use in source and binary forms, with or without
+#   modification, are permitted provided that the following conditions are met:
+#  
+#   * Redistributions of source code must retain the above copyright notice,
+#     this list of conditions and the following disclaimer.
+#   * Redistributions in binary form must reproduce the above copyright notice,
+#     this list of conditions and the following disclaimer in the documentation 
+#     and/or other materials provided with the distribution.
+#   * Neither the name of the nor the names of its contributors may be used to
+#     endorse or promote products derived from this software without specific
+#     prior written permission.

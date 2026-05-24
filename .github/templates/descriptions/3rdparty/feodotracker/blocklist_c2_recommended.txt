@@ -1,0 +1,31 @@
+#   Abuse.ch › Feodo Tracker Botnet C2 › IP Blocklist (Recommended)
+#   
+#   Feodo Tracker tracks botnet command-and-control (C2) servers associated
+#   with malware families such as Emotet, TrickBot, QakBot, and BazarLoader.
+#   
+#   This blocklist is intended for blocking active botnet C2 infrastructure
+#   with a low false positive rate, based on recently observed malicious activity.
+#   
+#   The IOC datasets include known and historical botnet C2 IP addresses for
+#   threat detection, SIEM enrichment, and network monitoring.
+#   
+#   blocklist_c2_recommended:
+#       Active botnet C2 servers with a low false positive rate.
+#       Recommended for blocking live botnet traffic.
+#   
+#   blocklist_c2_iocs_normal:
+#       Botnet C2 IPs seen within the past 30 days.
+#       Intended for SIEM enrichment and threat detection.
+#   
+#   blocklist_c2_iocs_aggressive:
+#       All botnet C2 IPs ever observed by Feodo Tracker.
+#       High false positive rate due to IP reuse.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
