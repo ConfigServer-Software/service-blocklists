@@ -91,6 +91,7 @@ on:
             options:
               - core_only
               - daily_only
+              - weekly_only
 
     # #
     #   Trigger › Cron Schedule
@@ -100,6 +101,7 @@ on:
     # - cron: '0 2,8,14,20 * * *'
       - cron: '0 */4 * * *'
       - cron: '15 1 * * *'
+      - cron: '0 0 * * 0'
 
 # #
 #   concurrency
@@ -448,6 +450,7 @@ jobs:
               run: |
                   run_core="false"
                   run_daily="false"
+                  run_weekly="false"
                   force_daily="false"
 
                   if [ "${{ github.event_name }}" = "schedule" ]; then
@@ -455,6 +458,8 @@ jobs:
                           run_core="true"
                       elif [ "${{ github.event.schedule }}" = "15 1 * * *" ]; then
                           run_daily="true"
+                      elif [ "${{ github.event.schedule }}" = "0 0 * * 0" ]; then
+                          run_weekly="true"
                       fi
                   elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
                       if [ "${{ inputs.RUN_MODE }}" = "core_only" ]; then
@@ -462,11 +467,14 @@ jobs:
                       elif [ "${{ inputs.RUN_MODE }}" = "daily_only" ]; then
                           run_daily="true"
                           force_daily="true"
+                      elif [ "${{ inputs.RUN_MODE }}" = "weekly_only" ]; then
+                          run_weekly="true"
                       fi
                   fi
 
                   echo "run_core=${run_core}" >> "$GITHUB_OUTPUT"
                   echo "run_daily=${run_daily}" >> "$GITHUB_OUTPUT"
+                  echo "run_weekly=${run_weekly}" >> "$GITHUB_OUTPUT"
                   echo "force_daily=${force_daily}" >> "$GITHUB_OUTPUT"
 
             # #
@@ -583,20 +591,6 @@ jobs:
                   HIGHRISK_LOCAL=$( CFG_STDOUT=true ./.github/scripts/bl-block.sh blocklists/highrisk.ipset highrisk )
                   HIGHRISK_LIST=$( echo -e "${HIGHRISK_URL}\n${HIGHRISK_LOCAL}" | sort -u )
                   echo "$HIGHRISK_LIST" | ./.github/scripts/bl-format.sh blocklists/highrisk.ipset
-
-                  # #
-                  #   Main › BOGON
-                  # #
-
-                  CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/bogon.sh blocklists/bogon.ipset
-
-                  # #
-                  #   Main › IANA
-                  # #
-
-                  CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-reserved.ipset .github/blocks/iana/reserved.ipset
-                  CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-private.ipset .github/blocks/iana/private.ipset
-                  CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-multicast.ipset .github/blocks/iana/multicast.ipset
 
                   # #
                   #   Main › TOR Exit Nodes
@@ -937,6 +931,31 @@ jobs:
                       )
 
                       echo "$SMTP_LIST_LIFETIME" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/smtp_365d.ipset
+
+            # #
+            #   Generate › Weekly
+            #   
+            #   Only updated once per week
+            # #
+
+            - name: '🧱 Generate › Weekly (7/days)'
+              id: task_blocklist_generate_weekly
+              if: steps.task_blocklist_generate_run_mode.outputs.run_weekly == 'true'
+              run: |
+
+                  # #
+                  #   Weekly › BOGON
+                  # #
+
+                  CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/bogon.sh blocklists/bogon.ipset
+
+                  # #
+                  #   Weekly › IANA
+                  # #
+
+                  CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-reserved.ipset .github/blocks/iana/reserved.ipset
+                  CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-private.ipset .github/blocks/iana/private.ipset
+                  CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-multicast.ipset .github/blocks/iana/multicast.ipset
 
             # #
             #   Delete Leftover Temps
