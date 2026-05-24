@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             privacy_alibaba_ipset
 #   @uuid           2adb4568-db20-33bf-acfd-c9621d04eda6
-#   @updated        Sun May 24 16:09:32 UTC 2026
-#   @entries        23,619,473 ips
-#                   186 subnets
-#                   186 lines
+#   @updated        Sun May 24 17:01:00 UTC 2026
+#   @entries        23,618,449 ips
+#                   185 subnets
+#                   185 lines
 #   @asn            AS37963, AS45102, AS24429, AS134963
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -152,7 +152,6 @@
 195.14.130.0/24
 195.14.154.0/24
 195.14.157.0/24
-196.250.200.0/22
 198.11.128.0/18
 198.44.244.0/22
 202.63.46.0/24
