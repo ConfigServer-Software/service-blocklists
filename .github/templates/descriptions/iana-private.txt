@@ -1,0 +1,35 @@
+#   IANA Addresses › Private & Special-Purpose Networks
+#   
+#   This list contains private-use and special-purpose IPv4 address
+#   ranges designated by the Internet Assigned Numbers Authority
+#   (IANA) for non-public routing and internal network functions.
+#   
+#   The dataset includes address space reserved for purposes such as:
+#      - Private internal networking
+#      - Loopback and localhost communication
+#      - Link-local addressing
+#      - Documentation and example ranges
+#      - Benchmarking and protocol testing
+#      - Reserved protocol-assignment space
+#   
+#   Common ranges included within this dataset include:
+#      - 10.0.0.0/8
+#      - 127.0.0.0/8
+#      - 169.254.0.0/16
+#      - 172.16.0.0/12
+#      - 192.168.0.0/16
+#      - 198.18.0.0/15
+#      - 192.0.2.0/24
+#      - 198.51.100.0/24
+#      - 203.0.113.0/24
+#   
+#   These address ranges are not intended for standard public internet
+#   routing and are commonly filtered by routers, firewalls, and
+#   security systems.
+#   
+#   Public-facing traffic involving these ranges may indicate spoofed
+#   packets, malformed traffic, tunneling activity, abuse, or network
+#   misconfiguration.
+#   
+#   This list is sourced from officially assigned IANA special-purpose
+#   address registries and updated periodically as standards evolve.

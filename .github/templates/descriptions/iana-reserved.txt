@@ -1,0 +1,24 @@
+#   IANA Addresses › Reserved Networks
+#   
+#   This list contains reserved and special-purpose IPv4 address ranges
+#   designated by the Internet Assigned Numbers Authority (IANA) for
+#   non-public routing and protocol-specific network functions.
+#   
+#   The ranges included within this dataset primarily cover:
+#      - 224.0.0.0/4     (IPv4 multicast space)
+#      - 240.0.0.0/4     (Reserved / future-use space)
+#      - 255.255.255.255 (Limited broadcast address)
+#   
+#   These address ranges are not intended for standard public internet
+#   host communication and are typically reserved for multicast traffic,
+#   broadcast behavior, protocol functions, or future allocation use.
+#   
+#   Traffic originating from or targeting these ranges on public-facing
+#   infrastructure may indicate spoofed packets, malformed traffic,
+#   amplification attempts, scanning activity, or network abuse.
+#   
+#   Many routers, firewalls, and operating systems treat these ranges
+#   as non-routable or restricted under standard networking behavior.
+#   
+#   This list is sourced from officially assigned IANA special-purpose
+#   address registries and updated periodically as standards evolve.

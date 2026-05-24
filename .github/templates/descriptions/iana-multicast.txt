@@ -1,0 +1,24 @@
+#   IANA Addresses › Multicast Networks
+#   
+#   This list contains IPv4 multicast address space assigned by the
+#   Internet Assigned Numbers Authority (IANA) for multicast and
+#   group-based network communication.
+#   
+#   The dataset currently contains:
+#      - 224.0.0.0/4 (IPv4 multicast space)
+#   
+#   Multicast addresses are used to deliver packets from one sender
+#   to multiple subscribed hosts simultaneously and are commonly used
+#   by routing protocols, streaming systems, service discovery, and
+#   internal network communication services.
+#   
+#   Multicast traffic is not intended for standard public internet
+#   host communication and is typically restricted to controlled
+#   network environments or specialized routing configurations.
+#   
+#   Public-facing traffic involving multicast address space may indicate
+#   spoofed packets, malformed traffic, amplification attempts, or
+#   network misconfiguration.
+#   
+#   This list is sourced from officially assigned IANA special-purpose
+#   address registries and updated periodically as standards evolve.
