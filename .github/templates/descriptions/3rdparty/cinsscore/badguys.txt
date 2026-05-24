@@ -1,0 +1,34 @@
+#   CINS Score › Bad Guys
+#   
+#   Leveraging data from our network of Sentinel devices and other trusted 
+#   InfoSec sources, CINS is a Threat Intelligence database that provides 
+#   an accurate and timely score for any IP address in the world.
+#   
+#   We are joined together in our mutual belief that Internet security should 
+#   be honored as a fundamental human right. We believe in your right to be 
+#   connected, to be secure, and to use the Internet with freedom from 
+#   malicious threats. No one should be allowed to take that away from you.
+#   
+#   Based on these beliefs, we created the CINS Army list. CINS Army is a way
+#   for our company to give back to the community by sharing valuable threat
+#   intelligence harvested from our CINS system. The CINS Army list is a subset
+#   of the CINS Active Threat Intelligence ruleset, and consists of IP addresses
+#   that meet one of two basic criteria: 1) The IP's recent Rogue Packet score
+#   factor is very poor, or 2) The IP has tripped a designated number of
+#   'trusted' alerts across a given number of our Sentinels deployed around the
+#   world.
+#   
+#   The CINS Army list is here and at Emerging Threats as part of their Open
+#   Source Community. The link below is provided as a simple text file, with
+#   which you can parse and use in any way you see fit. We assume Network
+#   Administrators will use the IP addresses from this file in their firewall
+#   blacklists and possibly in custom IDS and IPS signatures.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
