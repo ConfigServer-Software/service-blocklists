@@ -630,117 +630,313 @@ jobs:
                   domain:                         ${{ secrets.ARTIFACTS_DOMAIN }}
                   sshkey:                         ${{ secrets.ARTIFACTS_GITHUB_SSH_PRIVATE_KEY }}
               run: |
-
                   # Setup SSH
                   mkdir -p ~/.ssh
                   echo "$sshkey" > "$HOME/.ssh/github_sftp_key"
                   chmod 600 "$HOME/.ssh/github_sftp_key"
 
                   # #
-                  #   Threats › Attackers › All (24h)
+                  #   Threats › Attackers › All
                   # #
 
-                  curl --location "${BL_THREATS_API_URL}" \
-                      --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
-                      --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
-                      | jq -r '.[].remote_host' \
-                      | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/threats/all_24h.ipset
+                      # #
+                      #   Threats › Attackers › All (1d)
+                      # #
+                    
+                      ALL_LIST_API=$(
+                          curl --location "${BL_THREATS_API_URL}/SSH" \
+                              --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
+                              --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
+                          | jq -r '.[].remote_host'
+                      )
 
+                      ALL_LIST_LOCAL=$(
+                        ssh -p "$port" \
+                          -i "$HOME/.ssh/github_sftp_key" \
+                          -o StrictHostKeyChecking=no \
+                          "$username@$domain" \
+                          "cat /files/honeypots/ssh.json" \
+                        | jq -r '.src_ip // empty'
+                      )
+
+                      ALL_LIST=$(
+                        echo -e "${ALL_LIST_API}\n${ALL_LIST_LOCAL}" | sort -u
+                      )
+
+                      echo "$ALL_LIST" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/all_1d.ipset
+                  
+                      # #
+                      #   Threats › Attackers › All (365d)
+                      # #
+                    
+                      ALL_LIST_LIFETIME=$(
+                        {
+                          grep -vE '^\s*(#|$)' blocklists/threats/all_365d.ipset 2>/dev/null || true
+                          echo "$ALL_LIST"
+                        } | awk '!seen[$1]++ { print $1 }'
+                      )
+
+                      echo "$ALL_LIST_LIFETIME" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/all_365d.ipset
+                  
                   # #
-                  #   Threats › Attackers › SSH (24h)
-                  # #
-
-                  SSH_LIST_API=$(
-                      curl --location "${BL_THREATS_API_URL}/SSH" \
-                          --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
-                          --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
-                      | jq -r '.[].remote_host'
-                  )
-
-                  SSH_LIST_LOCAL=$(
-                    ssh -p "$port" \
-                      -i "$HOME/.ssh/github_sftp_key" \
-                      -o StrictHostKeyChecking=no \
-                      "$username@$domain" \
-                      "cat /files/honeypots/ssh.json" \
-                    | jq -r '.src_ip // empty'
-                  )
-
-                  SSH_LIST=$(
-                    echo -e "${SSH_LIST_API}\n${SSH_LIST_LOCAL}" | sort -u
-                  )
-
-                  echo "$SSH_LIST" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/ssh_24h.ipset
-
-                  # #
-                  #   Threats › Attackers › VNC (24h)
-                  # #
-
-                  curl --location "${BL_THREATS_API_URL}/VNC" \
-                      --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
-                      --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
-                      | jq -r '.[].remote_host' \
-                      | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/threats/vnc_24h.ipset
-
-                  # #
-                  #   Threats › Attackers › SIP (24h)
+                  #   Threats › Attackers › SSH
                   # #
 
-                  curl --location "${BL_THREATS_API_URL}/SIP" \
-                      --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
-                      --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
-                      | jq -r '.[].remote_host' \
-                      | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/threats/sip_24h.ipset
+                      # #
+                      #   Threats › Attackers › SSH (1d)
+                      # #
+
+                      SSH_LIST_API=$(
+                          curl --location "${BL_THREATS_API_URL}/SSH" \
+                              --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
+                              --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
+                          | jq -r '.[].remote_host'
+                      )
+
+                      SSH_LIST_LOCAL=$(
+                        ssh -p "$port" \
+                          -i "$HOME/.ssh/github_sftp_key" \
+                          -o StrictHostKeyChecking=no \
+                          "$username@$domain" \
+                          "cat /files/honeypots/ssh.json" \
+                        | jq -r '.src_ip // empty'
+                      )
+
+                      SSH_LIST=$(
+                        echo -e "${SSH_LIST_API}\n${SSH_LIST_LOCAL}" | sort -u
+                      )
+
+                      echo "$SSH_LIST" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/ssh_1d.ipset
+
+                      # #
+                      #   Threats › Attackers › SSH (365d)
+                      # #
+                    
+                      SSH_LIST_LIFETIME=$(
+                        {
+                          grep -vE '^\s*(#|$)' blocklists/threats/ssh_365d.ipset 2>/dev/null || true
+                          echo "$SSH_LIST"
+                        } | awk '!seen[$1]++ { print $1 }'
+                      )
+
+                      echo "$SSH_LIST_LIFETIME" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/ssh_365d.ipset
 
                   # #
-                  #   Threats › Attackers › Telnet (24h)
+                  #   Threats › Attackers › VNC
                   # #
 
-                  curl --location "${BL_THREATS_API_URL}/Telnet" \
-                      --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
-                      --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
-                      | jq -r '.[].remote_host' \
-                      | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/threats/telnet_24h.ipset
+                      # #
+                      #   Threats › Attackers › VNC (1d)
+                      # #
+      
+                      VNC_LIST=$(
+                          curl --location "${BL_THREATS_API_URL}/VNC" \
+                              --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
+                              --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
+                          | jq -r '.[].remote_host' \
+                          | sort -u
+                      )
+
+                      echo "$VNC_LIST" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/vnc_1d.ipset
+
+                      # #
+                      #   Threats › Attackers › VNC (365d)
+                      # #
+                    
+                      VNC_LIST_LIFETIME=$(
+                        {
+                          grep -vE '^\s*(#|$)' blocklists/threats/vnc_365d.ipset 2>/dev/null || true
+                          echo "$VNC_LIST"
+                        } | awk '!seen[$1]++ { print $1 }'
+                      )
+
+                      echo "$VNC_LIST_LIFETIME" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/vnc_365d.ipset
 
                   # #
-                  #   Threats › Attackers › FTP (24h)
+                  #   Threats › Attackers › SIP
                   # #
 
-                  curl --location "${BL_THREATS_API_URL}/FTP" \
-                      --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
-                      --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
-                      | jq -r '.[].remote_host' \
-                      | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/threats/ftp_24h.ipset
+                      # #
+                      #   Threats › Attackers › SIP (1d)
+                      # #
+      
+                      SIP_LIST=$(
+                          curl --location "${BL_THREATS_API_URL}/SIP" \
+                              --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
+                              --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
+                          | jq -r '.[].remote_host' \
+                          | sort -u
+                      )
+
+                      echo "$SIP_LIST" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/sip_1d.ipset
+
+                      # #
+                      #   Threats › Attackers › SIP (365d)
+                      # #
+      
+                      SIP_LIST_LIFETIME=$(
+                        {
+                          grep -vE '^\s*(#|$)' blocklists/threats/sip_365d.ipset 2>/dev/null || true
+                          echo "$SIP_LIST"
+                        } | awk '!seen[$1]++ { print $1 }'
+                      )
+
+                      echo "$SIP_LIST_LIFETIME" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/sip_365d.ipset
 
                   # #
-                  #   Threats › Attackers › HTTP (24h)
+                  #   Threats › Attackers › Telnet
                   # #
 
-                  curl --location "${BL_THREATS_API_URL}/HTTP" \
-                      --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
-                      --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
-                      | jq -r '.[].remote_host' \
-                      | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/threats/http_24h.ipset
+                      # #
+                      #   Threats › Attackers › Telnet (1d)
+                      # #
+      
+                      TELNET_LIST=$(
+                          curl --location "${BL_THREATS_API_URL}/Telnet" \
+                              --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
+                              --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
+                          | jq -r '.[].remote_host' \
+                          | sort -u
+                      )
+
+                      echo "$TELNET_LIST" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/telnet_1d.ipset
+
+                      # #
+                      #   Threats › Attackers › Telnet (365d)
+                      # #
+                    
+                      TELNET_LIST_LIFETIME=$(
+                        {
+                          grep -vE '^\s*(#|$)' blocklists/threats/telnet_365d.ipset 2>/dev/null || true
+                          echo "$TELNET_LIST"
+                        } | awk '!seen[$1]++ { print $1 }'
+                      )
+
+                      echo "$TELNET_LIST_LIFETIME" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/telnet_365d.ipset
 
                   # #
-                  #   Threats › Attackers › RDP (24h)
+                  #   Threats › Attackers › FTP
                   # #
 
-                  curl --location "${BL_THREATS_API_URL}/RDP" \
-                      --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
-                      --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
-                      | jq -r '.[].remote_host' \
-                      | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/threats/rdp_24h.ipset
+                      # #
+                      #   Threats › Attackers › FTP (1d)
+                      # #
+
+                      FTP_LIST=$(
+                          curl --location "${BL_THREATS_API_URL}/FTP" \
+                              --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
+                              --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
+                          | jq -r '.[].remote_host' \
+                          | sort -u
+                      )
+
+                      echo "$FTP_LIST" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/ftp_1d.ipset
+
+                      # #
+                      #   Threats › Attackers › FTP (365d)
+                      # #
+                    
+                      FTP_LIST_LIFETIME=$(
+                        {
+                          grep -vE '^\s*(#|$)' blocklists/threats/ftp_365d.ipset 2>/dev/null || true
+                          echo "$FTP_LIST"
+                        } | awk '!seen[$1]++ { print $1 }'
+                      )
+
+                      echo "$FTP_LIST_LIFETIME" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/ftp_365d.ipset
 
                   # #
-                  #   Threats › Attackers › SMTP (24h)
+                  #   Threats › Attackers › HTTP
                   # #
 
-                  curl --location "${BL_THREATS_API_URL}/SMTP" \
-                      --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
-                      --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
-                      | jq -r '.[].remote_host' \
-                      | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/threats/smtp_24h.ipset
+                      # #
+                      #   Threats › Attackers › HTTP (1d)
+                      # #
+
+                      HTTP_LIST=$(
+                          curl --location "${BL_THREATS_API_URL}/HTTP" \
+                              --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
+                              --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
+                          | jq -r '.[].remote_host' \
+                          | sort -u
+                      )
+
+                      echo "$HTTP_LIST" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/http_1d.ipset
+
+                      # #
+                      #   Threats › Attackers › HTTP (365d)
+                      # #
+
+                      HTTP_LIST_LIFETIME=$(
+                        {
+                          grep -vE '^\s*(#|$)' blocklists/threats/http_365d.ipset 2>/dev/null || true
+                          echo "$HTTP_LIST"
+                        } | awk '!seen[$1]++ { print $1 }'
+                      )
+
+                      echo "$HTTP_LIST_LIFETIME" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/http_365d.ipset
+
+                  # #
+                  #   Threats › Attackers › RDP
+                  # #
+
+                      # #
+                      #   Threats › Attackers › RDP (1d)
+                      # #
+
+                      RDP_LIST=$(
+                          curl --location "${BL_THREATS_API_URL}/RDP" \
+                              --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
+                              --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
+                          | jq -r '.[].remote_host' \
+                          | sort -u
+                      )
+
+                      echo "$RDP_LIST" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/rdp_1d.ipset
+
+                      # #
+                      #   Threats › Attackers › RDP (365d)
+                      # #
+                  
+                      RDP_LIST_LIFETIME=$(
+                        {
+                          grep -vE '^\s*(#|$)' blocklists/threats/rdp_365d.ipset 2>/dev/null || true
+                          echo "$RDP_LIST"
+                        } | awk '!seen[$1]++ { print $1 }'
+                      )
+
+                      echo "$RDP_LIST_LIFETIME" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/rdp_365d.ipset
+
+                  # #
+                  #   Threats › Attackers › SMTP
+                  # #
+
+                      # #
+                      #   Threats › Attackers › SMTP (1d)
+                      # #
+
+                      SMTP_LIST=$(
+                          curl --location "${BL_THREATS_API_URL}/SMTP" \
+                              --header "$BL_THREATS_API_ID_NAME: $BL_THREATS_API_ID_VALUE" \
+                              --header "$BL_THREATS_API_KEY_NAME: $BL_THREATS_API_KEY_VALUE" \
+                          | jq -r '.[].remote_host' \
+                          | sort -u
+                      )
+
+                      echo "$SMTP_LIST" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/smtp_1d.ipset
+
+                      # #
+                      #   Threats › Attackers › SMTP (365d)
+                      # #
+
+                      SMTP_LIST_LIFETIME=$(
+                        {
+                          grep -vE '^\s*(#|$)' blocklists/threats/smtp_365d.ipset 2>/dev/null || true
+                          echo "$SMTP_LIST"
+                        } | awk '!seen[$1]++ { print $1 }'
+                      )
+
+                      echo "$SMTP_LIST_LIFETIME" | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-format.sh blocklists/threats/smtp_365d.ipset
 
             # #
             #   Delete Leftover Temps
