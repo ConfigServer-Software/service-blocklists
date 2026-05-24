@@ -1,0 +1,21 @@
+#   TurrisTech › Sentinel Attackers
+#   
+#   This blocklist is generated from the Turris Sentinel network, a distributed
+#   security telemetry system run on Turris routers that reports suspicious
+#   and malicious activity observed in real-world traffic.
+#   
+#   It contains IP addresses associated with automated attacks such as SSH
+#   brute-force attempts, service probing, and other unauthorized access
+#   behavior detected across participating devices.
+#   
+#   The list is intended for defensive blocking and reputation-based filtering
+#   of actively observed attacker infrastructure.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malformed data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.

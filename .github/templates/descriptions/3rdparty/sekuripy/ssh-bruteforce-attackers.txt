@@ -1,0 +1,19 @@
+#   Sekuripy › SSH Bruteforce Attackers
+#   
+#   This blocklist contains IP addresses identified through SSH authentication
+#   logs as sources of brute-force login attempts against exposed services.
+#   
+#   It is maintained by the same author as the IPSUM blocklist project and is
+#   intended to help mitigate repeated SSH password-guessing attacks.
+#   
+#   IPs in this list are derived from observed authentication failures and
+#   malicious login patterns targeting SSH endpoints.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malformed data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.

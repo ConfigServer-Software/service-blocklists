@@ -1,0 +1,1 @@
+https://view.sentinel.turris.cz/greylist-data/greylist-latest.csv

@@ -1,0 +1,50 @@
+#   MikroTik Blocklist › Extra Large
+#   
+#   Core threat feeds + CINS Army + IPsum L1
+#   
+#   An aggregated IP blocklist for MikroTik RouterOS firewalls, built from
+#   multiple threat intelligence sources and optimized for efficient deployment.
+#   
+#   Designed for MikroTik routers, this list uses CIDR aggregation to reduce
+#   address-list size while preserving coverage, improving performance and
+#   lowering memory usage on RouterOS devices.
+#   
+#   Blocklist Flavor Summary:
+#       blocklist_core.ipset:
+#           ~20k                    Core threat feeds
+#           Tor Exit Nodes          Tor exit node IPs
+#           Spamhaus DROP           "Don't Route Or Peer" list
+#           SSL Blacklist           Botnet C&C servers
+#           Blocklist.de            Fail2ban reported IPs
+#           Feodo Tracker           Banking trojan C&C servers
+#           FireHOL Level 1         Aggregated threat intelligence
+#   
+#       blocklist_large.ipset:
+#           ~25k                    Core + CINS Army
+#           Tor Exit Nodes          Tor exit node IPs
+#           Spamhaus DROP           "Don't Route Or Peer" list
+#           SSL Blacklist           Botnet C&C servers
+#           Blocklist.de            Fail2ban reported IPs
+#           Feodo Tracker           Banking trojan C&C servers
+#           FireHOL Level 1         Aggregated threat intelligence
+#           CINS Army               Collective Intelligence Network Security
+#   
+#       blocklist_extralarge.ipset
+#           ~68k                    All sources including IPsum L1
+#           Tor Exit Nodes          Tor exit node IPs
+#           Spamhaus DROP           "Don't Route Or Peer" list
+#           SSL Blacklist           Botnet C&C servers
+#           Blocklist.de            Fail2ban reported IPs
+#           Feodo Tracker           Banking trojan C&C servers
+#           FireHOL Level 1         Aggregated threat intelligence
+#           CINS Army               Collective Intelligence Network Security
+#           IPsum Level 1           Broader threat IPs (1+ hits)
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.

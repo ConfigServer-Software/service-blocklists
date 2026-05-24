@@ -1,0 +1,1 @@
+https://raw.githubusercontent.com/multiduplikator/mikrotik_blocklist/main/blocklist_l.txt
