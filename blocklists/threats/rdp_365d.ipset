@@ -1,10 +1,10 @@
 # #
-#   🧱 Firewall Blocklist - blocklists/threats/rdp_1d.ipset
+#   🧱 Firewall Blocklist - blocklists/threats/rdp_365d.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/rdp_1d.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/rdp_365d.ipset
 #   @source         None
-#   @id             threats_rdp_1d_ipset
-#   @uuid           70a2ed4a-0a8f-3cfd-8d0b-9bec020c1f67
+#   @id             threats_rdp_365d_ipset
+#   @uuid           8b76c6eb-c1b2-3f88-bf5b-6dc0ab33464f
 #   @updated        Sun May 24 02:12:38 UTC 2026
 #   @entries        931 ips
 #                   36 subnets

@@ -1,10 +1,10 @@
 # #
-#   🧱 Firewall Blocklist - blocklists/threats/telnet_1d.ipset
+#   🧱 Firewall Blocklist - blocklists/threats/telnet_365d.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/telnet_1d.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/telnet_365d.ipset
 #   @source         None
-#   @id             threats_telnet_1d_ipset
-#   @uuid           45911e0f-1de5-3310-ab05-81e202ed465f
+#   @id             threats_telnet_365d_ipset
+#   @uuid           8b6114a1-3f08-3a39-ade1-c238a4782f97
 #   @updated        Sun May 24 02:12:35 UTC 2026
 #   @entries        4,055 ips
 #                   43 subnets

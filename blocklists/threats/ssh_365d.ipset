@@ -1,11 +1,11 @@
 # #
-#   🧱 Firewall Blocklist - blocklists/threats/ssh_1d.ipset
+#   🧱 Firewall Blocklist - blocklists/threats/ssh_365d.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/ssh_1d.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/ssh_365d.ipset
 #   @source         None
-#   @id             threats_ssh_1d_ipset
-#   @uuid           e1b2751b-650d-3ba1-9dc5-6682316db24f
-#   @updated        Sun May 24 02:12:31 UTC 2026
+#   @id             threats_ssh_365d_ipset
+#   @uuid           850c8b47-4b42-316e-8ca3-bfa1566da445
+#   @updated        Sun May 24 02:12:32 UTC 2026
 #   @entries        4,305 ips
 #                   57 subnets
 #                   4,246 lines

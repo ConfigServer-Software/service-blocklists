@@ -1,10 +1,10 @@
 # #
-#   🧱 Firewall Blocklist - blocklists/threats/http_1d.ipset
+#   🧱 Firewall Blocklist - blocklists/threats/http_365d.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/http_1d.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/http_365d.ipset
 #   @source         None
-#   @id             threats_http_1d_ipset
-#   @uuid           8c1bf5ab-092b-3bec-9f58-84fd9d6a2af0
+#   @id             threats_http_365d_ipset
+#   @uuid           eb5b4142-0f54-37f1-905a-f0dc37300123
 #   @updated        Sun May 24 02:12:37 UTC 2026
 #   @entries        3,138 ips
 #                   94 subnets

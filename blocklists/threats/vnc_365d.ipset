@@ -1,11 +1,11 @@
 # #
-#   🧱 Firewall Blocklist - blocklists/threats/vnc_1d.ipset
+#   🧱 Firewall Blocklist - blocklists/threats/vnc_365d.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/vnc_1d.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/vnc_365d.ipset
 #   @source         None
-#   @id             threats_vnc_1d_ipset
-#   @uuid           7452b0a9-c8b2-32c2-a5be-aac7f0c273cb
-#   @updated        Sun May 24 02:12:32 UTC 2026
+#   @id             threats_vnc_365d_ipset
+#   @uuid           c992cba6-d4db-3cb8-b5a6-eeeaa23616cb
+#   @updated        Sun May 24 02:12:33 UTC 2026
 #   @entries        643 ips
 #                   18 subnets
 #                   625 lines

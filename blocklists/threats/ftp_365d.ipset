@@ -1,10 +1,10 @@
 # #
-#   🧱 Firewall Blocklist - blocklists/threats/ftp_1d.ipset
+#   🧱 Firewall Blocklist - blocklists/threats/ftp_365d.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/ftp_1d.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/ftp_365d.ipset
 #   @source         None
-#   @id             threats_ftp_1d_ipset
-#   @uuid           d1c0ea16-8e93-346a-900a-b78972c84309
+#   @id             threats_ftp_365d_ipset
+#   @uuid           830593b0-6127-3255-b34b-409c95071199
 #   @updated        Sun May 24 02:12:36 UTC 2026
 #   @entries        568 ips
 #                   20 subnets

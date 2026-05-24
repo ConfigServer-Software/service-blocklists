@@ -1,11 +1,11 @@
 # #
-#   🧱 Firewall Blocklist - blocklists/threats/smtp_1d.ipset
+#   🧱 Firewall Blocklist - blocklists/threats/smtp_365d.ipset
 #
-#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/smtp_1d.ipset
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/smtp_365d.ipset
 #   @source         None
-#   @id             threats_smtp_1d_ipset
-#   @uuid           1af25d2c-48b7-3a92-9058-2673946e1eff
-#   @updated        Sun May 24 02:12:39 UTC 2026
+#   @id             threats_smtp_365d_ipset
+#   @uuid           829f5de1-1d81-3c37-813b-e9f857a8fe46
+#   @updated        Sun May 24 02:12:40 UTC 2026
 #   @entries        335 ips
 #                   9 subnets
 #                   324 lines
