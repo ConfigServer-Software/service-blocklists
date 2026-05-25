@@ -1388,7 +1388,7 @@ filter_bogon_ips( )
     _fnBogonRemoved=0
 
     if [ "${argSkipBogonFilter}" = "true" ]; then
-        info "    ⚡ Skipping bogon filtering (CFG_SKIP_BOGON_FILTER=true)"
+        info "    ⚡ Skipping bogon filtering (${fuchsial}CFG_SKIP_BOGON_FILTER=true${greym})"
         return 0
     fi
 
@@ -1534,7 +1534,7 @@ dedup_cidr( )
     _fnDedupCommentBase=""
 
     if [ "${argSkipCidrDedup}" = "true" ]; then
-        info "    ⚡ Skipping overlapping CIDR dedupe (CFG_SKIP_CIDR_DEDUPE=true)"
+        info "    ⚡ Skipping overlapping CIDR dedupe (${fuchsial}CFG_SKIP_CIDR_DEDUPE=true${greym})"
         return 0
     fi
 
@@ -2073,7 +2073,7 @@ list_fallback_download()
     # #
 
     if [ "${argIncludeComments}" = "true" ]; then
-        info "    ⚡ Preserving inline comments (CFG_INCLUDE_COMMENTS=true)"
+        info "    ⚡ Preserving inline comments (${fuchsial}CFG_INCLUDE_COMMENTS=true${greym})"
 
     # #
     #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
@@ -2306,7 +2306,16 @@ list_main_load()
         fi
     fi
 
-    info "    📒 Reading static block ${bluel}${PWD}/${_fnArgLocalFile}${greym}"
+    # #
+    #   Could not locate static blocklists
+    # #
+
+    info "    📒 Reading static blocklist ${bluel}${PWD}/${_fnArgLocalFile}${greym}"
+
+    if [ ! -f "${_fnArgLocalFile}" ]; then
+        error "    ⭕ Failed to locate or read static blocklist(s) ${bluel}${PWD}/${_fnArgLocalFile}${greym}"
+        exit 0
+    fi
 
     # #
     #   Read stdin into temp file
@@ -2336,7 +2345,7 @@ list_main_load()
     # #
 
     if [ "${argIncludeComments}" = "true" ]; then
-        info "    ⚡ Preserving inline comments (CFG_INCLUDE_COMMENTS=true)"
+        info "    ⚡ Preserving inline comments (${fuchsial}CFG_INCLUDE_COMMENTS=true${greym})"
 
     # #
     #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
@@ -2639,6 +2648,14 @@ fi
 if [ -d ".github/blocks/" ]; then
 
     # #
+    #   Category not specified
+    # #
+
+    if [ -z "$argCategory" ]; then
+        error "    ⭕  No blocklist ${yellowd}category${greym} specified. Must specify a blocklist category to fetch local IPs from; aborting${end}"
+    fi
+
+    # #
     #   Determines if the category provided is either a folder, or a file ending with `.ipset`.
     #   
     #   If folder is provided:  all files in the folder will be looped and loaded.
@@ -2658,6 +2675,7 @@ if [ -d ".github/blocks/" ]; then
 
     i=1
     for APP_FILE_TEMP in ${APP_BLOCK_TARGET}; do
+        info "    🏷️  Searching for local blocklists in ${bluel}${APP_BLOCK_TARGET}${greym} and output to ${bluel}${file_ipset_target}${greym}"
         list_main_load "${APP_FILE_TEMP}" "${file_ipset_target}" "${i}"
         i=$((i + 1))
     done

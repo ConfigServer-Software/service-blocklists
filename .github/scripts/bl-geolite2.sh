@@ -168,15 +168,51 @@ time_start=$( date +%s )                                                        
 SECONDS=0                                                                       # set seconds count for beginning of script
 
 # #
-#   Define › Regex
+#   Define › Regex (Anchored)
+#   
+#   These patterns are STRICT matchers, which use ^ and $ anchors; meaning the 
+#   ENTIRE string must match exactly.
+#   
+#   Example:
+#       "1.2.3.4"       MATCH
+#       "foo 1.2.3.4"   NO MATCH
 # #
 
 regex_url='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]\.[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]$'
 regex_ipv4='^([0-9]{1,3}\.){3}[0-9]{1,3}$'
 regex_ipv4_cidr='^([0-9]{1,3}\.){3}[0-9]{1,3}/([0-9]{1,2})$'
-regex_ipv6='^[0-9A-Fa-f:.]+$'
-regex_ipv6_cidr='^[0-9A-Fa-f:.]+/[0-9]{1,3}$'
+#regex_ipv6='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*$'
+regex_ipv6='^(([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}|(([0-9A-Fa-f]{1,4}:){1,7}:)|(([0-9A-Fa-f]{1,4}:){1,6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,5}(:[0-9A-Fa-f]{1,4}){1,2})|(([0-9A-Fa-f]{1,4}:){1,4}(:[0-9A-Fa-f]{1,4}){1,3})|(([0-9A-Fa-f]{1,3}:){1,3}(:[0-9A-Fa-f]{1,4}){1,4})|(([0-9A-Fa-f]{1,4}:){1,2}(:[0-9A-Fa-f]{1,4}){1,5})|([0-9A-Fa-f]{1,4}:)((:[0-9A-Fa-f]{1,4}){1,6})|(:)((:[0-9A-Fa-f]{1,4}){1,7}|:))$'
+regex_ipv6_cidr='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*/([0-9]{1,3})$'
 regex_ipv4_range='([0-9]{1,3}\.){3}[0-9]{1,3}[[:space:]]*-[[:space:]]*([0-9]{1,3}\.){3}[0-9]{1,3}'
+
+# #
+#   Define › Regex (Unanchored)
+#   
+#   These patterns are derived from the anchored validators above; which remove 
+#   ^ and $ so that the regex can match values inside text.
+#   
+#   Mainly these are used for stripping html and matching IP addresses which are
+#   extracted.
+# #
+
+regex_ipv4_extract="${regex_ipv4#^}"
+regex_ipv4_extract="${regex_ipv4_extract%\$}"
+regex_ipv4_cidr_extract="${regex_ipv4_cidr#^}"
+regex_ipv4_cidr_extract="${regex_ipv4_cidr_extract%\$}"
+regex_ipv6_extract="${regex_ipv6#^}"
+regex_ipv6_extract="${regex_ipv6_extract%\$}"
+regex_ipv6_cidr_extract="${regex_ipv6_cidr#^}"
+regex_ipv6_cidr_extract="${regex_ipv6_cidr_extract%\$}"
+regex_ip_extract="${regex_ipv4_extract}|${regex_ipv4_cidr_extract}|${regex_ipv6_extract}|${regex_ipv6_cidr_extract}"
+
+# #
+#   Define › Defaults
+# #
+
+total_lines=0                                                                   # number of lines in doc
+total_subnets=0                                                                 # number of IPs in all subnets combined
+total_ips=0                                                                     # number of single IPs (counts each line)
 
 # #
 #   Define › Logging functions
@@ -242,23 +278,6 @@ print( )
 }
 
 # #
-#   Define › Elapsed Time
-#       - Capture end time
-#       - Calculate elapsed time
-#       - Calculate days, hours, etc.
-#       - Output to console
-# #
-
-time_elapsed( )
-{
-    local T=$1
-    D=$(( T / 86400 ))
-    H=$(( (T % 86400) / 3600 ))
-    M=$(( (T % 3600) / 60 ))
-    S=$(( T % 60 ))
-}
-
-# #
 #   Debug Mode
 #   
 #   This script includes debug mode. You can enable it with the settings below:
@@ -314,6 +333,23 @@ APP_USAGE="🗔  Usage: ./${app_file_this} ${blued}[-l <LICENSE_KEY>]${end}
         ${greym}./${app_file_this} ${blued}clr${end}
         ${greym}./${app_file_this} ${blued}chart${end}
 "
+
+# #
+#   Define › Elapsed Time
+#       - Capture end time
+#       - Calculate elapsed time
+#       - Calculate days, hours, etc.
+#       - Output to console
+# #
+
+time_elapsed( )
+{s
+    local T=$1
+    D=$(( T / 86400 ))
+    H=$(( (T % 86400) / 3600 ))
+    M=$(( (T % 3600) / 60 ))
+    S=$(( T % 60 ))
+}
 
 # #
 #   Helper › Show Color Test
@@ -377,15 +413,15 @@ debug_ColorChart( )
 }
 
 # #
-#   Usage
+#   func › usage menu
 # #
 
-opt_usage()
+opt_usage( )
 {
-    echo -e
+    echo
     printf "  ${bluel}${app_name}${end}\n" 1>&2
     printf "  ${dim}${app_desc}${end}\n" 1>&2
-    echo -e
+    echo
     printf '  %-5s %-40s\n' "Usage:" "" 1>&2
     printf '  %-5s %-40s\n' "    " "${app_file_this} [ ${greym} options${end} ]" 1>&2
     printf '  %-5s %-40s\n\n' "    " "${app_file_this} [ ${greym}--help${end} ] [ ${greym}--dry${end} ] [ ${greym}--local${end} ] [ ${greym}--license LICENSE_KEY${end} ] [ ${greym}--version${end} ]" 1>&2
@@ -396,9 +432,9 @@ opt_usage()
     printf '  %-5s %-18s %-40s\n' "    " "" "    ${greym}local geo .csv files OR .zip must be placed in folder ${blued}${app_dir_github}/${folder_source_local}${end}" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "-d,  --dry" "runs a dry run of loading csv files from ${blued}${app_dir_github}/${folder_source_local}${end} folder" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "" "    ${greym}requires you place ${greenl}${file_source_csv_zip}${end} and ${greenl}${file_source_csv_zip_md5}${end} files in ${blued}${app_dir_github}/${folder_source_local}${end} folder${end}" 1>&2
-    printf '  %-5s %-18s %-40s\n' "    " "-c,  --color" "displays a demo of the available colors" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-C,  --color" "displays a demo of the available colors" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "" "    ${greym}only needed by developer${end}" 1>&2
-    printf '  %-5s %-18s %-40s\n' "    " "-g,  --graph" "displays a demo bash color graph" 1>&2
+    printf '  %-5s %-18s %-40s\n' "    " "-G,  --graph" "displays a demo bash color graph" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "" "    ${greym}only needed by developer${end}" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "-d,  --dev" "dev mode" 1>&2
     printf '  %-5s %-18s %-40s\n' "    " "-p,  --path" "list of paths associated to script" 1>&2
@@ -488,25 +524,21 @@ while [ $# -gt 0 ]; do
             ;;
 
         -p|--paths)
-                echo -e
-                echo -e "  ${white}List of paths important to this script:\n"
-                echo -e "  ${greenl}${bold}${orangel}${app_dir_this_dir}/${folder_source_local}${end}${end}"
-                echo -e "  ${greyl}Folder used when Local Mode enabled (${greend}--local${end})${end}"
-                echo -e "  ${greym}    Can detect GeoLite2 ${blued}.ZIP${greym} and ${blued}.ZIP.MD5${greym} files${end}"
-                echo -e "  ${greym}    Can detect GeoLite2 ${blued}.CSV${greym} location and IPv4/IPv6 files${end}"
-                echo -e
-                echo -e
-                echo -e "  ${greenl}${bold}${orangel}${app_dir_this_dir}/${folder_target_temp}${end}${end}"
-                echo -e "  ${greyl}Folder used when Dry Run enabled (${greend}--dry${end})${end}"
-                echo -e "  ${greym}    Can detect GeoLite2 ${blued}.ZIP${greym} and ${blued}.ZIP.MD5${greym} files${end}"
-                echo -e "  ${greym}    Can detect GeoLite2 ${blued}.CSV${greym} location and IPv4/IPv6 files${end}"
-                echo -e
-                echo -e
-                echo -e "  ${greenl}${bold}${orangel}${app_dir_this_dir}/${folder_target_cache}${end}${end}"
-                echo -e "  ${greyl}Folder used to store associative array for continents and countries${end}"
-                echo -e
-                echo -e
-                exit 1
+            echo
+            echo "  ${white}List of paths important to this script:"
+            echo "  ${greenl}📁 ${bold}${oranged}${app_dir_github}/${folder_source_local} ${end}"
+            echo "  ${greym}    Folder used when Local Mode enabled ${greend}(--local) ${end}"
+            echo "  ${greym}        Can detect GeoLite2 ${bluel}.ZIP${greym} and ${bluel}.ZIP.MD5${greym} files ${end}"
+            echo "  ${greym}        Can detect GeoLite2 ${bluel}.CSV${greym} location and IPv4/IPv6 files ${end}"
+            echo
+            echo
+            echo "  ${greenl}📁 ${bold}${oranged}${app_dir_github}/${folder_target_temp} ${end}"
+            echo "  ${greym}    Folder used when Dry Run enabled ${greend}(--dry) ${end}"
+            echo "  ${greym}        Can detect GeoLite2 ${bluel}.ZIP${greym} and ${bluel}.ZIP.MD5${greym} files ${end}"
+            echo "  ${greym}        Can detect GeoLite2 ${bluel}.CSV${greym} location and IPv4/IPv6 files ${end}"
+            echo
+            echo
+            exit 1
             ;;
 
         -l|--license|--key)
@@ -517,7 +549,7 @@ while [ $# -gt 0 ]; do
                 *)
                     shift
                     argMMLicense="$1"
-                    info "     ⚙️ License specified ${greym}${argMMLicense}"
+                    info "    ⚙️ License specified ${greym}${argMMLicense}"
                     ;;
             esac
 
@@ -561,18 +593,18 @@ while [ $# -gt 0 ]; do
 
         -v|--version)
             echo
-            echo "  ${blued}${bold}${app_name}${end} - v${app_ver} ${end}"
+            echo "  ${bluel}${bold}${app_name}${end} - v${app_ver} ${end}"
             echo "  ${greenl}${bold}https://github.com/${app_repo} ${end}"
             echo
             exit 1
             ;;
 
-        -c|--color)
+        -C|--color)
             debug_ColorTest
             exit 1
             ;;
 
-        -g|--graph|--chart)
+        -G|--graph|--chart)
             debug_ColorChart
             exit 1
             ;;

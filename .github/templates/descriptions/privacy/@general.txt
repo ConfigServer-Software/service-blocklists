@@ -1,5 +1,33 @@
-#   This is a static list of abusive IP addresses provided by 
-#       https://blocklist.configserver.dev
+#   ConfigServer Blocklists › Privacy › General
 #   
-#   This list contains IP addresses to servers that frequently scan websites in
-#   order to obtain information. This can include crawlers and research groups.
+#   This blocklist is sourced from ConfigServer and contains IP addresses
+#   linked to internet intelligence platforms, attack surface scanners,
+#   security research organizations, and large-scale network auditing
+#   services.
+#   
+#   These providers continuously scan publicly accessible infrastructure
+#   to identify open ports, exposed services, software banners, and other
+#   externally reachable assets. Their data is commonly used for internet
+#   mapping, vulnerability research, threat intelligence, attack surface
+#   monitoring, and search engine indexing of internet-connected systems.
+#   
+#   The list includes known scanners, crawlers, research networks, and
+#   reconnaissance platforms operated by organizations such as:
+#   
+#       - internet-albedo.net
+#       - internet-measurement.com
+#       - internet-census.org
+#       - Shadowserver Foundation
+#       - cyberresilience.io
+#       - shodan.io
+#       - criminalip.com
+#       - recyber.net
+#       - openportstats.com
+#       - onyphe.io
+#       - project25499.com
+#       - Censys
+#       - CariNet, Inc.
+#       - SecurityTrails, LLC
+#   
+#   These systems are not necessarily malicious; however, they routinely
+#   perform automated probing and enumeration against public-facing hosts.

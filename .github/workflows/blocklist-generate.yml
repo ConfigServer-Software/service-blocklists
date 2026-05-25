@@ -1398,7 +1398,7 @@ jobs:
                   #   Privacy › General
                   # #
   
-                  CFG_SKIP_CIDR_DEDUPE=true CFG_SKIP_BOGON_FILTER=true ./.github/scripts/bl-block.sh blocklists/privacy/@general.ipset privacy
+                  CFG_SKIP_CIDR_DEDUPE=true CFG_SKIP_BOGON_FILTER=true CFG_INCLUDE_COMMENTS=true ./.github/scripts/bl-block.sh blocklists/privacy/@general.ipset privacy/general
 
                   # #
                   #   Privacy › Activision

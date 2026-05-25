@@ -379,6 +379,69 @@ total_subnets=0                                                                 
 total_ips=0                                                                     # number of single IPs (counts each line)
 
 # #
+#   Define › Logging functions
+#   
+#   verbose "This is an verbose message"
+#   debug "This is an debug message"
+#   info "This is an info message"
+#   ok "This is an ok message"
+#   warn "This is a warn message"
+#   danger "This is a danger message"
+#   error "This is an error message"
+# #
+
+info( )
+{
+    printf '\033[0m%-41s %-65s\n' "   ${bgInfo} INFO ${end}" "${greym} $1 ${end}"
+}
+
+ok( )
+{
+    printf '\033[0m%-41s %-65s\n' "   ${bgOk} PASS ${end}" "${greym} $1 ${end}"
+}
+
+warn( )
+{
+    printf '\033[0m%-42s %-65s\n' "   ${bgWarn} WARN ${end}" "${greym} $1 ${end}"
+}
+
+danger( )
+{
+    printf '\033[0m%-42s %-65s\n' "   ${bgDanger} DNGR ${end}" "${greym} $1 ${end}"
+}
+
+error( )
+{
+    printf '\033[0m%-42s %-65s\n' "   ${bgError} FAIL ${end}" "${greym} $1 ${end}"
+}
+
+debug( )
+{
+    if [ "$argDevMode" = "true" ] || [ "$argDryrun" = "true" ]; then
+        printf '\033[0m%-42s %-65s\n' "   ${bgDebug} DBUG ${end}" "${greym} $1 ${end}"
+    fi
+}
+
+verbose( )
+{
+    case "${argVerbose:-0}" in
+        1|true|TRUE|yes|YES)
+            printf '\033[0m%-42s %-65s\n' "   ${bgVerbose} VRBO ${end}" "${greym} $1 ${end}"
+            ;;
+    esac
+}
+
+label( )
+{
+    printf '\033[0m%-31s %-65s\n' "   ${greyd}        ${end}" "${greyd} $1 ${end}"
+}
+
+print( )
+{
+    echo "${greym}$1${end}"
+}
+
+# #
 #   define variables
 # #
 
@@ -422,6 +485,7 @@ for f in "${app_dir_github}/${folder_source_local}"/GeoLite2-ASN-CSV*.zip; do
     file_source_csv_zip="$f"
     break
 done
+
 for f in "${app_dir_github}/${folder_source_local}"/GeoLite2-ASN-CSV*.zip.md5; do
     file_source_csv_zip_md5="$f"
     break
@@ -429,12 +493,29 @@ done
 shopt -u nullglob
 
 # #
+#   Define › Elapsed Time
+#       - Capture end time
+#       - Calculate elapsed time
+#       - Calculate days, hours, etc.
+#       - Output to console
+# #
+
+time_elapsed( )
+{
+    local T=$1
+    D=$(( T / 86400 ))
+    H=$(( (T % 86400) / 3600 ))
+    M=$(( (T % 3600) / 60 ))
+    S=$(( T % 60 ))
+}
+
+# #
 #   Color Code Test
 #   
 #   @usage      .github/scripts/bl-geolite2_asn.sh --color
 # #
 
-function debug_ColorTest( )
+debug_ColorTest( )
 {
     echo
     echo "  white      ${greym}............. ${white}This is text ███████████████${end}"
@@ -466,18 +547,19 @@ function debug_ColorTest( )
 }
 
 # #
-#   Helper > Show Color Chart
+#   Helper › Show Color Chart
+#   
 #   Shows a complete color charge which can be used with the color declarations in this script.
 #   
 #   @usage      .github/scripts/bt-transmission.sh chart
 # #
 
-function debug_ColorChart( )
+debug_ColorChart( )
 {
-    for fgbg in 38 48 ; do                                  # foreground / background
-        for clr in {0..255} ; do                            # colors
+    for fgbg in 38 48 ; do                                                      # foreground / background
+        for clr in {0..255} ; do                                                # colors
             printf "\e[${fgbg};5;%sm  %3s  \e[0m" $clr $clr
-            if [ $((($clr + 1) % 6)) == 4 ] ; then          # show 6 colors per lines
+            if [ $((($clr + 1) % 6)) == 4 ] ; then                              # show 6 colors per lines
                 echo
             fi
         done
@@ -647,6 +729,7 @@ while [ $# -gt 0 ]; do
                 *)
                     shift
                     argMMLicense="$1"
+                    info "    ⚙️ License specified ${greym}${argMMLicense}"
                     ;;
             esac
 
@@ -663,11 +746,12 @@ while [ $# -gt 0 ]; do
         -L|--limit)
             case "$1" in
                 *=*)
-                    argLimitEntries=$(echo "$1" | cut -d= -f2)
+                    argLimitEntries=$( echo "$1" | cut -d= -f2 )
                     ;;
                 *)
                     shift
                     argLimitEntries="$1"
+                    info "    ⚙️  Specified limit ${greenl}${argLimitEntries}"
                     ;;
             esac
             ;;
@@ -748,17 +832,17 @@ while [ $# -gt 0 ]; do
     
         -d|--dev|--debug)
             argDevMode=true
-            echo "    ⚠️ Debug Mode › ${blink}${greyd}enabled${greym}${end}"
+            info "    ⚙️  Developer Mode ${greenl}enabled"
             ;;
 
         -o|--local)
             argUseLocalDB=true
-            echo "  Local Mode Enabled"
+            info "    ⚙️  Local Mode ${greenl}enabled"
             ;;
 
         --dry|--dryrun)
             argDryrun=true
-            echo "  Dry Run Enabled"
+            info "    ⚙️  Dry-run Mode ${greenl}enabled"
             ;;
 
         -a|--aggressive)
@@ -795,86 +879,6 @@ while [ $# -gt 0 ]; do
     esac
     shift
 done
-
-# #
-#   Define › Logging functions
-#   
-#   verbose "This is an verbose message"
-#   debug "This is an debug message"
-#   info "This is an info message"
-#   ok "This is an ok message"
-#   warn "This is a warn message"
-#   danger "This is a danger message"
-#   error "This is an error message"
-# #
-
-info( )
-{
-    printf '\033[0m%-41s %-65s\n' "   ${bgInfo} INFO ${end}" "${greym} $1 ${end}"
-}
-
-ok( )
-{
-    printf '\033[0m%-41s %-65s\n' "   ${bgOk} PASS ${end}" "${greym} $1 ${end}"
-}
-
-warn( )
-{
-    printf '\033[0m%-42s %-65s\n' "   ${bgWarn} WARN ${end}" "${greym} $1 ${end}"
-}
-
-danger( )
-{
-    printf '\033[0m%-42s %-65s\n' "   ${bgDanger} DNGR ${end}" "${greym} $1 ${end}"
-}
-
-error( )
-{
-    printf '\033[0m%-42s %-65s\n' "   ${bgError} FAIL ${end}" "${greym} $1 ${end}"
-}
-
-debug( )
-{
-    if [ "$argDevMode" = "true" ] || [ "$argDryrun" = "true" ]; then
-        printf '\033[0m%-42s %-65s\n' "   ${bgDebug} DBUG ${end}" "${greym} $1 ${end}"
-    fi
-}
-
-verbose( )
-{
-    case "${argVerbose:-0}" in
-        1|true|TRUE|yes|YES)
-            printf '\033[0m%-42s %-65s\n' "   ${bgVerbose} VRBO ${end}" "${greym} $1 ${end}"
-            ;;
-    esac
-}
-
-label( )
-{
-    printf '\033[0m%-31s %-65s\n' "   ${greyd}        ${end}" "${greyd} $1 ${end}"
-}
-
-print( )
-{
-    echo "${greym}$1${end}"
-}
-
-# #
-#   Define › Elapsed Time
-#       Capture end time
-#       Calculate elapsed time
-#       Calculate days, hours, etc.
-#       Output to console
-# #
-
-time_elapsed( )
-{
-    local T=$1
-    D=$(( T / 86400 ))
-    H=$(( (T % 86400) / 3600 ))
-    M=$(( (T % 3600) / 60 ))
-    S=$(( T % 60 ))
-}
 
 # #
 #   Reuse mode helper
