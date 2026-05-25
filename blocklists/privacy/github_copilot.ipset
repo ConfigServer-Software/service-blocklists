@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/github_copilot.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/github_copilot.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_github_copilot_ipset
 #   @uuid           0f5eb85f-a38d-385c-b2c7-8161fd4ab47d
-#   @updated        Sun May 24 21:06:01 UTC 2026
+#   @updated        Mon May 25 08:37:47 UTC 2026
 #   @entries        10,253 ips
 #                   6 subnets
 #                   17 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

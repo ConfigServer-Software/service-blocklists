@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/bbcan177/ms3.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/bbcan177/ms3.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             3rdparty_bbcan177_ms3_ipset
 #   @uuid           5b8ab114-08b8-3de7-9c99-b511c6538e22
-#   @updated        Sun May 24 20:47:19 UTC 2026
+#   @updated        Mon May 25 08:15:53 UTC 2026
 #   @entries        30,152,426 ips
 #                   125 subnets
 #                   1,383 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

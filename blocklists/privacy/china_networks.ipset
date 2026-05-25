@@ -2,15 +2,15 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/china_networks.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/china_networks.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_china_networks_ipset
 #   @uuid           9f2371db-0cde-3d2c-bba7-890381e775ae
-#   @updated        Sun May 24 21:00:43 UTC 2026
-#   @entries        6,836,252 ips
-#                   478 subnets
-#                   478 lines
+#   @updated        Mon May 25 08:31:24 UTC 2026
+#   @entries        6,801,436 ips
+#                   479 subnets
+#                   479 lines
 #   @asn            AS4847
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided
@@ -267,7 +267,6 @@
 119.161.120.0/22
 119.161.124.0/24
 119.254.0.0/16
-119.255.128.0/17
 120.44.0.0/15
 120.47.0.0/16
 120.64.0.0/15
@@ -294,7 +293,9 @@
 123.58.224.0/19
 123.196.112.0/20
 123.199.128.0/20
-124.42.0.0/18
+124.42.0.0/21
+124.42.16.0/20
+124.42.32.0/19
 124.126.0.0/15
 124.193.0.0/16
 124.202.0.0/17

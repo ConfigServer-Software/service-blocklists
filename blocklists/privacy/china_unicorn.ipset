@@ -2,18 +2,18 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/china_unicorn.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/china_unicorn.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_china_unicorn_ipset
 #   @uuid           a532eb4d-9b54-35f9-bdd7-646a4c3e9a14
-#   @updated        Sun May 24 21:02:40 UTC 2026
-#   @entries        82,094,739 ips
-#                   1,923 subnets
-#                   1,923 lines
+#   @updated        Mon May 25 08:33:22 UTC 2026
+#   @entries        82,110,611 ips
+#                   1,924 subnets
+#                   1,924 lines
 #   @asn            AS4837, AS10099, AS10206, AS133118, AS133119
 #                   AS134542, AS134543, AS135061, AS136958, AS136959
 #                   AS137539, AS138421, AS140979, AS152120, AS17621
 #                   AS17622, AS17623, AS17816, AS4808, AS9929
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided
@@ -940,7 +940,7 @@
 116.242.0.0/16
 116.255.128.0/17
 117.8.0.0/13
-117.48.156.0/23
+117.48.144.0/20
 117.48.192.0/22
 117.48.204.0/22
 117.48.216.0/22
@@ -1106,8 +1106,9 @@
 120.128.0.0/21
 120.131.0.0/20
 120.131.64.0/19
-120.132.32.0/19
+120.132.0.0/18
 120.132.64.0/19
+120.132.96.0/20
 120.132.116.0/22
 120.132.120.0/21
 120.132.128.0/17

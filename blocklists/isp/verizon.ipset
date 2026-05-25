@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/isp/verizon.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/isp/verizon.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             isp_verizon_ipset
 #   @uuid           edc3bdf1-3ff0-3351-8660-c0c428c0cb0e
-#   @updated        Sun May 24 21:24:06 UTC 2026
+#   @updated        Mon May 25 08:59:20 UTC 2026
 #   @entries        89,567,840 ips
 #                   1,558 subnets
 #                   1,558 lines
@@ -19,7 +19,7 @@
 #                   AS7021, AS33052, AS18573, AS13666, AS7014
 #                   AS13662, AS8385, AS6066, AS9055, AS12367
 #                   AS22521
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

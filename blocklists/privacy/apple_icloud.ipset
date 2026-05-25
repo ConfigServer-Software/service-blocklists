@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/apple_icloud.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/apple_icloud.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_apple_icloud_ipset
 #   @uuid           355d923c-c66f-3da3-a931-ad44da0c9d42
-#   @updated        Sun May 24 20:52:37 UTC 2026
-#   @entries        350,856 ips
-#                   247,947 subnets
-#                   248,399 lines
-#   @expires        6 hours
+#   @updated        Mon May 25 08:21:29 UTC 2026
+#   @entries        350,858 ips
+#                   247,948 subnets
+#                   248,400 lines
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided
@@ -1747,7 +1747,8 @@
 104.28.137.32/27
 104.28.137.64/28
 104.28.137.80/29
-104.28.137.88
+104.28.137.88/31
+104.28.137.90
 104.28.138.1
 104.28.138.2/31
 104.28.138.4/30

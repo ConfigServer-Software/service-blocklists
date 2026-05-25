@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/punkbuster.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/punkbuster.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_punkbuster_ipset
 #   @uuid           8afde76e-3a85-3f75-8062-28720dbd03de
-#   @updated        Sun May 24 21:09:42 UTC 2026
+#   @updated        Mon May 25 08:42:15 UTC 2026
 #   @entries        1 ips
 #                   0 subnets
 #                   1 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

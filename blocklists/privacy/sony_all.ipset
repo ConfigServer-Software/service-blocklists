@@ -2,16 +2,16 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/sony_all.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/sony_all.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_sony_all_ipset
 #   @uuid           9cba2c77-319b-3e89-8acc-d8dd2476a08a
-#   @updated        Sun May 24 21:09:51 UTC 2026
+#   @updated        Mon May 25 08:42:24 UTC 2026
 #   @entries        3,927,322 ips
 #                   127 subnets
 #                   127 lines
 #   @asn            AS2527, AS33353, AS26580, AS3725, AS62753
 #                   AS20410, AS25562
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

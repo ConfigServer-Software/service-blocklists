@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/riot_games.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/riot_games.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_riot_games_ipset
 #   @uuid           74e5b291-25e6-31df-8c51-391ec716fc65
-#   @updated        Sun May 24 21:09:43 UTC 2026
+#   @updated        Mon May 25 08:42:16 UTC 2026
 #   @entries        1,792 ips
 #                   6 subnets
 #                   6 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

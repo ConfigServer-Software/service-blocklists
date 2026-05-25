@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/isp/sprint.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/isp/sprint.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             isp_sprint_ipset
 #   @uuid           2bdab4b3-4e73-39a5-887f-d74798d7c94e
-#   @updated        Sun May 24 21:20:59 UTC 2026
+#   @updated        Mon May 25 08:55:50 UTC 2026
 #   @entries        11,057,823 ips
 #                   696 subnets
 #                   696 lines
@@ -19,7 +19,7 @@
 #                   AS206638, AS2938, AS3022, AS2942, AS2959
 #                   AS2981, AS4004, AS3648, AS3649, AS3650
 #                   AS3651, AS3652
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

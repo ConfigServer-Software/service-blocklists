@@ -2,15 +2,15 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/automattic.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/automattic.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_automattic_ipset
 #   @uuid           453d3ce4-f1bc-39f6-bde8-1cfd9269641a
-#   @updated        Sun May 24 20:53:24 UTC 2026
+#   @updated        Mon May 25 08:22:18 UTC 2026
 #   @entries        39,178 ips
 #                   26 subnets
 #                   26 lines
 #   @asn            AS2635
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

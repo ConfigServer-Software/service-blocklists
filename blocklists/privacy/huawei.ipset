@@ -2,16 +2,16 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/huawei.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/huawei.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_huawei_ipset
 #   @uuid           82f556dc-6e0f-353a-96ad-f52cf6d4a25a
-#   @updated        Sun May 24 21:06:05 UTC 2026
+#   @updated        Mon May 25 08:37:52 UTC 2026
 #   @entries        3,860,498 ips
 #                   218 subnets
 #                   218 lines
 #   @asn            AS55990, AS136907, AS131444, AS141180, AS206204
 #                   AS206798, AS265443
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

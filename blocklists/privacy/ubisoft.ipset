@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/ubisoft.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/ubisoft.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_ubisoft_ipset
 #   @uuid           4bae542d-2c29-3dff-9e3c-a130b273c35a
-#   @updated        Sun May 24 21:10:53 UTC 2026
+#   @updated        Mon May 25 08:43:24 UTC 2026
 #   @entries        5,308 ips
 #                   10 subnets
 #                   10 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

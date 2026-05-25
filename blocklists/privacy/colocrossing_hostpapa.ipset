@@ -2,15 +2,15 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/colocrossing_hostpapa.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/colocrossing_hostpapa.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_colocrossing_hostpapa_ipset
 #   @uuid           10aa1c2b-bb21-3432-8c76-ebd4afdb0336
-#   @updated        Sun May 24 21:04:14 UTC 2026
+#   @updated        Mon May 25 08:35:31 UTC 2026
 #   @entries        1,296,156 ips
 #                   523 subnets
 #                   523 lines
 #   @asn            AS36352, AS394738
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

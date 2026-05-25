@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/microsoft_365.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/microsoft_365.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_microsoft_365_ipset
 #   @uuid           39bf7910-8a1e-30aa-a717-13c8d50466b1
-#   @updated        Sun May 24 21:06:41 UTC 2026
+#   @updated        Mon May 25 08:38:33 UTC 2026
 #   @entries        2,515,016 ips
 #                   63 subnets
 #                   90 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

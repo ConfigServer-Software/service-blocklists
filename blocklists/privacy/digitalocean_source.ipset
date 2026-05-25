@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/digitalocean_source.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/digitalocean_source.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_digitalocean_source_ipset
 #   @uuid           5a60c616-13fc-3996-bc28-f3ef852f3592
-#   @updated        Sun May 24 21:05:18 UTC 2026
+#   @updated        Mon May 25 08:36:50 UTC 2026
 #   @entries        3,094,420 ips
 #                   330 subnets
 #                   330 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

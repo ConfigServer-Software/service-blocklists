@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/isp/embarq.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/isp/embarq.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             isp_embarq_ipset
 #   @uuid           2e51d53f-2999-31da-ae04-fbc14196827d
-#   @updated        Sun May 24 21:18:04 UTC 2026
+#   @updated        Mon May 25 08:52:19 UTC 2026
 #   @entries        3,814,144 ips
 #                   262 subnets
 #                   262 lines
@@ -13,7 +13,7 @@
 #                   AS14921, AS6222, AS22186, AS13787, AS32855
 #                   AS3447, AS4212, AS6367, AS11530, AS14910
 #                   AS16718, AS18494
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

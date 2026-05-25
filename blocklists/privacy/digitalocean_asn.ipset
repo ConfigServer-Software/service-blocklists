@@ -2,17 +2,17 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/digitalocean_asn.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/digitalocean_asn.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_digitalocean_asn_ipset
 #   @uuid           88a7ed54-ef75-32e3-a514-fdec31d77784
-#   @updated        Sun May 24 21:04:30 UTC 2026
+#   @updated        Mon May 25 08:35:49 UTC 2026
 #   @entries        3,231,495 ips
 #                   133 subnets
 #                   133 lines
 #   @asn            AS14061, AS39690, AS62567, AS133165, AS135340
 #                   AS200130, AS201229, AS202018, AS202109, AS205301
 #                   AS393406, AS394362
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

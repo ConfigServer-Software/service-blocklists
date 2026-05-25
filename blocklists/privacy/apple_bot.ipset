@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/apple_bot.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/apple_bot.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_apple_bot_ipset
 #   @uuid           4401e591-9273-376c-b9dd-c7388b1a6493
-#   @updated        Sun May 24 20:52:36 UTC 2026
+#   @updated        Mon May 25 08:21:28 UTC 2026
 #   @entries        2,400 ips
 #                   12 subnets
 #                   12 lines

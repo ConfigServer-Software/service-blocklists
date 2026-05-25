@@ -2,16 +2,16 @@
 #   🧱 Firewall Blocklist - blocklists/isp/spacex_starlink.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/isp/spacex_starlink.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             isp_spacex_starlink_ipset
 #   @uuid           1ccb3b23-6ce5-367d-b5f9-e0af72b90fba
-#   @updated        Sun May 24 21:26:47 UTC 2026
+#   @updated        Mon May 25 09:03:04 UTC 2026
 #   @entries        1,023,243 ips
 #                   107 subnets
 #                   107 lines
 #   @asn            AS14593, AS34602, AS45700, AS25076, AS212210
 #                   AS49854, AS50494, AS204791
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

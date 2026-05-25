@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/google_cloud.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/google_cloud.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_google_cloud_ipset
 #   @uuid           d57ca9de-34c3-3fc9-8953-8d2616d68279
-#   @updated        Sun May 24 21:06:04 UTC 2026
+#   @updated        Mon May 25 08:37:51 UTC 2026
 #   @entries        17,272,240 ips
 #                   473 subnets
 #                   473 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

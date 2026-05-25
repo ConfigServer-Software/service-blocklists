@@ -2,15 +2,15 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/china_tietong.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/china_tietong.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_china_tietong_ipset
 #   @uuid           c3fab9d2-a25d-3f7b-8913-0b67b3c4db75
-#   @updated        Sun May 24 21:02:27 UTC 2026
+#   @updated        Mon May 25 08:33:04 UTC 2026
 #   @entries        23,915,264 ips
 #                   85 subnets
 #                   85 lines
 #   @asn            AS9394, AS24138, AS45057
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

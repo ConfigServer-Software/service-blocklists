@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/isp/comcast.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/isp/comcast.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             isp_comcast_ipset
 #   @uuid           09606518-a08a-36f8-a001-3be67dedd4bd
-#   @updated        Sun May 24 21:14:31 UTC 2026
+#   @updated        Mon May 25 08:47:42 UTC 2026
 #   @entries        69,970,229 ips
 #                   774 subnets
 #                   774 lines
@@ -18,7 +18,7 @@
 #                   AS36732, AS36196, AS33542, AS33351, AS23266
 #                   AS23253, AS21508, AS16748, AS14668, AS14042
 #                   AS13385, AS13367, AS11025
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

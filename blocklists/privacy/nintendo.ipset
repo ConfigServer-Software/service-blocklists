@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/nintendo.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/nintendo.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_nintendo_ipset
 #   @uuid           e6901bfd-d281-300f-9638-2b2d85345d08
-#   @updated        Sun May 24 21:09:34 UTC 2026
+#   @updated        Mon May 25 08:42:06 UTC 2026
 #   @entries        3,927 ips
 #                   44 subnets
 #                   45 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

@@ -2,15 +2,15 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/contabo_gmbh.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/contabo_gmbh.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_contabo_gmbh_ipset
 #   @uuid           706e6a4a-2c19-365b-93e2-dee7f8d6b198
-#   @updated        Sun May 24 21:04:25 UTC 2026
+#   @updated        Mon May 25 08:35:43 UTC 2026
 #   @entries        542,471 ips
 #                   289 subnets
 #                   289 lines
 #   @asn            AS51167
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

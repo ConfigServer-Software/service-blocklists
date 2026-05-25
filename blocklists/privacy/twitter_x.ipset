@@ -2,15 +2,15 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/twitter_x.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/twitter_x.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_twitter_x_ipset
 #   @uuid           91063083-a070-366f-9e33-fc5c7619e8a2
-#   @updated        Sun May 24 21:10:38 UTC 2026
+#   @updated        Mon May 25 08:43:06 UTC 2026
 #   @entries        49,155 ips
 #                   20 subnets
 #                   20 lines
 #   @asn            AS13414, AS63179, AS35995, AS54888
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

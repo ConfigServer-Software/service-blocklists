@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/github_importer.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/github_importer.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_github_importer_ipset
 #   @uuid           77f3bab9-d42b-3924-9454-98c7d330a254
-#   @updated        Sun May 24 21:05:51 UTC 2026
+#   @updated        Mon May 25 08:37:34 UTC 2026
 #   @entries        35 ips
 #                   2 subnets
 #                   5 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

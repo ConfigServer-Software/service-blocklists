@@ -2,15 +2,15 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/china_broadcasting_network.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/china_broadcasting_network.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_china_broadcasting_network_ipset
 #   @uuid           28206444-ffc0-3b66-a6d2-cdec1b150ec6
-#   @updated        Sun May 24 20:53:55 UTC 2026
+#   @updated        Mon May 25 08:23:00 UTC 2026
 #   @entries        66,569 ips
 #                   13 subnets
 #                   13 lines
 #   @asn            AS146788
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

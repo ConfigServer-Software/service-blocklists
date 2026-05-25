@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/xfire.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/xfire.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_xfire_ipset
 #   @uuid           2649c3de-e79c-3f08-a604-55d9e790a4d4
-#   @updated        Sun May 24 21:10:56 UTC 2026
+#   @updated        Mon May 25 08:43:26 UTC 2026
 #   @entries        3,328 ips
 #                   3 subnets
 #                   3 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

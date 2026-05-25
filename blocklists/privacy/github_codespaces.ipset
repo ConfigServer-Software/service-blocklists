@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/github_codespaces.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/github_codespaces.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_github_codespaces_ipset
 #   @uuid           a733d06d-3e3f-37b4-b8ec-493c1b22192f
-#   @updated        Sun May 24 21:06:00 UTC 2026
+#   @updated        Mon May 25 08:37:46 UTC 2026
 #   @entries        3,056 ips
 #                   151 subnets
 #                   151 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/ai_openai_gpt_all.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/ai_openai_gpt_all.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_ai_openai_gpt_all_ipset
 #   @uuid           e9c52625-1cd7-3288-9115-c30012135ad5
-#   @updated        Sun May 24 20:52:08 UTC 2026
+#   @updated        Mon May 25 08:20:59 UTC 2026
 #   @entries        9,152 ips
 #                   254 subnets
 #                   254 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

@@ -2,15 +2,15 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/baidu.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/baidu.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_baidu_ipset
 #   @uuid           b662b683-1eff-3e0f-a722-ffdf0cc8a556
-#   @updated        Sun May 24 20:53:27 UTC 2026
+#   @updated        Mon May 25 08:22:23 UTC 2026
 #   @entries        584,710 ips
 #                   31 subnets
 #                   31 lines
 #   @asn            AS38365, AS55967, AS38627
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

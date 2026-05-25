@@ -2,14 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/oracle_all.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/oracle_all.ipset
-#   @source         None
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_oracle_all_ipset
 #   @uuid           de98b985-35b2-3d7d-ad3f-42649a948b14
-#   @updated        Sun May 24 21:09:37 UTC 2026
+#   @updated        Mon May 25 08:42:09 UTC 2026
 #   @entries        4,121,226 ips
 #                   773 subnets
 #                   773 lines
-#   @expires        6 hours
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided
