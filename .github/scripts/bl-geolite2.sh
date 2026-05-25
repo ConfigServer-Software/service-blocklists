@@ -343,7 +343,7 @@ APP_USAGE="🗔  Usage: ./${app_file_this} ${blued}[-l <LICENSE_KEY>]${end}
 # #
 
 time_elapsed( )
-{s
+{
     local T=$1
     D=$(( T / 86400 ))
     H=$(( (T % 86400) / 3600 ))
