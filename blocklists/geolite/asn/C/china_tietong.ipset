@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/C/china_tietong.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/C/china_tietong.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:11:15 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/C/china_tietong.ipset
+#   @source         None
+#   @id             geolite_asn_C_china_tietong_ipset
+#   @uuid           546a29ef-e495-36fa-a4cb-6fd28f4b9616
+#   @updated        Mon May 25 22:47:23 UTC 2026
 #   @entries        511,488 ips
 #                   16 subnets
 #                   16 lines

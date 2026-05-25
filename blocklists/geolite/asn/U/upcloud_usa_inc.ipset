@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/U/upcloud_usa_inc.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/U/upcloud_usa_inc.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:13:36 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/U/upcloud_usa_inc.ipset
+#   @source         None
+#   @id             geolite_asn_U_upcloud_usa_inc_ipset
+#   @uuid           014c09ed-40a4-33bf-a9c0-7b62bde94a23
+#   @updated        Mon May 25 22:48:43 UTC 2026
 #   @entries        20,483 ips
 #                   16 subnets
 #                   16 lines

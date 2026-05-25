@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/R/russia_zummer_llc.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/R/russia_zummer_llc.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:35 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/R/russia_zummer_llc.ipset
+#   @source         None
+#   @id             geolite_asn_R_russia_zummer_llc_ipset
+#   @uuid           5ba887f4-d482-38c9-b2fc-6dae49afce80
+#   @updated        Mon May 25 22:48:24 UTC 2026
 #   @entries        3,074 ips
 #                   6 subnets
 #                   6 lines

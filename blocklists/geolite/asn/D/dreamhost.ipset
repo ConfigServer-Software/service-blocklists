@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/D/dreamhost.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/D/dreamhost.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:11:59 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/D/dreamhost.ipset
+#   @source         None
+#   @id             geolite_asn_D_dreamhost_ipset
+#   @uuid           e41a791e-0731-3339-a4c9-8e7101f42e9f
+#   @updated        Mon May 25 22:47:45 UTC 2026
 #   @entries        168,195 ips
 #                   15 subnets
 #                   15 lines

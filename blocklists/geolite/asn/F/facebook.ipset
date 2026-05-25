@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/F/facebook.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/F/facebook.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:01 UTC 2026
-#   @entries        475,433 ips
-#                   109 subnets
-#                   109 lines
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/F/facebook.ipset
+#   @source         None
+#   @id             geolite_asn_F_facebook_ipset
+#   @uuid           afbb53ee-6225-38d8-989a-689b1765e5b3
+#   @updated        Mon May 25 22:47:47 UTC 2026
+#   @entries        475,688 ips
+#                   108 subnets
+#                   108 lines
 #   @asn            AS32934, AS63293, AS54115
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -55,7 +55,7 @@
 129.134.168.0/21
 129.134.176.0/20
 129.134.194.0/23
-129.134.196.0/24
+129.134.196.0/23
 157.240.0.0/17
 157.240.128.0/23
 157.240.131.0/24
@@ -100,7 +100,6 @@
 2a03:2887:ff27::/48
 2a03:2887:ff28::/46
 2a03:2887:ff2f::/48
-2a03:2887:ff30::/48
 2a03:2887:ff33::/48
 2a03:2887:ff37::/48
 2a03:2887:ff38::/46

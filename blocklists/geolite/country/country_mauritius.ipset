@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Wed May 13 05:07:14 UTC 2026
-#   @entries        2,374,662 ips
-#                   600 subnets
-#                   600 lines
+#   @updated        Mon May 25 22:44:18 UTC 2026
+#   @entries        2,375,687 ips
+#                   602 subnets
+#                   602 lines
 #   @country        Mauritius (MU)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -354,6 +354,7 @@
 196.216.83.104/29
 196.216.83.112/28
 196.216.83.128/25
+196.216.84.0/22
 196.216.213.0/24
 196.223.0.0/24
 196.250.252.0/22
@@ -481,6 +482,7 @@
 2a10:9007:2:11::/64
 2a13:a5c7:259a::/48
 2a13:a5c7:25ff:9900::/56
+2a14:2d45:9900::/40
 2a14:67c2:8d9::/48
 2a14:7580:cf99::/48
 2c0f:4c20::/32

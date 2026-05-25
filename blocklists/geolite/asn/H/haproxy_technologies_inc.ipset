@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/H/haproxy_technologies_inc.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/H/haproxy_technologies_inc.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:12 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/H/haproxy_technologies_inc.ipset
+#   @source         None
+#   @id             geolite_asn_H_haproxy_technologies_inc_ipset
+#   @uuid           8f0beb1d-d64a-36ff-8bb3-11fab95837f5
+#   @updated        Mon May 25 22:47:57 UTC 2026
 #   @entries        7,178 ips
 #                   22 subnets
 #                   22 lines

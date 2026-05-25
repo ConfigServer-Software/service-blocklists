@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/S/scaleway_sas.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/S/scaleway_sas.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:36 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/S/scaleway_sas.ipset
+#   @source         None
+#   @id             geolite_asn_S_scaleway_sas_ipset
+#   @uuid           85aac2ad-fbdd-30b2-92ac-694390692f86
+#   @updated        Mon May 25 22:48:26 UTC 2026
 #   @entries        504,321 ips
 #                   15 subnets
 #                   15 lines

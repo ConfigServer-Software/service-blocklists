@@ -1,12 +1,12 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/G/godaddy.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/G/godaddy.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:10 UTC 2026
-#   @entries        1,123,133 ips
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/G/godaddy.ipset
+#   @source         None
+#   @id             geolite_asn_G_godaddy_ipset
+#   @uuid           2a083bb4-f957-3c40-990e-7c5a575cbf0b
+#   @updated        Mon May 25 22:47:55 UTC 2026
+#   @entries        1,122,877 ips
 #                   675 subnets
 #                   675 lines
 #   @asn            AS26496, AS20773, AS398101, AS400754, AS398105
@@ -396,10 +396,7 @@
 160.153.26.0/23
 160.153.32.0/19
 160.153.64.0/18
-160.153.128.0/23
-160.153.130.0/24
-160.153.131.0/24
-160.153.132.0/22
+160.153.128.0/21
 160.153.136.0/23
 160.153.138.0/24
 160.153.139.0/24
@@ -482,13 +479,16 @@
 184.168.160.0/19
 184.168.192.0/18
 185.34.212.0/22
-185.93.228.0/24
 188.121.52.0/22
 188.121.56.0/24
 188.121.60.0/24
 192.169.128.0/21
 192.169.136.0/21
-192.169.144.0/20
+192.169.144.0/24
+192.169.145.0/24
+192.169.146.0/23
+192.169.148.0/22
+192.169.152.0/21
 192.169.160.0/22
 192.169.164.0/22
 192.169.168.0/21

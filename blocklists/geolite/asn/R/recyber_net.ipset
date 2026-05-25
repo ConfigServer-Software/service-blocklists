@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/R/recyber_net.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/R/recyber_net.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:33 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/R/recyber_net.ipset
+#   @source         None
+#   @id             geolite_asn_R_recyber_net_ipset
+#   @uuid           49dfa123-9126-3fd4-a5e4-625d443a8df9
+#   @updated        Mon May 25 22:48:22 UTC 2026
 #   @entries        15,105 ips
 #                   17 subnets
 #                   17 lines

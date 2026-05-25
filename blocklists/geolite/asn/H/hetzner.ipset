@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/H/hetzner.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/H/hetzner.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:13 UTC 2026
-#   @entries        3,302,152 ips
-#                   90 subnets
-#                   90 lines
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/H/hetzner.ipset
+#   @source         None
+#   @id             geolite_asn_H_hetzner_ipset
+#   @uuid           1c522355-892b-37e5-a83a-45235e7126f6
+#   @updated        Mon May 25 22:47:58 UTC 2026
+#   @entries        3,302,151 ips
+#                   89 subnets
+#                   89 lines
 #   @asn            AS24940, AS213230, AS215859, AS212317
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -104,5 +104,4 @@
 2a01:4ff::/40
 2a01:4ff:ff01::/48
 2a06:be80::/29
-2a11:e980::/29
 2a12:2240::/29

@@ -1,12 +1,12 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/S/shodan_io.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/S/shodan_io.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:39 UTC 2026
-#   @entries        3,209,492 ips
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/S/shodan_io.ipset
+#   @source         None
+#   @id             geolite_asn_S_shodan_io_ipset
+#   @uuid           7389e625-927e-39ad-919b-450a2f4936ae
+#   @updated        Mon May 25 22:48:29 UTC 2026
+#   @entries        3,213,588 ips
 #                   204 subnets
 #                   204 lines
 #   @asn            AS10439, AS14061, AS12989
@@ -169,7 +169,7 @@
 168.144.32.0/20
 168.144.48.0/22
 168.144.64.0/18
-168.144.128.0/20
+168.144.128.0/19
 168.222.185.0/24
 168.222.186.0/24
 170.64.128.0/17

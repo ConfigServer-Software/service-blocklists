@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/A/apple_inc.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/A/apple_inc.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:09:30 UTC 2026
-#   @entries        16,941,708 ips
-#                   198 subnets
-#                   198 lines
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/A/apple_inc.ipset
+#   @source         None
+#   @id             geolite_asn_A_apple_inc_ipset
+#   @uuid           30a2e9a2-bcd7-36ba-910f-3e71a32ea299
+#   @updated        Mon May 25 22:46:45 UTC 2026
+#   @entries        16,941,709 ips
+#                   200 subnets
+#                   200 lines
 #   @asn            AS714, AS6185, AS2709
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -40,7 +40,8 @@
 17.253.35.0/24
 17.253.36.0/22
 17.253.40.0/21
-17.253.48.0/22
+17.253.48.0/23
+17.253.50.0/23
 17.253.52.0/23
 17.253.54.0/24
 17.253.55.0/24
@@ -131,7 +132,8 @@
 2620:149:a10::/48
 2620:149:a11::/48
 2620:149:a12::/47
-2620:149:a14::/47
+2620:149:a14::/48
+2620:149:a15::/48
 2620:149:a16::/48
 2620:149:a17::/48
 2620:149:a18::/48

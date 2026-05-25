@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/C/censys_io.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/C/censys_io.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:09:53 UTC 2026
-#   @entries        2,563 ips
-#                   13 subnets
-#                   13 lines
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/C/censys_io.ipset
+#   @source         None
+#   @id             geolite_asn_C_censys_io_ipset
+#   @uuid           cf1be5ee-2c7a-38f3-a605-30ec6f966e84
+#   @updated        Mon May 25 22:46:59 UTC 2026
+#   @entries        3,332 ips
+#                   17 subnets
+#                   17 lines
 #   @asn            AS398324
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -24,8 +24,12 @@
 66.132.198.0/24
 66.132.224.0/24
 66.132.228.0/24
+66.234.1.0/24
 162.142.125.0/24
+167.94.138.0/24
+167.248.133.0/24
 206.168.35.0/24
-2602:80d:1007::/48
+2602:80d:1001::/48
+2602:80d:1006::/47
 2602:80d:1008::/47
 2602:80d:100a::/48

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/S/shadowserver_foundation.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/S/shadowserver_foundation.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:38 UTC 2026
-#   @entries        37,895 ips
-#                   68 subnets
-#                   68 lines
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/S/shadowserver_foundation.ipset
+#   @source         None
+#   @id             geolite_asn_S_shadowserver_foundation_ipset
+#   @uuid           0201de3f-7fae-3c10-abb2-af9f0cd6f3a0
+#   @updated        Mon May 25 22:48:28 UTC 2026
+#   @entries        37,640 ips
+#                   70 subnets
+#                   70 lines
 #   @asn            AS22168, AS394161
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -41,7 +41,8 @@
 149.106.192.0/21
 149.106.200.0/24
 149.106.202.0/23
-149.106.204.0/22
+149.106.204.0/23
+149.106.207.0/24
 149.106.214.0/23
 149.106.216.0/21
 154.9.2.0/23
@@ -83,4 +84,5 @@
 2620:137:d006::/48
 2620:137:d008::/46
 2620:137:d00c::/48
+2620:137:d00e::/48
 2620:24:c040::/48

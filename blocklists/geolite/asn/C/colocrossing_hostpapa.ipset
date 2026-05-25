@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/C/colocrossing_hostpapa.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/C/colocrossing_hostpapa.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:11:21 UTC 2026
-#   @entries        907,792 ips
-#                   937 subnets
-#                   937 lines
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/C/colocrossing_hostpapa.ipset
+#   @source         None
+#   @id             geolite_asn_C_colocrossing_hostpapa_ipset
+#   @uuid           c5ba17f4-df06-35a5-b3ae-7aea9e2738bb
+#   @updated        Mon May 25 22:47:28 UTC 2026
+#   @entries        907,024 ips
+#                   947 subnets
+#                   947 lines
 #   @asn            AS36352, AS394738
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -108,7 +108,8 @@
 23.95.136.0/22
 23.95.140.0/24
 23.95.143.0/24
-23.95.144.0/22
+23.95.144.0/23
+23.95.146.0/24
 23.95.148.0/24
 23.95.150.0/23
 23.95.152.0/22
@@ -417,13 +418,19 @@
 107.172.137.0/24
 107.172.138.0/23
 107.172.140.0/22
-107.172.144.0/22
+107.172.144.0/23
+107.172.146.0/24
 107.172.148.0/24
 107.172.150.0/23
 107.172.153.0/24
 107.172.154.0/23
 107.172.156.0/22
-107.172.160.0/20
+107.172.160.0/24
+107.172.162.0/23
+107.172.164.0/22
+107.172.168.0/22
+107.172.172.0/24
+107.172.174.0/23
 107.172.176.0/21
 107.172.184.0/23
 107.172.187.0/24
@@ -497,7 +504,9 @@
 107.174.132.0/23
 107.174.136.0/21
 107.174.144.0/20
-107.174.160.0/21
+107.174.160.0/22
+107.174.164.0/23
+107.174.166.0/24
 107.174.170.0/23
 107.174.172.0/22
 107.174.176.0/20
@@ -805,6 +814,7 @@
 192.227.248.0/23
 192.227.251.0/24
 192.227.252.0/22
+192.236.251.0/24
 192.241.85.0/24
 193.218.188.0/24
 194.9.176.0/22
@@ -865,7 +875,7 @@
 198.55.107.0/24
 198.55.108.0/23
 198.55.116.0/24
-198.55.124.0/24
+198.55.124.0/23
 198.144.176.0/20
 198.154.94.0/24
 198.206.8.0/21

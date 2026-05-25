@@ -1,14 +1,14 @@
 # #
-#   🧱 Firewall Blocklist - blocklists/geolite/asn/D/digital_ocean.ipset
+#   🧱 Firewall Blocklist - blocklists/geolite/asn/D/digitalocean.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/D/digital_ocean.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:11:58 UTC 2026
-#   @entries        3,102,734 ips
-#                   198 subnets
-#                   198 lines
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/D/digitalocean.ipset
+#   @source         None
+#   @id             geolite_asn_D_digitalocean_ipset
+#   @uuid           bf8b0714-53b5-38d9-b02d-41dc8b89b3e5
+#   @updated        Mon May 25 22:47:43 UTC 2026
+#   @entries        3,107,342 ips
+#                   200 subnets
+#                   200 lines
 #   @asn            AS14061, AS39690, AS62567, AS133165, AS135340
 #                   AS200130, AS201229, AS202018, AS202109, AS205301
 #                   AS393406, AS394362
@@ -20,6 +20,7 @@
 
 5.42.203.0/24
 5.101.96.0/20
+5.253.67.0/24
 23.131.60.0/24
 23.141.220.0/24
 24.144.64.0/21
@@ -49,6 +50,7 @@
 69.55.58.0/23
 69.55.60.0/22
 74.121.232.0/24
+78.105.144.0/24
 80.240.128.0/20
 82.196.0.0/20
 95.85.0.0/18
@@ -176,7 +178,7 @@
 168.144.32.0/20
 168.144.48.0/22
 168.144.64.0/18
-168.144.128.0/20
+168.144.128.0/19
 170.64.128.0/17
 174.138.0.0/17
 178.62.0.0/16

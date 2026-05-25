@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/R/rackspace_hosting.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/R/rackspace_hosting.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:32 UTC 2026
-#   @entries        1,601,795 ips
-#                   224 subnets
-#                   224 lines
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/R/rackspace_hosting.ipset
+#   @source         None
+#   @id             geolite_asn_R_rackspace_hosting_ipset
+#   @uuid           067cbd2d-0894-3c1a-9059-ff222ab9416a
+#   @updated        Mon May 25 22:48:21 UTC 2026
+#   @entries        1,605,891 ips
+#                   225 subnets
+#                   225 lines
 #   @asn            AS12200, AS19994, AS27357, AS33070, AS54636
 #                   AS33439, AS22720, AS397485, AS10532, AS36248
 #   @expires        6 hours
@@ -142,6 +142,7 @@
 148.62.0.0/16
 151.106.224.0/22
 156.43.59.0/24
+159.135.64.0/20
 159.135.241.0/24
 159.135.254.0/24
 161.47.0.0/16

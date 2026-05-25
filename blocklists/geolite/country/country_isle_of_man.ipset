@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Wed May 13 05:07:02 UTC 2026
-#   @entries        137,266 ips
-#                   327 subnets
-#                   327 lines
+#   @updated        Mon May 25 22:44:05 UTC 2026
+#   @entries        137,265 ips
+#                   326 subnets
+#                   326 lines
 #   @country        Isle of Man (IM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -339,7 +339,6 @@
 2a13:a5c7:25ff:6700::/56
 2a13:aac7:c::/48
 2a13:b600::/29
+2a14:2d45:6700::/40
 2a14:67c2:8c2::/48
 2a14:7580:cf67::/48
-2a14:c380:369::/48
-2a14:c380:714::/48

@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/A/akamai_linode.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/A/akamai_linode.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:09:23 UTC 2026
-#   @entries        1,309,479 ips
-#                   171 subnets
-#                   171 lines
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/A/akamai_linode.ipset
+#   @source         None
+#   @id             geolite_asn_A_akamai_linode_ipset
+#   @uuid           587085ee-d44b-3218-9a56-402620c3a251
+#   @updated        Mon May 25 22:46:39 UTC 2026
+#   @entries        1,317,671 ips
+#                   172 subnets
+#                   172 lines
 #   @asn            AS63949
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -51,6 +51,7 @@
 104.64.0.0/17
 104.64.128.0/18
 104.64.192.0/19
+104.66.160.0/19
 104.105.0.0/17
 104.105.128.0/18
 104.105.192.0/19

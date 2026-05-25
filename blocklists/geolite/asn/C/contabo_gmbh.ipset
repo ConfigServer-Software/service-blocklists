@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/C/contabo_gmbh.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/C/contabo_gmbh.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:11:50 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/C/contabo_gmbh.ipset
+#   @source         None
+#   @id             geolite_asn_C_contabo_gmbh_ipset
+#   @uuid           a48da521-da6c-3c75-8b50-191ac03f045e
+#   @updated        Mon May 25 22:47:39 UTC 2026
 #   @entries        460,802 ips
 #                   250 subnets
 #                   250 lines

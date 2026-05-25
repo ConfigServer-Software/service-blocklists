@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Wed May 13 05:07:34 UTC 2026
-#   @entries        39,415 ips
-#                   156 subnets
-#                   156 lines
+#   @updated        Mon May 25 22:44:40 UTC 2026
+#   @entries        39,672 ips
+#                   158 subnets
+#                   158 lines
 #   @country        San Marino (SM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -86,6 +86,7 @@
 185.146.128.0/22
 185.159.90.0/24
 185.168.170.0/23
+186.247.67.0/24
 192.145.48.0/22
 193.84.183.240/28
 194.0.27.0/24
@@ -170,5 +171,6 @@
 2a0e:d340::/32
 2a13:9840::/29
 2a13:a5c7:25cb::/48
+2a14:2d45:ca00::/40
 2a14:67c2:88e::/48
 2a14:7580:cfcb::/48

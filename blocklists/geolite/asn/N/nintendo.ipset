@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/N/nintendo.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/N/nintendo.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:23 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/N/nintendo.ipset
+#   @source         None
+#   @id             geolite_asn_N_nintendo_ipset
+#   @uuid           deccd17c-495e-3efa-8e7b-28679147282c
+#   @updated        Mon May 25 22:48:10 UTC 2026
 #   @entries        3,328 ips
 #                   9 subnets
 #                   9 lines

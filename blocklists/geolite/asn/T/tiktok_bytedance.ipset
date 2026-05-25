@@ -1,14 +1,14 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/T/tiktok_bytedance.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/T/tiktok_bytedance.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:46 UTC 2026
-#   @entries        299,326 ips
-#                   187 subnets
-#                   187 lines
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/T/tiktok_bytedance.ipset
+#   @source         None
+#   @id             geolite_asn_T_tiktok_bytedance_ipset
+#   @uuid           0dd6fd97-3557-324a-b63a-97594cf37951
+#   @updated        Mon May 25 22:48:36 UTC 2026
+#   @entries        299,582 ips
+#                   188 subnets
+#                   188 lines
 #   @asn            AS396986, AS138699, AS150436
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -91,6 +91,7 @@
 101.45.3.0/24
 101.45.4.0/23
 101.45.16.0/24
+101.45.18.0/24
 101.45.192.0/22
 101.45.196.0/24
 101.45.200.0/23

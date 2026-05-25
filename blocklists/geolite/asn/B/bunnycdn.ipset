@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/B/bunnycdn.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/B/bunnycdn.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:09:50 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/B/bunnycdn.ipset
+#   @source         None
+#   @id             geolite_asn_B_bunnycdn_ipset
+#   @uuid           6d8d13b0-0aae-3cc9-a0f0-1326ee3b5dd7
+#   @updated        Mon May 25 22:46:56 UTC 2026
 #   @entries        4,112 ips
 #                   27 subnets
 #                   27 lines

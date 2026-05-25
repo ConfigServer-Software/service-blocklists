@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/Y/yahoo.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/Y/yahoo.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:13:54 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/Y/yahoo.ipset
+#   @source         None
+#   @id             geolite_asn_Y_yahoo_ipset
+#   @uuid           b60dda3e-8aca-3d46-9c9f-cdf82dab507d
+#   @updated        Mon May 25 22:48:55 UTC 2026
 #   @entries        493,918 ips
 #                   540 subnets
 #                   540 lines
@@ -141,11 +141,11 @@
 115.178.4.0/23
 115.178.10.0/23
 115.178.12.0/22
+117.104.190.0/24
 124.108.64.0/21
 124.108.76.0/22
 124.108.80.0/22
 124.108.84.0/23
-180.222.99.0/24
 180.222.104.0/22
 180.222.111.0/24
 180.233.112.0/21

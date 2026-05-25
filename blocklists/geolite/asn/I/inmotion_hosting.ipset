@@ -1,11 +1,11 @@
 # #
 #   🧱 Firewall Blocklist - blocklists/geolite/asn/I/inmotion_hosting.ipset
 #
-#   @url            https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/I/inmotion_hosting.ipset
-#   @service        None
-#   @id             asn
-#   @uuid           f99d3d34-7b7f-3743-be03-4400566a522a
-#   @updated        Wed May 13 05:12:15 UTC 2026
+#   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/asn/I/inmotion_hosting.ipset
+#   @source         None
+#   @id             geolite_asn_I_inmotion_hosting_ipset
+#   @uuid           536ccdab-2a4d-395e-9cec-686cab340890
+#   @updated        Mon May 25 22:48:01 UTC 2026
 #   @entries        39,681 ips
 #                   33 subnets
 #                   33 lines
