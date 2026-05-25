@@ -2,7 +2,7 @@
 
 # #
 #   @script             Blocklist › SPF Blocklist
-#   @repo               https://github.com/ConfigServer-Software/service-blocklists
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
 #   @summary            Generate blocklist by fetching _spf ips from domain.

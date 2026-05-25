@@ -2,7 +2,7 @@
 
 # #
 #   @script             Blocklist › Local Block File Formatter
-#   @repo               https://github.com/ConfigServer-Software/service-blocklists
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
 #   @summary            Generate blocklist by reading locally specified file in /blocks folder.

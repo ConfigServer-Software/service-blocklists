@@ -2,7 +2,7 @@
 
 # #
 #   @script             Blocklist › JSON List Formatter
-#   @repo               https://github.com/ConfigServer-Software/service-blocklists
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
 #   @summary            Generate ipset from webserver which formats IP list in 
@@ -10,9 +10,9 @@
 #                           Requires url and jq query | URLs: SINGLE
 #                           Structures one-ip-per-line.
 #   @path               .github/scripts/bl-format.sh
-#   @args               bl-format.sh <argFileSaveto> <argUrl> <argPattern>
+#   @args               bl-format.sh <argFileSaveto> <argUrl> <argFilterJq>
 #   @commands           1.  ./.github/scripts/bl-json.sh blocklists/privacy/amazon_aws.ipset "https://ip-ranges.amazonaws.com/ip-ranges.json" '.prefixes[] | select(.service=="AMAZON") | .ip_prefix'
-#                       2.  CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-json.sh blocklists/privacy/amazon_aws.ipset "https://ip-ranges.amazonaws.com/ip-ranges.json" '.prefixes[] | select(.service=="AMAZON") | .ip_prefix'
+#                       2.  CFG_STDOUT=true CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true ./.github/scripts/bl-json.sh blocklists/privacy/amazon_aws.ipset "https://ip-ranges.amazonaws.com/ip-ranges.json" '.prefixes[] | select(.service=="AMAZON") | .ip_prefix'
 #   @structure          📁 .github
 #                           📁 scripts
 #                               📄 bl-json.sh
@@ -58,12 +58,12 @@ app_dir_github="${app_dir_this_dir}/.github"                                    
 #   
 #   @param  argFileSaveto       str         File to save IP addresses into
 #           argUrl              str         Direct url to json file to download
-#           argPattern          str         JQ rules which pull the needed ip addresses
+#           argFilterJq         str         JQ rules which pull the needed ip addresses
 # #
 
 argFileSaveto=$1
 argUrl=$2
-argPattern=${3:-'map(.[]) | .[]'}
+argFilterJq=${3:-'map(.[]) | .[]'}
 
 # #
 #   Define › App
@@ -146,6 +146,7 @@ argTrustedInput="false"                                                         
 argSkipBogonFilter="false"                                                      # skip bogon filter loop
 argSkipCidrDedup="false"                                                        # skip overlapping CIDR dedupe loop
 argIncludeComments="false"                                                      # preserve inline comments in output
+argStdout="false"                                                               # output response to console instead of write to file
 argSortParallel="${CFG_SORT_PARALLEL:-}"                                        # optional sort --parallel value
 argSortBufferSize="${CFG_SORT_BUFFER_SIZE:-}"                                   # optional sort -S value
 did_load_fallback="false"                                                       # track whether fallback lists were merged
@@ -166,6 +167,8 @@ sort_cmd_opts=()                                                                
 #                                                                                   sort --parallel                 change the number of sorts run concurrently to N
 #       CFG_SORT_BUFFER_SIZE=<size>                                             Pass -S <size> to sort command (example: 50%, 1G).
 #                                                                                   sort -S, --buffer-size=SIZE     use SIZE for main memory buffer
+#       CFG_STDOUT=<true|false>                                                 Output list; do not write to file
+#   
 #   Usage:
 #       curl -sSL -A "${{ env.USERAGENT }}" ${{ vars.BL_APPLE_INC_PROXY_URL }} \
 #           | awk -F',' 'NR>1{print $1}' \
@@ -193,6 +196,12 @@ esac
 case "${CFG_INCLUDE_COMMENTS:-false}" in
     1|true|TRUE|yes|YES|on|ON)
         argIncludeComments="true"
+        ;;
+esac
+
+case "${CFG_STDOUT:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argStdout="true"
         ;;
 esac
 
@@ -226,7 +235,8 @@ SECONDS=0                                                                       
 regex_url='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]\.[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]$'
 regex_ipv4='^([0-9]{1,3}\.){3}[0-9]{1,3}$'
 regex_ipv4_cidr='^([0-9]{1,3}\.){3}[0-9]{1,3}/([0-9]{1,2})$'
-regex_ipv6='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*$'
+#regex_ipv6='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*$'
+regex_ipv6='^(([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}|(([0-9A-Fa-f]{1,4}:){1,7}:)|(([0-9A-Fa-f]{1,4}:){1,6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,5}(:[0-9A-Fa-f]{1,4}){1,2})|(([0-9A-Fa-f]{1,4}:){1,4}(:[0-9A-Fa-f]{1,4}){1,3})|(([0-9A-Fa-f]{1,3}:){1,3}(:[0-9A-Fa-f]{1,4}){1,4})|(([0-9A-Fa-f]{1,4}:){1,2}(:[0-9A-Fa-f]{1,4}){1,5})|([0-9A-Fa-f]{1,4}:)((:[0-9A-Fa-f]{1,4}){1,6})|(:)((:[0-9A-Fa-f]{1,4}){1,7}|:))$'
 regex_ipv6_cidr='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*/([0-9]{1,3})$'
 regex_ipv4_range='([0-9]{1,3}\.){3}[0-9]{1,3}[[:space:]]*-[[:space:]]*([0-9]{1,3}\.){3}[0-9]{1,3}'
 
@@ -361,7 +371,7 @@ case "${argUrl}" in
         ;;
 esac
 
-if [ -z "${argPattern}" ]; then
+if [ -z "${argFilterJq}" ]; then
     error "    ⭕  No specified jq filter argument specified for ${yellowd}${argFileSaveto}${greym}; aborting${end}"
     exit 0
 fi
@@ -847,6 +857,28 @@ extract_ip_entry( )
     # #
 
     unset   _fnEntry
+}
+
+# #
+#   Normalize whitespace-delimited input to one IP/CIDR per line
+#       Used in non-comment mode after comment stripping.
+# #
+
+normalize_ip_lines( )
+{
+    _fnNormFile=$1
+    _fnNormTmp=$(mktemp) || return 1
+
+    tr -s '[:space:]' '\n' < "${_fnNormFile}" > "${_fnNormTmp}"
+    sed -i '/^$/d' "${_fnNormTmp}"
+
+    mv "${_fnNormTmp}" "${_fnNormFile}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnNormFile _fnNormTmp
 }
 
 # #
@@ -1992,10 +2024,10 @@ fi
 # #
 #   Blocklist › Main › Load
 #   
-#   @usage          list_main_load "${argUrl}" "${file_ipset_target}" "${argPattern}" "${i}"
+#   @usage          list_main_load "${argUrl}" "${file_ipset_target}" "${argFilterJq}" "${i}"
 #   @args           _fnArgUrl           url to use for curl
 #                   _fnArgFile          output filename to add ips to
-#                   _fnArgPattern       pattern to use for jq after curl called to extract Ips
+#                   _fnArgFilterJq      pattern to use for jq after curl called to extract Ips
 #                   _fnListNum          blocklist number (#1 out of #2) - visual only
 # #
 
@@ -2003,7 +2035,7 @@ list_main_load()
 {
     _fnArgUrl=$1
     _fnArgFile=$2
-    _fnArgPattern=$3
+    _fnArgFilterJq=$3
     _fnListNum=${4:-1}
 
     # #
@@ -2032,13 +2064,13 @@ list_main_load()
     fi
 
     info "    🌎 Downloading IP blacklist to ${bluel}${PWD}/${_fnFileTemp}${greym}"
-    info "    🔍 Filtering json IPSET with pattern ${yellowl}${argPattern}${greym}"
+    info "    🔍 Filtering json IPSET with pattern ${yellowl}${argFilterJq}${greym}"
 
     # #
     #   Download file
     # #
 
-    curl -sSL -k -A "${app_agent}" "${_fnArgUrl}" | jq -r "${_fnArgPattern}" > "${_fnFileTemp}"
+    curl -sSL -k -A "${app_agent}" "${_fnArgUrl}" | jq -r "${_fnArgFilterJq}" > "${_fnFileTemp}"
 
     # #
     #   Running sed
@@ -2083,13 +2115,22 @@ list_main_load()
     sed -i '/^$/d' "${_fnFileTemp}"
 
     # #
+    #   Normalize whitespace-delimited values into one IP/CIDR per line.
+    # #
+
+    if [ "${argIncludeComments}" != "true" ]; then
+        info "    ✴️  Normalize input to one IP/CIDR per line in ${bluel}${_fnFileTemp}${greym}"
+        normalize_ip_lines "${_fnFileTemp}"
+    fi
+
+    # #
     #   apply optional grep exclude filter
     # #
 
     info "    ✴️  Apply grep exclude filters on ${bluel}${_fnFileTemp}${greym}"
 
-    if [ -n "${argGrepFilter}" ]; then
-        if grep -viE "${argGrepFilter}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
+    if [ -n "${argFilterGrep}" ]; then
+        if grep -viE "${argFilterGrep}" "${_fnFileTemp}" > "${_fnFileTemp}.grep" 2>/dev/null; then
             mv "${_fnFileTemp}.grep" "${_fnFileTemp}"
         else
             rm -f "${_fnFileTemp}.grep"
@@ -2188,7 +2229,7 @@ list_main_load()
     #   Unset
     # #
 
-    unset   _fnArgUrl _fnArgFile _fnArgPattern _fnFileTemp _fnListNum \
+    unset   _fnArgUrl _fnArgFile _fnArgFilterJq _fnFileTemp _fnListNum \
             _count_total_ips _count_total_subnets
 }
 
@@ -2208,12 +2249,15 @@ fi
 # #
 
 templ_now="$(date -u '+%a %b %d %T %Z %Y')"                                     # Get current date in utc format
+templ_url="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}"
 templ_path="${file_ipset_target#blocklists/}"                                   # privacy/twitter_x.ipset
 templ_path="${templ_path%.ipset}"                                               # remove extension
 templ_id="${templ_path//\//_}"                                                  # privacy_twitter_x
 templ_id="${templ_id//[^[:alnum:]]/_}"                                          # sanitize
 templ_id="${templ_id}_ipset"                                                    # match your existing format
-templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # UUID associated to each release
+templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # stable release ID
+templ_run_uuid="$(uuidgen)"                                                     # UNIQUE per execution
+templ_tmp_prefix="${app_dir_github}/${folder_target_temp}/${templ_run_uuid}"
 templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 
 # #
@@ -2221,37 +2265,48 @@ templ_curl_opts=(-sSL -A "$app_agent")                                          
 # #
 
 info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
-
 info "    ⭐ Downloading external template sources"
-label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/desc.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/cat.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/exp.txt${greym}"
-label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} to ${bluel}${app_dir_github}/${folder_target_temp}/src.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_desc.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_cat.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_exp.txt${greym}"
+label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_src.txt${greym}"
 
 # #
 #   Template › Get
 # #
 
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
-curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_desc.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_cat.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_exp.txt" &
+
+curl "${templ_curl_opts[@]}" \
+    "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" \
+    > "${templ_tmp_prefix}_src.txt" &
+
 wait
 
 # #
 #   Template › Write Variable from Temp File
 # #
 
-templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
-templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
-templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
-templ_src=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+templ_desc=$(<"${templ_tmp_prefix}_desc.txt")
+templ_cat=$(<"${templ_tmp_prefix}_cat.txt")
+templ_exp=$(<"${templ_tmp_prefix}_exp.txt")
+templ_src=$(<"${templ_tmp_prefix}_src.txt")
 
 # #
 #   Template › Remove Temp File
 # #
 
-if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" "${app_dir_github}/${folder_target_temp}/cat.txt" "${app_dir_github}/${folder_target_temp}/exp.txt" "${app_dir_github}/${folder_target_temp}/src.txt"; then
+if rm -f "${templ_tmp_prefix}_desc.txt" "${templ_tmp_prefix}_cat.txt" "${templ_tmp_prefix}_exp.txt" "${templ_tmp_prefix}_src.txt"; then
     ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
 else
     error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
@@ -2264,8 +2319,8 @@ fi
 
 [ -z "$templ_desc" ] || [[ "$templ_desc" == *"404: Not Found"* ]] && templ_desc="#   No description provided"
 [ -z "$templ_cat"  ] || [[ "$templ_cat"  == *"404: Not Found"* ]] && templ_cat="Uncategorized"
-[ -z "$templ_exp"  ] || [[ "$templ_exp"  == *"404: Not Found"* ]] && templ_exp="6 hours"
-[ -z "$templ_src"  ] || [[ "$templ_src"  == *"404: Not Found"* ]] && templ_src="None"
+[ -z "$templ_exp"  ] || [[ "$templ_exp"  == *"404: Not Found"* ]] && templ_exp="4 hours"
+[ -z "$templ_src"  ] || [[ "$templ_src"  == *"404: Not Found"* ]] && templ_src="https://blocklist.configserver.dev/"
 
 # #
 #   Output › Header
@@ -2340,7 +2395,7 @@ fi
 # #
 
 i=1
-list_main_load "${argUrl}" "${file_ipset_target}" "${argPattern}" "${i}"
+list_main_load "${argUrl}" "${file_ipset_target}" "${argFilterJq}" "${i}"
 
 # #
 #   Sort
@@ -2391,6 +2446,16 @@ if [ -f "${file_ipset_target}" ]; then
 fi
 
 # #
+#   Stdout
+# #
+
+if [ "${argStdout}" = "true" ]; then
+    cat "${file_ipset_target}"
+    rm -f "${file_ipset_target}"
+    exit 0
+fi
+
+# #
 #   Template › Header
 #   
 #   0a      place at top of file
@@ -2401,7 +2466,7 @@ ed -s "${file_ipset_target}" <<END_ED
 # #
 #   🧱 Firewall Blocklist - ${file_ipset_target}
 #
-#   @blocklist      https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}
+#   @blocklist      ${templ_url}
 #   @source         ${templ_src}
 #   @id             ${templ_id}
 #   @uuid           ${templ_uuid}

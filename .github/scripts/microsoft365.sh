@@ -2,7 +2,7 @@
 
 # #
 #   @script             Blocklist › Microsoft365 Blocklist
-#   @repo               https://github.com/ConfigServer-Software/service-blocklists
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
 #   @summary            Generate list of IP addresses strictly for Microsoft365

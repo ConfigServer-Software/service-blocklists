@@ -2,7 +2,7 @@
 
 # #
 #   @script             Blocklist › Whois
-#   @repo               https://github.com/ConfigServer-Software/service-blocklists
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
 #   @summary            Utilizes the WHOIS binary, along with multiple different servers,

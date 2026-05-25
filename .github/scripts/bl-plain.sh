@@ -2,7 +2,7 @@
 
 # #
 #   @script             Blocklist › Plain Text Web Source
-#   @repo               https://github.com/ConfigServer-Software/service-blocklists
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
 #   @summary            Generate ipset from online plain-text url / page.

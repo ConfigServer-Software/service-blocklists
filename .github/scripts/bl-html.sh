@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # #
-#   @for                https://github.com/ConfigServer-Software/service-blocklists
+#   @script             Blocklist › HTML Ip
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
 #   @summary            generate ipset by fetching HTML in web url, does not run its own grep, must be specified in command | URLs: VARARG
@@ -12,7 +13,7 @@
 #                       There are two versions of this script:
 #                           bl-htmlip.sh        Uses a single URL and grep rule which are defined in the command to pull ANY text.
 #                                               Only supports a single URL
-#                           bl_htm              Supports multiple URLs, but doesn't allow you to specify a custom grep rule.
+#                           bl-html.sh          Supports multiple URLs, but doesn't allow you to specify a custom grep rule.
 #                                               It only grabs ipv4 and ipv6 addresses.
 #
 #   @terminal           .github/scripts/bl-html.sh \

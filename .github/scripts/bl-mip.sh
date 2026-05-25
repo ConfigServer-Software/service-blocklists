@@ -2,7 +2,7 @@
 
 # #
 #   @script             Blocklist › MIP IP Fetcher
-#   @repo               https://github.com/ConfigServer-Software/service-blocklists
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
 #   @summary            Fetche list of IPs from MIP website service online.

@@ -2,7 +2,7 @@
 
 # #
 #   @script             Blocklist › BOGON IP List
-#   @repo               https://github.com/ConfigServer-Software/service-blocklists
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               Bash script
 #   @summary            Generates a list of BOGON IP addresses.

@@ -2,13 +2,16 @@
 
 # #
 #   @script             Blocklist › HTML Ip
-#   @repo               https://github.com/ConfigServer-Software/service-blocklists
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
 #   @summary            Generate ipset by fetching HTML in web url, pulls only ips with grep rule.
 #                       You should follow up with a grep filter/ rule to decide on what text to grab.
 #   @path               .github/scripts/bl-htmlip.sh
-#   @args               bl-block.sh <argFileSaveto> <argUrl> <argGrep>
+#   @params             .github/scripts/bl-htmlip.sh
+#                           <argFileSaveTo>     str     req     Local file to save IP addresses.
+#                           <argUrl>            str     req     Blocklist source URL.
+#                           <argFilterGrep>     str     req     Grep patternt o filer text.                 default: '^#|^;|^$'
 #   @commands           1.  ./.github/scripts/bl-htmlip.sh blocklists/highrisk.ipset https://www.maxmind.com/en/high-risk-ip-sample-list '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'
 #                       2.  CFG_STDOUT=true CFG_SKIP_CIDR_DEDUPE=true CFG_SKIP_BOGON_FILTER=true ./.github/scripts/bl-htmlip.sh blocklists/highrisk.ipset https://www.maxmind.com/en/high-risk-ip-sample-list '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'
 #   @structure          📁 .github
@@ -60,7 +63,7 @@ app_dir_github="${app_dir_this_dir}/.github"                                    
 
 argFileSaveto=$1
 argUrl=$2
-argPattern=${3:-'^#|^;|^$'}
+argFilterGrep=${3:-'^#|^;|^$'}
 
 # #
 #   Define › App
@@ -2017,7 +2020,7 @@ list_main_load()
 {
     _fnArgUrl=$1
     _fnArgFile=$2
-    _fnArgPattern=$3
+    _fnArgFilterGrep=$3
     _fnListNum=${4:-1}
 
     # #
@@ -2046,7 +2049,7 @@ list_main_load()
     fi
 
     info "    🌎 Downloading IP blacklist to ${bluel}${PWD}/${_fnFileTemp}${greym}"
-    info "    🔍 Filtering HTML text with exclude pattern ${yellowl}${_fnArgPattern}${greym}"
+    info "    🔍 Filtering HTML text with exclude pattern ${yellowl}${_fnArgFilterGrep}${greym}"
 
     # #
     #   Download file
@@ -2054,7 +2057,7 @@ list_main_load()
 
     curl -sSL -k -A "${app_agent}" "${_fnArgUrl}" \
         | html2text \
-        | grep -viE "${_fnArgPattern}" \
+        | grep -viE "${_fnArgFilterGrep}" \
         | grep -Eo "${regex_ip_extract}" \
         > "${_fnFileTemp}"
 
@@ -2215,7 +2218,7 @@ list_main_load()
     #   Unset
     # #
 
-    unset   _fnArgUrl _fnArgFile _fnArgPattern _fnFileTemp _fnListNum \
+    unset   _fnArgUrl _fnArgFile _fnArgFilterGrep _fnFileTemp _fnListNum \
             _count_total_ips _count_total_subnets
 }
 
@@ -2381,7 +2384,7 @@ fi
 # #
 
 i=1
-list_main_load "${argUrl}" "${file_ipset_target}" "${argPattern}" "${i}"
+list_main_load "${argUrl}" "${file_ipset_target}" "${argFilterGrep}" "${i}"
 
 # #
 #   Fallback List › Load

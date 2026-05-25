@@ -2,7 +2,7 @@
 
 # #
 #   @script             Blocklist › Range Converter (iprange)
-#   @repo               https://github.com/ConfigServer-Software/service-blocklists
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
 #   @summary            Convert IPv4 start-end ranges to CIDR blocks using `iprange`.

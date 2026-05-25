@@ -2,7 +2,7 @@
 
 # #
 #   @script             Blocklist › Stdin List Formatter
-#   @repo               https://github.com/ConfigServer-Software/service-blocklists
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
 #   @summary            Formats a list of IP addresses fed in via STDIN.
