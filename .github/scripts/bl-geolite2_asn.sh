@@ -1,24 +1,43 @@
 #!/bin/bash
 
 # #
-#   @for                https://github.com/Aetherinox/csf-firewall
+#   @script             Blocklist › Geolite › ASN
+#   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
 #   @summary            Blocklists › GeoLite2 ASN IPsets
 #                       Generates a set of IPSET files by reading the GeoLite2 csv file and splitting the IPs up into their associated ASN.
-#                           blocklists/geolite/asn2/3000/asn_3598_microsoft_corp_as.ipset
-#                           blocklists/geolite/asn2/5000/asn_5761_microsoft_corp_msn_as_saturn.ipset
+#                           blocklists/geolite/asn/3000/asn_3598_microsoft_corp_as.ipset
+#                           blocklists/geolite/asn/5000/asn_5761_microsoft_corp_msn_as_saturn.ipset
 #                           [...]
-#   
-#   @command            ./.github/scripts/bl-geolite2_asn.sh --license <LICENSE_KEY>                Download MaxMind DB from website and process
-#                       ./.github/scripts/bl-geolite2_asn.sh --local --asn 7,10                     Only processes IPs with ASN 7 and 10
-#                       ./.github/scripts/bl-geolite2_asn.sh --local --limit 1000                   Limits to first 1000 entries
-#                       ./.github/scripts/bl-geolite2_asn.sh --local                                Use local copy of MM database in .github/local folder
-#                       ./.github/scripts/bl-geolite2_asn.sh --local --dev                          Use local copy of MM database but doesn't run final steps
-#                       ./.github/scripts/bl-geolite2_asn.sh --dry
-#   
-#                       ./.github/scripts/bl-geolite2_asn.sh --license <LICENSE_KEY> --folder C --file contabo_gmbh     download database from MaxMind; custom file/folder
-#                       ./.github/scripts/bl-geolite2_asn.sh --local --folder C --file contabo_gmbh --asn AS51167       Local source database; custom file/folder
+#   @path               .github/scripts/bl-geolite2_asn.sh
+#   @params             .github/scripts/bl-geolite2_asn.sh
+#                           <argFileSaveTo>     str     req     Local file to save IP addresses.
+#                           <argUrl>            vararg  req     Blocklist source URL
+#   @commands           1.  ./.github/scripts/bl-geolite2_asn.sh --help                                                                         View help menu
+#                       2.  ./.github/scripts/bl-geolite2_asn.sh --license <LICENSE_KEY>                                                        Download MaxMind DB from website and process
+#                       3.  ./.github/scripts/bl-geolite2_asn.sh --local --asn 7,10                                                             Only processes IPs with ASN 7 and 10
+#                       4.  ./.github/scripts/bl-geolite2_asn.sh --local --limit 1000                                                           Limits to first 1000 entries
+#                       5.  ./.github/scripts/bl-geolite2_asn.sh --local                                                                        Use local copy of MM database in .github/local folder
+#                       6.  ./.github/scripts/bl-geolite2_asn.sh --local --dev                                                                  Use local copy of MM database but doesn't run final steps
+#                       7.  ./.github/scripts/bl-geolite2_asn.sh --dry                                                                          Dryrun
+#                       8.  ./.github/scripts/bl-geolite2_asn.sh --local --aggressive --folder A --file akamai_core --asn AS20940 AS32787       Aggressive mode; generates two blocklists; one in blocklists/geolite/A/akami_core.ipset, one blocklists/geolite/asn/@general/aggressive.ipset
+#                       9.  ./.github/scripts/bl-geolite2_asn.sh --license <LICENSE_KEY> --folder C --file contabo_gmbh                         Download database from MaxMind; custom file/folder
+#                       10. ./.github/scripts/bl-geolite2_asn.sh --local --folder C --file contabo_gmbh --asn AS51167                           Local source database; custom file/folder
+#   @structure          📁 .github
+#                           📁 scripts
+#                               📄 bl-geolite2_asn.sh
+#                           📁 templates
+#                               📁 categories
+#                                   📄 *
+#                               📁 descriptions
+#                                   📄 *
+#                               📁 expires
+#                                   📄 *
+#                               📁 sources
+#                                   📄 *
+#                           📁 workflows
+#                               📄 blocklist-generate.yml
 # #
 
 # #
@@ -244,6 +263,68 @@ argClean="false"                                                                
 argAggressive="false"
 
 # #
+#   Optional Parameters
+#   
+#   The following list outlines the optional parameters that can be passed
+#   when generating a blocklist using this script.
+#   
+#       CFG_TRUSTED_INPUT=<true|false>                                          Skip per-line IP/CIDR validation loop. Only enable if we trust the source.
+#       CFG_SKIP_BOGON_FILTER=<true|false>                                      Skip bogon filtering loop.
+#       CFG_SKIP_CIDR_DEDUPE=<true|false>                                       Skip overlapping CIDR dedupe loop.
+#       CFG_INCLUDE_COMMENTS=<true|false>                                       Preserve inline # and ; comments after each IP/CIDR entry.
+#                                                                                   true                            Automatically enables CFG_SKIP_CIDR_DEDUPE
+#       CFG_SORT_PARALLEL=<N>                                                   Pass --parallel=<N> to sort command (if supported).
+#                                                                                   sort --parallel                 change the number of sorts run concurrently to N
+#       CFG_SORT_BUFFER_SIZE=<size>                                             Pass -S <size> to sort command (example: 50%, 1G).
+#                                                                                   sort -S, --buffer-size=SIZE     use SIZE for main memory buffer
+#       CFG_STDOUT=<true|false>                                                 Output list; do not write to file
+#   
+#   Usage:
+#       curl -sSL -A "${{ env.USERAGENT }}" ${{ vars.BL_APPLE_INC_PROXY_URL }} \
+#           | awk -F',' 'NR>1{print $1}' \
+#           | CFG_TRUSTED_INPUT=true CFG_SKIP_BOGON_FILTER=true .github/scripts/bl-format.sh blocklists/privacy/privacy_apple_icloud.ipset
+# #
+
+case "${CFG_TRUSTED_INPUT:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argTrustedInput="true"
+        ;;
+esac
+
+case "${CFG_SKIP_BOGON_FILTER:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argSkipBogonFilter="true"
+        ;;
+esac
+
+case "${CFG_SKIP_CIDR_DEDUPE:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argSkipCidrDedup="true"
+        ;;
+esac
+
+case "${CFG_INCLUDE_COMMENTS:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argIncludeComments="true"
+        ;;
+esac
+
+case "${CFG_STDOUT:-false}" in
+    1|true|TRUE|yes|YES|on|ON)
+        argStdout="true"
+        ;;
+esac
+
+# #
+#   If preserving comments from the source; turn off dedupe. Otherwise some
+#   comments will be missing since we're merging CIDRs together.
+# #
+
+if [ "${argIncludeComments}" = "true" ]; then
+    argSkipCidrDedup="true"
+fi
+
+# #
 #   Define › Time
 # #
 
@@ -251,14 +332,43 @@ time_start=$( date +%s )                                                        
 SECONDS=0                                                                       # set seconds count for beginning of script
 
 # #
-#   Define › Regex
+#   Define › Regex (Anchored)
+#   
+#   These patterns are STRICT matchers, which use ^ and $ anchors; meaning the 
+#   ENTIRE string must match exactly.
+#   
+#   Example:
+#       "1.2.3.4"       MATCH
+#       "foo 1.2.3.4"   NO MATCH
 # #
 
 regex_url='^(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]\.[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]$'
 regex_ipv4='^([0-9]{1,3}\.){3}[0-9]{1,3}$'
 regex_ipv4_cidr='^([0-9]{1,3}\.){3}[0-9]{1,3}/([0-9]{1,2})$'
-regex_ipv6='^[0-9A-Fa-f:.]+$'
-regex_ipv6_cidr='^[0-9A-Fa-f:.]+/[0-9]{1,3}$'
+#regex_ipv6='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*$'
+regex_ipv6='^(([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}|(([0-9A-Fa-f]{1,4}:){1,7}:)|(([0-9A-Fa-f]{1,4}:){1,6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,5}(:[0-9A-Fa-f]{1,4}){1,2})|(([0-9A-Fa-f]{1,4}:){1,4}(:[0-9A-Fa-f]{1,4}){1,3})|(([0-9A-Fa-f]{1,3}:){1,3}(:[0-9A-Fa-f]{1,4}){1,4})|(([0-9A-Fa-f]{1,4}:){1,2}(:[0-9A-Fa-f]{1,4}){1,5})|([0-9A-Fa-f]{1,4}:)((:[0-9A-Fa-f]{1,4}){1,6})|(:)((:[0-9A-Fa-f]{1,4}){1,7}|:))$'
+regex_ipv6_cidr='^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*/([0-9]{1,3})$'
+regex_ipv4_range='([0-9]{1,3}\.){3}[0-9]{1,3}[[:space:]]*-[[:space:]]*([0-9]{1,3}\.){3}[0-9]{1,3}'
+
+# #
+#   Define › Regex (Unanchored)
+#   
+#   These patterns are derived from the anchored validators above; which remove 
+#   ^ and $ so that the regex can match values inside text.
+#   
+#   Mainly these are used for stripping html and matching IP addresses which are
+#   extracted.
+# #
+
+regex_ipv4_extract="${regex_ipv4#^}"
+regex_ipv4_extract="${regex_ipv4_extract%\$}"
+regex_ipv4_cidr_extract="${regex_ipv4_cidr#^}"
+regex_ipv4_cidr_extract="${regex_ipv4_cidr_extract%\$}"
+regex_ipv6_extract="${regex_ipv6#^}"
+regex_ipv6_extract="${regex_ipv6_extract%\$}"
+regex_ipv6_cidr_extract="${regex_ipv6_cidr#^}"
+regex_ipv6_cidr_extract="${regex_ipv6_cidr_extract%\$}"
+regex_ip_extract="${regex_ipv4_extract}|${regex_ipv4_cidr_extract}|${regex_ipv6_extract}|${regex_ipv6_cidr_extract}"
 
 # #
 #   Define › Defaults
@@ -3597,12 +3707,12 @@ ipsets_Finalize()
                 # #
 
                 templ_now="$(date -u '+%a %b %d %T %Z %Y')"                                     # Get current date in utc format
+                templ_url="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${folder_target_storage}/${relative_subfolder}/${basename_tmp}.${ext_target_ipset}"
                 templ_path="${folder_target_storage}/${relative_subfolder}/${basename_tmp}.${ext_target_ipset}" # blocklists/geolite/asn/3000/asn_13335_cloudflare_inc.ipset
                 templ_path="${templ_path#blocklists/}"                                          # geolite/asn/3000/asn_13335_cloudflare_inc.ipset
                 templ_path="${templ_path%.ipset}"                                               # remove extension
-                templ_url="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${folder_target_storage}/${relative_subfolder}/${basename_tmp}.${ext_target_ipset}"
                 templ_id="${templ_path//\//_}"                                                  # geolite_asn_3000_asn_13335_cloudflare_inc
-                templ_id="${templ_id//[^[:alnum:]]/_}"                                          # sanitize; special characters to underscore.
+                templ_id="${templ_id//[^[:alnum:]@]/_}"                                         # sanitize; special characters to underscore.
                 templ_id="${templ_id}_ipset"                                                    # match your existing format
                 templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # stable release ID
                 templ_run_uuid="$(uuidgen)"                                                     # UNIQUE per execution
