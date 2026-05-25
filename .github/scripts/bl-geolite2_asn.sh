@@ -1062,7 +1062,6 @@ prinp()
                 ;;
         esac
 
-
         _out=""
         for word in $line; do
 
@@ -1180,46 +1179,235 @@ run()
 readonly CONFIGS_LIST="${APP_GEO_LOCS_CSV} ${file_source_csv_ipv4} ${file_source_csv_ipv6}"
 
 # #
-#   Sort Results
+#   Configure sort options
 #   
-#   @usage          line=$(parse_spf_record "${ip}" | sort_results)
+#   Builds the options array for the `sort` command based on user settings:
+#       If `argSortParallel` is valid number and the system supports it, enable parallel sorting with that value.
+#       If `argSortBufferSize` is set, apply it as the sort buffer size (-S).
+#       Log what gets enabled or warns if values are invalid or unsupported.
 # #
 
-sort_results()
+configure_sort_options( )
 {
+    sort_cmd_opts=()
 
-    # Temp files for IPv4 and IPv6
-    _ipv4_tmp=$(mktemp) || exit 1
-    _ipv6_tmp=$(mktemp) || exit 1
-
-    # Read stdin line by line
-    while IFS= read -r line; do
-        case "$line" in
-            *:*)
-                printf '%s\n' "$line" >> "$_ipv6_tmp" ;;
-            *)
-                printf '%s\n' "$line" >> "$_ipv4_tmp" ;;
-        esac
-    done
-
-    # Sort IPv4 numerically, remove duplicates
-    if [ -s "$_ipv4_tmp" ]; then
-        sort -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "$_ipv4_tmp" | uniq
+    if [ -n "${argSortParallel}" ]; then
+        if [[ "${argSortParallel}" =~ ^[1-9][0-9]*$ ]]; then
+            if sort --help 2>/dev/null | grep -q -- '--parallel'; then
+                sort_cmd_opts+=( "--parallel=${argSortParallel}" )
+                info "    ⚙️  Sort parallelism enabled (${yellowl}${argSortParallel}${greym})"
+            else
+                warn "    ⚠️  sort --parallel unsupported; running with default sort options"
+            fi
+        else
+            warn "    ⚠️  Invalid CFG_SORT_PARALLEL value ${yellowl}${argSortParallel}${greym}; ignoring"
+        fi
     fi
 
-    # Sort IPv6 lexicographically, remove duplicates
-    if [ -s "$_ipv6_tmp" ]; then
-        sort "$_ipv6_tmp" | uniq
+    if [ -n "${argSortBufferSize}" ]; then
+        sort_cmd_opts+=( "-S" "${argSortBufferSize}" )
+        info "    ⚙️  Sort buffer size set to ${yellowl}${argSortBufferSize}${greym}"
+    fi
+}
+
+# #
+#   Extract canonical IP/CIDR entry from a line
+#       Strip inline # / ; comments
+#       Normalize whitespace
+#       If IPv4 range supplied (A - B), return A
+# #
+
+extract_ip_entry( )
+{
+    _fnEntry="$1"
+
+    _fnEntry="${_fnEntry%%#*}"
+    _fnEntry="${_fnEntry%%;*}"
+
+    # #
+    #   Trim leading and trailing whitespace
+    # #
+
+    _fnEntry="${_fnEntry#"${_fnEntry%%[![:space:]]*}"}"
+    _fnEntry="${_fnEntry%"${_fnEntry##*[![:space:]]}"}"
+
+    # #
+    #   If IPv4 range is supplied (A - B), keep A
+    # #
+
+    if [[ "${_fnEntry}" =~ ^(([0-9]{1,3}\.){3}[0-9]{1,3})[[:space:]]*-[[:space:]]*([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+        _fnEntry="${BASH_REMATCH[1]}"
     fi
 
-    # Clean up temp files
-    rm -f "$_ipv4_tmp" "$_ipv6_tmp"
+    printf '%s\n' "${_fnEntry}"
 
     # #
     #   Unset
     # #
 
-    unset   _ipv4_tmp _ipv6_tmp
+    unset   _fnEntry
+}
+
+# #
+#   Normalize whitespace-delimited input to one IP/CIDR per line
+#       Used in non-comment mode after comment stripping.
+# #
+
+normalize_ip_lines( )
+{
+    _fnNormFile=$1
+    _fnNormTmp=$(mktemp) || return 1
+
+    tr -s '[:space:]' '\n' < "${_fnNormFile}" > "${_fnNormTmp}"
+    sed -i '/^$/d' "${_fnNormTmp}"
+
+    mv "${_fnNormTmp}" "${_fnNormFile}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _fnNormFile _fnNormTmp
+}
+
+# #
+#   Sort Results
+#   
+#   @usage          sort_results < "${file_ipset_target}" > "${file_ipset_target}.sort"
+#                   grep -vE '^[[:space:]]*(#|;|$)' "${file_ipset_target}" | sort_results > "${file_ipset_target}.sort"
+# #
+
+sort_results()
+{
+    # Temp files for input and split output
+    _in_tmp=$(mktemp) || exit 1
+    _ipv4_tmp=$(mktemp) || exit 1
+    _ipv6_tmp=$(mktemp) || exit 1
+
+    cat > "${_in_tmp}"
+
+    if [ ! -s "${_in_tmp}" ]; then
+        rm -f "${_in_tmp}" "${_ipv4_tmp}" "${_ipv6_tmp}"
+        unset   _in_tmp _ipv4_tmp _ipv6_tmp
+        return 0
+    fi
+
+    if [ "${argIncludeComments}" = "true" ]; then
+
+        # #
+        #   Read stdin line by line
+        # #
+
+        while IFS= read -r line; do
+            _fnSortKey=$(extract_ip_entry "${line}")
+            [ -z "${_fnSortKey}" ] && continue
+            _fnSortPriority=1
+
+            case "${line}" in
+                *"#"*|*";"*)
+                    _fnSortPriority=0
+                    ;;
+            esac
+
+            case "${_fnSortKey}" in
+                *:*)
+                    printf '%s\t%s\t%s\n' "${_fnSortKey}" "${_fnSortPriority}" "${line}" >> "${_ipv6_tmp}"
+                    ;;
+                *)
+                    _fnSortIpv4="${_fnSortKey%%/*}"
+                    if [[ "${_fnSortIpv4}" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+                        IFS='.' read -r _fnSortO1 _fnSortO2 _fnSortO3 _fnSortO4 <<< "${_fnSortIpv4}"
+                        printf '%03d\t%03d\t%03d\t%03d\t%s\t%s\t%s\n' \
+                            "${_fnSortO1}" "${_fnSortO2}" "${_fnSortO3}" "${_fnSortO4}" "${_fnSortKey}" "${_fnSortPriority}" "${line}" >> "${_ipv4_tmp}"
+                    fi
+                    ;;
+            esac
+        done < "${_in_tmp}"
+
+        # #
+        #   Sort IPv4 numerically, remove duplicates by canonical key
+        # #
+
+        if [ -s "${_ipv4_tmp}" ]; then
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -s -t$'\t' -n -k1,1 -k2,2 -k3,3 -k4,4 -k5,5 -k6,6n "${_ipv4_tmp}" \
+                | awk -F '\t' '!seen[$5]++ { print $7 }'
+        fi
+
+        # #
+        #   Sort IPv6 lexicographically, remove duplicates by canonical key
+        # #
+
+        if [ -s "${_ipv6_tmp}" ]; then
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -s -t$'\t' -k1,1 -k2,2n "${_ipv6_tmp}" \
+                | awk -F '\t' '!seen[$1]++ { print $3 }'
+        fi
+
+        # #
+        #   Clean up temp files
+        # #
+    
+        rm -f "${_in_tmp}" "${_ipv4_tmp}" "${_ipv6_tmp}"
+
+        # #
+        #   Unset
+        # #
+
+        unset   _in_tmp _ipv4_tmp _ipv6_tmp _fnSortKey _fnSortPriority _fnSortIpv4 _fnSortO1 _fnSortO2 _fnSortO3 _fnSortO4
+        return 0
+    fi
+
+    # #
+    #   Fast path › pure IPv4
+    # #
+
+    if ! grep -q ':' "${_in_tmp}"; then
+        LC_ALL=C sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_in_tmp}" | uniq
+
+    # #
+    #   Fast path › pure IPv6
+    # #
+
+    elif ! grep -q '\.' "${_in_tmp}"; then
+        LC_ALL=C sort "${sort_cmd_opts[@]}" "${_in_tmp}" | uniq
+
+    # #
+    #   Mixed IPv4/IPv6
+    # #
+
+    else
+        awk '
+        index($0, ":") { print > v6; next }
+                        { print > v4 }
+        ' v4="${_ipv4_tmp}" v6="${_ipv6_tmp}" "${_in_tmp}"
+
+        # #
+        #   Sort IPv4 numerically, remove duplicates
+        # #
+
+        if [ -s "${_ipv4_tmp}" ]; then
+            LC_ALL=C sort "${sort_cmd_opts[@]}" -t. -n -k1,1 -k2,2 -k3,3 -k4,4 "${_ipv4_tmp}" | uniq
+        fi
+
+        # #
+        #   Sort IPv6 lexicographically, remove duplicates
+        # #
+    
+        if [ -s "${_ipv6_tmp}" ]; then
+            LC_ALL=C sort "${sort_cmd_opts[@]}" "${_ipv6_tmp}" | uniq
+        fi
+    fi
+
+    # #
+    #   Clean up temp files
+    # #
+
+    rm -f "${_in_tmp}" "${_ipv4_tmp}" "${_ipv6_tmp}"
+
+    # #
+    #   Unset
+    # #
+
+    unset   _in_tmp _ipv4_tmp _ipv6_tmp
 }
 
 # #
@@ -1242,68 +1430,114 @@ fi
 
 # #
 #   Count file statistics
-#       - IPv4 CIDR contributes all IPv4 addresses in the subnet
-#       - IPv6 CIDR contributes one entry (do not expand)
-#       - Single IPv4/IPv6 contributes one entry
+#       IPv4 CIDR contributes all IPv4 addresses in the subnet
+#       IPv6 CIDR contributes one entry (do not expand)
+#       Single IPv4/IPv6 contributes one entry
 # #
 
 count_ip_stats( )
 {
     _fnCountFile=$1
-    _fnSubnetIps=0
+    _fnStatsLine=""
     _fnTotalIps=0
     _fnTotalSubnets=0
 
-    while IFS= read -r _fnLine; do
+    if [ ! -s "${_fnCountFile}" ]; then
+        total_ips=0
+        total_subnets=0
+        unset   _fnCountFile _fnStatsLine _fnTotalIps _fnTotalSubnets
+        return 0
+    fi
 
-        # #
-        #   IPv4 CIDR
-        # #
+    _fnStatsLine=$(awk -v include_comments="${argIncludeComments}" '
+        function trim(s) {
+            sub(/^[[:space:]]+/, "", s)
+            sub(/[[:space:]]+$/, "", s)
+            return s
+        }
+        function is_ipv4(ip, octets, i) {
+            if (index(ip, ":") > 0) {
+                return 0
+            }
+            if (split(ip, octets, ".") != 4) {
+                return 0
+            }
+            for (i = 1; i <= 4; i++) {
+                if (octets[i] !~ /^[0-9]+$/) {
+                    return 0
+                }
+                if (length(octets[i]) < 1 || length(octets[i]) > 3) {
+                    return 0
+                }
+            }
+            return 1
+        }
+        function is_ipv6(ip) {
+            return (index(ip, ":") > 0 && ip ~ /^[0-9A-Fa-f:.]+$/)
+        }
+        BEGIN {
+            total_ips = 0
+            total_subnets = 0
+        }
+        {
+            entry = $0
 
-        if [[ $_fnLine =~ $regex_ipv4_cidr ]]; then
-            _fnCidr="${BASH_REMATCH[2]}"
-            if [ "$_fnCidr" -le 32 ]; then
-                _fnSubnetIps=$(( 1 << (32 - _fnCidr) ))
-                _fnTotalIps=$(( _fnTotalIps + _fnSubnetIps ))
-                _fnTotalSubnets=$(( _fnTotalSubnets + 1 ))
-            fi
+            if (include_comments == "true") {
+                sub(/[[:space:]]*[#;].*$/, "", entry)
+            }
 
-        # #
-        #   IPv4 single
-        # #
+            entry = trim(entry)
+            if (entry == "") {
+                next
+            }
 
-        elif [[ $_fnLine =~ $regex_ipv4 ]]; then
-            _fnTotalIps=$(( _fnTotalIps + 1 ))
+            if (index(entry, "/") > 0) {
+                if (split(entry, parts, "/") != 2) {
+                    next
+                }
+                base = parts[1]
+                cidr = parts[2]
 
-        # #
-        #   IPv6 CIDR (count as one entry, do not expand)
-        # #
+                if (cidr !~ /^[0-9]+$/) {
+                    next
+                }
+                cidr += 0
 
-        elif [[ $_fnLine =~ $regex_ipv6_cidr ]]; then
-            _fnCidr="${_fnLine#*/}"
-            if [ "$_fnCidr" -le 128 ]; then
-                _fnTotalIps=$(( _fnTotalIps + 1 ))
-                _fnTotalSubnets=$(( _fnTotalSubnets + 1 ))
-            fi
+                if (is_ipv4(base)) {
+                    if (cidr <= 32) {
+                        total_ips += (2 ^ (32 - cidr))
+                        total_subnets++
+                    }
+                } else if (is_ipv6(base)) {
+                    if (cidr <= 128) {
+                        total_ips++
+                        total_subnets++
+                    }
+                }
 
-        # #
-        #   IPv6 single
-        # #
+                next
+            }
 
-        elif [[ $_fnLine =~ $regex_ipv6 ]] && [[ $_fnLine == *:* ]]; then
-            _fnTotalIps=$(( _fnTotalIps + 1 ))
-        fi
+            if (is_ipv4(entry) || is_ipv6(entry)) {
+                total_ips++
+            }
+        }
+        END {
+            printf "%.0f %.0f\n", total_ips, total_subnets
+        }
+    ' "${_fnCountFile}")
 
-    done < "${_fnCountFile}"
+    _fnTotalIps=${_fnStatsLine%% *}
+    _fnTotalSubnets=${_fnStatsLine##* }
 
-    total_ips=$_fnTotalIps
-    total_subnets=$_fnTotalSubnets
+    total_ips=${_fnTotalIps:-0}
+    total_subnets=${_fnTotalSubnets:-0}
 
     # #
     #   Unset
     # #
 
-    unset   _fnCountFile _fnSubnetIps _fnTotalIps _fnTotalSubnets _fnLine _fnCidr
+    unset   _fnCountFile _fnStatsLine _fnTotalIps _fnTotalSubnets
 }
 
 # #
@@ -1320,15 +1554,19 @@ is_bogon_ipv4( )
         0.*|10.*|127.*|127.0.53.53|169.254.*|192.168.*|255.255.255.255)
             return 0
             ;;
+
         100.6[4-9].*|100.[7-9][0-9].*|100.1[01][0-9].*|100.12[0-7].*)           # 100.64.0.0/10
             return 0
             ;;
+
         172.1[6-9].*|172.2[0-9].*|172.3[0-1].*)                                 # 172.16.0.0/12
             return 0
             ;;
+
         192.0.0.*|192.0.2.*|198.18.*|198.19.*|198.51.100.*|203.0.113.*)
             return 0
             ;;
+
         22[4-9].*|23[0-9].*|24[0-9].*|25[0-5].*)                                # 224.0.0.0/4 + 240.0.0.0/4
             return 0
             ;;
@@ -1352,12 +1590,15 @@ is_bogon_ipv6( )
         ::|::1|::ffff:*|::*)                                                        # ::/128 ::1/128 ::ffff:0:0/96 ::/96
             return 0
             ;;
+
         100:*|100::*)                                                               # 100::/64
             return 0
             ;;
+
         2001:1[0-9a-f]:*|2001:01[0-9a-f]:*|2001:001[0-9a-f]:*|2001:0001[0-9a-f]:*)  # 2001:10::/28
             return 0
             ;;
+
         2001:db8:*|3fff:*|fc*|fd*|fe8*|fe9*|fea*|feb*|fec*|fed*|fee*|fef*|ff*)
             return 0
             ;;
@@ -1406,29 +1647,65 @@ filter_bogon_ips( )
     fi
 
     info "    🚫 Filtering bogon IP ranges from ${bluel}${PWD}/${_fnBogonFile}${greym}"
+
     _fnBogonBefore=$(wc -l < "${_fnBogonFile}")
     > "${_fnBogonTemp}"
 
-    while IFS= read -r _fnBogonLine || [ -n "${_fnBogonLine}" ]; do
-        [ -z "${_fnBogonLine}" ] && continue
-        _fnBogonBase="${_fnBogonLine%%/*}"
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=true
+    #       curl -s https://gist.githubusercontent.com/BBcan177/d7105c242f17f4498f81/raw/f69be712a06e998191adfe4c86d74e8cacf08d28/MS-3 | CFG_INCLUDE_COMMENTS=true .github/scripts/bl-format.sh blocklists/3rdparty/BBcan177/ms3.ipset
+    # #
 
-        if [[ "${_fnBogonBase}" == *:* ]]; then
-            if is_bogon_ipv6 "${_fnBogonLine}"; then
-                label "       ${bluel}${_fnBogonLine}${greym}"
-                _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
-                continue
-            fi
-        elif [[ "${_fnBogonBase}" == *.* ]]; then
-            if is_bogon_ipv4 "${_fnBogonBase}"; then
-                label "       ${bluel}${_fnBogonLine}${greym}"
-                _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
-                continue
-            fi
-        fi
+    if [ "${argIncludeComments}" = "true" ]; then
+        while IFS= read -r _fnBogonLine || [ -n "${_fnBogonLine}" ]; do
+            [ -z "${_fnBogonLine}" ] && continue
+            _fnBogonEntry=$(extract_ip_entry "${_fnBogonLine}")
+            [ -z "${_fnBogonEntry}" ] && continue
+            _fnBogonBase="${_fnBogonEntry%%/*}"
 
-        printf '%s\n' "${_fnBogonLine}" >> "${_fnBogonTemp}"
-    done < "${_fnBogonFile}"
+            if [[ "${_fnBogonBase}" == *:* ]]; then
+                if is_bogon_ipv6 "${_fnBogonEntry}"; then
+                    label "        ${bluel}${_fnBogonLine}${greym}"
+                    _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
+                    continue
+                fi
+            elif [[ "${_fnBogonBase}" == *.* ]]; then
+                if is_bogon_ipv4 "${_fnBogonBase}"; then
+                    label "        ${bluel}${_fnBogonLine}${greym}"
+                    _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
+                    continue
+                fi
+            fi
+
+            printf '%s\n' "${_fnBogonLine}" >> "${_fnBogonTemp}"
+        done < "${_fnBogonFile}"
+
+    # #
+    #   If we specify CFG_INCLUDE_COMMENTS=false; OR if missing
+    # #
+
+    else
+        while IFS= read -r _fnBogonLine || [ -n "${_fnBogonLine}" ]; do
+            [ -z "${_fnBogonLine}" ] && continue
+            _fnBogonBase="${_fnBogonLine%%/*}"
+
+            if [[ "${_fnBogonBase}" == *:* ]]; then
+                if is_bogon_ipv6 "${_fnBogonLine}"; then
+                    label "       ${bluel}${_fnBogonLine}${greym}"
+                    _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
+                    continue
+                fi
+            elif [[ "${_fnBogonBase}" == *.* ]]; then
+                if is_bogon_ipv4 "${_fnBogonBase}"; then
+                    label "       ${bluel}${_fnBogonLine}${greym}"
+                    _fnBogonRemoved=$(( _fnBogonRemoved + 1 ))
+                    continue
+                fi
+            fi
+
+            printf '%s\n' "${_fnBogonLine}" >> "${_fnBogonTemp}"
+        done < "${_fnBogonFile}"
+    fi
 
     mv "${_fnBogonTemp}" "${_fnBogonFile}"
 
@@ -1440,7 +1717,7 @@ filter_bogon_ips( )
     #   Unset
     # #
 
-    unset   _fnBogonFile _fnBogonTemp _fnBogonLine _fnBogonBase _fnBogonBefore _fnBogonAfter _fnBogonRemoved _fnBogonIp
+    unset   _fnBogonFile _fnBogonTemp _fnBogonLine _fnBogonEntry _fnBogonBase _fnBogonBefore _fnBogonAfter _fnBogonRemoved _fnBogonIp
 }
 
 # #
@@ -2513,64 +2790,92 @@ ipsets_Finalize()
                 total_subnets=${_count_total_subnets}
 
                 # #
-                #   Generate metadata for header
+                #   Define › Template
                 # #
 
-                templ_url="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${folder_target_storage}/${relative_subfolder}/${basename_tmp}.${ext_target_ipset}"
                 templ_now="$(date -u '+%a %b %d %T %Z %Y')"                                     # Get current date in utc format
-                templ_id='asn'                                                                  # Ipset id, get base filename
-                # templ_id=$(basename -- "${basename_tmp}.${ext_target_ipset}")                 # Ipset id, get base filename
-                templ_id="${templ_id//[^[:alnum:]]/_}"                                          # Ipset id, only allow alphanum and underscore, /description/* and /category/* files must match this value
-                templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # UUID associated to each release
+                templ_path="${folder_target_storage}/${relative_subfolder}/${basename_tmp}.${ext_target_ipset}" # blocklists/geolite/asn/3000/asn_13335_cloudflare_inc.ipset
+                templ_path="${templ_path#blocklists/}"                                          # geolite/asn/3000/asn_13335_cloudflare_inc.ipset
+                templ_path="${templ_path%.ipset}"                                               # remove extension
+                templ_url="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${folder_target_storage}/${relative_subfolder}/${basename_tmp}.${ext_target_ipset}"
+                templ_id="${templ_path//\//_}"                                                  # geolite_asn_3000_asn_13335_cloudflare_inc
+                templ_id="${templ_id//[^[:alnum:]]/_}"                                          # sanitize; special characters to underscore.
+                templ_id="${templ_id}_ipset"                                                    # match your existing format
+                templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # stable release ID
+                templ_run_uuid="$(uuidgen)"                                                     # UNIQUE per execution
+                templ_tmp_prefix="${app_dir_github}/${folder_target_temp}/${templ_run_uuid}"
                 templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 
                 # #
-                #   Define › Template › External Sources
+                #   Template › External Sources
                 # #
 
                 if [ ! -d "${app_dir_github}/${folder_target_temp}" ]; then
                     mkdir -p "${app_dir_github}/${folder_target_temp}"
                 fi
-            
+
                 if [ ! -d "${app_dir_github}/${folder_target_temp}" ]; then
                     error "          Could not create temp folder ${redd}${app_dir_github}/${folder_target_temp}${end}"
                     exit 1
                 fi
 
-                curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/descriptions/geolite2/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
-                curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/categories/geolite2/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
-                curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/expires/geolite2/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
-                curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/url-source/geolite2/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
+                info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
+                info "    ⭐ Downloading external template sources"
+                label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_desc.txt${greym}"
+                label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_cat.txt${greym}"
+                label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_exp.txt${greym}"
+                label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_src.txt${greym}"
+
+                # #
+                #   Template › Get
+                # #
+
+                curl "${templ_curl_opts[@]}" \
+                    "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" \
+                    > "${templ_tmp_prefix}_desc.txt" &
+
+                curl "${templ_curl_opts[@]}" \
+                    "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" \
+                    > "${templ_tmp_prefix}_cat.txt" &
+
+                curl "${templ_curl_opts[@]}" \
+                    "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" \
+                    > "${templ_tmp_prefix}_exp.txt" &
+
+                curl "${templ_curl_opts[@]}" \
+                    "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" \
+                    > "${templ_tmp_prefix}_src.txt" &
+
                 wait
 
                 # #
-                #   ASN › Template › Get Details
+                #   Template › Write Variable from Temp File
                 # #
 
-                templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
-                templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
-                templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
-                templ_url_service=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+                templ_desc=$(<"${templ_tmp_prefix}_desc.txt")
+                templ_cat=$(<"${templ_tmp_prefix}_cat.txt")
+                templ_exp=$(<"${templ_tmp_prefix}_exp.txt")
+                templ_src=$(<"${templ_tmp_prefix}_src.txt")
 
-                if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" \
-                        "${app_dir_github}/${folder_target_temp}/cat.txt" \
-                        "${app_dir_github}/${folder_target_temp}/exp.txt" \
-                        "${app_dir_github}/${folder_target_temp}/src.txt"
-                then
-                    ok "          Removed temp files from ${greenl}${folder_target_temp}${greym}: ${greend}${folder_target_temp}/desc.txt${greym}, ${greend}${folder_target_temp}/cat.txt${greym}, ${greend}${folder_target_temp}/exp.txt${greym}, ${greend}${folder_target_temp}/src.txt${greym}"
+                # #
+                #   Template › Remove Temp File
+                # #
+
+                if rm -f "${templ_tmp_prefix}_desc.txt" "${templ_tmp_prefix}_cat.txt" "${templ_tmp_prefix}_exp.txt" "${templ_tmp_prefix}_src.txt"; then
+                    ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
                 else
-                    error "          Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
+                    error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
                     exit 1
                 fi
 
                 # #
-                #   Define › Template › Default Values
+                #   Template › Default Values
                 # #
 
-                case "$templ_desc" in *"404: Not Found"*) templ_desc="#   No description provided";; esac
-                case "$templ_cat" in *"404: Not Found"*) templ_cat="Uncategorized";; esac
-                case "$templ_exp" in *"404: Not Found"*) templ_exp="6 hours";; esac
-                case "$templ_url_service" in *"404: Not Found"*) templ_url_service="None";; esac
+                [ -z "$templ_desc" ] || [[ "$templ_desc" == *"404: Not Found"* ]] && templ_desc="#   No description provided"
+                [ -z "$templ_cat"  ] || [[ "$templ_cat"  == *"404: Not Found"* ]] && templ_cat="Uncategorized"
+                [ -z "$templ_exp"  ] || [[ "$templ_exp"  == *"404: Not Found"* ]] && templ_exp="6 hours"
+                [ -z "$templ_src"  ] || [[ "$templ_src"  == *"404: Not Found"* ]] && templ_src="None"
 
                 # #
                 #   Output › Header
@@ -2583,7 +2888,7 @@ ipsets_Finalize()
                 ${greyd}\n${greym}UUID:	        ${greyd}.............${yellowl} ${templ_uuid}${greyd} \
                 ${greyd}\n${greym}Category:	        ${greyd}.........${yellowl} ${templ_cat}${greyd} \
                 ${greyd}\n${greym}Script:	       ${greyd}...........${yellowl} ${app_file_this}${greyd} \
-                ${greyd}\n${greym}Service:	        ${greyd}..........${yellowl} ${templ_url_service}${greyd}"
+                ${greyd}\n${greym}Source:	         ${greyd}...........${yellowl} ${templ_src}${greyd}"
 
                 # #
                 #   Build ASN header block
@@ -2638,8 +2943,8 @@ ipsets_Finalize()
                     echo "# #"
                     echo "#   🧱 Firewall Blocklist - ${target_file}"
                     echo "#"
-                    echo "#   @url            ${templ_url}"
-                    echo "#   @service        ${templ_url_service}"
+                    echo "#   @blocklist      ${templ_url}"
+                    echo "#   @source         ${templ_src}"
                     echo "#   @id             ${templ_id}"
                     echo "#   @uuid           ${templ_uuid}"
                     echo "#   @updated        ${templ_now}"
@@ -2767,17 +3072,27 @@ ipsets_Finalize()
         #   Write final aggressive ipset header
         # #
 
-        templ_url="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${folder_target_storage}/${folder_target_aggressive}/${file_target_aggressive}.${ext_target_ipset}"
+        # #
+        #   Define › Template
+        # #
+
         templ_now="$(date -u '+%a %b %d %T %Z %Y')"                                     # Get current date in utc format
-        templ_id='asn'                                                                  # Ipset id, get base filename
-        # templ_id=$(basename -- "${file_target_aggressive}.${ext_target_ipset}")       # Ipset id, get base filename
-        templ_id="${templ_id//[^[:alnum:]]/_}"                                          # Ipset id, only allow alphanum and underscore, /description/* and /category/* files must match this value
-        templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # UUID associated to each release
+        templ_url="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${folder_target_storage}/${folder_target_aggressive}/${file_target_aggressive}.${ext_target_ipset}"
+        templ_path="${folder_target_storage}/${folder_target_aggressive}/${file_target_aggressive}.${ext_target_ipset}" # blocklists/geolite/asn/@general/aggressive.ipset
+        templ_path="${templ_path#blocklists/}"                                          # geolite/asn/@general/aggressive.ipset
+        templ_path="${templ_path%.ipset}"                                               # remove extension
+        templ_id="${templ_path//\//_}"                                                  # geolite_asn_@general_aggressive
+        templ_id="${templ_id//[^[:alnum:]@]/_}"                                         # sanitize; special characters to underscore.
+        templ_id="${templ_id}_ipset"                                                    # match your existing format
+        templ_uuid="$(uuidgen -m -N "${templ_id}" -n @url)"                             # stable release ID
+        templ_run_uuid="$(uuidgen)"                                                     # UNIQUE per execution
+        templ_tmp_prefix="${app_dir_github}/${folder_target_temp}/${templ_run_uuid}"
         templ_curl_opts=(-sSL -A "$app_agent")                                          # cUrl command
 
         # #
-        #   ASN › Template › External Sources
+        #   Template › External Sources
         # #
+
         if [ ! -d "${app_dir_github}/${folder_target_temp}" ]; then
             mkdir -p "${app_dir_github}/${folder_target_temp}"
         fi
@@ -2786,31 +3101,63 @@ ipsets_Finalize()
             exit 1
         fi
 
-        curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/descriptions/geolite2/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/desc.txt" &
-        curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/categories/geolite2/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/cat.txt" &
-        curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/expires/geolite2/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/exp.txt" &
-        curl "${templ_curl_opts[@]}" "${app_repo_curl_storage}/url-source/geolite2/${templ_id}.txt" > "${app_dir_github}/${folder_target_temp}/src.txt" &
+        info "    ⚙️  Loading curl opts ${bluel}${templ_curl_opts[*]}${greym}"
+        info "    ⭐ Downloading external template sources"
+        label "     ${bluel}${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_desc.txt${greym}"
+        label "     ${bluel}${app_repo_curl_storage}/templates/categories/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_cat.txt${greym}"
+        label "     ${bluel}${app_repo_curl_storage}/templates/expires/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_exp.txt${greym}"
+        label "     ${bluel}${app_repo_curl_storage}/templates/sources/${templ_path}.txt${greym} -> ${bluel}${templ_tmp_prefix}_src.txt${greym}"
+
+        # #
+        #   Template › Get
+        # #
+
+        curl "${templ_curl_opts[@]}" \
+            "${app_repo_curl_storage}/templates/descriptions/${templ_path}.txt" \
+            > "${templ_tmp_prefix}_desc.txt" &
+
+        curl "${templ_curl_opts[@]}" \
+            "${app_repo_curl_storage}/templates/categories/${templ_path}.txt" \
+            > "${templ_tmp_prefix}_cat.txt" &
+
+        curl "${templ_curl_opts[@]}" \
+            "${app_repo_curl_storage}/templates/expires/${templ_path}.txt" \
+            > "${templ_tmp_prefix}_exp.txt" &
+
+        curl "${templ_curl_opts[@]}" \
+            "${app_repo_curl_storage}/templates/sources/${templ_path}.txt" \
+            > "${templ_tmp_prefix}_src.txt" &
+
         wait
 
         # #
-        #   ASN › Template › Get Details
+        #   Template › Write Variable from Temp File
         # #
 
-        templ_desc=$(<"${app_dir_github}/${folder_target_temp}/desc.txt")
-        templ_cat=$(<"${app_dir_github}/${folder_target_temp}/cat.txt")
-        templ_exp=$(<"${app_dir_github}/${folder_target_temp}/exp.txt")
-        templ_url_service=$(<"${app_dir_github}/${folder_target_temp}/src.txt")
+        templ_desc=$(<"${templ_tmp_prefix}_desc.txt")
+        templ_cat=$(<"${templ_tmp_prefix}_cat.txt")
+        templ_exp=$(<"${templ_tmp_prefix}_exp.txt")
+        templ_src=$(<"${templ_tmp_prefix}_src.txt")
 
-        if rm -f "${app_dir_github}/${folder_target_temp}/desc.txt" \
-                "${app_dir_github}/${folder_target_temp}/cat.txt" \
-                "${app_dir_github}/${folder_target_temp}/exp.txt" \
-                "${app_dir_github}/${folder_target_temp}/src.txt"
-        then
-            ok "          Removed temp files from ${greenl}${folder_target_temp}${greym}: ${greend}${folder_target_temp}/desc.txt${greym}, ${greend}${folder_target_temp}/cat.txt${greym}, ${greend}${folder_target_temp}/exp.txt${greym}, ${greend}${folder_target_temp}/src.txt${greym}"
+        # #
+        #   Template › Remove Temp File
+        # #
+
+        if rm -f "${templ_tmp_prefix}_desc.txt" "${templ_tmp_prefix}_cat.txt" "${templ_tmp_prefix}_exp.txt" "${templ_tmp_prefix}_src.txt"; then
+            ok "    🗑️  Removed temp files from ${greenl}${app_dir_github}/${folder_target_temp}${greym}: ${greend}desc.txt${greym}, ${greend}cat.txt${greym}, ${greend}exp.txt${greym}, ${greend}src.txt${greym}"
         else
-            error "          Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
+            error "    ⭕ Could not remove temp files from ${redd}${app_dir_github}/${folder_target_temp}${end}"
             exit 1
         fi
+
+        # #
+        #   Template › Default Values
+        # #
+
+        [ -z "$templ_desc" ] || [[ "$templ_desc" == *"404: Not Found"* ]] && templ_desc="#   No description provided"
+        [ -z "$templ_cat"  ] || [[ "$templ_cat"  == *"404: Not Found"* ]] && templ_cat="Uncategorized"
+        [ -z "$templ_exp"  ] || [[ "$templ_exp"  == *"404: Not Found"* ]] && templ_exp="6 hours"
+        [ -z "$templ_src"  ] || [[ "$templ_src"  == *"404: Not Found"* ]] && templ_src="None"
 
         # #
         #   Output › Header
@@ -2818,28 +3165,19 @@ ipsets_Finalize()
 
         echo
         prinp "📄[-1] ${file_target_aggressive}.${ext_target_ipset}" \
-        "${greym}File: 	    ${greyd}.............${yellowl} ${file_target_aggressive}.${ext_target_ipset}${greyd} \
-        ${greyd}\n${greym}Id: 	    ${greyd}...............${yellowl} ${templ_id}${greyd} \
-        ${greyd}\n${greym}UUID:	        ${greyd}.............${yellowl} ${templ_uuid}${greyd} \
-        ${greyd}\n${greym}Category:	        ${greyd}.........${yellowl} ${templ_cat}${greyd} \
-        ${greyd}\n${greym}Script:	       ${greyd}...........${yellowl} ${app_file_this}${greyd} \
-        ${greyd}\n${greym}Service:	        ${greyd}..........${yellowl} ${templ_url_service}${greyd}"
-
-        # #
-        #   Define › Template › Default Values
-        # #
-
-        case "$templ_desc" in *"404: Not Found"*) templ_desc="#   No description provided";; esac
-        case "$templ_cat" in *"404: Not Found"*) templ_cat="Uncategorized";; esac
-        case "$templ_exp" in *"404: Not Found"*) templ_exp="6 hours";; esac
-        case "$templ_url_service" in *"404: Not Found"*) templ_url_service="None";; esac
+        "${greym}File: \t    ${greyd}.............${yellowl} ${file_target_aggressive}.${ext_target_ipset}${greyd} \
+        ${greyd}\n${greym}Id: \t    ${greyd}...............${yellowl} ${templ_id}${greyd} \
+        ${greyd}\n${greym}UUID:\t        ${greyd}.............${yellowl} ${templ_uuid}${greyd} \
+        ${greyd}\n${greym}Category:\t        ${greyd}.........${yellowl} ${templ_cat}${greyd} \
+        ${greyd}\n${greym}Script:\t       ${greyd}...........${yellowl} ${app_file_this}${greyd} \
+        ${greyd}\n${greym}Source:	         ${greyd}...........${yellowl} ${templ_src}${greyd}"
         {
             echo "# #"
             echo "#   🧱 Firewall Blocklist - ${aggressive_file}"
             echo "#"
-            echo "#   @url            ${templ_url}"
-            echo "#   @service        ${templ_url_service}"
-            echo "#   @id             aggressive"
+            echo "#   @blocklist      ${templ_url}"
+            echo "#   @source         ${templ_src}"
+            echo "#   @id             ${templ_id}"
             echo "#   @uuid           ${templ_uuid}"
             echo "#   @updated        ${templ_now}"
             echo "#   @entries        ${total_ips} ips"

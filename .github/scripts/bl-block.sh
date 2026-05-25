@@ -2194,8 +2194,8 @@ list_fallback_download()
 #   Load fallback static blocks from .github/blocks/<category>.
 #   
 #   Must define the category when calling this script with something such as:
-#       run_mip_anthropic=".github/scripts/bl-mip.sh blocklists/privacy/privacy_anthropic.ipset '${{ vars.BL_PRIVACY_MIP_ANTHROPIC_SRC }}' privacy/anthropic"
-#       eval "./$run_mip_anthropic"
+#       ./.github/scripts/bl-block.sh blocklists/privacy/@general.ipset privacy
+#       ./.github/scripts/bl-mip.sh blocklists/privacy/privacy_anthropic.ipset '${{ vars.BL_PRIVACY_MIP_ANTHROPIC_SRC }}' privacy/anthropic
 # #
 
 list_fallback_load()
@@ -2491,6 +2491,7 @@ fi
 # #
 
 templ_now="$(date -u '+%a %b %d %T %Z %Y')"                                     # Get current date in utc format
+templ_url="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}"
 templ_path="${file_ipset_target#blocklists/}"                                   # privacy/twitter_x.ipset
 templ_path="${templ_path%.ipset}"                                               # remove extension
 templ_id="${templ_path//\//_}"                                                  # privacy_twitter_x
@@ -2560,8 +2561,8 @@ fi
 
 [ -z "$templ_desc" ] || [[ "$templ_desc" == *"404: Not Found"* ]] && templ_desc="#   No description provided"
 [ -z "$templ_cat"  ] || [[ "$templ_cat"  == *"404: Not Found"* ]] && templ_cat="Uncategorized"
-[ -z "$templ_exp"  ] || [[ "$templ_exp"  == *"404: Not Found"* ]] && templ_exp="6 hours"
-[ -z "$templ_src"  ] || [[ "$templ_src"  == *"404: Not Found"* ]] && templ_src="None"
+[ -z "$templ_exp"  ] || [[ "$templ_exp"  == *"404: Not Found"* ]] && templ_exp="4 hours"
+[ -z "$templ_src"  ] || [[ "$templ_src"  == *"404: Not Found"* ]] && templ_src="https://blocklist.configserver.dev/"
 
 # #
 #   Output › Header
@@ -2749,7 +2750,7 @@ ed -s "${file_ipset_target}" <<END_ED
 # #
 #   🧱 Firewall Blocklist - ${file_ipset_target}
 #   
-#   @blocklist      https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_ipset_target}
+#   @blocklist      ${templ_url}
 #   @source         ${templ_src}
 #   @id             ${templ_id}
 #   @uuid           ${templ_uuid}
