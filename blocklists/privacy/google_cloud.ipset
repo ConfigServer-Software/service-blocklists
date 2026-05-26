@@ -2,17 +2,15 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/google_cloud.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/google_cloud.ipset
-#   @source         429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_google_cloud_ipset
 #   @uuid           d57ca9de-34c3-3fc9-8953-8d2616d68279
-#   @updated        Tue May 26 08:00:26 UTC 2026
+#   @updated        Tue May 26 22:47:53 UTC 2026
 #   @entries        17,272,240 ips
 #                   473 subnets
 #                   473 lines
 #   @expires        4 hours
-#   @category       429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @category       Uncategorized
 #
 #   No description provided
 # #
