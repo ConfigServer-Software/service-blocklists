@@ -2436,6 +2436,7 @@ jobs:
             - name: "📄 Commit › Update › README"
               id: task_commit_update_readme
               run: |
+                  chmod +x ".github/scripts/update-readme.sh"
                   ./.github/scripts/update-readme.sh README.md
 
             # #
@@ -2445,6 +2446,7 @@ jobs:
             - name: "📄 Commit › Update › Manifest"
               id: task_commit_update_manifest
               run: |
+                  chmod +x ".github/scripts/update-manifest.sh"
                   ./.github/scripts/update-manifest.sh manifest.json
 
             # #
