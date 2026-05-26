@@ -2430,15 +2430,22 @@ jobs:
                   echo "NOW=$(echo $now)" >> $GITHUB_ENV
 
             # #
-            #   Commit › Update README
+            #   Commit › Update › README
             # #
 
-            - name: "📄 Commit › Update README"
-              id: task_commit_readme_update
+            - name: "📄 Commit › Update › README"
+              id: task_commit_update_readme
               run: |
-                  chmod +x ".github/scripts/update-readme.sh"
-                  run_readme=".github/scripts/update-readme.sh README.md"
-                  eval "./$run_readme"
+                  ./.github/scripts/update-readme.sh README.md
+
+            # #
+            #   Commit › Update › Manifest
+            # #
+
+            - name: "📄 Commit › Update › Manifest"
+              id: task_commit_update_manifest
+              run: |
+                  ./.github/scripts/update-manifest.sh manifest.json
 
             # #
             #   Commit › GPG Key
