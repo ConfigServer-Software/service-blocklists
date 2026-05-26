@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # #
-#   @script             Blocklist › Helper › README Updater
+#   @script             Blocklist › Helper › Manifest Updater
 #   @repo               https://github.com/ConfigServerApps/service-blocklists
 #   @workflow           blocklist-generate.yml
 #   @type               bash script
-#   @summary            Updates the blocklist service readme.md
-#   @path               .github/scripts/update-readme.sh
-#   @params             .github/scripts/update-readme.sh
-#                           <argFileReadme>     str     req     Target readme.md to modify
-#   @commands           1.  ./.github/scripts/update-readme.sh readme.md
+#   @summary            Updates the blocklist service manifest.json
+#   @path               .github/scripts/update-manifest.sh
+#   @params             .github/scripts/update-manifest.sh
+#                           <argFileManifest>   str     req     Target manifest.json to modify
+#   @commands           1.  ./.github/scripts/update-manifest.sh manifest.json
 #   @structure          📁 .github
 #                           📁 scripts
-#                               📄 update-readme.sh
+#                               📄 update-manifest.sh
 #                           📁 templates
 #                               📁 categories
 #                                   📄 *
@@ -37,8 +37,8 @@ export LC_NUMERIC=en_US.UTF-8
 #   Define › Files
 # #
 
-app_file_this=$(basename "$0")                                                  # update-readme.sh      (with ext)
-app_file_bin="${app_file_this%.*}"                                              # update-readme         (without ext)
+app_file_this=$(basename "$0")                                                  # update-manifest.sh    (with ext)
+app_file_bin="${app_file_this%.*}"                                              # update-manifest       (without ext)
 
 # #
 #   Define › Folders
@@ -53,17 +53,17 @@ app_dir_github="${app_dir_this_dir}/.github"                                    
 #   
 #   This bash script has the following arguments:
 #   
-#   @param  argFileReadme       str         Manifest file to update.
+#   @param  argFileManifest     str         Manifest file to update.
 # #
 
-argFileReadme=$1
+argFileManifest=$1
 
 # #
 #   Define › App
 # #
 
-file_readme_temp="${argFileReadme}.tmp"                                         # Temp file when building readme
-file_readme_target="${argFileReadme}"                                           # Perm file when building readme
+file_manifest_temp="${argFileManifest}.tmp"                                     # Temp file when building manifest
+file_manifest_target="${argFileManifest}"                                       # Perm file when building manifest
 folder_target_temp="temp"                                                       # Temp folder when building descriptions, etc.
 
 # #
@@ -116,8 +116,8 @@ bgError="${esc}[1;38;5;15;48;5;160m"
 #   Define › App
 # #
 
-app_name="Blocklist › Update › README"                                          # name of app
-app_desc="Updates the repository README.md"                                     # desc
+app_name="Blocklist › Update › Manifest"                                        # name of app
+app_desc="Updates the repository manifest.json file"                            # desc
 app_ver="1.4.0.0"                                                               # current script version
 app_type="Bash Helper"                                                          # type of script
 app_repo="ConfigServerApps/service-blocklists"                                  # repository
@@ -219,8 +219,8 @@ time_elapsed( )
 #   Verify › Arguments
 # #
 
-if [ -z "${argFileReadme}" ]; then
-    error "    ⭕  No target readme file specified ${yellowd}${app_file_this}${greym}; aborting${end}"
+if [ -z "${argFileManifest}" ]; then
+    error "    ⭕  No target manifest file specified ${yellowd}${app_file_this}${greym}; aborting${end}"
     exit 0
 fi
 
@@ -652,8 +652,8 @@ export NOW=$(date -u '+%m.%d.%Y %H:%M:%S')
 # #
 
 templ_now="$(date -u '+%a %b %d %T %Z %Y')"                                     # Get current date in utc format
-templ_url="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_readme_target}"
-templ_path="${file_readme_target#blocklists/}"                                # privacy/twitter_x.ipset
+templ_url="https://raw.githubusercontent.com/${app_repo}/${app_repo_branch}/${file_manifest_target}"
+templ_path="${file_manifest_target#blocklists/}"                                # privacy/twitter_x.ipset
 templ_path="${templ_path%.ipset}"                                               # remove extension
 templ_id="${templ_path//\//_}"                                                  # privacy_twitter_x
 templ_id="${templ_id//[^[:alnum:]@]/_}"                                         # sanitize; special characters to underscore.
@@ -666,66 +666,71 @@ templ_curl_opts=(-sSL -A "$app_agent")                                          
 # #
 
 echo
-prinp "📄[-1] README Updater" \
+prinp "📄[-1] Manifest Updater" \
 "${greym}Script:	        ${greyd}...........${yellowl} ${app_file_this}${greyd} \
 ${greyd}\n${greym}Category:	        ${greyd}.........${yellowl} ${app_type}${greyd} \
 ${greyd}\n${greym}UUID:	        ${greyd}.............${yellowl} ${templ_uuid}${greyd} \
-${greyd}\n${greym}Output:	       ${greyd}...........${yellowl} ${file_readme_target}${greyd} \
+${greyd}\n${greym}Output:	       ${greyd}...........${yellowl} ${file_manifest_target}${greyd} \
 ${greyd}\n${greym}Source:	         ${greyd}...........${yellowl} ${templ_url}${greyd}"
 
 # #
-#   README › Validate Target File Exists
+#   Manifest › Validate Target File Exists
 # #
 
-if [ ! -f "${file_readme_target}" ] || [ ! -r "${file_readme_target}" ]; then
-    error "    ⭕ Manifest file missing or not readable ${redd}${file_readme_target}${end}"
+if [ ! -f "${file_manifest_target}" ] || [ ! -r "${file_manifest_target}" ]; then
+    error "    ⭕ Manifest file missing or not readable ${redd}${file_manifest_target}${end}"
     exit 1
 fi
 
 # #
-#   README › Make Changes
+#   Manifest › Make Changes
 #   
-#   This script opens the specified readme.md file and modifies the file
-#   to show the newest revision date/time.
+#   This script opens the specified manifest.json file and modifies json values
+#   such as the time that the blocklists were updated. 
 # #
 
-info "    📄 Updating README file ${bluel}${PWD}/${file_readme_target}${greym}"
+info "    📄 Updating manifest file ${bluel}${PWD}/${file_manifest_target}${greym}"
 
-cp "${file_readme_target}" "${file_readme_temp}" || {
-    error "    ⭕ Failed to create temp file ${redd}${file_readme_temp}${end}"
-    exit 1
-}
+if jq \
+    --arg now "${NOW}" \
+    --arg ts "${DATE_TS}" \
+    '
+        .last_update = $now |
+        .last_update_ts = $ts
+    ' \
+    "${file_manifest_target}" > "${file_manifest_temp}"
+then
 
-sed -r -i \
-    "s@\!TEMPLATE_NOW\!@Last Sync: ${NOW} UTC@g" \
-    "${file_readme_temp}" || {
-        rm -f "${file_readme_temp}"
-        error "    ⭕ sed failed while updating template marker"
-        exit 1
-    }
+    mv "${file_manifest_temp}" "${file_manifest_target}"
 
-sed -r -i \
-    "s@Last Sync: .* UTC@Last Sync: ${NOW} UTC@g" \
-    "${file_readme_temp}" || {
-        rm -f "${file_readme_temp}"
-        error "    ⭕ sed failed while updating timestamp"
-        exit 1
-    }
+    # #
+    #   Validate Changes
+    # #
 
-# #
-#   README › Verify Changes
-#   
-#   Checks the README to see if the changes were actually made.
-# #
+    manifest_now=$( jq -r '.last_update' "${file_manifest_target}" )
+    manifest_ts=$( jq -r '.last_update_ts' "${file_manifest_target}" )
 
-if grep -q "Last Sync: ${NOW} UTC" "${file_readme_temp}"; then
-    mv "${file_readme_temp}" "${file_readme_target}"
-    ok "    📄 Successfully updated README file ${greenl}${PWD}/${file_readme_target}${greym}"
-    label "        ${bluel}Last Sync: ${NOW} UTC${greym}"
+    # #
+    #   manifest.json successfully modified
+    # #
+
+    if [[ "${manifest_now}" == "${NOW}" && "${manifest_ts}" == "${DATE_TS}" ]]; then
+
+        ok "    📄 Successfully updated manifest file ${greenl}${PWD}/${file_manifest_target}${greym}"
+
+        label "        ${bluel}\"last_update\": \"${manifest_now}\"${greym}"
+        label "        ${bluel}\"last_update_ts\": \"${manifest_ts}\"${greym}"
+    else
+        error "    ⭕ Could not verify manifest update ${redd}${file_manifest_target}${end}"
+    fi
 else
-    rm -f "${file_readme_temp}"
-    error "    ⭕ Could not verify README update ${redd}${file_readme_target}${end}"
-    exit 1
+    # #
+    #   Could not update manifest.json
+    # #
+
+    rm -f "${file_manifest_temp}"
+
+    error "    ⭕ Could not update manifest file ${redd}${file_manifest_target}${end}"
 fi
 
 # #
