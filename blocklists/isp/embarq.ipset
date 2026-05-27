@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             isp_embarq_ipset
 #   @uuid           2e51d53f-2999-31da-ae04-fbc14196827d
-#   @updated        Wed May 27 19:06:49 UTC 2026
-#   @entries        3,813,120 ips
-#                   261 subnets
-#                   261 lines
+#   @updated        Wed May 27 22:30:29 UTC 2026
+#   @entries        3,812,864 ips
+#                   260 subnets
+#                   260 lines
 #   @asn            AS2379, AS5778, AS11398, AS14905, AS17402
 #                   AS14921, AS6222, AS22186, AS13787, AS32855
 #                   AS3447, AS4212, AS6367, AS11530, AS14910
@@ -269,7 +269,6 @@
 208.74.226.0/24
 208.84.68.0/22
 208.163.128.0/19
-208.187.230.0/24
 208.206.127.0/24
 208.214.191.0/24
 209.26.0.0/16
