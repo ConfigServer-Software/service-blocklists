@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_google_bots_ipset
 #   @uuid           81909ab8-f29b-3a67-be67-09e11c1311f7
-#   @updated        Wed May 27 08:24:45 UTC 2026
-#   @entries        5,136 ips
-#                   186 subnets
-#                   186 lines
+#   @updated        Wed May 27 15:27:25 UTC 2026
+#   @entries        5,169 ips
+#                   188 subnets
+#                   188 lines
 #   @expires        4 hours
 #   @category       Uncategorized
 #
@@ -51,6 +51,7 @@
 66.249.76.0/23
 66.249.78.0/25
 66.249.78.128/26
+66.249.78.192/27
 66.249.79.0/26
 66.249.79.64/27
 66.249.79.128/25
@@ -162,6 +163,7 @@
 2001:4860:4801:7b::/64
 2001:4860:4801:7c::/64
 2001:4860:4801:7d::/64
+2001:4860:4801:7e::/64
 2001:4860:4801:80::/64
 2001:4860:4801:81::/64
 2001:4860:4801:82::/64
