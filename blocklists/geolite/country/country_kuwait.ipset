@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May 26 05:23:40 UTC 2026
-#   @entries        1,929,012 ips
-#                   763 subnets
-#                   763 lines
+#   @updated        Wed May 27 05:52:27 UTC 2026
+#   @entries        1,929,013 ips
+#                   764 subnets
+#                   764 lines
 #   @country        Kuwait (KW)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -568,6 +568,7 @@
 2a04:4e41:4087:a000::/52
 2a04:4e41:5201:e000::/52
 2a04:4e41:520e::/48
+2a05:9980::/29
 2a06:280::/29
 2a06:16c0::/29
 2a06:e440::/29

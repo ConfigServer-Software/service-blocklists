@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May 26 05:23:34 UTC 2026
-#   @entries        10,946,543 ips
-#                   2,731 subnets
-#                   2,731 lines
+#   @updated        Wed May 27 05:52:22 UTC 2026
+#   @entries        10,946,287 ips
+#                   2,730 subnets
+#                   2,730 lines
 #   @country        Iran (IR)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -1035,7 +1035,6 @@
 176.102.224.0/19
 176.105.245.0/24
 176.116.7.0/24
-176.117.107.0/24
 176.120.16.0/22
 176.122.210.0/23
 176.123.64.0/18

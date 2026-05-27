@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May 26 05:24:53 UTC 2026
-#   @entries        7,661,768 ips
-#                   1,512 subnets
-#                   1,512 lines
+#   @updated        Wed May 27 05:53:33 UTC 2026
+#   @entries        7,661,256 ips
+#                   1,510 subnets
+#                   1,510 lines
 #   @country        Venezuela (VE)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -243,7 +243,6 @@
 45.195.94.0/24
 45.197.192.0/21
 45.198.56.0/23
-45.198.107.0/24
 45.226.190.0/23
 45.230.44.0/22
 45.230.86.0/24
@@ -581,7 +580,6 @@
 154.95.10.0/23
 154.95.12.0/22
 154.95.16.0/21
-154.95.25.0/24
 154.95.26.0/23
 154.95.28.0/22
 154.95.32.0/19

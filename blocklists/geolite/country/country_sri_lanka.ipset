@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue May 26 05:23:41 UTC 2026
-#   @entries        591,645 ips
-#                   444 subnets
-#                   444 lines
+#   @updated        Wed May 27 05:52:28 UTC 2026
+#   @entries        591,643 ips
+#                   442 subnets
+#                   442 lines
 #   @country        Sri Lanka (LK)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -295,7 +295,6 @@
 2001:470:d:8ee::/64
 2001:470:d:12ea::/64
 2001:470:19:d::/64
-2001:470:19:1f2::/64
 2001:470:19:29b::/64
 2001:470:19:69a::/64
 2001:470:1d:45f::/64
@@ -341,7 +340,6 @@
 2001:470:f701::/48
 2001:470:f80f::/48
 2001:470:f8fd::/48
-2001:470:f91d::/48
 2001:470:f964::/48
 2001:678:638::/48
 2001:de9::/48
