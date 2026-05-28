@@ -178,28 +178,15 @@ This section lists all of the available blocklists; and explains about our [rati
 
 <br />
 
-- [Introduction](#introduction)
-  - [About](#about)
-  - [What Are Blocklists?](#what-are-blocklists)
-- [Download Options](#download-options)
-  - [Github Repository](#github-repository)
-  - [API Service](#api-service)
-- [Blocklists](#blocklists)
-  - [Rating System](#rating-system)
-  - [Blocklists: Main](#blocklists-main)
-  - [Blocklists: Threats](#blocklists-threats)
-  - [Blocklists: Privacy](#blocklists-privacy)
-  - [Blocklists: Spam](#blocklists-spam)
-  - [Blocklists: ISP](#blocklists-isp)
-  - [Blocklists: 3rd Party](#blocklists-3rd-party)
-  - [Blocklists: Transmission](#blocklists-transmission)
-  - [Blocklists: ASN](#blocklists-asn)
-  - [Blocklists: Geographical](#blocklists-geographical)
-    - [Summary](#summary)
-    - [Blocklists: Continents](#blocklists-continents)
-    - [Blocklists: Countries](#blocklists-countries)
-- [References for More Help](#references-for-more-help)
-- [Contributors ✨](#contributors-)
+- [Blocklists: Main](#blocklists-main)
+- [Blocklists: Threats](#blocklists-threats)
+- [Blocklists: Privacy](#blocklists-privacy)
+- [Blocklists: Spam](#blocklists-spam)
+- [Blocklists: ISP](#blocklists-isp)
+- [Blocklists: 3rd Party](#blocklists-3rd-party)
+- [Blocklists: ASN](#blocklists-asn)
+- [Blocklists: Continents](#blocklists-continents)
+- [Blocklists: Countries](#blocklists-countries)
 
 <br />
 
