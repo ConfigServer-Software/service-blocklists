@@ -1019,7 +1019,7 @@ Want to help but can't write code?
 
 <br />
 
-![Alt](https://repobeats.axiom.co/api/embed/a968656a3592fa904ffbcc3abd666aa2d40b8648.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/83556cc13b27b26f8886d7f37537385af7e95160.svg "Statistics")
 
 <br />
 
