@@ -1389,9 +1389,9 @@ jobs:
             #   Generate › Privacy › A - G
             # #
 
-            - name: "🧱 Generate › Privacy (A-G)"
+            - name: '🧱 Generate › Privacy (A-G) (1/day)'
               id: task_blocklist_generate_privacy_a_to_g
-              if: steps.task_blocklist_generate_run_mode.outputs.run_core == 'true'
+              if: steps.task_blocklist_generate_run_mode.outputs.run_daily == 'true'
               run: |
 
                   # #
@@ -1700,9 +1700,9 @@ jobs:
             #   Generate › Privacy › H - N
             # #
 
-            - name: '🧱 Generate › Privacy (H-N)'
+            - name: '🧱 Generate › Privacy (H-N) (1/day)'
               id: task_blocklist_generate_privacy_h_to_n
-              if: steps.task_blocklist_generate_run_mode.outputs.run_core == 'true'
+              if: steps.task_blocklist_generate_run_mode.outputs.run_daily == 'true'
               run: |
 
                   # #
@@ -1757,9 +1757,9 @@ jobs:
             #   Generate › Privacy › O - T
             # #
                   
-            - name: '🧱 Generate › Privacy (O-T)'
+            - name: '🧱 Generate › Privacy (O-T) (1/day)'
               id: task_blocklist_generate_privacy_o_to_t
-              if: steps.task_blocklist_generate_run_mode.outputs.run_core == 'true'
+              if: steps.task_blocklist_generate_run_mode.outputs.run_daily == 'true'
               run: |
 
                   # #
@@ -1904,9 +1904,9 @@ jobs:
             #   Generate › Privacy › U - Z
             # #
                   
-            - name: '🧱 Generate › Privacy (U-Z)'
+            - name: '🧱 Generate › Privacy (U-Z) (1/day)'
               id: task_blocklist_generate_privacy_u_to_z
-              if: steps.task_blocklist_generate_run_mode.outputs.run_core == 'true'
+              if: steps.task_blocklist_generate_run_mode.outputs.run_daily == 'true'
               run: |
   
                   #   Privacy › Ubisoft
@@ -1961,9 +1961,9 @@ jobs:
             #                   we use numerous resources to compare ASNs to see which ones are active and which ones have been migrated.
             # #
 
-            - name: '🧱 Generate › ISP'
+            - name: '🧱 Generate › ISP (1/day)'
               id: task_blocklist_generate_isp
-              if: steps.task_blocklist_generate_run_mode.outputs.run_core == 'true'
+              if: steps.task_blocklist_generate_run_mode.outputs.run_daily == 'true'
               run: |
 
                   #   ISP › AOL
@@ -2188,21 +2188,13 @@ jobs:
 
                   CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/bogon.sh blocklists/bogon.ipset
 
-                  # #
-                  #   Weekly › IANA
-                  # #
-
-                  CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-reserved.ipset .github/blocks/iana/reserved.ipset
-                  CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-private.ipset .github/blocks/iana/private.ipset
-                  CFG_SKIP_BOGON_FILTER=true CFG_SKIP_CIDR_DEDUPE=true ./.github/scripts/range-iprange.sh blocklists/iana-multicast.ipset .github/blocks/iana/multicast.ipset
-
             # #
             #   Generate › Biweekly
             #   
             #   Only updated once every 2 weeks
             # #
 
-            - name: '🧱 Generate › Weekly (14/days)'
+            - name: '🧱 Generate › Bi-weekly (14/days)'
               id: task_blocklist_generate_biweekly
               if: steps.task_blocklist_generate_run_mode.outputs.run_biweekly == 'true'
               run: |
