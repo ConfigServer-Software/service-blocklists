@@ -55,9 +55,6 @@
 - [Introduction](#introduction)
   - [About](#about)
   - [What Are Blocklists?](#what-are-blocklists)
-- [Supported Blocklists](#supported-blocklists)
-  - [Official Blocklists](#official-blocklists)
-  - [Third-Party Blocklists](#third-party-blocklists)
 - [Download Options](#download-options)
   - [Github Repository](#github-repository)
   - [API Service](#api-service)
@@ -133,76 +130,6 @@ Using blocklists within these tools allows for automated, consistent protection 
 
 <br />
 
-## Supported Blocklists
-
-We offer a broad range of blocklists, combining our own in-house curated list, along with trusted third-party sources. Together, these lists are designed to help you effectively block abusive, unwanted, and high-risk traffic.
-
-This section provides an overview of the blocklists available through our platform.
-
-For the complete and up-to-date list of supported blocklists, please refer to our API endpoint:
-
-- https://blocklist.configserver.dev/lists
-
-<br />
-<br />
-
-### Official Blocklists
-
-Our blocklist service provides continuously updated IP-based (ipset) protection against today’s most active online threats. These lists are exclusively curated in-house and are only available through our service, giving you access to intelligence not found in other public blocklists.
-
-We target a wide range of abusive activity, including brute-force attack sources, spam networks, malicious scanners, and hosting providers that are commonly abused for harmful or unauthorized activity.
-
-To enhance accuracy and coverage, we combine our internal system with trusted external intelligence sources, including organizations such as the American Registry for Internet Numbers (ARIN) and other reputable security feeds.
-
-Our blocklists are updated multiple times per day to ensure protection stays current against new potential threats.
-
-Coverage includes:
-
-- Countries and continents (geo-blocking options)
-- Major ISPs (e.g. AT&T, Comcast, Starlink)
-- Hosting providers (e.g. AWS, DigitalOcean, Contabo)
-- Known spam sources
-- BitTorrent-related networks
-- AI crawlers (e.g. OpenAI, Anthropic)
-- VPNs and proxy networks
-
-<br />
-
-You can view our official blocklists [here](#official-blocklists-1).
-
-<br />
-<br />
-
-### Third-Party Blocklists
-
-In addition to our in-house curated blocklists, we also provide access to some of the most widely used and trusted third-party threat intelligence feeds available.
-
-These external sources are integrated into our platform to extend coverage and improve detection of malicious activity across a broader global threat landscape. T
-
-These blocklists help identify additional spam networks, scanning infrastructure, bot activity, and compromised hosts that may not be captured by internal datasets alone.
-
-We currently integrate providers such as:
-
-- [AlienVault](http://alienvault.com/)
-- [BBcan177](https://gist.github.com/BBcan177/)
-- [Binary Defense](https://binarydefense.com)
-- [blocklist.de](https://lists.blocklist.de/)
-- [Botvrij](http://www.botvrij.eu/)
-- [Emerging Threats](https://rules.emergingthreats.net/blockrules/)
-- [Myip.ms](https://myip.ms/)
-- [Spamhaus](https://www.spamhaus.org/)
-- And other reputable security feeds
-
-<br />
-
-You can view our 3rd-party provider blocklists [here](#third-party-blocklists).
-
-<br />
-
----
-
-<br />
-
 ## Download Options
 
 We provide access to our blocklists through two methods:
@@ -220,7 +147,7 @@ We provide a free version of our blocklists through our public [Github repositor
 
 ### API Service
 
-In addition to the free repository, we offer users access to our **Blocklist API Service**, which provides advanced customization features that are not possible through static GitHub-hosted files.
+In addition to the free repository, we offer users access to our [Blocklist API Service](https://blocklist.configserver.dev), which provides advanced customization features that are not possible through static GitHub-hosted files.
 
 Our API allows you to:
 
@@ -247,7 +174,7 @@ Users who subscribe to a [membership](https://blocklist.configserver.dev/help#se
 
 ## Blocklists
 
-This section lists all of the available blocklists; and explains about our [risk assessment](#risk-assessments) procedure.
+This section lists all of the available blocklists; and explains about our [rating system](#rating-system).
 
 <br />
 
