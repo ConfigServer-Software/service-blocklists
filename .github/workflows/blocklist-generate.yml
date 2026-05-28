@@ -506,7 +506,6 @@ jobs:
 
             - name: '⚙️ Configure'
               id: task_blocklist_generate_configure
-              if: steps.task_blocklist_generate_run_mode.outputs.run_core == 'true'
               run: |
                   git clone https://github.com/firehol/iprange.git ./.temp/iprange
                   cd .temp/iprange
@@ -519,7 +518,6 @@ jobs:
             # #
 
             - name: '📦 Install Dependencies'
-              if: steps.task_blocklist_generate_run_mode.outputs.run_core == 'true'
               run:
                   sudo apt-get install -qq dos2unix
 
@@ -528,7 +526,6 @@ jobs:
             # #
 
             - name: '🔐 Apply dos2unix'
-              if: steps.task_blocklist_generate_run_mode.outputs.run_core == 'true'
               run: |
                   echo "⚠️⚠️⚠️ Running DOS2UNIX ⚠️⚠️⚠️"
                   find .github/scripts -type f -name "*.sh" -print0 | xargs -0 dos2unix --
@@ -577,7 +574,6 @@ jobs:
 
             - name: "📦 Set Env Variables"
               id: task_commit_pre
-              if: steps.task_blocklist_generate_run_mode.outputs.run_core == 'true'
               run: |
                   useragent="${{ vars.BL_GENERAL_USERAGENT }}"
                   echo "USERAGENT=$(echo $useragent)" >> $GITHUB_ENV
