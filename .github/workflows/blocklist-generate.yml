@@ -1474,8 +1474,7 @@ jobs:
                   #   Privacy › Anthropic
                   # #
 
-                  run_mip_anthropic=".github/scripts/bl-mip.sh blocklists/privacy/anthropic.ipset '${{ vars.BL_AI_ANTHROPIC_URL }}' privacy/anthropic"
-                  eval "./$run_mip_anthropic"
+                  ./.github/scripts/bl-mip.sh blocklists/privacy/anthropic.ipset "${{ vars.BL_AI_ANTHROPIC_URL }}" privacy/anthropic
 
                   # #
                   #   Privacy › Apple Bot
