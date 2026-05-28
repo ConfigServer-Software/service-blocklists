@@ -18,14 +18,14 @@
 [![Last Commit][github-commit-img]][github-commit-img]
 [![Contributors][contribs-all-img]](#contributors-)
 
-[![Last Updated](${ vars.repo.updated_badge })](https://github.com/ConfigServerApps/service-blocklists)
-[![View Docs](https://img.shields.io/badge/View_Official_Documentation-526CFE?style=for-the-badge&logo=MaterialForMkDocs&logoColor=white)](https://blocklist.configserver.dev/help)
+[![Last Updated](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fblocklist.configserver.dev%2Fstats&query=last_update_human&style=for-the-badge&logo=conventionalcommits&label=updated&color=6a8e4e&cacheSeconds=1)](https://github.com/ConfigServerApps/service-blocklists)
+[![View Docs](https://img.shields.io/badge/View_Docs-526CFE?style=for-the-badge&logo=MaterialForMkDocs&logoColor=white)](https://blocklist.configserver.dev/help)
 <!-- prettier-ignore-end -->
 
 <div align="center">
 
-[![View](https://img.shields.io/discord/1428601317361848412?style=for-the-badge&color=de1f68&label=)](https://discord.configserver.dev)
 [![View](https://img.shields.io/badge/Join%20Discord-2d5e97?style=for-the-badge&logo=discord&logoColor=FFFFFF)](https://discord.configserver.dev)
+[![View](https://img.shields.io/discord/1428601317361848412?style=for-the-badge&color=de1f68&label=)](https://discord.configserver.dev)
 
 </div>
 
