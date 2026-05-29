@@ -683,6 +683,18 @@ if [ ! -f "${file_manifest_target}" ] || [ ! -r "${file_manifest_target}" ]; the
 fi
 
 # #
+#   Get Version
+# #
+
+stats_url="https://blocklist.configserver.dev/stats"
+
+repo_version=$( curl -fsSL "${stats_url}" | jq -r '.repo.version // empty' )
+
+if [[ -z "${repo_version}" ]]; then
+    error "    ⭕ Could not fetch repository version from ${redd}${stats_url}${end}"
+fi
+
+# #
 #   Manifest › Make Changes
 #   
 #   This script opens the specified manifest.json file and modifies json values
@@ -694,7 +706,9 @@ info "    📄 Updating manifest file ${bluel}${PWD}/${file_manifest_target}${gr
 if jq \
     --arg now "${NOW}" \
     --arg ts "${DATE_TS}" \
+    --arg version "${repo_version}" \
     '
+        .version = $version |
         .last_update = $now |
         .last_update_ts = $ts
     ' \
@@ -707,6 +721,7 @@ then
     #   Validate Changes
     # #
 
+    manifest_version=$( jq -r '.version' "${file_manifest_target}" )
     manifest_now=$( jq -r '.last_update' "${file_manifest_target}" )
     manifest_ts=$( jq -r '.last_update_ts' "${file_manifest_target}" )
 
@@ -718,6 +733,7 @@ then
 
         ok "    📄 Successfully updated manifest file ${greenl}${PWD}/${file_manifest_target}${greym}"
 
+        label "        ${bluel}\"version\": \"${manifest_version}\"${greym}"
         label "        ${bluel}\"last_update\": \"${manifest_now}\"${greym}"
         label "        ${bluel}\"last_update_ts\": \"${manifest_ts}\"${greym}"
     else
