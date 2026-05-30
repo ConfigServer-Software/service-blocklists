@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri May 29 06:44:10 UTC 2026
-#   @entries        98,914 ips
-#                   242 subnets
-#                   242 lines
+#   @updated        Sat May 30 06:06:34 UTC 2026
+#   @entries        98,915 ips
+#                   243 subnets
+#                   243 lines
 #   @country        Tajikistan (TJ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -158,6 +158,7 @@
 217.70.3.0/24
 217.138.89.128/25
 217.197.105.0/24
+2001:470:19:2d3::/64
 2001:470:28:12b::/64
 2001:470:28:529::/64
 2001:470:28:f72::/64
