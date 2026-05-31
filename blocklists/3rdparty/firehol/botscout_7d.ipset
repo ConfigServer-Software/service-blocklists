@@ -5,10 +5,10 @@
 #   @source         https://iplists.firehol.org/files/botscout_7d.ipset
 #   @id             3rdparty_firehol_botscout_7d_ipset
 #   @uuid           345f469d-9b70-3181-ac9e-3b66a50e4dca
-#   @updated        Sun May 31 02:19:28 UTC 2026
-#   @entries        1,231 ips
+#   @updated        Sun May 31 07:46:42 UTC 2026
+#   @entries        1,232 ips
 #                   18 subnets
-#                   1,211 lines
+#                   1,212 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
@@ -757,6 +757,7 @@
 156.241.219.249
 156.241.221.178
 156.241.223.34
+156.241.223.167
 156.243.132.19
 156.243.139.20
 156.243.221.59
