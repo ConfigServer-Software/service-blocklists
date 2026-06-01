@@ -5,7 +5,7 @@
 #   @source         https://iplists.firehol.org/files/dshield_30d.netset
 #   @id             3rdparty_firehol_dshield_30d_ipset
 #   @uuid           c4c04fbf-ebfa-36e9-b445-7f04c9289cc6
-#   @updated        Mon Jun 01 02:40:45 UTC 2026
+#   @updated        Mon Jun 01 09:18:32 UTC 2026
 #   @entries        19,456 ips
 #                   73 subnets
 #                   73 lines
@@ -65,7 +65,6 @@
 81.29.142.0/24
 81.161.239.0/24
 85.11.167.0/24
-87.121.84.0/24
 87.251.64.0/24
 91.92.42.0/24
 91.196.152.0/24
@@ -91,6 +90,7 @@
 185.136.15.0/24
 185.242.226.0/24
 193.3.53.0/24
+193.124.20.0/24
 193.163.125.0/24
 193.176.31.0/24
 194.88.98.0/24
