@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/tor_exitnodes.ipset
 #   @id             tor_exitnodes_ipset
 #   @uuid           9d63ca5e-2c49-3352-bc9f-3d6ace1edd1e
-#   @updated        Tue Jun 02 08:25:20 UTC 2026
+#   @updated        Tue Jun 02 16:01:26 UTC 2026
 #   @entries        1,257 ips
-#                   83 subnets
-#                   786 lines
+#                   85 subnets
+#                   790 lines
 #   @expires        7 days
 #   @category       Special
 #
@@ -91,7 +91,10 @@
 23.129.64.136/29
 23.129.64.144/28
 23.129.64.160/27
-23.129.64.192/28
+23.129.64.192/30
+23.129.64.197
+23.129.64.198/31
+23.129.64.200/29
 23.129.64.208/30
 23.129.64.212/31
 23.129.64.216/29
@@ -261,6 +264,7 @@
 77.48.28.193
 77.48.28.204
 77.48.28.237
+77.48.28.239
 77.81.247.72
 77.90.185.51
 77.239.97.46
