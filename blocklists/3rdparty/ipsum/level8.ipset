@@ -5,10 +5,10 @@
 #   @source         https://raw.githubusercontent.com/stamparm/ipsum/master/levels/8.txt
 #   @id             3rdparty_ipsum_level8_ipset
 #   @uuid           55a04432-6618-3d2d-8da1-df6e8e1c4c29
-#   @updated        Mon Jun 01 22:39:18 UTC 2026
-#   @entries        12 ips
+#   @updated        Tue Jun 02 02:41:39 UTC 2026
+#   @entries        20 ips
 #                   0 subnets
-#                   12 lines
+#                   20 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
@@ -48,15 +48,23 @@
 #   environment requirements.
 # #
 
-80.82.77.33
+2.57.121.112
+2.57.122.238
+45.148.10.121
+45.148.10.151
+45.148.10.157
+80.94.95.115
+80.94.95.116
 85.239.151.41
+89.185.81.112
 107.189.24.77
-118.145.245.82
-120.241.79.66
 152.32.132.28
 152.32.226.205
-167.94.146.60
+160.119.71.11
+176.65.139.130
+176.65.139.151
 185.156.73.233
+185.227.153.56
 190.2.135.111
-212.73.217.80
 213.209.159.56
+213.209.159.158
