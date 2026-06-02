@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_china_mobile_ipset
 #   @uuid           80032055-9a34-36f4-aca3-50da4f85f491
-#   @updated        Mon Jun 01 06:26:46 UTC 2026
-#   @entries        45,159,619 ips
-#                   752 subnets
-#                   752 lines
+#   @updated        Tue Jun 02 06:10:06 UTC 2026
+#   @entries        45,157,571 ips
+#                   750 subnets
+#                   750 lines
 #   @asn            AS9808, AS134810, AS131486, AS131516, AS135629
 #                   AS137718, AS58453, AS58807, AS10212, AS132510
 #                   AS56048, AS209141, AS56040, AS56046, AS56041
@@ -226,8 +226,6 @@
 103.239.244.0/22
 103.242.64.0/22
 103.242.172.0/22
-103.244.68.0/22
-103.244.72.0/22
 103.244.80.0/22
 103.244.232.0/22
 103.247.168.0/22

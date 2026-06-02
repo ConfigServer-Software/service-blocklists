@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_S_sharktech_ipset
 #   @uuid           b2f46a98-bc46-3e5c-a04c-5b76ba6abe7f
-#   @updated        Mon Jun 01 07:14:24 UTC 2026
-#   @entries        124,678 ips
-#                   58 subnets
-#                   58 lines
+#   @updated        Tue Jun 02 07:07:28 UTC 2026
+#   @entries        124,422 ips
+#                   57 subnets
+#                   57 lines
 #   @asn            AS46844
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -44,7 +44,6 @@
 138.249.252.0/23
 138.249.254.0/24
 157.22.156.0/23
-158.51.78.0/24
 158.173.232.0/23
 158.173.236.0/24
 170.168.14.0/24

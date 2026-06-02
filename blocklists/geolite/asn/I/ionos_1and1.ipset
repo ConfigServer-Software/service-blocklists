@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_I_ionos_1and1_ipset
 #   @uuid           b5d9209a-39e3-34c3-8788-7ec3dac421ee
-#   @updated        Mon Jun 01 07:13:57 UTC 2026
-#   @entries        763,418 ips
-#                   192 subnets
-#                   192 lines
+#   @updated        Tue Jun 02 07:07:02 UTC 2026
+#   @entries        763,674 ips
+#                   193 subnets
+#                   193 lines
 #   @asn            AS8560, AS15418
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -83,6 +83,7 @@
 185.132.32.0/22
 185.132.36.0/22
 185.132.40.0/21
+185.133.24.0/24
 185.164.4.0/22
 185.230.216.0/22
 185.249.72.0/22
