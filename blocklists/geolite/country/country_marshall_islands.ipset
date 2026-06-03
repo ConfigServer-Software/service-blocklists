@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  2 07:03:24 UTC 2026
-#   @entries        31,968 ips
+#   @updated        Wed Jun  3 07:10:28 UTC 2026
+#   @entries        32,224 ips
 #                   124 subnets
 #                   124 lines
 #   @country        Marshall Islands (MH)
@@ -23,7 +23,7 @@
 85.149.128.0/20
 85.149.144.0/22
 85.149.148.0/24
-85.149.151.0/24
+85.149.150.0/23
 85.149.152.0/21
 85.149.160.0/20
 85.149.176.0/21

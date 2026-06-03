@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  2 07:02:30 UTC 2026
-#   @entries        113,925 ips
-#                   161 subnets
-#                   161 lines
+#   @updated        Wed Jun  3 07:09:38 UTC 2026
+#   @entries        113,669 ips
+#                   160 subnets
+#                   160 lines
 #   @country        Aruba (AW)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -17,7 +17,6 @@
 # #
 
 45.39.106.0/28
-46.243.139.0/24
 57.74.102.0/23
 57.91.224.0/21
 104.28.8.81/32

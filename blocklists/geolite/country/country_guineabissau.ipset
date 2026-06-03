@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  2 07:03:09 UTC 2026
-#   @entries        9,250 ips
-#                   132 subnets
-#                   132 lines
+#   @updated        Wed Jun  3 07:10:14 UTC 2026
+#   @entries        8,994 ips
+#                   131 subnets
+#                   131 lines
 #   @country        Guinea-Bissau (GW)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -19,7 +19,6 @@
 5.62.60.169/32
 5.62.60.170/31
 84.254.160.0/24
-95.210.6.0/24
 102.219.174.0/23
 104.28.10.110/31
 104.28.10.112/32

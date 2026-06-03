@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  2 07:02:38 UTC 2026
-#   @entries        47 ips
-#                   42 subnets
-#                   42 lines
+#   @updated        Wed Jun  3 07:09:46 UTC 2026
+#   @entries        51 ips
+#                   46 subnets
+#                   46 lines
 #   @country        CC (CC)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -34,8 +34,12 @@
 162.120.216.146/32
 162.120.228.67/32
 194.50.99.39/32
+2001:470:19:2cd::/64
+2001:470:24:312::/64
 2001:470:18fd::/48
 2001:470:1f1d:1ce::/64
+2001:470:f97d::/48
+2001:470:fdfa::/48
 2606:40:6dc::/46
 2606:40:6e0::/45
 2606:40:6e8::/46

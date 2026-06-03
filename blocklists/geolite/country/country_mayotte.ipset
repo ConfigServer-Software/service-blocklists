@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  2 07:04:31 UTC 2026
-#   @entries        80,058 ips
-#                   122 subnets
-#                   122 lines
+#   @updated        Wed Jun  3 07:11:31 UTC 2026
+#   @entries        55,481 ips
+#                   121 subnets
+#                   121 lines
 #   @country        Mayotte (YT)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -48,7 +48,7 @@
 104.28.231.166/31
 104.28.231.168/31
 109.122.176.0/20
-139.26.0.0/17
+139.26.0.0/19
 140.248.24.92/31
 140.248.41.92/31
 140.248.56.245/32
@@ -137,4 +137,3 @@
 2a13:a5c7:25f6::/48
 2a14:2d45:f400::/40
 2a14:7580:cff5::/48
-2c0f:3781::/32

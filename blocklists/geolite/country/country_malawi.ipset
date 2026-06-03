@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  2 07:03:25 UTC 2026
-#   @entries        562,219 ips
-#                   215 subnets
-#                   215 lines
+#   @updated        Wed Jun  3 07:10:29 UTC 2026
+#   @entries        561,963 ips
+#                   214 subnets
+#                   214 lines
 #   @country        Malawi (MW)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -36,7 +36,6 @@
 57.82.90.0/23
 63.222.36.2/32
 84.254.168.0/24
-95.210.57.0/24
 98.97.162.0/23
 102.36.145.0/24
 102.70.0.0/15

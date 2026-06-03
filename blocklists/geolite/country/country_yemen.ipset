@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  2 07:04:31 UTC 2026
-#   @entries        239,148 ips
-#                   210 subnets
-#                   210 lines
+#   @updated        Wed Jun  3 07:11:31 UTC 2026
+#   @entries        238,124 ips
+#                   208 subnets
+#                   208 lines
 #   @country        Yemen (YE)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -26,7 +26,6 @@
 46.243.149.0/24
 63.168.168.0/23
 63.171.18.0/23
-65.162.184.0/23
 74.118.126.240/30
 78.137.64.0/19
 79.135.105.208/30
@@ -135,7 +134,6 @@
 196.197.207.0/24
 196.198.207.0/24
 196.199.207.0/24
-198.69.12.0/23
 205.160.110.0/23
 209.198.132.0/24
 209.198.150.0/23

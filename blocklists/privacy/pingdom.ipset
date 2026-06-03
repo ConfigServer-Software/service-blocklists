@@ -5,7 +5,7 @@
 #   @source         https://my.pingdom.com/probes/ipv4 | https://my.pingdom.com/probes/ipv6
 #   @id             privacy_pingdom_ipset
 #   @uuid           b5c33ba7-0bce-3d84-b803-c055dbe15e0f
-#   @updated        Tue Jun 02 06:31:16 UTC 2026
+#   @updated        Wed Jun 03 06:44:49 UTC 2026
 #   @entries        160 ips
 #                   1 subnets
 #                   159 lines
@@ -98,6 +98,7 @@
 173.248.147.18
 174.34.156.130
 175.45.132.20
+177.47.99.26
 178.162.206.244
 179.50.12.212
 184.75.210.90
@@ -117,7 +118,6 @@
 196.245.151.42
 199.87.228.66
 200.58.101.248
-201.33.21.5
 207.244.80.239
 209.58.139.193
 209.58.139.194

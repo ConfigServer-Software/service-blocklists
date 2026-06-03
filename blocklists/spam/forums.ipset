@@ -5,7 +5,7 @@
 #   @source         https://blocklist.configserver.dev/spam/forums.ipset
 #   @id             spam_forums_ipset
 #   @uuid           ff3c0a35-87d2-3046-b011-1397e2458196
-#   @updated        Tue Jun 02 06:33:02 UTC 2026
+#   @updated        Wed Jun 03 06:46:07 UTC 2026
 #   @entries        12,263 ips
 #                   244 subnets
 #                   11,911 lines

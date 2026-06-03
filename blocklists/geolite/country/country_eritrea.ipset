@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  2 07:02:53 UTC 2026
-#   @entries        7,703 ips
-#                   127 subnets
-#                   127 lines
+#   @updated        Wed Jun  3 07:09:59 UTC 2026
+#   @entries        7,447 ips
+#                   126 subnets
+#                   126 lines
 #   @country        Eritrea (ER)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -22,7 +22,6 @@
 79.135.105.48/30
 84.254.152.0/24
 85.239.151.0/24
-88.202.80.0/24
 98.97.158.0/23
 104.28.9.167/32
 104.28.9.168/31
