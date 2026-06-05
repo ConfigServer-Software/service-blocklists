@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             isp_verizon_ipset
 #   @uuid           edc3bdf1-3ff0-3351-8660-c0c428c0cb0e
-#   @updated        Thu Jun 04 07:09:09 UTC 2026
-#   @entries        89,567,072 ips
-#                   1,556 subnets
-#                   1,556 lines
+#   @updated        Fri Jun 05 06:43:44 UTC 2026
+#   @entries        89,534,304 ips
+#                   1,555 subnets
+#                   1,555 lines
 #   @asn            AS701, AS702, AS703, AS7046, AS1321
 #                   AS2125, AS3378, AS2828, AS3371, AS3372
 #                   AS14551, AS1339, AS11486, AS22394, AS12079
@@ -1331,7 +1331,6 @@
 203.152.224.0/19
 203.166.0.0/17
 203.193.0.0/17
-203.195.128.0/17
 204.29.239.0/24
 204.51.64.0/18
 204.75.164.0/24
