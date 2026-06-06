@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_oracle_osn_ipset
 #   @uuid           0b7a599b-2a22-3518-a4f1-ffb94f88f764
-#   @updated        Fri Jun 05 06:19:47 UTC 2026
-#   @entries        458,378 ips
-#                   440 subnets
-#                   440 lines
+#   @updated        Sat Jun 06 05:34:45 UTC 2026
+#   @entries        469,130 ips
+#                   443 subnets
+#                   443 lines
 #   @expires        4 hours
 #   @category       Uncategorized
 #
@@ -255,6 +255,8 @@
 146.235.254.0/23
 147.5.20.0/22
 147.5.28.0/22
+147.5.64.0/19
+147.15.176.0/23
 147.154.0.0/19
 147.154.32.0/25
 147.154.36.0/22
@@ -321,6 +323,7 @@
 159.112.166.0/24
 159.112.168.0/21
 161.33.252.0/22
+161.118.8.0/21
 161.153.128.0/18
 161.153.240.0/21
 164.152.96.0/22

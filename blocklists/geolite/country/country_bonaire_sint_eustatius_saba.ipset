@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun  5 06:54:14 UTC 2026
-#   @entries        28,958 ips
-#                   115 subnets
-#                   115 lines
+#   @updated        Sat Jun  6 06:06:33 UTC 2026
+#   @entries        28,702 ips
+#                   114 subnets
+#                   114 lines
 #   @country        Bonaire Sint Eustatius Saba (BQ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -60,7 +60,6 @@
 190.97.112.0/21
 190.107.248.0/21
 190.123.18.192/26
-193.17.35.0/24
 194.50.99.30/32
 200.6.144.0/21
 200.71.248.0/21

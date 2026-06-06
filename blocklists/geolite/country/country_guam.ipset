@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun  5 06:54:49 UTC 2026
-#   @entries        226,452 ips
-#                   266 subnets
-#                   266 lines
+#   @updated        Sat Jun  6 06:07:08 UTC 2026
+#   @entries        226,964 ips
+#                   267 subnets
+#                   267 lines
 #   @country        Guam (GU)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -45,6 +45,7 @@
 45.129.85.0/24
 45.138.10.160/30
 49.128.107.0/24
+63.103.50.0/23
 64.7.114.0/30
 64.86.72.0/22
 64.193.122.0/23

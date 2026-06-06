@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun  5 06:55:35 UTC 2026
-#   @entries        688 ips
-#                   106 subnets
-#                   106 lines
+#   @updated        Sat Jun  6 06:07:52 UTC 2026
+#   @entries        689 ips
+#                   107 subnets
+#                   107 lines
 #   @country        United States Minor Outlying Islands (UM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -56,8 +56,8 @@
 2001:470:1d:2b9::/64
 2001:470:24:30f::/64
 2001:470:24:620::/64
+2001:470:26:73e::/64
 2001:470:28:66::/64
-2001:470:28:9de::/64
 2001:470:36:689::/64
 2001:470:36:8e7::/64
 2001:470:67:215::/64
@@ -79,6 +79,7 @@
 2001:470:5892::/48
 2001:470:6e0e::/48
 2001:470:7180::/48
+2001:470:b6dd::/48
 2001:470:c251::/48
 2001:470:dc34::/48
 2001:470:f33e::/48

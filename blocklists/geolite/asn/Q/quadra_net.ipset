@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_Q_quadra_net_ipset
 #   @uuid           e08ac979-3251-38e6-b5d9-f33f3f4a81b6
-#   @updated        Fri Jun 05 06:59:12 UTC 2026
-#   @entries        1 ips
-#                   1 subnets
-#                   1 lines
+#   @updated        Sat Jun 06 06:11:20 UTC 2026
+#   @entries        4 ips
+#                   4 subnets
+#                   4 lines
 #   @asn            AS8100
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -17,3 +17,6 @@
 # #
 
 2602:fed2:708d::/48
+2602:ff96:11::/48
+2602:ff96:14::/48
+2607:ff48::/32
