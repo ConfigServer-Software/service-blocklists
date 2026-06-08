@@ -5,7 +5,7 @@
 #   @source         https://www.dshield.org/block.txt
 #   @id             3rdparty_dshield_blocklist_ipset
 #   @uuid           462df9b1-e6f9-3f42-a83d-856f7f67b603
-#   @updated        Mon Jun 08 08:55:13 UTC 2026
+#   @updated        Mon Jun 08 15:46:33 UTC 2026
 #   @entries        5,120 ips
 #                   20 subnets
 #                   20 lines
@@ -44,9 +44,9 @@
 147.185.132.0/24
 167.94.145.0/24
 179.43.163.0/24
+188.240.59.0/24
 193.163.125.0/24
 198.235.24.0/24
-199.45.154.0/24
 204.76.203.0/24
 205.210.31.0/24
 216.180.246.0/24
