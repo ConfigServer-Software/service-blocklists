@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_digitalocean_source_ipset
 #   @uuid           5a60c616-13fc-3996-bc28-f3ef852f3592
-#   @updated        Mon Jun 08 06:31:29 UTC 2026
-#   @entries        3,101,588 ips
-#                   330 subnets
-#                   330 lines
+#   @updated        Tue Jun 09 05:42:55 UTC 2026
+#   @entries        3,105,684 ips
+#                   329 subnets
+#                   329 lines
 #   @expires        4 hours
 #   @category       Uncategorized
 #
@@ -161,8 +161,7 @@
 168.144.16.0/20
 168.144.32.0/19
 168.144.64.0/18
-168.144.128.0/19
-168.144.160.0/20
+168.144.128.0/18
 170.64.128.0/17
 174.138.0.0/17
 178.62.0.0/16
