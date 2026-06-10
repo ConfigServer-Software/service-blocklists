@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  9 06:20:23 UTC 2026
-#   @entries        45,258 ips
-#                   110 subnets
-#                   110 lines
+#   @updated        Wed Jun 10 06:49:48 UTC 2026
+#   @entries        45,260 ips
+#                   112 subnets
+#                   112 lines
 #   @country        Faroe Islands (FO)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -93,7 +93,9 @@
 2a02:26f7:d084:cd80::/63
 2a02:26f7:d084:cd82::/64
 2a02:26f7:d085:4000::/64
-2a02:26f7:d088::/48
+2a02:26f7:d088:4000::/64
+2a02:26f7:d088:cd80::/63
+2a02:26f7:d088:cd82::/64
 2a02:26f7:d089:4000::/64
 2a03:ee00::/32
 2a04:4e41:1c2::/48

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  9 06:20:58 UTC 2026
-#   @entries        1,109,857 ips
-#                   487 subnets
-#                   487 lines
+#   @updated        Wed Jun 10 06:50:25 UTC 2026
+#   @entries        1,110,113 ips
+#                   488 subnets
+#                   488 lines
 #   @country        Oman (OM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -146,6 +146,7 @@
 104.30.170.34/32
 104.30.171.159/32
 113.30.129.64/27
+115.167.0.0/24
 119.31.250.0/24
 130.41.83.252/32
 130.94.80.0/23

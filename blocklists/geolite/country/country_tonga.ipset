@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  9 06:21:11 UTC 2026
-#   @entries        15,090 ips
-#                   118 subnets
-#                   118 lines
+#   @updated        Wed Jun 10 06:50:37 UTC 2026
+#   @entries        15,092 ips
+#                   119 subnets
+#                   119 lines
 #   @country        Tonga (TO)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -74,6 +74,7 @@
 196.197.192.0/24
 196.198.192.0/24
 196.199.192.0/24
+198.54.100.86/31
 202.43.8.0/21
 202.134.24.0/21
 204.1.222.0/24

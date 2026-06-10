@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  9 06:21:09 UTC 2026
-#   @entries        88,404 ips
-#                   143 subnets
-#                   143 lines
+#   @updated        Wed Jun 10 06:50:35 UTC 2026
+#   @entries        88,403 ips
+#                   142 subnets
+#                   142 lines
 #   @country        Suriname (SR)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -158,4 +158,3 @@
 2a14:2d45:cd00::/40
 2a14:67c2:839::/48
 2a14:7580:cfce::/48
-2a14:7583:ff3f:800::/56

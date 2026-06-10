@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun  9 06:21:50 UTC 2026
-#   @entries        17,089 ips
-#                   118 subnets
-#                   118 lines
+#   @updated        Wed Jun 10 06:51:23 UTC 2026
+#   @entries        18,113 ips
+#                   119 subnets
+#                   119 lines
 #   @country        Vatican City Holy See (VA)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -51,6 +51,7 @@
 172.225.158.48/28
 176.31.103.102/32
 185.17.220.0/22
+185.152.68.0/22
 193.43.102.0/23
 193.43.128.0/22
 194.50.99.237/32
