@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_T_tiktok_bytedance_ipset
 #   @uuid           0dd6fd97-3557-324a-b63a-97594cf37951
-#   @updated        Thu Jun 11 07:01:22 UTC 2026
-#   @entries        300,352 ips
-#                   198 subnets
-#                   198 lines
+#   @updated        Fri Jun 12 06:54:01 UTC 2026
+#   @entries        300,095 ips
+#                   197 subnets
+#                   197 lines
 #   @asn            AS396986, AS138699, AS150436
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -78,7 +78,7 @@
 71.18.227.0/24
 71.18.228.0/24
 71.18.231.0/24
-71.18.232.0/23
+71.18.232.0/24
 71.18.237.0/24
 71.18.238.0/23
 71.18.240.0/23
@@ -183,7 +183,6 @@
 2605:340:f03e::/48
 2605:340:f044::/48
 2605:340:f04f::/48
-2605:340:f051::/48
 2605:340:f062::/48
 2605:340:f06c::/48
 2605:340:f06e::/48

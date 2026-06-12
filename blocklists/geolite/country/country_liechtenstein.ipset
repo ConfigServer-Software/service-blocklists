@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Thu Jun 11 06:57:41 UTC 2026
-#   @entries        110,612 ips
-#                   484 subnets
-#                   484 lines
+#   @updated        Fri Jun 12 06:49:55 UTC 2026
+#   @entries        110,356 ips
+#                   483 subnets
+#                   483 lines
 #   @country        Liechtenstein (LI)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -153,7 +153,6 @@
 130.41.176.128/26
 130.41.236.96/28
 130.41.246.240/28
-130.43.168.0/24
 134.231.199.64/26
 134.238.123.96/27
 134.238.123.128/25
