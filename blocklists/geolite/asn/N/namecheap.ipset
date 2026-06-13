@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_N_namecheap_ipset
 #   @uuid           256a444b-17a9-3c96-95fd-d6d6be833532
-#   @updated        Fri Jun 12 06:53:34 UTC 2026
-#   @entries        78,083 ips
-#                   33 subnets
-#                   33 lines
+#   @updated        Sat Jun 13 06:38:54 UTC 2026
+#   @entries        79,875 ips
+#                   36 subnets
+#                   36 lines
 #   @asn            AS22612
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -22,6 +22,9 @@
 68.65.120.0/22
 69.57.160.0/22
 104.207.64.0/20
+104.207.82.0/23
+104.207.84.0/22
+104.207.88.0/24
 104.207.94.0/23
 104.219.248.0/22
 159.198.32.0/20

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 12 06:49:27 UTC 2026
-#   @entries        12,700,660 ips
-#                   5,025 subnets
-#                   5,025 lines
+#   @updated        Sat Jun 13 06:34:46 UTC 2026
+#   @entries        12,700,672 ips
+#                   5,027 subnets
+#                   5,027 lines
 #   @country        Denmark (DK)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -3744,6 +3744,8 @@
 213.228.192.80/29
 213.228.215.112/29
 213.228.215.192/29
+213.228.219.64/30
+213.228.219.80/29
 213.232.72.0/22
 213.232.202.0/24
 213.235.9.248/29

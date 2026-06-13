@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 12 06:49:55 UTC 2026
-#   @entries        3,520,671 ips
-#                   2,266 subnets
-#                   2,266 lines
+#   @updated        Sat Jun 13 06:35:14 UTC 2026
+#   @entries        3,520,927 ips
+#                   2,267 subnets
+#                   2,267 lines
 #   @country        Kazakhstan (KZ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -883,6 +883,7 @@
 157.167.236.23/32
 157.167.236.24/32
 157.167.236.60/32
+158.94.223.0/24
 159.117.235.0/27
 160.25.104.120/32
 160.25.105.120/32

@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 12 06:49:56 UTC 2026
-#   @entries        1,432,890 ips
+#   @updated        Sat Jun 13 06:35:15 UTC 2026
+#   @entries        1,432,634 ips
 #                   2,002 subnets
 #                   2,002 lines
 #   @country        Luxembourg (LU)
@@ -311,7 +311,7 @@
 85.234.78.0/23
 85.234.82.0/24
 85.234.84.0/24
-85.234.86.0/23
+85.234.87.0/24
 85.234.90.0/24
 85.234.92.0/23
 85.234.95.0/24
