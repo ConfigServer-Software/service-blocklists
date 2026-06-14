@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_google_cloud_ipset
 #   @uuid           d57ca9de-34c3-3fc9-8953-8d2616d68279
-#   @updated        Sat Jun 13 06:05:51 UTC 2026
-#   @entries        17,429,424 ips
-#                   478 subnets
-#                   478 lines
+#   @updated        Sun Jun 14 06:32:42 UTC 2026
+#   @entries        17,552,304 ips
+#                   476 subnets
+#                   476 lines
 #   @expires        4 hours
 #   @category       Uncategorized
 #
@@ -424,10 +424,8 @@
 130.211.32.0/19
 130.211.64.0/18
 130.211.128.0/17
-136.23.64.0/19
-136.64.0.0/14
-136.68.0.0/15
-136.70.0.0/18
+136.23.64.0/18
+136.64.0.0/13
 136.107.0.0/16
 136.108.0.0/14
 136.112.0.0/13
