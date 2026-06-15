@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             isp_frontier_communications_ipset
 #   @uuid           14d04f78-fac8-3a91-94ae-ddf54b9bf08a
-#   @updated        Sun Jun 14 06:49:30 UTC 2026
-#   @entries        11,813,648 ips
-#                   776 subnets
-#                   776 lines
+#   @updated        Mon Jun 15 07:27:33 UTC 2026
+#   @entries        11,815,696 ips
+#                   777 subnets
+#                   777 lines
 #   @asn            AS5650, AS7011, AS3593, AS26127, AS32587
 #                   AS30064
 #   @expires        4 hours
@@ -696,6 +696,7 @@
 206.227.113.0/24
 206.232.106.0/23
 206.245.136.0/21
+206.245.144.0/21
 206.251.24.0/21
 207.7.160.0/19
 207.180.16.0/23
