@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/threats/smtp_365d.ipset
 #   @id             threats_smtp_365d_ipset
 #   @uuid           829f5de1-1d81-3c37-813b-e9f857a8fe46
-#   @updated        Sun Jun 14 21:05:13 UTC 2026
-#   @entries        4,496 ips
+#   @updated        Mon Jun 15 02:42:09 UTC 2026
+#   @entries        4,497 ips
 #                   309 subnets
-#                   3,977 lines
+#                   3,978 lines
 #   @expires        4 hours
 #   @category       Threats
 #
@@ -908,6 +908,7 @@
 35.203.210.42
 35.203.210.65
 35.203.210.83
+35.203.210.92
 35.203.210.106
 35.203.210.108
 35.203.210.112
