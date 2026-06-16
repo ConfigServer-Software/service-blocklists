@@ -5,9 +5,9 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_apple_icloud_ipset
 #   @uuid           355d923c-c66f-3da3-a931-ad44da0c9d42
-#   @updated        Mon Jun 15 06:45:14 UTC 2026
-#   @entries        350,874 ips
-#                   247,948 subnets
+#   @updated        Tue Jun 16 06:51:25 UTC 2026
+#   @entries        350,877 ips
+#                   247,949 subnets
 #                   248,400 lines
 #   @expires        4 hours
 #   @category       Uncategorized
@@ -1747,8 +1747,8 @@
 104.28.137.32/27
 104.28.137.64/27
 104.28.137.96/29
-104.28.137.104/31
-104.28.137.106
+104.28.137.104/30
+104.28.137.108/31
 104.28.138.1
 104.28.138.2/31
 104.28.138.4/30

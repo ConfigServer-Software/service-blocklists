@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Mon Jun 15 07:48:14 UTC 2026
-#   @entries        16,731,090 ips
-#                   3,730 subnets
-#                   3,730 lines
+#   @updated        Tue Jun 16 07:55:04 UTC 2026
+#   @entries        16,731,347 ips
+#                   3,732 subnets
+#                   3,732 lines
 #   @country        Vietnam (VN)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -1383,6 +1383,7 @@
 138.252.218.0/23
 138.252.244.0/23
 140.82.198.0/24
+140.99.116.0/24
 140.150.235.0/24
 140.209.204.64/26
 140.209.247.64/27
@@ -2929,6 +2930,7 @@
 2001:df7:1040::/48
 2001:df7:1500::/48
 2001:df7:1700::/48
+2001:df7:1740::/48
 2001:df7:3f80::/48
 2001:df7:4080::/48
 2001:df7:4700::/48

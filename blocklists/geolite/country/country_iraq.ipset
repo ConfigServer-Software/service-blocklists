@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Mon Jun 15 07:47:01 UTC 2026
-#   @entries        829,299 ips
-#                   1,595 subnets
-#                   1,595 lines
+#   @updated        Tue Jun 16 07:53:50 UTC 2026
+#   @entries        829,300 ips
+#                   1,596 subnets
+#                   1,596 lines
 #   @country        Iraq (IQ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -1222,6 +1222,7 @@
 2001:470:1f29:1c9::/64
 2001:470:1f29:1cf::/64
 2001:470:1f29:1db::/64
+2001:470:1f29:216::/64
 2001:470:1f29:23d::/64
 2001:470:1f29:241::/64
 2001:470:1f29:259::/64
