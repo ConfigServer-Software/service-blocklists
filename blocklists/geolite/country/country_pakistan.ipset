@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:54:12 UTC 2026
-#   @entries        5,788,914 ips
-#                   1,973 subnets
-#                   1,973 lines
+#   @updated        Wed Jun 17 07:21:14 UTC 2026
+#   @entries        5,788,913 ips
+#                   1,972 subnets
+#                   1,972 lines
 #   @country        Pakistan (PK)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -1970,7 +1970,6 @@
 2a14:67c2:85e::/48
 2a14:67c2:870::/48
 2a14:67c2:8c8::/48
-2a14:7580:cfb1::/48
 2a14:bc80::/40
 2a14:bc80:100::/48
 2a14:bc80:103::/48

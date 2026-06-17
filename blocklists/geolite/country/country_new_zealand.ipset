@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:54:11 UTC 2026
-#   @entries        7,348,373 ips
-#                   3,919 subnets
-#                   3,919 lines
+#   @updated        Wed Jun 17 07:21:12 UTC 2026
+#   @entries        7,347,860 ips
+#                   3,917 subnets
+#                   3,917 lines
 #   @country        New Zealand (NZ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -768,8 +768,7 @@
 103.205.38.0/24
 103.206.32.0/22
 103.207.76.0/22
-103.208.85.0/24
-103.208.86.0/23
+103.208.86.0/24
 103.208.140.0/22
 103.209.192.0/22
 103.209.224.0/22
@@ -3934,4 +3933,3 @@
 2a14:2d45:a900::/40
 2a14:67c2:8c1::/48
 2a14:67c3:770:f000::/56
-2a14:7580:cfaa::/48

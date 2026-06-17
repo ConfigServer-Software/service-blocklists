@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:54:21 UTC 2026
-#   @entries        2,800,447 ips
-#                   1,746 subnets
-#                   1,746 lines
+#   @updated        Wed Jun 17 07:21:23 UTC 2026
+#   @entries        2,800,446 ips
+#                   1,745 subnets
+#                   1,745 lines
 #   @country        Slovakia (SK)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -1760,5 +1760,4 @@
 2a14:2cc0::/29
 2a14:2d45:c800::/40
 2a14:5980::/29
-2a14:7580:cfc9::/48
 2a14:9d80::/29

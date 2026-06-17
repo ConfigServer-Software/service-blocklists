@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:53:15 UTC 2026
-#   @entries        1,813,207 ips
-#                   455 subnets
-#                   455 lines
+#   @updated        Wed Jun 17 07:20:16 UTC 2026
+#   @entries        1,813,206 ips
+#                   454 subnets
+#                   454 lines
 #   @country        Cote d'Ivoire (CI)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -459,7 +459,6 @@
 2a13:a5c7:25ff:2b00::/56
 2a14:2d45:2b00::/40
 2a14:67c2:86c::/48
-2a14:7580:cf2b::/48
 2c0e:7f80::/27
 2c0f:4c40::/32
 2c0f:4e00:8000::/35

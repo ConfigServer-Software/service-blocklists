@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:53:14 UTC 2026
-#   @entries        148,465 ips
-#                   160 subnets
-#                   160 lines
+#   @updated        Wed Jun 17 07:20:15 UTC 2026
+#   @entries        148,464 ips
+#                   159 subnets
+#                   159 lines
 #   @country        Congo (CG)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -167,7 +167,6 @@
 2a13:a5c7:25ff:2900::/56
 2a14:2d45:2900::/40
 2a14:67c2:840::/48
-2a14:7580:cf29::/48
 2c0f:1180::/32
 2c0f:7600::/32
 2c0f:ead8::/32

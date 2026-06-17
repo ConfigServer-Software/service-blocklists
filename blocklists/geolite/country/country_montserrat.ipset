@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:54:00 UTC 2026
-#   @entries        2,630 ips
-#                   97 subnets
-#                   97 lines
+#   @updated        Wed Jun 17 07:21:01 UTC 2026
+#   @entries        2,629 ips
+#                   96 subnets
+#                   96 lines
 #   @country        Montserrat (MS)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -112,4 +112,3 @@
 2a13:a5c7:25ff:9700::/56
 2a14:2d45:9700::/40
 2a14:67c2:86e::/48
-2a14:7580:cf97::/48

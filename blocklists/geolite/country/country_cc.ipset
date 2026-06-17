@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:53:13 UTC 2026
-#   @entries        51 ips
-#                   46 subnets
-#                   46 lines
+#   @updated        Wed Jun 17 07:20:14 UTC 2026
+#   @entries        50 ips
+#                   45 subnets
+#                   45 lines
 #   @country        CC (CC)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -61,4 +61,3 @@
 2a13:a5c7:2527::/48
 2a13:a5c7:25ff:2600::/56
 2a14:2d45:2600::/40
-2a14:7580:cf26::/48

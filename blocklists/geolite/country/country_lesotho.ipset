@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:53:57 UTC 2026
-#   @entries        128,976 ips
-#                   140 subnets
-#                   140 lines
+#   @updated        Wed Jun 17 07:20:58 UTC 2026
+#   @entries        128,975 ips
+#                   139 subnets
+#                   139 lines
 #   @country        Lesotho (LS)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -149,7 +149,6 @@
 2a13:a5c7:25ff:8300::/56
 2a14:2d45:8300::/40
 2a14:67c2:8aa::/48
-2a14:7580:cf83::/48
 2c0f:3140::/32
 2c0f:3480::/32
 2c0f:f130::/32

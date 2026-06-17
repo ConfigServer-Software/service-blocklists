@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:53:15 UTC 2026
-#   @entries        9,953 ips
-#                   113 subnets
-#                   113 lines
+#   @updated        Wed Jun 17 07:20:16 UTC 2026
+#   @entries        9,952 ips
+#                   112 subnets
+#                   112 lines
 #   @country        Cook Islands (CK)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -128,4 +128,3 @@
 2a13:a5c7:25ff:2c00::/56
 2a14:2d45:2c00::/40
 2a14:67c2:84d::/48
-2a14:7580:cf2c::/48

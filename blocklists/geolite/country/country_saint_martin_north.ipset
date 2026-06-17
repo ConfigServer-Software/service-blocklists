@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:53:58 UTC 2026
-#   @entries        7,200 ips
-#                   142 subnets
-#                   142 lines
+#   @updated        Wed Jun 17 07:21:00 UTC 2026
+#   @entries        7,199 ips
+#                   141 subnets
+#                   141 lines
 #   @country        Saint Martin (North) (MF)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -157,4 +157,3 @@
 2a13:a5c7:258d::/48
 2a13:a5c7:25ff:8c00::/56
 2a14:2d45:8c00::/40
-2a14:7580:cf8c::/48

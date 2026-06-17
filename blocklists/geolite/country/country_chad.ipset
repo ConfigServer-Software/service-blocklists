@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:54:23 UTC 2026
-#   @entries        31,342 ips
-#                   167 subnets
-#                   167 lines
+#   @updated        Wed Jun 17 07:21:25 UTC 2026
+#   @entries        31,341 ips
+#                   166 subnets
+#                   166 lines
 #   @country        Chad (TD)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -179,7 +179,6 @@
 2a13:a5c7:25d6::/48
 2a14:2d45:d500::/40
 2a14:67c2:874::/48
-2a14:7580:cfd6::/48
 2c0f:5a80::/32
 2c0f:eb98::/32
 2c0f:f5c8::/32

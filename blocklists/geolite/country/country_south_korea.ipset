@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:53:55 UTC 2026
-#   @entries        116,155,055 ips
-#                   5,533 subnets
-#                   5,533 lines
+#   @updated        Wed Jun 17 07:20:56 UTC 2026
+#   @entries        116,155,054 ips
+#                   5,532 subnets
+#                   5,532 lines
 #   @country        South Korea (KR)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -5543,7 +5543,6 @@
 2a14:67c2:89a::/48
 2a14:67c2:8ad::/48
 2a14:7580:500::/42
-2a14:7580:cf79::/48
 2a14:7580:eb00::/40
 2a14:7581:9f80::/44
 2a14:7581:fa30::/44

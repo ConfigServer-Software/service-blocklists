@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:53:52 UTC 2026
-#   @entries        286,158 ips
-#                   387 subnets
-#                   387 lines
+#   @updated        Wed Jun 17 07:20:53 UTC 2026
+#   @entries        286,157 ips
+#                   386 subnets
+#                   386 lines
 #   @country        Jamaica (JM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -402,4 +402,3 @@
 2a13:a5c7:25ff:6f00::/56
 2a14:2d45:6f00::/40
 2a14:67c2:841::/48
-2a14:7580:cf6f::/48

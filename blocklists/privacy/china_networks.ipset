@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_china_networks_ipset
 #   @uuid           9f2371db-0cde-3d2c-bba7-890381e775ae
-#   @updated        Tue Jun 16 07:05:34 UTC 2026
-#   @entries        6,532,638 ips
-#                   475 subnets
-#                   475 lines
+#   @updated        Wed Jun 17 06:44:59 UTC 2026
+#   @entries        6,532,634 ips
+#                   471 subnets
+#                   471 lines
 #   @asn            AS4847
 #   @expires        4 hours
 #   @category       Uncategorized
@@ -477,10 +477,6 @@
 240e:82::/31
 240e:108:4001::/48
 240e:108:4801::/48
-240e:204:1::/48
-240e:305::/32
-240e:306::/32
-240e:307::/32
 240e:604:111::/48
 240e:604:20f::/48
 240e:604:318::/48

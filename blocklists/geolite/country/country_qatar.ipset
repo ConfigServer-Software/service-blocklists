@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:54:14 UTC 2026
-#   @entries        1,303,872 ips
-#                   689 subnets
-#                   689 lines
+#   @updated        Wed Jun 17 07:21:16 UTC 2026
+#   @entries        1,303,871 ips
+#                   688 subnets
+#                   688 lines
 #   @country        Qatar (QA)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -703,5 +703,4 @@
 2a14:4b44::/30
 2a14:5480::/29
 2a14:67c2:811::/48
-2a14:7580:cfba::/48
 2a14:c600::/32

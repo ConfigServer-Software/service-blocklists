@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:53:57 UTC 2026
-#   @entries        1,433,151 ips
-#                   2,003 subnets
-#                   2,003 lines
+#   @updated        Wed Jun 17 07:20:59 UTC 2026
+#   @entries        1,433,150 ips
+#                   2,002 subnets
+#                   2,002 lines
 #   @country        Luxembourg (LU)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -2017,5 +2017,4 @@
 2a14:2d45:8500::/40
 2a14:67c2:87c::/48
 2a14:7580:1::/48
-2a14:7580:cf85::/48
 2a14:e480::/29

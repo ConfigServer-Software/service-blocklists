@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             isp_cox_communications_ipset
 #   @uuid           f49f16d6-6f3c-3f66-8c2c-97667aa69669
-#   @updated        Tue Jun 16 07:31:29 UTC 2026
-#   @entries        13,621,226 ips
-#                   752 subnets
-#                   752 lines
+#   @updated        Wed Jun 17 07:03:43 UTC 2026
+#   @entries        13,621,738 ips
+#                   753 subnets
+#                   753 lines
 #   @asn            AS22773, AS13432, AS26146, AS26204, AS31771
 #                   AS22318, AS15218, AS25904, AS13493, AS14710
 #                   AS12064, AS6298
@@ -135,6 +135,7 @@
 68.170.0.0/23
 68.224.0.0/13
 69.63.96.0/19
+69.72.68.0/23
 70.160.0.0/11
 71.158.129.0/24
 72.192.0.0/11

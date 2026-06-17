@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 16 07:54:15 UTC 2026
-#   @entries        7,481,288 ips
-#                   5,132 subnets
-#                   5,132 lines
+#   @updated        Wed Jun 17 07:21:17 UTC 2026
+#   @entries        7,481,544 ips
+#                   5,133 subnets
+#                   5,133 lines
 #   @country        Romania (RO)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -47,6 +47,7 @@
 5.157.144.0/20
 5.157.160.0/19
 5.157.192.0/18
+5.180.33.0/24
 5.180.152.0/24
 5.181.25.0/24
 5.181.201.0/24
@@ -4990,6 +4991,7 @@
 2a0d:a500::/29
 2a0d:c9c0::/32
 2a0d:ca40::/29
+2a0d:d940:9014::/48
 2a0d:f080::/29
 2a0d:f401::/32
 2a0d:f402::/31
@@ -5144,7 +5146,6 @@
 2a14:3700::/29
 2a14:3ec0::/29
 2a14:67c2:81c::/48
-2a14:7580:cfbc::/48
 2a14:7580:ffeb::/48
 2a14:7581:3962::/48
 2a14:d880::/32
