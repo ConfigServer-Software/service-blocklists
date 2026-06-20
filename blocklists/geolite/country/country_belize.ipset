@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 19 07:35:58 UTC 2026
-#   @entries        134,936 ips
-#                   339 subnets
-#                   339 lines
+#   @updated        Sat Jun 20 06:31:05 UTC 2026
+#   @entries        134,937 ips
+#                   340 subnets
+#                   340 lines
 #   @country        Belize (BZ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -221,6 +221,7 @@
 2001:470:67:210::/64
 2001:470:71:92::/64
 2001:470:1f05:616::/64
+2001:470:1f0f:471::/64
 2001:470:1f13:781::/64
 2001:470:82fb::/48
 2001:470:d988::/48

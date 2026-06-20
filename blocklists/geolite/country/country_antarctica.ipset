@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 19 07:35:49 UTC 2026
-#   @entries        2,593 ips
-#                   800 subnets
-#                   800 lines
+#   @updated        Sat Jun 20 06:30:56 UTC 2026
+#   @entries        2,595 ips
+#                   802 subnets
+#                   802 lines
 #   @country        Antarctica (AQ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -71,6 +71,7 @@
 2001:470:8:20d::/64
 2001:470:8:635::/64
 2001:470:b:4e1::/64
+2001:470:b:5ea::/64
 2001:470:d:1b::/64
 2001:470:d:be::/64
 2001:470:d:102::/64
@@ -401,6 +402,7 @@
 2001:470:80d4::/48
 2001:470:80dc::/48
 2001:470:8137::/48
+2001:470:813c::/48
 2001:470:8214::/48
 2001:470:82fc::/48
 2001:470:845f::/48

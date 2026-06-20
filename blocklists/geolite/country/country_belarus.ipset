@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 19 07:35:58 UTC 2026
-#   @entries        1,891,492 ips
-#                   752 subnets
-#                   752 lines
+#   @updated        Sat Jun 20 06:31:05 UTC 2026
+#   @entries        1,892,004 ips
+#                   754 subnets
+#                   754 lines
 #   @country        Belarus (BY)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -61,6 +61,7 @@
 46.243.186.0/24
 57.86.172.0/22
 62.182.102.0/24
+62.192.138.0/24
 66.118.42.0/24
 72.14.201.70/32
 74.118.126.24/30
@@ -322,6 +323,7 @@
 193.5.28.0/24
 193.8.171.0/24
 193.17.173.0/24
+193.31.4.0/24
 193.47.42.13/32
 193.58.255.0/24
 193.105.82.0/24

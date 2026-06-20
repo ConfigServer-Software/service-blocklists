@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 19 07:36:14 UTC 2026
-#   @entries        24,182,144 ips
-#                   935 subnets
-#                   935 lines
+#   @updated        Sat Jun 20 06:31:21 UTC 2026
+#   @entries        24,182,400 ips
+#                   936 subnets
+#                   936 lines
 #   @country        Egypt (EG)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -165,6 +165,7 @@
 72.14.201.52/31
 72.14.201.115/32
 74.118.126.56/30
+75.125.104.0/24
 77.90.174.0/24
 79.127.153.0/24
 79.135.105.212/30

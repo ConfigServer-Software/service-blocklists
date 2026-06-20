@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 19 07:36:00 UTC 2026
-#   @entries        226,843 ips
-#                   370 subnets
-#                   370 lines
+#   @updated        Sat Jun 20 06:31:07 UTC 2026
+#   @entries        227,099 ips
+#                   363 subnets
+#                   363 lines
 #   @country        Democratic Republic Congo (CD)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -33,14 +33,7 @@
 41.222.196.0/22
 41.222.216.0/22
 41.223.104.0/22
-41.243.0.0/19
-41.243.32.0/20
-41.243.48.0/21
-41.243.56.0/22
-41.243.60.0/23
-41.243.62.0/24
-41.243.64.0/18
-41.243.128.0/17
+41.243.0.0/16
 45.221.4.0/22
 57.82.48.0/23
 63.246.41.64/26
