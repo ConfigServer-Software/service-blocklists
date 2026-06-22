@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_V_vietel_ipset
 #   @uuid           ea0264aa-f769-3658-b8f8-b3516240b7f2
-#   @updated        Sun Jun 21 07:24:31 UTC 2026
+#   @updated        Mon Jun 22 07:47:17 UTC 2026
 #   @entries        5,025,287 ips
-#                   267 subnets
-#                   267 lines
+#                   266 subnets
+#                   266 lines
 #   @asn            AS7552, AS38731
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -203,8 +203,7 @@
 117.1.144.0/22
 117.1.148.0/24
 117.1.149.0/24
-117.1.150.0/24
-117.1.151.0/24
+117.1.150.0/23
 117.1.152.0/21
 117.1.160.0/19
 117.1.192.0/18

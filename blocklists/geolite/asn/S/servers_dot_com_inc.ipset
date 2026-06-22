@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_S_servers_dot_com_inc_ipset
 #   @uuid           4778f4be-7daf-3f30-8c4e-a90dc6448f15
-#   @updated        Sun Jun 21 07:24:08 UTC 2026
-#   @entries        496,910 ips
-#                   360 subnets
-#                   360 lines
+#   @updated        Mon Jun 22 07:46:51 UTC 2026
+#   @entries        497,678 ips
+#                   362 subnets
+#                   362 lines
 #   @asn            AS7979
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -316,6 +316,7 @@
 188.42.225.0/24
 188.42.236.0/24
 188.42.240.0/21
+188.72.252.0/23
 188.164.253.0/24
 192.95.83.0/24
 194.5.0.0/22
@@ -361,6 +362,7 @@
 213.196.50.0/23
 213.196.56.0/21
 216.74.109.0/24
+216.75.76.0/24
 216.158.214.0/24
 2406:380::/31
 2600:9c00::/28
