@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_R_rackspace_hosting_ipset
 #   @uuid           067cbd2d-0894-3c1a-9059-ff222ab9416a
-#   @updated        Mon Jun 22 07:46:46 UTC 2026
-#   @entries        1,605,891 ips
-#                   225 subnets
-#                   225 lines
+#   @updated        Tue Jun 23 06:18:52 UTC 2026
+#   @entries        1,606,147 ips
+#                   226 subnets
+#                   226 lines
 #   @asn            AS12200, AS19994, AS27357, AS33070, AS54636
 #                   AS33439, AS22720, AS397485, AS10532, AS36248
 #   @expires        6 hours
@@ -188,6 +188,7 @@
 184.106.56.0/21
 184.106.64.0/18
 184.106.128.0/17
+192.65.36.0/24
 192.68.40.0/24
 192.237.128.0/18
 192.237.192.0/19
