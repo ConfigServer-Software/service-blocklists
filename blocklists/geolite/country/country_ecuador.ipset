@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 23 06:15:12 UTC 2026
-#   @entries        2,874,268 ips
-#                   1,282 subnets
-#                   1,282 lines
+#   @updated        Wed Jun 24 06:02:04 UTC 2026
+#   @entries        2,873,772 ips
+#                   1,285 subnets
+#                   1,285 lines
 #   @country        Ecuador (EC)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -474,7 +474,10 @@
 181.78.26.0/24
 181.78.31.0/24
 181.78.96.0/23
-181.78.192.0/20
+181.78.192.240/28
+181.78.194.0/23
+181.78.196.0/22
+181.78.200.0/21
 181.78.240.0/21
 181.112.0.0/15
 181.119.96.0/23

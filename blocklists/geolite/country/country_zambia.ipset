@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 23 06:16:28 UTC 2026
-#   @entries        1,655,903 ips
+#   @updated        Wed Jun 24 06:03:35 UTC 2026
+#   @entries        1,654,880 ips
 #                   253 subnets
 #                   253 lines
 #   @country        Zambia (ZM)
@@ -30,7 +30,7 @@
 41.72.96.0/19
 41.77.0.0/21
 41.77.144.0/24
-41.173.20.0/22
+41.173.21.202/32
 41.174.0.0/18
 41.175.0.0/19
 41.175.160.0/19

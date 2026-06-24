@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 23 06:14:55 UTC 2026
-#   @entries        783,250 ips
-#                   637 subnets
-#                   637 lines
+#   @updated        Wed Jun 24 06:01:43 UTC 2026
+#   @entries        783,249 ips
+#                   636 subnets
+#                   636 lines
 #   @country        Azerbaijan (AZ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -451,7 +451,6 @@
 2001:470:1f0b:44e::/64
 2001:470:1f0b:58b::/64
 2001:470:1f0b:6de::/64
-2001:470:1f0b:95b::/64
 2001:470:1f0b:b25::/64
 2001:470:1f0b:f0e::/64
 2001:470:1f0f:230::/63

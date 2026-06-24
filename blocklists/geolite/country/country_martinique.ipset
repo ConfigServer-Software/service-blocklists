@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 23 06:15:38 UTC 2026
-#   @entries        253,678 ips
-#                   231 subnets
-#                   231 lines
+#   @updated        Wed Jun 24 06:02:34 UTC 2026
+#   @entries        255,662 ips
+#                   229 subnets
+#                   229 lines
 #   @country        Martinique (MQ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -128,14 +128,12 @@
 109.62.0.0/20
 109.62.48.0/21
 109.62.68.0/24
-109.62.69.0/26
 109.62.69.128/25
 109.62.70.0/24
 109.62.80.0/20
 109.62.104.0/22
 109.62.120.0/21
-109.203.224.0/21
-109.203.240.0/20
+109.203.224.0/19
 136.23.26.29/32
 140.248.14.44/31
 140.248.46.122/31
