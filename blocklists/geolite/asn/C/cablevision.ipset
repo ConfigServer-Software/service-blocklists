@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_C_cablevision_ipset
 #   @uuid           34007412-5041-393c-b240-2c0b4fd24adb
-#   @updated        Wed Jun 24 06:05:00 UTC 2026
-#   @entries        5,083,584 ips
-#                   6,673 subnets
-#                   6,673 lines
+#   @updated        Thu Jun 25 06:15:41 UTC 2026
+#   @entries        5,083,585 ips
+#                   6,668 subnets
+#                   6,668 lines
 #   @asn            AS6128, AS13490, AS19720
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -4635,12 +4635,7 @@
 173.2.218.192/26
 173.2.219.0/24
 173.2.220.0/25
-173.2.220.128/27
-173.2.220.160/32
-173.2.220.162/31
-173.2.220.164/30
-173.2.220.168/29
-173.2.220.176/28
+173.2.220.128/26
 173.2.220.193/32
 173.2.220.194/31
 173.2.220.196/30
