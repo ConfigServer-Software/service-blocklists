@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_Y_yahoo_ipset
 #   @uuid           b60dda3e-8aca-3d46-9c9f-cdf82dab507d
-#   @updated        Fri Jun 26 06:45:29 UTC 2026
-#   @entries        493,919 ips
-#                   541 subnets
-#                   541 lines
+#   @updated        Sat Jun 27 06:10:39 UTC 2026
+#   @entries        492,895 ips
+#                   540 subnets
+#                   540 lines
 #   @asn            AS10310, AS36647, AS26101, AS36646, AS7280
 #                   AS10880, AS14777, AS36088, AS14776, AS14196
 #                   AS5779, AS14780, AS393245, AS14779, AS36752
@@ -111,7 +111,6 @@
 98.136.100.0/22
 98.136.104.0/22
 98.136.112.0/22
-98.136.116.0/22
 98.136.120.0/21
 98.136.128.0/19
 98.136.192.0/18

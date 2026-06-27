@@ -5,12 +5,12 @@
 #   @source         https://blocklist.configserver.dev/privacy_general.ipset
 #   @id             privacy_@general_ipset
 #   @uuid           29488a80-23b9-3a3a-a82e-4a4f75c2f4fe
-#   @updated        Fri Jun 26 05:45:34 UTC 2026
+#   @updated        Sat Jun 27 05:10:15 UTC 2026
 #   @entries        128,314 ips
 #                   173 subnets
 #                   326 lines
 #   @expires        6 hours
-#   @category       Privacy
+#   @category       400: Invalid request
 #
 #   ConfigServer Blocklists › Privacy › General
 #   

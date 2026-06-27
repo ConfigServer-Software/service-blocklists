@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 26 06:41:40 UTC 2026
-#   @entries        714,263 ips
-#                   452 subnets
-#                   452 lines
+#   @updated        Sat Jun 27 06:07:58 UTC 2026
+#   @entries        714,261 ips
+#                   450 subnets
+#                   450 lines
 #   @country        El Salvador (SV)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -104,7 +104,6 @@
 131.100.140.0/22
 131.196.32.10/32
 132.255.208.0/22
-136.23.26.28/32
 138.94.244.0/22
 138.97.140.0/22
 138.99.0.0/22
@@ -328,7 +327,6 @@
 2001:470:e1e2::/48
 2001:470:fe91::/48
 2001:3786:5004:300::/56
-2606:40:e40::/43
 2606:40:205e:c000::/54
 2606:40:214c:4000::/54
 2606:54c0:5560::/44

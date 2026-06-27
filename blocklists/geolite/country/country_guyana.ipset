@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 26 06:41:04 UTC 2026
-#   @entries        74,809 ips
-#                   145 subnets
-#                   145 lines
+#   @updated        Sat Jun 27 06:07:37 UTC 2026
+#   @entries        74,807 ips
+#                   143 subnets
+#                   143 lines
 #   @country        Guyana (GY)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -39,7 +39,6 @@
 104.28.250.153/32
 104.28.250.154/31
 104.30.178.111/32
-136.23.27.22/32
 138.94.248.0/22
 140.248.4.38/31
 140.248.44.56/31
@@ -98,7 +97,6 @@
 2001:470:eaab::/48
 2001:470:ef03::/48
 2400:cb00:482::/48
-2606:40:ba0::/43
 2606:40:20f5:6000::/54
 2606:40:214a:a000::/54
 2606:54c0:3908::/45

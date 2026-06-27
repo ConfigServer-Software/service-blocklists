@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 26 06:40:25 UTC 2026
-#   @entries        1,299,344 ips
-#                   540 subnets
-#                   540 lines
+#   @updated        Sat Jun 27 06:07:14 UTC 2026
+#   @entries        1,299,088 ips
+#                   539 subnets
+#                   539 lines
 #   @country        Angola (AO)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -195,7 +195,6 @@
 104.44.65.0/24
 105.168.0.0/13
 129.122.128.0/17
-138.16.112.0/24
 140.248.56.7/32
 140.248.57.7/32
 140.248.58.7/32

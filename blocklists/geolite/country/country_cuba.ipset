@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 26 06:40:41 UTC 2026
-#   @entries        260,093 ips
-#                   170 subnets
-#                   170 lines
+#   @updated        Sat Jun 27 06:07:23 UTC 2026
+#   @entries        259,581 ips
+#                   168 subnets
+#                   168 lines
 #   @country        Cuba (CU)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -69,8 +69,6 @@
 104.28.244.63/32
 104.28.244.64/29
 104.28.244.72/32
-138.16.61.0/24
-138.16.69.0/24
 152.206.0.0/15
 163.116.134.184/31
 163.116.250.141/32

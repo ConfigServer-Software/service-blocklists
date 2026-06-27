@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/github_git.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/github_git.ipset
-#   @source         https://blocklist.configserver.dev/
+#   @source         400: Invalid request
 #   @id             privacy_github_git_ipset
 #   @uuid           be0e1b45-b006-3cc0-8520-22931bf98dcd
-#   @updated        Fri Jun 26 06:05:11 UTC 2026
+#   @updated        Sat Jun 27 05:31:36 UTC 2026
 #   @entries        10,274 ips
 #                   10 subnets
 #                   34 lines

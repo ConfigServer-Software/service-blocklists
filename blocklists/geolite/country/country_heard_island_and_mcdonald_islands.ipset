@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 26 06:41:05 UTC 2026
-#   @entries        552 ips
-#                   40 subnets
-#                   40 lines
+#   @updated        Sat Jun 27 06:07:37 UTC 2026
+#   @entries        550 ips
+#                   38 subnets
+#                   38 lines
 #   @country        Heard Island and McDonald Islands (HM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -39,8 +39,6 @@
 2001:470:fb7a::/48
 2600:70ff:a959::/48
 2605:59c0:6500::/40
-2606:40:1750::/44
-2606:40:1760::/44
 2a04:4e41:4015:f000::/52
 2a04:4e41:4025:f000::/52
 2a04:4e41:4035:f000::/52

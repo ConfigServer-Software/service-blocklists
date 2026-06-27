@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jun 26 06:41:18 UTC 2026
-#   @entries        97,282 ips
-#                   145 subnets
-#                   145 lines
+#   @updated        Sat Jun 27 06:07:45 UTC 2026
+#   @entries        97,279 ips
+#                   142 subnets
+#                   142 lines
 #   @country        Mali (ML)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -110,9 +110,6 @@
 2001:43fd:9000::/48
 2605:59c0:8400::/40
 2605:59c8:5500::/40
-2606:40:768::/45
-2606:40:770::/45
-2606:40:10d0::/44
 2606:54c0:4870::/45
 2606:54c3:0:194::/64
 2a02:26f7:c2c0:4000::/64
