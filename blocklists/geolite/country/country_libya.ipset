@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 30 06:10:36 UTC 2026
-#   @entries        482,635 ips
-#                   218 subnets
-#                   218 lines
+#   @updated        Wed Jul  1 06:51:27 UTC 2026
+#   @entries        482,633 ips
+#                   216 subnets
+#                   216 lines
 #   @country        Libya (LY)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -214,8 +214,6 @@
 2a0b:4e07:3:4340::/60
 2a0d:3341:e400::/40
 2a10:9007:2:e::/64
-2a13:a5c7:2588::/48
-2a13:a5c7:25ff:8700::/56
 2a14:2d45:8700::/40
 2a14:67c2:8fc::/48
 2c0f:9c0::/32

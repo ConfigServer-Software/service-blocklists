@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 30 06:11:03 UTC 2026
-#   @entries        32,095 ips
-#                   173 subnets
-#                   173 lines
+#   @updated        Wed Jul  1 06:51:51 UTC 2026
+#   @entries        32,093 ips
+#                   171 subnets
+#                   171 lines
 #   @country        Timor-Leste (TL)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -185,7 +185,5 @@
 2a09:bac5:5878::/45
 2a09:bac6:5878::/45
 2a0b:4e07:3:6260::/60
-2a13:a5c7:25dc::/48
-2a13:a5c7:25ff:dc00::/56
 2a14:2d45:db00::/40
 2a14:67c2:82a::/48

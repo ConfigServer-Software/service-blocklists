@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 30 06:10:38 UTC 2026
-#   @entries        709,083 ips
-#                   381 subnets
-#                   381 lines
+#   @updated        Wed Jul  1 06:51:28 UTC 2026
+#   @entries        709,081 ips
+#                   379 subnets
+#                   379 lines
 #   @country        Macedonia Republic (MK)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -390,8 +390,6 @@
 2a10:66c0::/29
 2a10:e340::/29
 2a13:3580::/29
-2a13:a5c7:2590::/48
-2a13:a5c7:25ff:8f00::/56
 2a13:ac00::/29
 2a14:2680::/29
 2a14:2d45:8f00::/40

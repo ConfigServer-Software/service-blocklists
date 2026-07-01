@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 30 06:10:21 UTC 2026
-#   @entries        279,892 ips
-#                   153 subnets
-#                   153 lines
+#   @updated        Wed Jul  1 06:51:13 UTC 2026
+#   @entries        279,890 ips
+#                   151 subnets
+#                   151 lines
 #   @country        Gambia (GM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -157,8 +157,6 @@
 2a09:bac6:38f8::/45
 2a0a:6044:6a00::/47
 2a0b:4e07:3:2700::/60
-2a13:a5c7:2555::/48
-2a13:a5c7:25ff:5400::/56
 2a14:2d45:5400::/40
 2c0f:140::/32
 2c0f:540::/32

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 30 06:10:53 UTC 2026
-#   @entries        669,943 ips
-#                   269 subnets
-#                   269 lines
+#   @updated        Wed Jul  1 06:51:43 UTC 2026
+#   @entries        669,941 ips
+#                   267 subnets
+#                   267 lines
 #   @country        Reunion (RE)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -275,8 +275,6 @@
 2a09:bac6:5118::/45
 2a0b:4e07:3:6380::/60
 2a0b:dc00::/29
-2a13:a5c7:25bc::/48
-2a13:a5c7:25ff:bb00::/56
 2a14:2d45:ba00::/40
 2c0f:3780::/32
 2c0f:3782::/31

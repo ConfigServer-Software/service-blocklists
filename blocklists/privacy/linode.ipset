@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_linode_ipset
 #   @uuid           e71c3451-15b3-34d1-9de1-276984458abb
-#   @updated        Tue Jun 30 05:41:11 UTC 2026
-#   @entries        1,351,520 ips
-#                   337 subnets
-#                   337 lines
+#   @updated        Wed Jul 01 06:21:42 UTC 2026
+#   @entries        1,351,522 ips
+#                   339 subnets
+#                   339 lines
 #   @expires        4 hours
 #   @category       Uncategorized
 #
@@ -320,6 +320,7 @@
 2600:3c0f:51::/48
 2600:3c0f:52::/48
 2600:3c0f:53::/48
+2600:3c0f:54::/48
 2600:3c0f:55::/48
 2600:3c0f:56::/48
 2600:3c0f:57::/48
@@ -347,6 +348,7 @@
 2600:3c1a::/32
 2600:3c1b::/32
 2600:3c1c::/32
+2600:3c1e::/32
 2a01:7e00::/32
 2a01:7e01::/32
 2a01:7e02::/32

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 30 06:11:05 UTC 2026
-#   @entries        631 ips
-#                   91 subnets
-#                   91 lines
+#   @updated        Wed Jul  1 06:51:54 UTC 2026
+#   @entries        629 ips
+#                   89 subnets
+#                   89 lines
 #   @country        United States Minor Outlying Islands (UM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -104,6 +104,4 @@
 2a09:bac4:1730::/45
 2a0b:4e07:3:5810::/60
 2a0f:5707:ffa5::/48
-2a13:a5c7:25e7::/48
-2a13:a5c7:25ff:e700::/56
 2a14:2d45:e600::/40

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 30 06:10:22 UTC 2026
-#   @entries        544 ips
-#                   32 subnets
-#                   32 lines
+#   @updated        Wed Jul  1 06:51:13 UTC 2026
+#   @entries        542 ips
+#                   30 subnets
+#                   30 lines
 #   @country        South Georgia and the South Sandwich Islands (GS)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -45,6 +45,4 @@
 2a09:bac4:2c8::/45
 2a09:bac4:12c8::/45
 2a0b:4e07:3:2390::/60
-2a13:a5c7:255a::/48
-2a13:a5c7:25ff:5900::/56
 2a14:2d45:5900::/40

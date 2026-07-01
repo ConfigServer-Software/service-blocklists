@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jun 30 06:10:29 UTC 2026
-#   @entries        3,756 ips
-#                   100 subnets
-#                   100 lines
+#   @updated        Wed Jul  1 06:51:20 UTC 2026
+#   @entries        3,754 ips
+#                   98 subnets
+#                   98 lines
 #   @country        British Indian Ocean Territory (IO)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -113,6 +113,4 @@
 2a09:bac5:4148::/45
 2a09:bac6:4148::/45
 2a0b:4e07:3:860::/60
-2a13:a5c7:256a::/48
-2a13:a5c7:25ff:6900::/56
 2a14:2d45:6900::/40

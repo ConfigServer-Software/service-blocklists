@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_B_bluehost_eig_ipset
 #   @uuid           9e1ffc54-9e3a-3808-8c4b-0266ce3245de
-#   @updated        Tue Jun 30 06:13:01 UTC 2026
-#   @entries        553,216 ips
-#                   212 subnets
-#                   212 lines
+#   @updated        Wed Jul 01 06:53:49 UTC 2026
+#   @entries        552,960 ips
+#                   211 subnets
+#                   211 lines
 #   @asn            AS46606
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -162,7 +162,6 @@
 162.241.20.0/23
 162.241.26.0/23
 162.241.28.0/24
-162.241.49.0/24
 162.241.56.0/23
 162.241.64.0/24
 162.241.68.0/24
