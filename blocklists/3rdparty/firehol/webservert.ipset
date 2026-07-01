@@ -5,16 +5,17 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             3rdparty_firehol_webservert_ipset
 #   @uuid           96c00f43-1065-3fa2-8757-ecd215066c74
-#   @updated        Tue Jun 30 21:35:28 UTC 2026
-#   @entries        124,049 ips
-#                   102 subnets
-#                   697 lines
+#   @updated        Wed Jul 01 02:25:29 UTC 2026
+#   @entries        125,585 ips
+#                   105 subnets
+#                   700 lines
 #   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided
 # #
 
+2.59.220.0/22
 2.182.13.206
 3.69.161.240
 3.81.253.213
@@ -243,6 +244,7 @@
 45.45.237.176
 45.78.197.47
 45.136.56.194
+45.156.158.0/24
 45.204.209.0/24
 45.248.148.255
 46.28.104.66
@@ -556,6 +558,7 @@
 185.191.171.4/30
 185.191.171.8/29
 185.191.171.16/30
+185.237.106.0/24
 188.95.153.101
 188.143.232.0/23
 188.143.234.0/24
