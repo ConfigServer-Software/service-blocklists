@@ -5,10 +5,10 @@
 #   @source         https://iplists.firehol.org/files/firehol_webclient.netset
 #   @id             3rdparty_firehol_webclient_ipset
 #   @uuid           63e8ab7f-8133-3dac-bd85-b0ab53e25e00
-#   @updated        Fri Jul 03 02:03:16 UTC 2026
-#   @entries        370 ips
+#   @updated        Fri Jul 03 07:06:24 UTC 2026
+#   @entries        371 ips
 #                   0 subnets
-#                   370 lines
+#                   371 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
@@ -324,6 +324,7 @@
 172.104.182.55
 172.176.92.41
 172.182.214.74
+172.182.239.221
 172.190.142.176
 172.191.184.190
 172.192.18.28
