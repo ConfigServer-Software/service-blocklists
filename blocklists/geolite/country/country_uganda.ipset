@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul  3 05:55:15 UTC 2026
-#   @entries        1,468,088 ips
-#                   337 subnets
-#                   337 lines
+#   @updated        Sat Jul  4 05:49:00 UTC 2026
+#   @entries        1,468,090 ips
+#                   339 subnets
+#                   339 lines
 #   @country        Uganda (UG)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -256,6 +256,7 @@
 2001:470:1f15:42c::/64
 2001:470:1f15:667::/64
 2001:470:1f1b:70::/64
+2001:470:1f21:161::/64
 2001:470:1f29:36b::/64
 2001:470:2128::/48
 2001:470:71f1::/48
@@ -276,6 +277,7 @@
 2001:43ff:2800::/48
 2400:cb00:926::/48
 2600:70ff:d059::/48
+2600:70ff:f07e::/48
 2605:59c0:5100::/40
 2606:54c0:5890::/45
 2606:54c3:0:1795::/64

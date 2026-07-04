@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul  3 05:55:49 UTC 2026
-#   @entries        1,656,415 ips
-#                   254 subnets
-#                   254 lines
+#   @updated        Sat Jul  4 05:49:34 UTC 2026
+#   @entries        1,656,417 ips
+#                   256 subnets
+#                   256 lines
 #   @country        Zambia (ZM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -197,8 +197,10 @@
 2001:470:1f09:6e4::/64
 2001:470:1f0b:182::/64
 2001:470:1f0b:11ce::/64
+2001:470:1f15:295::/64
 2001:470:1f29:111::/64
 2001:470:5928::/48
+2001:470:7911::/48
 2001:470:ede2::/48
 2001:43f8:140::/48
 2001:43f8:aa0::/48

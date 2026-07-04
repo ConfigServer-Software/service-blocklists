@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul  3 05:55:47 UTC 2026
-#   @entries        186,180 ips
-#                   262 subnets
-#                   262 lines
+#   @updated        Sat Jul  4 05:49:32 UTC 2026
+#   @entries        186,184 ips
+#                   266 subnets
+#                   266 lines
 #   @country        United States Virgin Islands (VI)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -179,6 +179,8 @@
 2001:470:b:252::/64
 2001:470:d:9b::/64
 2001:470:d:fd::/64
+2001:470:d:850::/64
+2001:470:d:910::/64
 2001:470:24:2ee::/64
 2001:470:24:40f::/64
 2001:470:24:439::/64
@@ -200,6 +202,8 @@
 2001:470:efe3::/48
 2001:470:f055::/48
 2001:470:f074::/48
+2001:470:f2fc::/48
+2001:470:f546::/48
 2001:470:fe7a::/48
 2001:470:fe95::/48
 2001:470:ff28::/48

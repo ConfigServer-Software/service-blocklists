@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul  3 05:54:08 UTC 2026
-#   @entries        259,579 ips
-#                   166 subnets
-#                   166 lines
+#   @updated        Sat Jul  4 05:47:49 UTC 2026
+#   @entries        259,581 ips
+#                   168 subnets
+#                   168 lines
 #   @country        Cuba (CU)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -123,10 +123,12 @@
 2001:470:28:772::/64
 2001:470:36:b5::/64
 2001:470:1f07:3c::/64
+2001:470:1f07:1c6::/64
 2001:470:1f07:471::/64
 2001:470:1f0b:e3f::/64
 2001:470:1f0f:96::/64
 2001:470:1f11:193::/64
+2001:470:88de::/48
 2001:470:8947::/48
 2001:470:d869::/48
 2001:470:d9ca::/48
