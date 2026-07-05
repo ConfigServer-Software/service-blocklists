@@ -5,8 +5,8 @@
 #   @source         None
 #   @id             geolite_asn_G_google_ipset
 #   @uuid           73ba0958-f429-31c4-bcc0-a74e25c9aa74
-#   @updated        Sat Jul 04 05:52:02 UTC 2026
-#   @entries        2,417,260 ips
+#   @updated        Sun Jul 05 06:02:07 UTC 2026
+#   @entries        2,417,004 ips
 #                   329 subnets
 #                   329 lines
 #   @asn            AS15169, AS36040, AS19425, AS22859, AS36039
@@ -124,7 +124,7 @@
 50.202.195.0/24
 50.203.166.0/24
 50.218.241.0/24
-50.218.242.0/23
+50.218.243.0/24
 50.218.244.0/24
 50.218.248.0/24
 50.218.250.0/23
