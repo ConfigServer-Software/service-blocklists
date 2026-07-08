@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul  7 06:10:22 UTC 2026
-#   @entries        58,891 ips
-#                   163 subnets
-#                   163 lines
+#   @updated        Wed Jul  8 05:32:13 UTC 2026
+#   @entries        58,893 ips
+#                   165 subnets
+#                   165 lines
 #   @country        Cape Verde (CV)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -114,6 +114,7 @@
 212.221.33.40/30
 213.150.192.0/21
 2001:470:8:63e::/64
+2001:470:19:299::/64
 2001:470:36:b6::/64
 2001:470:71:6ef::/64
 2001:470:1f05:229::/64
@@ -122,6 +123,7 @@
 2001:470:829f::/48
 2001:470:8821::/48
 2001:470:8822::/48
+2001:470:f854::/48
 2001:43f8:16c0::/47
 2001:43fc:1000::/48
 2001:43fd:5000::/48

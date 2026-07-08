@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul  7 06:11:00 UTC 2026
-#   @entries        78,395 ips
-#                   212 subnets
-#                   212 lines
+#   @updated        Wed Jul  8 05:33:04 UTC 2026
+#   @entries        78,393 ips
+#                   210 subnets
+#                   210 lines
 #   @country        French Polynesia (PF)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -155,8 +155,7 @@
 2a02:26f7:f340:4000::/64
 2a02:26f7:f340:c6a0::/64
 2a02:26f7:f341:4000::/64
-2a02:26f7:f342:4000::/64
-2a02:26f7:f342:c6a0::/64
+2a02:26f7:f342::/48
 2a02:26f7:f343:4000::/64
 2a02:26f7:f344:4000::/64
 2a02:26f7:f344:c6a0::/64
@@ -168,8 +167,7 @@
 2a02:26f7:f34a:4000::/64
 2a02:26f7:f34a:c6a0::/64
 2a02:26f7:f34b:4000::/64
-2a02:26f7:f34c:4000::/64
-2a02:26f7:f34c:c6a0::/64
+2a02:26f7:f34c::/48
 2a02:26f7:f34d:4000::/64
 2a02:26f7:f350:4000::/64
 2a02:26f7:f351:4000::/64

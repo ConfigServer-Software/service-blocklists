@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul  7 06:10:10 UTC 2026
-#   @entries        81,036 ips
-#                   697 subnets
-#                   697 lines
+#   @updated        Wed Jul  8 05:31:59 UTC 2026
+#   @entries        81,038 ips
+#                   699 subnets
+#                   699 lines
 #   @country        American Samoa (AS)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -316,6 +316,7 @@
 2001:470:d:959::/64
 2001:470:d:996::/64
 2001:470:d:9fc::/64
+2001:470:d:b13::/64
 2001:470:d:b45::/64
 2001:470:d:bb7::/64
 2001:470:d:c0b::/64
@@ -630,6 +631,7 @@
 2001:470:f3a2::/48
 2001:470:f3e9::/48
 2001:470:f3f1::/48
+2001:470:f4a1::/48
 2001:470:f6cb::/48
 2001:470:f702::/48
 2001:470:f888::/48

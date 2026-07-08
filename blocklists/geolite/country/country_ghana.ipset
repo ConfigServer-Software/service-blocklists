@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul  7 06:10:39 UTC 2026
-#   @entries        2,216,298 ips
-#                   548 subnets
-#                   548 lines
+#   @updated        Wed Jul  8 05:32:36 UTC 2026
+#   @entries        2,216,301 ips
+#                   551 subnets
+#                   551 lines
 #   @country        Ghana (GH)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -456,7 +456,10 @@
 2a02:26f7:c54c:44c4::/63
 2a02:26f7:c54c:44c6::/64
 2a02:26f7:c54d:4000::/64
-2a02:26f7:c550::/48
+2a02:26f7:c550:4000::/64
+2a02:26f7:c550:44c0::/62
+2a02:26f7:c550:44c4::/63
+2a02:26f7:c550:44c6::/64
 2a02:26f7:c551:4000::/64
 2a02:f402:fda4::/46
 2a02:f402:fda8::/46
