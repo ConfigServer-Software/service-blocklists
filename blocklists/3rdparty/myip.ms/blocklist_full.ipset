@@ -5,15 +5,26 @@
 #   @source         https://ru.myip.ms/files/blacklist/general/full_blacklist_database.zip
 #   @id             3rdparty_myip_ms_blocklist_full_ipset
 #   @uuid           8dd28923-e1ef-3443-8b9a-0c9da1c2c2fb
-#   @updated        Wed Jul 08 06:36:04 UTC 2026
-#   @entries        207,636 ips
+#   @updated        Wed Jul 08 10:19:20 UTC 2026
+#   @entries        207,638 ips
 #                   6,809 subnets
-#                   192,835 lines
+#                   192,837 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
-429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   myip.ms › Full
+#   
+#   List of IP addresses detected by myip.ms which have been flagged as spam
+#   bots or malicious over many years.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 
 1.0.136.29
@@ -22101,6 +22112,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 20.219.176.57
 20.219.187.122
 20.219.250.43
+20.220.62.118
 20.220.118.224
 20.220.220.36
 20.221.72.154
@@ -178907,6 +178919,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 2001:2042:3e08:3300:d26:9b0d:71c2:9a40
 2001:2042:3e08:3300:180c:1c48:5a36:e923
 2001:2042:3e08:3300:2426:6648:ff17:3561
+2001:2042:3e08:3300:356f:978d:7c65:d84e
 2001:2042:3e08:3300:38ae:398b:bd:ba9
 2001:2042:3e08:3300:41b4:ae17:1789:ce4b
 2001:2042:3e08:3300:444c:dcbd:46c6:8a34
