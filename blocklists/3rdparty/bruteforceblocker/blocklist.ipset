@@ -2,13 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/bruteforceblocker/blocklist.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/bruteforceblocker/blocklist.ipset
-#   @source         http://danger.rulez.sk/projects/bruteforceblocker/blist.php
+#   @source         429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @id             3rdparty_bruteforceblocker_blocklist_ipset
 #   @uuid           fe9d9942-beab-34a1-8e9a-20523944a425
-#   @updated        Tue Jul 07 21:25:10 UTC 2026
-#   @entries        653 ips
+#   @updated        Wed Jul 08 01:38:13 UTC 2026
+#   @entries        656 ips
 #                   0 subnets
-#                   653 lines
+#                   656 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
@@ -33,6 +34,7 @@
 2.26.49.39
 2.57.121.25
 2.196.207.166
+2.203.100.16
 3.101.153.151
 5.196.106.17
 8.129.29.97
@@ -575,6 +577,7 @@
 159.65.157.144
 159.89.113.99
 159.223.157.84
+159.224.132.77
 160.120.191.213
 160.187.174.22
 161.35.45.184
@@ -582,6 +585,7 @@
 162.243.8.173
 163.7.9.194
 163.10.17.150
+163.53.201.45
 163.61.39.40
 165.154.46.7
 165.227.232.1

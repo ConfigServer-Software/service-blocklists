@@ -2,15 +2,17 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/botvrij/threats_ioc.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/botvrij/threats_ioc.ipset
-#   @source         http://www.botvrij.eu/data/ioclist.ip-dst.raw
+#   @source         429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @id             3rdparty_botvrij_threats_ioc_ipset
 #   @uuid           5d583ce2-60ac-3dff-a28a-b60d6709b3d6
-#   @updated        Tue Jul 07 21:25:10 UTC 2026
+#   @updated        Wed Jul 08 01:38:10 UTC 2026
 #   @entries        4 ips
 #                   0 subnets
 #                   4 lines
 #   @expires        4 hours
-#   @category       3rdParty
+#   @category       429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #
 #   botvrij › IOC (Indicator of Compromise)
 #   
