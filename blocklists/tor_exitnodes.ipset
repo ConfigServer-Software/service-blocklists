@@ -5,13 +5,12 @@
 #   @source         https://blocklist.configserver.dev/tor_exitnodes.ipset
 #   @id             tor_exitnodes_ipset
 #   @uuid           9d63ca5e-2c49-3352-bc9f-3d6ace1edd1e
-#   @updated        Wed Jul 08 01:35:03 UTC 2026
+#   @updated        Wed Jul 08 06:30:11 UTC 2026
 #   @entries        1,383 ips
 #                   92 subnets
 #                   819 lines
 #   @expires        7 days
-#   @category       429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @category       Special
 #
 #   Tor Exit Node Blocklist
 #   
