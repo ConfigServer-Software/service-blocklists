@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_F_fdc_servers_ipset
 #   @uuid           14458833-59d9-345e-913e-d025ec9dcf97
-#   @updated        Wed Jul 08 05:36:10 UTC 2026
-#   @entries        369,766 ips
-#                   606 subnets
-#                   606 lines
+#   @updated        Thu Jul 09 06:09:09 UTC 2026
+#   @entries        370,022 ips
+#                   607 subnets
+#                   607 lines
 #   @asn            AS30058
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -346,6 +346,7 @@
 144.225.140.0/23
 147.90.4.0/24
 148.135.187.0/24
+149.18.104.0/24
 149.57.80.0/24
 150.251.140.0/24
 151.244.0.0/24

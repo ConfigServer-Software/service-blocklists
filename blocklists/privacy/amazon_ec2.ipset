@@ -2,25 +2,19 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/amazon_ec2.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/amazon_ec2.ipset
-#   @source         https://ip-ranges.amazonaws.com/ip-ranges.json
+#   @source         429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @id             privacy_amazon_ec2_ipset
 #   @uuid           8d68f156-5dad-39a6-83ee-bd1a62e6fd09
-#   @updated        Wed Jul 08 04:43:29 UTC 2026
-#   @entries        76,792,381 ips
-#                   719 subnets
-#                   726 lines
+#   @updated        Thu Jul 09 05:20:20 UTC 2026
+#   @entries        76,792,637 ips
+#                   716 subnets
+#                   723 lines
 #   @expires        6 hours
 #   @category       Privacy
 #
-#   This list contains IP addresses associated with Amazon EC2 instances.
-#   
-#   Amazon Elastic Compute Cloud (EC2) allows customers to deploy and run
-#   virtual machines on demand. These instances may sometimes attempt to
-#   connect to or scan external servers.
-#   
-#   While illegal activity violates Amazon's Terms of Service, abuse can
-#   occur. This blocklist helps prevent communication between your server
-#   and Amazon EC2-hosted systems.
+429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 # #
 
 1.178.1.0/24
@@ -545,10 +539,7 @@
 64.66.144.0/20
 64.66.160.0/23
 64.66.162.0/24
-64.73.192.0/21
-64.73.200.0/24
-64.73.202.0/23
-64.73.204.0/22
+64.73.192.0/20
 64.73.208.0/21
 64.73.216.0/24
 64.187.128.0/20

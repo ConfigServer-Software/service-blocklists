@@ -2,13 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/china_mobile.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/china_mobile.ipset
-#   @source         https://blocklist.configserver.dev/
+#   @source         429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @id             privacy_china_mobile_ipset
 #   @uuid           80032055-9a34-36f4-aca3-50da4f85f491
-#   @updated        Wed Jul 08 04:45:35 UTC 2026
-#   @entries        45,510,835 ips
-#                   755 subnets
-#                   755 lines
+#   @updated        Thu Jul 09 05:22:27 UTC 2026
+#   @entries        45,587,891 ips
+#                   751 subnets
+#                   751 lines
 #   @asn            AS9808, AS134810, AS131486, AS131516, AS135629
 #                   AS137718, AS58453, AS58807, AS10212, AS132510
 #                   AS56048, AS209141, AS56040, AS56046, AS56041
@@ -16,10 +17,12 @@
 #                   AS132525, AS141425, AS56045, AS56042, AS140105
 #                   AS135054, AS24059, AS132511, AS132501, AS136755
 #                   AS45120
-#   @expires        4 hours
+#   @expires        429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @category       Uncategorized
 #
-#   No description provided
+429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 # #
 
 1.51.48.0/21
@@ -34,12 +37,8 @@
 36.128.0.0/10
 36.193.112.0/21
 36.206.0.0/16
-36.212.0.0/16
-36.213.0.0/17
-36.213.128.0/18
-36.213.192.0/20
-36.213.208.0/23
-36.213.210.0/24
+36.212.0.0/15
+36.214.0.0/16
 36.221.0.0/17
 39.128.0.0/10
 42.62.0.0/17
