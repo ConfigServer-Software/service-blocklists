@@ -2,41 +2,21 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/firehol/level1.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/firehol/level1.ipset
-#   @source         https://iplists.firehol.org/files/firehol_level1.netset
+#   @source         429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @id             3rdparty_firehol_level1_ipset
 #   @uuid           24a6cf25-6e33-36a1-8828-a4a57e0cede2
-#   @updated        Wed Jul 08 21:10:37 UTC 2026
-#   @entries        611,166,465 ips
-#                   4,575 subnets
-#                   4,576 lines
-#   @expires        4 hours
-#   @category       3rdParty
+#   @updated        Thu Jul 09 02:03:46 UTC 2026
+#   @entries        611,163,393 ips
+#                   4,582 subnets
+#                   4,583 lines
+#   @expires        429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @category       429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #
-#   FireHOL IP Blocklist › Level 1
-#   
-#   This blocklist is sourced from FireHOL and aggregates IP addresses
-#   which provide maximum protection with minimum false positives. Suitable for
-#   basic protection on all internet facing servers, routers and firewalls. 
-#   
-#   The objective is to create a blacklist that can be safe enough to be used
-#   on all systems, with a firewall, to block access entirely, from and to its
-#   listed IPs. 
-#   
-#   This blocklist includes the following IP lists:
-#   
-#   fullbogons          The unroutable IPs
-#   spamhaus_drop       Don't Route Or Peer IPs
-#   dshield             The top 20 attacking class-C
-#   feodo               Feodo Tracker Command and Control IPs 
-#   
-#   This third-party blocklist is not maintained by ConfigServer; IPs are
-#   sourced externally and not curated by us. We do however, validate the
-#   blocklist to ensure that it only contains properly validated IP addresses,
-#   and does not include any non-relevant or malformed data beyond the scope
-#   of the source.
-#   
-#   Use at the administrator’s discretion based on risk tolerance and
-#   environment requirements.
+429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 # #
 
 0.0.0.0/8
@@ -55,7 +35,6 @@
 5.101.82.0/24
 5.101.86.0/24
 5.105.220.0/24
-5.133.101.0/24
 5.183.60.0/22
 5.188.236.0/23
 5.230.201.0/24
@@ -538,7 +517,13 @@
 102.134.32.0/19
 102.135.105.0/24
 102.192.0.0/13
-102.200.0.0/15
+102.200.0.0/16
+102.201.0.0/17
+102.201.128.0/18
+102.201.192.0/19
+102.201.224.0/20
+102.201.240.0/21
+102.201.252.0/23
 102.202.5.0/24
 102.203.20.0/22
 102.203.24.0/21
@@ -1633,9 +1618,11 @@
 160.202.184.0/21
 160.202.208.0/22
 160.236.16.0/23
+160.236.64.0/24
 160.236.69.0/24
-160.236.76.0/22
-160.236.80.0/20
+160.236.82.0/23
+160.236.84.0/22
+160.236.88.0/21
 160.236.96.0/19
 160.236.128.0/17
 160.238.34.0/23

@@ -5,41 +5,23 @@
 #   @source         https://iplists.firehol.org/files/dshield_1d.netset
 #   @id             3rdparty_firehol_dshield_1d_ipset
 #   @uuid           8e2edd40-0b83-3882-a580-8f20b158d709
-#   @updated        Wed Jul 08 21:10:35 UTC 2026
-#   @entries        8,704 ips
-#                   34 subnets
-#                   34 lines
-#   @expires        4 hours
+#   @updated        Thu Jul 09 02:03:35 UTC 2026
+#   @entries        5,888 ips
+#                   23 subnets
+#                   23 lines
+#   @expires        429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @category       3rdParty
 #
-#   FireHOL IP Blocklist › DShield (1 day)
-#   
-#   This blocklist is sourced from FireHOL and aggregates IP addresses
-#   from the top 20 attacking class C (/24) subnets over the last one day.
-#   
-#   DShield is an intrusion detection system for data collection and analysis.
-#   The project collects data about malicious activity from across the Internet.
-#   This data is cataloged and summarized and can be used to discover trends
-#   in activity, confirm widespread attacks, or assist in preparing better
-#   firewall rules.
-#   
-#   This third-party blocklist is not maintained by ConfigServer; IPs are
-#   sourced externally and not curated by us. We do however, validate the
-#   blocklist to ensure that it only contains properly validated IP addresses,
-#   and does not include any non-relevant or malformed data beyond the scope
-#   of the source.
-#   
-#   Use at the administrator’s discretion based on risk tolerance and
-#   environment requirements.
+429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 # #
 
 5.61.209.0/24
-43.228.157.0/24
 45.33.41.0/24
 45.148.10.0/24
 45.156.129.0/24
 45.198.224.0/24
-45.205.1.0/24
 64.62.156.0/24
 64.62.197.0/24
 65.49.1.0/24
@@ -48,22 +30,13 @@
 66.132.195.0/24
 66.132.224.0/24
 69.5.169.0/24
-71.6.199.0/24
-78.128.114.0/24
 79.124.56.0/24
 91.196.152.0/24
 91.224.92.0/24
 94.154.43.0/24
-100.29.192.0/24
 147.185.132.0/24
 160.119.71.0/24
-167.94.145.0/24
 167.94.146.0/24
-185.242.226.0/24
 193.163.125.0/24
 195.184.76.0/24
-198.235.24.0/24
-199.45.154.0/24
 205.210.31.0/24
-216.25.89.0/24
-216.180.246.0/24

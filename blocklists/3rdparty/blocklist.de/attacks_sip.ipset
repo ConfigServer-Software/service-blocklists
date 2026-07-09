@@ -2,46 +2,30 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/blocklist.de/attacks_sip.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/blocklist.de/attacks_sip.ipset
-#   @source         https://lists.blocklist.de/lists/sip.txt
+#   @source         429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @id             3rdparty_blocklist_de_attacks_sip_ipset
 #   @uuid           cece620b-f239-39f3-b1ae-b450c71da695
-#   @updated        Wed Jul 08 21:09:20 UTC 2026
-#   @entries        86 ips
+#   @updated        Thu Jul 09 02:01:16 UTC 2026
+#   @entries        82 ips
 #                   0 subnets
-#                   86 lines
-#   @expires        4 hours
-#   @category       3rdParty
+#                   82 lines
+#   @expires        429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @category       429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #
-#   blocklist.de › SIP
-#   
-#   All IP addresses that tried to login in a SIP-, VOIP- or Asterisk-Server
-#   and are inclueded in the IPs
-#   
-#   List from http://www.infiltrated.net/ (Twitter). 
-#   
-#   blocklist.de is a free and voluntary service provided by a 
-#   Fraud/Abuse-specialist, whose servers are often attacked via 
-#   SSH-, Mail-Login-, FTP-, Webserver- and other services. 
-#   
-#   This third-party blocklist is not maintained by ConfigServer; IPs are
-#   sourced externally and not curated by us. We do however, validate the
-#   blocklist to ensure that it only contains properly validated IP addresses,
-#   and does not include any non-relevant or malicious data beyond the scope
-#   of the source.
-#   
-#   Use at the administrator’s discretion based on risk tolerance and
-#   environment requirements.
+429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 # #
 
 1.14.203.20
 1.238.106.229
 2.26.51.29
-2.57.122.209
 2.229.200.226
 5.196.97.24
 14.29.181.34
 14.103.112.106
-20.172.240.136
 20.246.187.134
 23.90.184.18
 27.123.220.219
@@ -51,7 +35,6 @@
 36.103.243.179
 36.138.134.121
 40.86.229.233
-41.82.50.218
 42.200.73.3
 43.128.3.201
 43.224.117.118
@@ -62,32 +45,33 @@
 51.75.107.40
 51.159.80.92
 51.254.175.198
-66.116.224.161
 77.83.103.181
 81.30.98.26
 82.39.86.153
 89.190.156.22
+90.156.210.48
 91.92.42.19
 91.134.23.123
-92.118.39.50
 102.88.137.145
 103.76.88.37
-103.97.101.25
+103.167.171.10
 103.191.14.210
 103.219.169.232
 104.193.195.43
+111.26.62.46
+111.228.54.209
 117.72.212.5
-119.92.76.210
+128.14.225.164
 138.124.30.187
 139.198.113.29
 142.93.48.137
 143.95.211.56
 144.172.97.10
-151.80.141.196
 152.32.131.77
 152.228.138.14
 152.239.122.222
 154.127.69.20
+167.172.187.11
 171.231.181.160
 171.231.183.94
 171.231.186.160
@@ -97,23 +81,21 @@
 174.179.100.65
 177.0.238.190
 178.16.54.163
-179.184.0.32
+178.22.121.139
 180.76.176.249
 180.76.236.71
 180.93.43.146
 182.95.119.30
 182.191.94.208
-185.193.240.246
+185.243.5.8
 185.243.5.122
 187.50.226.182
-188.213.202.20
-190.181.27.37
 193.32.162.82
 195.154.94.242
 195.154.94.251
+195.178.110.227
 196.196.150.5
 201.249.192.30
-202.51.70.6
 202.103.55.158
 203.161.35.215
 211.75.252.252

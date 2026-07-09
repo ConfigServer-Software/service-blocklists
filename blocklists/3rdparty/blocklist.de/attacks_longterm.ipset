@@ -5,29 +5,15 @@
 #   @source         https://lists.blocklist.de/lists/strongips.txt
 #   @id             3rdparty_blocklist_de_attacks_longterm_ipset
 #   @uuid           64bf25f1-aed6-3475-b945-8203f7f286c8
-#   @updated        Wed Jul 08 21:09:23 UTC 2026
+#   @updated        Thu Jul 09 02:01:26 UTC 2026
 #   @entries        341 ips
 #                   12 subnets
 #                   323 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
-#   blocklist.de › Long Term / Strong IPs
-#   
-#   All IPs which are older then 2 month and have more then 5.000 attacks.
-#   
-#   blocklist.de is a free and voluntary service provided by a 
-#   Fraud/Abuse-specialist, whose servers are often attacked via 
-#   SSH-, Mail-Login-, FTP-, Webserver- and other services. 
-#   
-#   This third-party blocklist is not maintained by ConfigServer; IPs are
-#   sourced externally and not curated by us. We do however, validate the
-#   blocklist to ensure that it only contains properly validated IP addresses,
-#   and does not include any non-relevant or malicious data beyond the scope
-#   of the source.
-#   
-#   Use at the administrator’s discretion based on risk tolerance and
-#   environment requirements.
+429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 # #
 
 1.212.225.99

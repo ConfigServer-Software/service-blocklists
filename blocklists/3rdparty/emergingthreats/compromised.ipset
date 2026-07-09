@@ -5,11 +5,12 @@
 #   @source         https://rules.emergingthreats.net/blockrules/compromised-ips.txt
 #   @id             3rdparty_emergingthreats_compromised_ipset
 #   @uuid           8d191a27-8d9e-3fef-a785-5a82541b07fe
-#   @updated        Wed Jul 08 21:09:29 UTC 2026
+#   @updated        Thu Jul 09 02:01:47 UTC 2026
 #   @entries        651 ips
 #                   0 subnets
 #                   651 lines
-#   @expires        4 hours
+#   @expires        429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @category       3rdParty
 #
 #   Emerging Threats › Compromised

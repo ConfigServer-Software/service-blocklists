@@ -2,14 +2,16 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/firehol/dshield_30d.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/firehol/dshield_30d.ipset
-#   @source         https://iplists.firehol.org/files/dshield_30d.netset
+#   @source         429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @id             3rdparty_firehol_dshield_30d_ipset
 #   @uuid           c4c04fbf-ebfa-36e9-b445-7f04c9289cc6
-#   @updated        Wed Jul 08 21:10:37 UTC 2026
-#   @entries        18,944 ips
-#                   73 subnets
-#                   73 lines
-#   @expires        4 hours
+#   @updated        Thu Jul 09 02:03:42 UTC 2026
+#   @entries        18,432 ips
+#                   71 subnets
+#                   71 lines
+#   @expires        429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @category       3rdParty
 #
 #   FireHOL IP Blocklist › DShield (30 days)
@@ -86,12 +88,10 @@
 172.110.223.0/24
 176.65.139.0/24
 176.65.148.0/24
-179.43.163.0/24
 185.12.59.0/24
 185.107.80.0/24
 185.223.235.0/24
 185.242.226.0/24
-188.240.59.0/24
 193.3.53.0/24
 193.124.20.0/24
 193.163.125.0/24

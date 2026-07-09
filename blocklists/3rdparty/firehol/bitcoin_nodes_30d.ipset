@@ -2,10 +2,11 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/firehol/bitcoin_nodes_30d.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/firehol/bitcoin_nodes_30d.ipset
-#   @source         https://blocklist.configserver.dev/
+#   @source         429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @id             3rdparty_firehol_bitcoin_nodes_30d_ipset
 #   @uuid           a9763e53-1236-37d8-9488-ad6e3bd114c6
-#   @updated        Wed Jul 08 21:10:31 UTC 2026
+#   @updated        Thu Jul 09 02:03:11 UTC 2026
 #   @entries        15,789 ips
 #                   66 subnets
 #                   15,719 lines

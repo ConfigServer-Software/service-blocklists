@@ -2,15 +2,17 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/firehol/botscout.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/firehol/botscout.ipset
-#   @source         https://iplists.firehol.org/files/botscout.ipset
+#   @source         429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @id             3rdparty_firehol_botscout_ipset
 #   @uuid           bdafa928-b8b9-3dba-a74c-9155d86c0ea9
-#   @updated        Wed Jul 08 21:10:32 UTC 2026
-#   @entries        29 ips
+#   @updated        Thu Jul 09 02:03:15 UTC 2026
+#   @entries        50 ips
 #                   3 subnets
-#                   26 lines
+#                   47 lines
 #   @expires        4 hours
-#   @category       3rdParty
+#   @category       429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #
 #   FireHOL IP Blocklist › BotScout (all)
 #   
@@ -34,29 +36,50 @@
 #   environment requirements.
 # #
 
-24.201.45.208
-37.214.207.154
-41.71.117.191
-72.57.65.108
-78.138.14.34
-80.65.222.66
-87.14.173.50
-93.114.192.76
-104.22.17.126
-104.22.20.142
+5.189.203.139
+23.81.230.194
+23.95.58.150
+45.33.157.132
+45.91.20.160
+64.238.203.99
+65.21.16.207
+74.167.16.238
+79.127.175.48
+92.119.36.72
+102.165.53.105
+102.165.54.226
+103.87.142.137
+104.22.17.127
+104.22.20.142/31
+107.173.217.10
+107.174.249.100
 120.40.130.70
-146.70.176.253
+146.19.125.67
+149.62.41.189
+152.232.106.32
+154.16.69.173
 162.158.167.121
-171.231.178.158
+162.158.167.122
 172.69.22.86/31
+172.69.134.70
+172.69.135.13
 172.71.154.178/31
-172.71.158.116/31
-173.44.219.195
-176.97.206.164
-177.234.138.250
-192.101.66.89
-194.28.211.110
-194.67.220.49
-196.51.17.114
-209.127.61.53
-216.144.249.169
+172.71.158.116
+177.234.143.121
+181.215.16.216
+181.215.16.219
+181.215.16.238
+181.215.16.247
+191.101.92.164
+191.101.114.21
+191.101.114.216
+191.101.114.220
+192.186.152.249
+192.210.237.55
+196.51.17.208
+196.196.253.94
+196.198.13.152
+198.12.69.94
+212.231.191.23
+223.29.254.133
+223.29.254.158

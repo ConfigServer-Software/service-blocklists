@@ -2,41 +2,20 @@
 #   🧱 Firewall Blocklist - blocklists/threats/rdp_365d.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/rdp_365d.ipset
-#   @source         https://blocklist.configserver.dev/threats/rdp_365d.ipset
+#   @source         429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #   @id             threats_rdp_365d_ipset
 #   @uuid           8b76c6eb-c1b2-3f88-bf5b-6dc0ab33464f
-#   @updated        Wed Jul 08 21:07:03 UTC 2026
-#   @entries        12,999 ips
-#                   956 subnets
-#                   10,741 lines
+#   @updated        Thu Jul 09 01:58:12 UTC 2026
+#   @entries        13,024 ips
+#                   955 subnets
+#                   10,759 lines
 #   @expires        4 hours
-#   @category       Threats
+#   @category       429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 #
-#   ConfigServer Threat Database › RDP › 365 Days
-#   Remote Desktop Protocol
-#   
-#   These blocklists are maintained directly by ConfigServer and are
-#   compiled from connection attempts against our RDP honeypots, as
-#   well as unauthorized access attempts targeting remote desktop
-#   services we operate.
-#   
-#   The threat feeds capture malicious RDP activity across exposed
-#   internet-facing infrastructure, including automated scanners and
-#   brute force tooling commonly used against remote desktop services.
-#   
-#   IP addresses included in this dataset have been observed attempting
-#   actions such as credential brute forcing, authentication bypass
-#   attempts, vulnerability scanning, and automated probing of RDP
-#   endpoints.
-#   
-#   Blocklists prefixed with `_1d` represent activity observed within
-#   the most recent 24-hour period and reflect confirmed RDP connection
-#   attempts during that window, treated as high-confidence indicators
-#   of malicious behavior.
-#   
-#   Blocklists prefixed with `_365d` are cumulative datasets covering
-#   a one-year period and may include a higher rate of false positives
-#   due to IP reuse, NAT, and infrastructure changes across providers.
+429: Too Many Requests
+For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
 # #
 
 1.24.16.3
@@ -75,6 +54,7 @@
 2.56.245.171
 2.57.17.22
 2.57.17.27
+2.57.17.36
 2.57.17.47
 2.57.17.66
 2.57.17.75
@@ -399,6 +379,7 @@
 5.252.83.79
 5.252.83.95
 5.252.83.101
+5.252.83.119
 5.252.83.155
 5.252.83.164
 5.252.83.179
@@ -436,6 +417,7 @@
 8.217.106.31
 8.217.112.252
 8.217.137.118
+8.217.160.151
 8.217.224.175
 8.217.250.31
 8.218.26.49
@@ -765,6 +747,7 @@
 18.220.198.91
 18.220.214.14
 18.220.248.172
+18.221.18.194
 18.221.100.43
 18.221.180.165
 18.221.195.141
@@ -2719,6 +2702,7 @@
 43.128.80.241
 43.130.174.100
 43.132.194.60
+43.133.56.92
 43.134.1.223
 43.134.2.118
 43.134.9.105
@@ -3998,9 +3982,7 @@
 64.62.197.52
 64.62.197.54/31
 64.62.197.56/29
-64.62.197.64
-64.62.197.66/31
-64.62.197.68/30
+64.62.197.64/29
 64.62.197.72/30
 64.62.197.77
 64.62.197.79
@@ -4245,6 +4227,7 @@
 65.49.20.66/31
 65.49.20.68/31
 65.108.11.98
+65.108.14.29
 65.108.207.77
 65.109.28.208
 65.109.39.110
@@ -4436,9 +4419,7 @@
 69.5.169.50/31
 69.5.169.53
 69.5.169.54/31
-69.5.169.56/30
-69.5.169.61
-69.5.169.62/31
+69.5.169.56/29
 69.5.169.64/29
 69.5.169.72/31
 69.5.169.74
@@ -5242,6 +5223,7 @@
 91.230.168.137
 91.230.168.138
 91.230.168.140/30
+91.230.168.145
 91.230.168.146/31
 91.230.168.148
 91.230.168.150
@@ -5654,6 +5636,7 @@
 103.67.78.27
 103.68.40.60
 103.68.40.234
+103.69.188.76
 103.69.189.136
 103.70.207.61
 103.71.48.18
@@ -6435,6 +6418,7 @@
 123.201.19.249
 123.232.128.165
 123.232.130.154
+123.232.133.126
 123.233.236.118
 123.233.239.148
 123.245.84.81
@@ -6927,6 +6911,7 @@
 139.227.161.225
 140.135.78.107
 141.11.45.45
+141.11.159.150
 141.94.26.110
 141.94.135.180
 141.94.146.197
@@ -7316,6 +7301,7 @@
 147.185.133.65
 147.185.133.69
 147.185.133.77
+147.185.133.86
 147.185.133.94
 147.185.133.104
 147.185.133.114/31
@@ -7332,6 +7318,7 @@
 147.185.133.179
 147.185.133.182
 147.185.133.184
+147.185.133.187
 147.185.133.200
 147.185.133.202
 147.185.133.205
@@ -7535,6 +7522,7 @@
 154.7.228.16
 154.12.22.120
 154.12.95.42
+154.16.44.34
 154.16.44.37
 154.16.44.67
 154.16.44.70
@@ -7754,6 +7742,7 @@
 158.173.156.42
 158.220.86.73
 158.220.87.48
+158.247.247.47
 159.65.20.1
 159.65.24.165
 159.65.38.183
@@ -7998,6 +7987,7 @@
 161.35.222.101
 161.35.223.66
 161.35.225.61
+161.35.227.172
 161.35.230.3
 161.35.230.15
 161.35.230.183
@@ -8047,6 +8037,7 @@
 162.216.149.140
 162.216.149.151
 162.216.149.161
+162.216.149.163
 162.216.149.177
 162.216.149.181
 162.216.149.189
@@ -8368,6 +8359,7 @@
 167.71.142.53
 167.71.147.240
 167.71.152.64
+167.71.190.95
 167.71.191.53
 167.71.194.148
 167.71.225.189
@@ -8956,6 +8948,7 @@
 181.215.65.20/31
 181.215.65.38
 181.215.65.40
+181.215.65.42
 181.215.65.49
 181.215.65.50
 181.215.65.73
@@ -8967,6 +8960,7 @@
 181.215.65.155
 181.215.65.156
 181.215.65.159
+181.215.65.163
 181.215.65.165
 181.215.65.167
 181.215.226.110
@@ -9062,6 +9056,7 @@
 184.105.247.252
 184.105.247.254
 184.164.70.60
+184.170.228.9
 184.174.5.75
 184.176.35.145
 185.3.95.89
@@ -9945,7 +9940,7 @@
 195.96.139.221
 195.96.139.222/31
 195.96.139.224
-195.96.139.230
+195.96.139.230/31
 195.96.139.232
 195.96.139.234/31
 195.96.139.237
@@ -10617,6 +10612,7 @@
 216.250.107.223
 216.250.250.204
 217.13.106.11
+217.15.161.174
 217.15.163.198
 217.60.78.70
 217.60.245.175
@@ -10704,6 +10700,7 @@
 220.202.112.48
 220.202.112.82
 220.202.112.101
+220.202.112.106
 220.202.112.201
 220.248.25.154
 220.250.10.129
