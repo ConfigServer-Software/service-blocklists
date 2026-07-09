@@ -2,19 +2,29 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/alienvault/bad_reputation.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/alienvault/bad_reputation.ipset
-#   @source         429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @source         http://reputation.alienvault.com/reputation.data
 #   @id             3rdparty_alienvault_bad_reputation_ipset
 #   @uuid           6819b770-fe10-320d-9dac-de21c26f18bb
-#   @updated        Thu Jul 09 01:58:20 UTC 2026
+#   @updated        Thu Jul 09 07:37:34 UTC 2026
 #   @entries        609 ips
 #                   7 subnets
 #                   602 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
-429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   AlienVault IP Reputation Database
+#   
+#   This blocklist is sourced from AlienVault and contains IP addresses
+#   that have been observed engaging in abusive or malicious activity.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 
 1.34.58.110

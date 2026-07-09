@@ -2,20 +2,33 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/binarydefense/blocklist.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/binarydefense/blocklist.ipset
-#   @source         429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @source         https://binarydefense.com/banlist.txt
 #   @id             3rdparty_binarydefense_blocklist_ipset
 #   @uuid           dede1900-dd71-32eb-ba3b-0b7ddc6717d9
-#   @updated        Thu Jul 09 01:58:43 UTC 2026
+#   @updated        Thu Jul 09 07:37:48 UTC 2026
 #   @entries        665 ips
 #                   15 subnets
 #                   650 lines
 #   @expires        4 hours
-#   @category       429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @category       3rdParty
 #
-429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   Binary Defense Systems Artillery Threat Intelligence Feed and Banlist Feed
+#   
+#   A list of known attacker IP addresses detected by their Artillery honeypot
+#   and monitoring platform. IPs in this feed have been observed actively
+#   attacking Artillery sensors.
+#   
+#   Artillery is an open-source honeypot and endpoint monitoring tool that
+#   detects port scanning, brute force attacks, and other malicious activity.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 
 1.4.171.137

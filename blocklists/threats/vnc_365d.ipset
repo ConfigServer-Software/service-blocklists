@@ -2,14 +2,13 @@
 #   🧱 Firewall Blocklist - blocklists/threats/vnc_365d.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/threats/vnc_365d.ipset
-#   @source         429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @source         https://blocklist.configserver.dev/threats/vnc_365d.ipset
 #   @id             threats_vnc_365d_ipset
 #   @uuid           c992cba6-d4db-3cb8-b5a6-eeeaa23616cb
-#   @updated        Thu Jul 09 01:57:34 UTC 2026
-#   @entries        8,597 ips
-#                   744 subnets
-#                   7,123 lines
+#   @updated        Thu Jul 09 07:37:24 UTC 2026
+#   @entries        8,619 ips
+#                   743 subnets
+#                   7,131 lines
 #   @expires        4 hours
 #   @category       Threats
 #
@@ -65,6 +64,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 2.26.80.121
 2.26.252.159
 2.27.23.154
+2.27.55.46
 2.27.165.137
 2.27.165.140/31
 2.27.165.146
@@ -1230,6 +1230,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 35.203.211.243
 35.203.211.254
 35.204.220.29
+35.205.57.58
 35.205.114.199
 35.205.162.235
 35.207.246.185
@@ -1614,6 +1615,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 44.220.188.2
 44.220.188.13
 44.220.188.26
+44.220.188.38
 44.220.188.48
 44.220.188.51
 44.220.188.56
@@ -1824,6 +1826,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 45.158.126.94
 45.179.90.186
 45.192.98.46
+45.194.92.75
 45.195.159.113
 45.198.224.81
 45.198.224.145
@@ -3080,9 +3083,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 89.21.67.137
 89.21.67.138/31
 89.21.67.141
-89.21.67.144/30
-89.21.67.148
-89.21.67.150/31
+89.21.67.144/29
 89.21.67.153
 89.21.67.154/31
 89.21.67.156/30
@@ -3164,6 +3165,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 91.107.252.193
 91.108.243.237
 91.124.209.201
+91.132.23.182
 91.132.196.236
 91.133.131.235
 91.142.223.216
@@ -4165,6 +4167,8 @@ For more on scraping GitHub and how it may affect your rights, please review our
 137.184.143.199
 137.184.148.98
 137.184.155.120
+137.184.159.183
+137.184.160.50
 137.184.167.243
 137.184.190.180
 137.184.190.205
@@ -4345,6 +4349,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 144.31.166.139
 144.31.184.1
 144.31.185.180
+144.31.187.91
 144.31.192.110
 144.31.193.144
 144.31.198.6
@@ -4586,6 +4591,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 147.185.133.211
 147.185.133.220
 147.185.133.222
+147.185.133.226
 147.185.133.229
 147.185.133.235
 147.185.133.238
@@ -4705,6 +4711,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 153.75.226.124
 153.75.247.172
 153.92.210.61
+154.16.44.19
 154.16.44.49
 154.16.44.105
 154.16.44.136
@@ -4923,6 +4930,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 162.216.149.52
 162.216.149.65
 162.216.149.71
+162.216.149.80
 162.216.149.85
 162.216.149.90
 162.216.149.93
@@ -5056,6 +5064,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 165.227.16.25
 165.227.29.244
 165.227.39.44
+165.227.42.49
 165.227.62.247
 165.227.92.235
 165.227.164.200
@@ -5892,9 +5901,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 188.236.179.56
 188.240.59.2/31
 188.240.59.4/30
-188.240.59.8/30
-188.240.59.12/31
-188.240.59.14
+188.240.59.8/29
 188.240.59.16/31
 188.240.59.21
 188.240.59.23
@@ -5906,6 +5913,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 188.240.59.34
 188.240.59.36/31
 188.240.59.38
+188.240.59.41
 188.240.59.42
 188.240.59.44/31
 188.240.59.46
@@ -6101,8 +6109,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 193.162.143.16
 193.169.194.47
 193.176.29.2/31
-193.176.29.4/31
-193.176.29.6
+193.176.29.4/30
 193.176.29.8/30
 193.176.29.12
 193.176.29.15
@@ -6114,8 +6121,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 193.176.29.28/31
 193.176.29.30
 193.176.31.147
-193.176.31.148/31
-193.176.31.150
+193.176.31.148/30
 193.176.31.152/30
 193.176.31.156/31
 193.176.31.158
@@ -6128,8 +6134,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 193.176.31.208/30
 193.176.31.212
 193.176.31.214/31
-193.176.31.216
-193.176.31.218/31
+193.176.31.216/30
 193.176.31.220/31
 193.176.31.222
 193.176.31.224/29
@@ -6391,6 +6396,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 195.96.139.62/31
 195.96.139.67
 195.96.139.72
+195.96.139.74
 195.96.139.78
 195.96.139.80/31
 195.96.139.85
@@ -6491,8 +6497,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 195.184.76.85
 195.184.76.86/31
 195.184.76.89
-195.184.76.92/31
-195.184.76.95
+195.184.76.92/30
 195.184.76.98
 195.184.76.100/31
 195.184.76.105
@@ -6501,7 +6506,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 195.184.76.121
 195.184.76.126
 195.184.76.129
-195.184.76.131
+195.184.76.130/31
 195.184.76.133
 195.184.76.134/31
 195.184.76.137
@@ -7110,6 +7115,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 217.146.80.118
 217.146.80.120/30
 217.146.80.124/31
+217.146.80.126
 217.154.5.80
 217.154.45.212
 217.154.77.185
@@ -7164,3 +7170,4 @@ For more on scraping GitHub and how it may affect your rights, please review our
 223.199.163.107
 223.199.166.100
 223.199.178.160
+For

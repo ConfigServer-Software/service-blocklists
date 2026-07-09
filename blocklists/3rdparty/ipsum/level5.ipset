@@ -5,14 +5,12 @@
 #   @source         https://raw.githubusercontent.com/stamparm/ipsum/master/levels/5.txt
 #   @id             3rdparty_ipsum_level5_ipset
 #   @uuid           4a4a0cc7-3f38-3c3b-b27b-c56e73c17921
-#   @updated        Thu Jul 09 02:05:45 UTC 2026
+#   @updated        Thu Jul 09 07:42:43 UTC 2026
 #   @entries        3,232 ips
 #                   58 subnets
 #                   3,148 lines
-#   @expires        429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
-#   @category       429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @expires        4 hours
+#   @category       3rdParty
 #
 #   IPSum › Threat Intelligence Feeds
 #   

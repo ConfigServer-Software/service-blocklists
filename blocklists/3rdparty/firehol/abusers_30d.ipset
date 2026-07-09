@@ -5,13 +5,12 @@
 #   @source         https://iplists.firehol.org/files/firehol_abusers_30d.netset
 #   @id             3rdparty_firehol_abusers_30d_ipset
 #   @uuid           ff71745b-4913-3d10-88fc-565f07b3fba1
-#   @updated        Thu Jul 09 02:02:00 UTC 2026
-#   @entries        148,850 ips
+#   @updated        Thu Jul 09 07:40:09 UTC 2026
+#   @entries        148,852 ips
 #                   5,213 subnets
-#                   142,295 lines
+#                   142,297 lines
 #   @expires        4 hours
-#   @category       429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @category       3rdParty
 #
 #   FireHOL IP Blocklist › Abusers (30 day)
 #   
@@ -71602,6 +71601,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 107.172.131.84
 107.172.132.105
 107.172.132.172
+107.172.134.28
 107.172.136.106
 107.172.138.100
 107.172.139.67
@@ -82690,6 +82690,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 123.131.171.83
 123.136.31.130
 123.136.92.176
+123.139.30.41
 123.139.36.14
 123.139.36.95
 123.139.36.241

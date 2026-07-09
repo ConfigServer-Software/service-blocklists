@@ -2,21 +2,35 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/blocklist.de/attacks_sip.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/blocklist.de/attacks_sip.ipset
-#   @source         429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @source         https://lists.blocklist.de/lists/sip.txt
 #   @id             3rdparty_blocklist_de_attacks_sip_ipset
 #   @uuid           cece620b-f239-39f3-b1ae-b450c71da695
-#   @updated        Thu Jul 09 02:01:16 UTC 2026
-#   @entries        82 ips
+#   @updated        Thu Jul 09 07:39:48 UTC 2026
+#   @entries        85 ips
 #                   0 subnets
-#                   82 lines
-#   @expires        429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
-#   @category       429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#                   85 lines
+#   @expires        4 hours
+#   @category       3rdParty
 #
-429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   blocklist.de › SIP
+#   
+#   All IP addresses that tried to login in a SIP-, VOIP- or Asterisk-Server
+#   and are inclueded in the IPs
+#   
+#   List from http://www.infiltrated.net/ (Twitter). 
+#   
+#   blocklist.de is a free and voluntary service provided by a 
+#   Fraud/Abuse-specialist, whose servers are often attacked via 
+#   SSH-, Mail-Login-, FTP-, Webserver- and other services. 
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malicious data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 
 1.14.203.20
@@ -28,31 +42,33 @@ For more on scraping GitHub and how it may affect your rights, please review our
 14.103.112.106
 20.246.187.134
 23.90.184.18
-27.123.220.219
-27.150.188.148
 31.70.78.222
-35.210.61.208
+34.78.29.97
 36.103.243.179
 36.138.134.121
 40.86.229.233
-42.200.73.3
+42.116.206.52
 43.128.3.201
 43.224.117.118
 43.226.40.202
 45.61.188.204
 45.128.199.32
+45.153.34.161
 51.68.35.48
 51.75.107.40
 51.159.80.92
 51.254.175.198
+66.154.109.226
 77.83.103.181
 81.30.98.26
 82.39.86.153
+87.106.117.109
 89.190.156.22
 90.156.210.48
 91.92.42.19
 91.134.23.123
 102.88.137.145
+103.59.163.132
 103.76.88.37
 103.167.171.10
 103.191.14.210
@@ -60,17 +76,18 @@ For more on scraping GitHub and how it may affect your rights, please review our
 104.193.195.43
 111.26.62.46
 111.228.54.209
-117.72.212.5
-128.14.225.164
-138.124.30.187
+116.73.240.74
+118.70.178.158
+118.145.246.44
+129.146.171.167
 139.198.113.29
-142.93.48.137
-143.95.211.56
 144.172.97.10
 152.32.131.77
 152.228.138.14
 152.239.122.222
+154.92.22.131
 154.127.69.20
+160.119.69.14
 167.172.187.11
 171.231.181.160
 171.231.183.94
@@ -79,7 +96,6 @@ For more on scraping GitHub and how it may affect your rights, please review our
 172.94.9.203
 173.249.30.184
 174.179.100.65
-177.0.238.190
 178.16.54.163
 178.22.121.139
 180.76.176.249
@@ -91,13 +107,14 @@ For more on scraping GitHub and how it may affect your rights, please review our
 185.243.5.122
 187.50.226.182
 193.32.162.82
+194.213.3.3
 195.154.94.242
 195.154.94.251
-195.178.110.227
+196.189.155.89
 196.196.150.5
+200.107.247.253
 201.249.192.30
 202.103.55.158
 203.161.35.215
-211.75.252.252
 216.126.224.33
 218.92.251.198

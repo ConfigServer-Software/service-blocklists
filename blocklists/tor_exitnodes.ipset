@@ -2,16 +2,14 @@
 #   🧱 Firewall Blocklist - blocklists/tor_exitnodes.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/tor_exitnodes.ipset
-#   @source         429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @source         https://blocklist.configserver.dev/tor_exitnodes.ipset
 #   @id             tor_exitnodes_ipset
 #   @uuid           9d63ca5e-2c49-3352-bc9f-3d6ace1edd1e
-#   @updated        Thu Jul 09 01:56:42 UTC 2026
-#   @entries        1,380 ips
+#   @updated        Thu Jul 09 07:37:10 UTC 2026
+#   @entries        1,377 ips
 #                   92 subnets
-#                   816 lines
-#   @expires        429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#                   813 lines
+#   @expires        7 days
 #   @category       Special
 #
 #   Tor Exit Node Blocklist
@@ -155,7 +153,6 @@ For more on scraping GitHub and how it may affect your rights, please review our
 45.12.3.80
 45.13.225.69
 45.13.225.78
-45.38.20.164
 45.38.20.213
 45.38.20.240
 45.61.185.172
@@ -184,6 +181,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 45.84.107.222
 45.90.98.110
 45.91.250.107
+45.92.1.70
 45.95.169.32
 45.95.169.104
 45.95.169.119
@@ -342,9 +340,6 @@ For more on scraping GitHub and how it may affect your rights, please review our
 93.99.104.40
 93.99.104.128
 93.99.104.194
-93.113.25.90
-93.113.25.109
-93.113.25.160
 94.16.115.121
 94.16.116.81
 94.23.204.164

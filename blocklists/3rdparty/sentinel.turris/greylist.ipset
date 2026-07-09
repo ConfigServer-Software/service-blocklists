@@ -2,19 +2,37 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/sentinel.turris/greylist.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/sentinel.turris/greylist.ipset
-#   @source         429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @source         https://view.sentinel.turris.cz/greylist-data/greylist-latest.csv
 #   @id             3rdparty_sentinel_turris_greylist_ipset
 #   @uuid           59b4c9ab-a8a6-3781-8dc1-c7d22dc974ab
-#   @updated        Thu Jul 09 02:06:52 UTC 2026
+#   @updated        Thu Jul 09 07:43:24 UTC 2026
 #   @entries        8,154 ips
 #                   366 subnets
 #                   7,449 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
-429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   TurrisTech › Sentinel Attackers
+#   
+#   This blocklist is generated from the Turris Sentinel network, a distributed
+#   security telemetry system run on Turris routers that reports suspicious
+#   and malicious activity observed in real-world traffic.
+#   
+#   It contains IP addresses associated with automated attacks such as SSH
+#   brute-force attempts, service probing, and other unauthorized access
+#   behavior detected across participating devices.
+#   
+#   The list is intended for defensive blocking and reputation-based filtering
+#   of actively observed attacker infrastructure.
+#   
+#   This third-party blocklist is not maintained by ConfigServer; IPs are
+#   sourced externally and not curated by us. We do however, validate the
+#   blocklist to ensure that it only contains properly validated IP addresses,
+#   and does not include any non-relevant or malformed data beyond the scope
+#   of the source.
+#   
+#   Use at the administrator’s discretion based on risk tolerance and
+#   environment requirements.
 # #
 
 1.12.70.96
