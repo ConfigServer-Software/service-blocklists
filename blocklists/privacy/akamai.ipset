@@ -2,18 +2,15 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/akamai.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/akamai.ipset
-#   @source         429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_akamai_ipset
 #   @uuid           cb91e0fe-b9de-3f51-b432-d768fb98f552
-#   @updated        Thu Jul 09 05:20:10 UTC 2026
+#   @updated        Fri Jul 10 05:18:21 UTC 2026
 #   @entries        6,422,531 ips
 #                   9 subnets
 #                   9 lines
-#   @expires        429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
-#   @category       429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @expires        4 hours
+#   @category       Uncategorized
 #
 #   No description provided
 # #

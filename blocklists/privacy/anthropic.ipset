@@ -5,15 +5,14 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_anthropic_ipset
 #   @uuid           5c4ae79e-e714-3100-ae82-a4beb40170c4
-#   @updated        Thu Jul 09 05:20:25 UTC 2026
+#   @updated        Fri Jul 10 05:18:25 UTC 2026
 #   @entries        245 ips
 #                   45 subnets
 #                   86 lines
 #   @expires        4 hours
 #   @category       Uncategorized
 #
-429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   No description provided
 # #
 
 216.73.216.0/27

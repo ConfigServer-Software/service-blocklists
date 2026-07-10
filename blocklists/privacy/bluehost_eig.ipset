@@ -5,13 +5,12 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_bluehost_eig_ipset
 #   @uuid           54f1dc61-d87d-3324-8569-943ad9473105
-#   @updated        Thu Jul 09 05:21:57 UTC 2026
+#   @updated        Fri Jul 10 05:19:50 UTC 2026
 #   @entries        1,355,008 ips
 #                   119 subnets
 #                   119 lines
 #   @asn            AS46606
-#   @expires        429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

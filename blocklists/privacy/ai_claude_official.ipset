@@ -5,12 +5,11 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_ai_claude_official_ipset
 #   @uuid           8acc71c8-3f03-3818-840e-d233021be1cd
-#   @updated        Thu Jul 09 05:20:07 UTC 2026
+#   @updated        Fri Jul 10 05:18:20 UTC 2026
 #   @entries        2,049 ips
 #                   2 subnets
 #                   2 lines
-#   @expires        429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @expires        4 hours
 #   @category       Uncategorized
 #
 #   No description provided

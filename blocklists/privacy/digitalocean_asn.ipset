@@ -2,11 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/privacy/digitalocean_asn.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/privacy/digitalocean_asn.ipset
-#   @source         429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @source         https://blocklist.configserver.dev/
 #   @id             privacy_digitalocean_asn_ipset
 #   @uuid           88a7ed54-ef75-32e3-a514-fdec31d77784
-#   @updated        Thu Jul 09 05:33:56 UTC 2026
+#   @updated        Fri Jul 10 05:30:32 UTC 2026
 #   @entries        3,232,520 ips
 #                   142 subnets
 #                   142 lines
@@ -16,8 +15,7 @@ For more on scraping GitHub and how it may affect your rights, please review our
 #   @expires        4 hours
 #   @category       Uncategorized
 #
-429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   No description provided
 # #
 
 5.42.203.0/24

@@ -5,14 +5,13 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_bytedance_ipset
 #   @uuid           2812b2c7-ef89-317d-9384-532828085f39
-#   @updated        Thu Jul 09 05:22:09 UTC 2026
+#   @updated        Fri Jul 10 05:19:56 UTC 2026
 #   @entries        403,281 ips
 #                   56 subnets
 #                   56 lines
 #   @asn            AS396986, AS138699, AS150436
 #   @expires        4 hours
-#   @category       429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+#   @category       Uncategorized
 #
 #   No description provided
 # #
