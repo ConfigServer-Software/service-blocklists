@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 10 06:00:46 UTC 2026
-#   @entries        5,979,275 ips
-#                   2,626 subnets
-#                   2,626 lines
+#   @updated        Sat Jul 11 05:19:54 UTC 2026
+#   @entries        5,979,274 ips
+#                   2,625 subnets
+#                   2,625 lines
 #   @country        Greece (GR)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -1655,7 +1655,6 @@
 2001:978:2:82::/64
 2001:978:501::/48
 2001:978:7300::/47
-2001:978:7303::/48
 2001:ac8:8d::/48
 2001:1548::/29
 2001:3786:7901::/48

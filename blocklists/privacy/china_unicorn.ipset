@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_china_unicorn_ipset
 #   @uuid           a532eb4d-9b54-35f9-bdd7-646a4c3e9a14
-#   @updated        Fri Jul 10 05:28:54 UTC 2026
-#   @entries        81,333,651 ips
-#                   1,852 subnets
-#                   1,852 lines
+#   @updated        Sat Jul 11 04:50:00 UTC 2026
+#   @entries        81,331,603 ips
+#                   1,851 subnets
+#                   1,851 lines
 #   @asn            AS4837, AS10099, AS10206, AS133118, AS133119
 #                   AS134542, AS134543, AS135061, AS136958, AS136959
 #                   AS137539, AS138421, AS140979, AS152120, AS17621
@@ -839,7 +839,6 @@
 114.112.96.0/21
 114.112.104.0/22
 114.112.124.0/22
-114.112.136.0/21
 114.112.144.0/20
 114.112.161.0/24
 114.112.162.0/23

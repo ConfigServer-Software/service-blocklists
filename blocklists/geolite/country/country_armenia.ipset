@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 10 06:00:08 UTC 2026
-#   @entries        594,165 ips
-#                   769 subnets
-#                   769 lines
+#   @updated        Sat Jul 11 05:19:15 UTC 2026
+#   @entries        594,164 ips
+#                   768 subnets
+#                   768 lines
 #   @country        Armenia (AM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -448,7 +448,6 @@
 2001:470:6d:3da::/64
 2001:470:6d:5ac::/64
 2001:470:6d:64d::/64
-2001:470:6d:64f::/64
 2001:470:6d:80e::/64
 2001:470:6d:c1e::/64
 2001:470:6f:2ef::/64

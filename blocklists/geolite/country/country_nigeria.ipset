@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 10 06:01:04 UTC 2026
-#   @entries        3,263,198 ips
-#                   1,561 subnets
-#                   1,561 lines
+#   @updated        Sat Jul 11 05:20:12 UTC 2026
+#   @entries        3,263,200 ips
+#                   1,563 subnets
+#                   1,563 lines
 #   @country        Nigeria (NG)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -671,6 +671,7 @@
 104.30.166.172/32
 104.30.167.217/32
 104.30.169.103/32
+104.30.174.143/32
 104.135.184.92/30
 104.135.223.92/30
 104.166.144.0/22
@@ -1354,6 +1355,7 @@
 2a09:bac0:1000:b80::/64
 2a09:bac0:1000:c41::/64
 2a09:bac0:1000:11a4::/64
+2a09:bac0:1000:16c4::/64
 2a09:bac0:1001:ed4::/64
 2a09:bac1:5400::/64
 2a09:bac1:5400:8::/64
