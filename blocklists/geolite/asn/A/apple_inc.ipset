@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_A_apple_inc_ipset
 #   @uuid           30a2e9a2-bcd7-36ba-910f-3e71a32ea299
-#   @updated        Sat Jul 11 05:22:38 UTC 2026
-#   @entries        16,941,709 ips
-#                   199 subnets
-#                   199 lines
+#   @updated        Sun Jul 12 05:29:29 UTC 2026
+#   @entries        16,941,708 ips
+#                   198 subnets
+#                   198 lines
 #   @asn            AS714, AS6185, AS2709
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -111,7 +111,6 @@
 2403:300:a80::/41
 2403:300:b00::/40
 2403:300:c00::/38
-2404:5e40:17::/48
 2620:0:1b00::/48
 2620:149:1000::/36
 2620:149:2000::/35
