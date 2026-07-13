@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             isp_qwest_centurylink_ipset
 #   @uuid           de6c05ac-1eec-3032-84ec-ea8e40f0f501
-#   @updated        Sun Jul 12 05:17:19 UTC 2026
-#   @entries        33,386,402 ips
-#                   1,490 subnets
-#                   1,491 lines
+#   @updated        Mon Jul 13 05:29:37 UTC 2026
+#   @entries        33,385,378 ips
+#                   1,489 subnets
+#                   1,490 lines
 #   @asn            AS3908, AS3909, AS209, AS3561, AS3910
 #                   AS22561, AS6223, AS4297, AS6224, AS4296
 #                   AS2379, AS5778, AS11398, AS14905, AS17402
@@ -672,7 +672,6 @@
 156.46.168.0/24
 156.46.223.0/24
 156.47.0.0/22
-156.248.88.0/22
 156.255.4.0/22
 157.30.0.0/16
 157.185.160.0/22
