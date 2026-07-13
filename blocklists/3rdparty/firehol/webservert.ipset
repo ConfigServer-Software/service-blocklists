@@ -5,7 +5,7 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             3rdparty_firehol_webservert_ipset
 #   @uuid           96c00f43-1065-3fa2-8757-ecd215066c74
-#   @updated        Mon Jul 13 06:59:35 UTC 2026
+#   @updated        Mon Jul 13 11:01:36 UTC 2026
 #   @entries        125,739 ips
 #                   122 subnets
 #                   843 lines
