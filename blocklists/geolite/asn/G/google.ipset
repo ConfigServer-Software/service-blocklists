@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_G_google_ipset
 #   @uuid           73ba0958-f429-31c4-bcc0-a74e25c9aa74
-#   @updated        Mon Jul 13 05:46:41 UTC 2026
-#   @entries        2,416,747 ips
-#                   331 subnets
-#                   331 lines
+#   @updated        Tue Jul 14 05:17:49 UTC 2026
+#   @entries        2,416,748 ips
+#                   332 subnets
+#                   332 lines
 #   @asn            AS15169, AS36040, AS19425, AS22859, AS36039
 #                   AS40873, AS13949, AS26684, AS22577
 #   @expires        6 hours
@@ -324,6 +324,7 @@
 2602:faaa:1::/48
 2605:ef80::/32
 2606:40::/32
+2606:ec80::/44
 2607:f8b0::/32
 2620:11a:a017::/48
 2620:11a:a01c::/48
