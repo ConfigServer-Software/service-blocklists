@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 14 05:13:58 UTC 2026
-#   @entries        1,642,402 ips
-#                   1,636 subnets
-#                   1,636 lines
+#   @updated        Wed Jul 15 05:09:46 UTC 2026
+#   @entries        1,643,170 ips
+#                   1,638 subnets
+#                   1,638 lines
 #   @country        Estonia (EE)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -118,6 +118,7 @@
 46.131.0.0/16
 46.226.136.0/21
 46.243.150.0/24
+46.255.28.0/24
 51.146.68.0/24
 57.86.160.0/22
 57.87.128.0/20
@@ -151,6 +152,7 @@
 62.128.127.160/27
 62.128.127.208/29
 62.128.127.224/27
+64.28.40.0/23
 64.188.78.0/24
 64.188.82.0/24
 69.12.83.0/24

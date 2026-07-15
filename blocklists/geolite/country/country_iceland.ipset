@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 14 05:14:19 UTC 2026
-#   @entries        937,759 ips
-#                   664 subnets
-#                   664 lines
+#   @updated        Wed Jul 15 05:10:07 UTC 2026
+#   @entries        937,760 ips
+#                   665 subnets
+#                   665 lines
 #   @country        Iceland (IS)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -563,6 +563,7 @@
 2a03:eb80::/32
 2a04:4780::/29
 2a04:4e41:1303:1000::/52
+2a04:4e41:1303:8000::/49
 2a04:4e41:1317::/48
 2a04:4e41:1603:3000::/52
 2a04:4e41:1610::/48

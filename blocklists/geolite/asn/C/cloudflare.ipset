@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_C_cloudflare_ipset
 #   @uuid           c71b2255-a4fb-369c-bbfc-4f734d704266
-#   @updated        Tue Jul 14 05:17:21 UTC 2026
-#   @entries        1,347,677 ips
-#                   2,479 subnets
-#                   2,479 lines
+#   @updated        Wed Jul 15 05:12:35 UTC 2026
+#   @entries        1,347,678 ips
+#                   2,480 subnets
+#                   2,480 lines
 #   @asn            AS13335
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -1612,6 +1612,10 @@
 2400:cb00:bf12::/47
 2400:cb00:bf14::/47
 2400:cb00:bf16::/48
+2400:cb00:bfb1::/48
+2400:cb00:bfb2::/47
+2400:cb00:bfb4::/46
+2400:cb00:bfb8::/48
 2400:cb00:bfd1::/48
 2400:cb00:bfd2::/47
 2400:cb00:bfd4::/46
@@ -1982,9 +1986,6 @@
 2400:cb00:dce2::/47
 2400:cb00:dce4::/47
 2400:cb00:dce6::/48
-2400:cb00:dcf1::/48
-2400:cb00:dcf2::/47
-2400:cb00:dcf4::/47
 2400:cb00:dd01::/48
 2400:cb00:dd02::/47
 2400:cb00:dd04::/47

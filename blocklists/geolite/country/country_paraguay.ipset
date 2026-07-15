@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 14 05:14:40 UTC 2026
-#   @entries        1,270,750 ips
-#                   661 subnets
-#                   661 lines
+#   @updated        Wed Jul 15 05:10:29 UTC 2026
+#   @entries        1,271,774 ips
+#                   665 subnets
+#                   665 lines
 #   @country        Paraguay (PY)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -295,6 +295,10 @@
 167.250.36.0/22
 167.250.236.0/23
 168.90.176.0/22
+168.113.1.0/24
+168.113.43.0/24
+168.113.85.0/24
+168.113.127.0/24
 168.194.240.0/22
 168.195.224.0/22
 170.51.0.0/19
