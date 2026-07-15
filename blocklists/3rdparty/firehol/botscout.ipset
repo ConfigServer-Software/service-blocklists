@@ -5,10 +5,10 @@
 #   @source         https://iplists.firehol.org/files/botscout.ipset
 #   @id             3rdparty_firehol_botscout_ipset
 #   @uuid           bdafa928-b8b9-3dba-a74c-9155d86c0ea9
-#   @updated        Wed Jul 15 06:18:27 UTC 2026
-#   @entries        7 ips
-#                   0 subnets
-#                   7 lines
+#   @updated        Wed Jul 15 10:01:41 UTC 2026
+#   @entries        23 ips
+#                   2 subnets
+#                   21 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
@@ -34,10 +34,24 @@
 #   environment requirements.
 # #
 
-64.188.3.143
-74.0.103.15
-108.181.18.42
+23.236.175.94
+37.19.213.129
+45.147.8.48
+66.84.91.60
+72.56.189.251
+104.22.18.53
+104.22.18.54
+104.22.20.142/31
+107.175.36.168
 120.40.130.70
-156.241.247.95
+154.6.243.120
+156.241.246.66
+162.158.167.121
 162.158.167.122
-172.69.135.13
+172.69.22.86/31
+172.69.135.14
+172.71.154.179
+172.71.159.81
+172.71.159.82
+185.94.33.196
+196.51.23.250
