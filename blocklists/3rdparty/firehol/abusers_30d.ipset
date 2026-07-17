@@ -5,27 +5,11 @@
 #   @source         https://iplists.firehol.org/files/firehol_abusers_30d.netset
 #   @id             3rdparty_firehol_abusers_30d_ipset
 #   @uuid           ff71745b-4913-3d10-88fc-565f07b3fba1
-#   @updated        Fri Jul 17 09:56:24 UTC 2026
+#   @updated        Fri Jul 17 13:13:31 UTC 2026
 #   @entries        150,353 ips
 #                   5,144 subnets
 #                   143,815 lines
-#   @expires        
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-  <head>
-    <title>503 first byte timeout</title>
-  </head>
-  <body>
-    <h1>Error 503 first byte timeout</h1>
-    <p>first byte timeout</p>
-    <h3>Error 54113</h3>
-    <p>Details: cache-dfw-ktki8620067-DFW 1784282201 2465280404</p>
-    <hr>
-    <p>Varnish cache server</p>
-  </body>
-</html>
+#   @expires        4 hours
 #   @category       3rdParty
 #
 #   FireHOL IP Blocklist › Abusers (30 day)
