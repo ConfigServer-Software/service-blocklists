@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 17 05:18:16 UTC 2026
-#   @entries        2,037,382 ips
-#                   1,005 subnets
-#                   1,005 lines
+#   @updated        Sat Jul 18 05:05:00 UTC 2026
+#   @entries        2,037,894 ips
+#                   1,007 subnets
+#                   1,007 lines
 #   @country        Dominican Republic (DO)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -126,6 +126,7 @@
 38.129.92.0/23
 38.130.78.0/23
 38.130.112.0/23
+38.131.5.0/24
 38.131.62.0/23
 38.134.52.0/23
 38.135.4.0/24
@@ -180,6 +181,7 @@
 38.199.100.0/22
 38.199.112.0/21
 38.210.90.0/24
+38.210.118.0/24
 38.210.225.0/24
 38.211.39.0/24
 38.211.60.0/24

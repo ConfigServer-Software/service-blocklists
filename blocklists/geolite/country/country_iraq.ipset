@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 17 05:18:37 UTC 2026
-#   @entries        832,003 ips
-#                   1,595 subnets
-#                   1,595 lines
+#   @updated        Sat Jul 18 05:05:17 UTC 2026
+#   @entries        832,259 ips
+#                   1,596 subnets
+#                   1,596 lines
 #   @country        Iraq (IQ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -73,6 +73,7 @@
 38.60.190.0/24
 38.66.194.0/24
 38.69.144.0/24
+38.127.208.0/24
 38.199.252.0/22
 38.236.87.0/24
 38.236.171.0/24

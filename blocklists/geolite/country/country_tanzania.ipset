@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 17 05:19:11 UTC 2026
-#   @entries        1,161,806 ips
-#                   510 subnets
-#                   510 lines
+#   @updated        Sat Jul 18 05:05:43 UTC 2026
+#   @entries        1,162,574 ips
+#                   512 subnets
+#                   512 lines
 #   @country        Tanzania (TZ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -122,6 +122,8 @@
 102.205.228.0/22
 102.205.233.0/24
 102.205.248.0/22
+102.205.252.0/23
+102.205.254.0/24
 102.206.0.0/22
 102.206.16.0/21
 102.206.148.0/22

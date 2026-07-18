@@ -5,10 +5,10 @@
 #   @source         https://ip-ranges.amazonaws.com/ip-ranges.json
 #   @id             privacy_amazon_ec2_ipset
 #   @uuid           8d68f156-5dad-39a6-83ee-bd1a62e6fd09
-#   @updated        Fri Jul 17 04:36:55 UTC 2026
-#   @entries        76,886,845 ips
-#                   697 subnets
-#                   704 lines
+#   @updated        Sat Jul 18 04:24:59 UTC 2026
+#   @entries        76,903,997 ips
+#                   700 subnets
+#                   707 lines
 #   @expires        6 hours
 #   @category       Privacy
 #
@@ -309,6 +309,8 @@
 35.50.226.0/23
 35.50.228.0/22
 35.50.232.0/21
+35.50.240.0/23
+35.50.242.0/24
 35.54.32.0/20
 35.54.48.0/21
 35.54.56.0/22
@@ -334,6 +336,7 @@
 35.72.0.0/13
 35.80.0.0/12
 35.128.64.0/18
+35.128.128.0/18
 35.152.0.0/13
 35.160.0.0/12
 35.176.0.0/13

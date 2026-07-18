@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 17 05:18:18 UTC 2026
-#   @entries        172,752 ips
-#                   428 subnets
-#                   428 lines
+#   @updated        Sat Jul 18 05:05:01 UTC 2026
+#   @entries        172,745 ips
+#                   425 subnets
+#                   425 lines
 #   @country        Europe (EU)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -359,9 +359,6 @@
 213.92.80.0/24
 213.131.238.0/24
 213.161.85.0/29
-213.161.85.9/32
-213.161.85.10/31
-213.161.85.12/30
 213.161.85.16/28
 213.161.85.32/27
 213.161.85.64/26

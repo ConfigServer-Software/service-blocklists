@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 17 05:17:52 UTC 2026
-#   @entries        186,266 ips
-#                   695 subnets
-#                   695 lines
+#   @updated        Sat Jul 18 05:04:41 UTC 2026
+#   @entries        186,522 ips
+#                   696 subnets
+#                   696 lines
 #   @country        Afghanistan (AF)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -107,6 +107,7 @@
 103.235.176.0/22
 103.241.156.0/22
 103.242.50.0/23
+103.243.179.0/24
 103.247.198.0/24
 103.254.166.0/24
 103.255.204.0/23
