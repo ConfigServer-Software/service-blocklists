@@ -5,10 +5,10 @@
 #   @source         https://blackhole.monster/blackhole-30days
 #   @id             3rdparty_blackhole_monster_blacklist_30d_ipset
 #   @uuid           da593eff-9e73-35fe-ac1c-a471e6a86a0c
-#   @updated        Sat Jul 18 12:58:31 UTC 2026
-#   @entries        4,294,967,296 ips
-#                   1 subnets
-#                   7 lines
+#   @updated        Sat Jul 18 16:56:34 UTC 2026
+#   @entries        0 ips
+#                   0 subnets
+#                   3 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
@@ -29,10 +29,6 @@
 #   environment requirements.
 # #
 
-0.0.0.0/0
-<!DOCTYPE
-a
-content="text/html
-html><html
-http-equiv="Content-Type"
-lang="en-US"><head><title>Just
+code:
+1015
+error
