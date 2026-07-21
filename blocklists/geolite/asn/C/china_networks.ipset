@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_C_china_networks_ipset
 #   @uuid           ebc0bda6-2f1b-3206-b3e3-f73dbb381343
-#   @updated        Mon Jul 20 05:44:22 UTC 2026
-#   @entries        3,430,153 ips
-#                   449 subnets
-#                   449 lines
+#   @updated        Tue Jul 21 05:22:29 UTC 2026
+#   @entries        3,429,385 ips
+#                   447 subnets
+#                   447 lines
 #   @asn            AS4847
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -115,8 +115,6 @@
 103.116.120.0/23
 103.116.123.0/24
 103.117.16.0/22
-103.121.52.0/23
-103.121.54.0/24
 103.139.212.0/23
 103.152.28.0/23
 103.158.0.0/23

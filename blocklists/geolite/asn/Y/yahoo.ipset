@@ -5,7 +5,7 @@
 #   @source         None
 #   @id             geolite_asn_Y_yahoo_ipset
 #   @uuid           b60dda3e-8aca-3d46-9c9f-cdf82dab507d
-#   @updated        Mon Jul 20 05:45:47 UTC 2026
+#   @updated        Tue Jul 21 05:23:57 UTC 2026
 #   @entries        492,895 ips
 #                   540 subnets
 #                   540 lines
@@ -387,7 +387,7 @@
 2406:2000:e000::/37
 2406:2000:e0::/46
 2406:2000:e800::/38
-2406:2000:e8::/46
+2406:2000:e8::/45
 2406:2000:ec00::/39
 2406:2000:ee00::/40
 2406:2000:ef00::/42
