@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 21 05:20:06 UTC 2026
-#   @entries        92,676 ips
-#                   164 subnets
-#                   164 lines
+#   @updated        Wed Jul 22 05:27:46 UTC 2026
+#   @entries        92,675 ips
+#                   163 subnets
+#                   163 lines
 #   @country        Sierra Leone (SL)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -172,7 +172,6 @@
 2a09:bac5:5610::/45
 2a09:bac6:5610::/45
 2a0b:4e07:3:6940::/60
-2a14:2d45:c900::/40
 2a14:67c2:846::/48
 2c0f:27c0::/32
 2c0f:3000::/32

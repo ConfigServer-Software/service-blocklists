@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 21 05:19:45 UTC 2026
-#   @entries        684,560 ips
-#                   412 subnets
-#                   412 lines
+#   @updated        Wed Jul 22 05:27:29 UTC 2026
+#   @entries        684,559 ips
+#                   411 subnets
+#                   411 lines
 #   @country        Malta (MT)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -426,5 +426,4 @@
 2a10:fa81:b40::/42
 2a10:fa81:b80::/43
 2a11:9540::/32
-2a14:2d45:9800::/40
 2a14:67c2:8e5::/48

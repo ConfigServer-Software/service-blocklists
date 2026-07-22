@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 21 05:20:41 UTC 2026
-#   @entries        28,818 ips
-#                   143 subnets
-#                   143 lines
+#   @updated        Wed Jul 22 05:28:13 UTC 2026
+#   @entries        25,233 ips
+#                   142 subnets
+#                   142 lines
 #   @country        Saint Vincent Grenadines (VC)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -27,7 +27,7 @@
 66.96.114.128/26
 69.73.237.0/24
 69.73.238.0/23
-69.79.0.0/20
+69.79.12.0/23
 69.80.55.0/24
 69.80.56.0/23
 69.80.58.0/24
@@ -157,5 +157,4 @@
 2a09:bac5:d358::/45
 2a09:bac6:d358::/45
 2a0b:4e07:3:6700::/60
-2a14:2d45:eb00::/40
 2a14:67c2:8ba::/48

@@ -5,7 +5,7 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 21 05:19:00 UTC 2026
+#   @updated        Wed Jul 22 05:26:51 UTC 2026
 #   @entries        175,453 ips
 #                   221 subnets
 #                   221 lines
@@ -219,8 +219,8 @@
 2a09:bac6:1000::/45
 2a09:bac6:db60::/45
 2a0b:4e07:3:720::/60
-2a14:2d45:2200::/40
 2a14:67c2:81f::/48
+2c0f:1020::/32
 2c0f:1340::/32
 2c0f:1840::/32
 2c0f:30c0::/32

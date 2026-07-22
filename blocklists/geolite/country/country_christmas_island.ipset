@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 21 05:19:07 UTC 2026
-#   @entries        83 ips
-#                   71 subnets
-#                   71 lines
+#   @updated        Wed Jul 22 05:26:57 UTC 2026
+#   @entries        82 ips
+#                   70 subnets
+#                   70 lines
 #   @country        Christmas Island (CX)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -86,4 +86,3 @@
 2a09:bac4:1a8::/45
 2a09:bac4:11a8::/45
 2a0b:4e07:3:1620::/60
-2a14:2d45:3500::/40

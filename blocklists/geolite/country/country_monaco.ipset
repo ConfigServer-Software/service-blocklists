@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 21 05:19:44 UTC 2026
-#   @entries        80,413 ips
-#                   309 subnets
-#                   309 lines
+#   @updated        Wed Jul 22 05:27:27 UTC 2026
+#   @entries        80,156 ips
+#                   307 subnets
+#                   307 lines
 #   @country        Monaco (MC)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -88,7 +88,6 @@
 134.238.218.128/25
 136.227.141.210/31
 136.227.141.212/30
-136.234.220.0/24
 137.83.225.155/32
 137.83.225.156/30
 137.83.225.160/31
@@ -322,6 +321,5 @@
 2a0b:8000::/29
 2a0d:3341:ae00::/40
 2a0f:2742:6000::/46
-2a14:2d45:8900::/40
 2a14:67c2:8fb::/48
 2a14:ba80::/29

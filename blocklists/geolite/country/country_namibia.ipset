@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 21 05:19:47 UTC 2026
-#   @entries        464,222 ips
-#                   209 subnets
-#                   209 lines
+#   @updated        Wed Jul 22 05:27:30 UTC 2026
+#   @entries        464,224 ips
+#                   211 subnets
+#                   211 lines
 #   @country        Namibia (NA)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -177,7 +177,9 @@
 2620:0:876:5300::/56
 2a00:ca0:2003:f000::/52
 2a00:ca0:203a:8000::/50
-2a02:26f7:cb40::/48
+2a02:26f7:cb40:4000::/64
+2a02:26f7:cb40:cf80::/62
+2a02:26f7:cb40:cf84::/64
 2a02:26f7:cb41:4000::/64
 2a02:26f7:cb44:4000::/64
 2a02:26f7:cb44:cf80::/62

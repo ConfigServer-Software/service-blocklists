@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 21 05:17:39 UTC 2026
-#   @entries        4,005 ips
-#                   924 subnets
-#                   924 lines
+#   @updated        Wed Jul 22 05:25:42 UTC 2026
+#   @entries        4,001 ips
+#                   920 subnets
+#                   920 lines
 #   @continent      Antartica (AN)
 #   @countries      Antarctica (AQ), Heard Island and McDonald Islands (HM), 
 #                   French Southern Territories (TF), South Georgia and the South Sandwich Islands (GS)Bouvet Island (BV), 
@@ -932,10 +932,6 @@
 2a0e:b107:baf::/48
 2a0f:1cc5:1ff0::/48
 2a0f:85c1:8d0::/48
-2a14:2d45:2100::/40
-2a14:2d45:5900::/40
-2a14:2d45:5f00::/40
-2a14:2d45:800::/40
 2a14:67c1:a024::/48
 2a14:67c1:b066:2222::/64
 2a14:67c1:b066:3333::/64

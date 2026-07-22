@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 21 05:19:47 UTC 2026
-#   @entries        946 ips
-#                   99 subnets
-#                   99 lines
+#   @updated        Wed Jul 22 05:27:30 UTC 2026
+#   @entries        945 ips
+#                   98 subnets
+#                   98 lines
 #   @country        Norfolk Island (NF)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -114,4 +114,3 @@
 2a09:bac5:4d70::/45
 2a09:bac6:4d70::/45
 2a0b:4e07:3:5740::/60
-2a14:2d45:a100::/40

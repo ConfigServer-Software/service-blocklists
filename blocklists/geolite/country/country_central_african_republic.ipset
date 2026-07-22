@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 21 05:19:02 UTC 2026
-#   @entries        8,886 ips
-#                   114 subnets
-#                   114 lines
+#   @updated        Wed Jul 22 05:26:54 UTC 2026
+#   @entries        8,885 ips
+#                   113 subnets
+#                   113 lines
 #   @country        Central African Republic (CF)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -128,5 +128,4 @@
 2a09:bac5:1d78::/45
 2a09:bac6:1d78::/45
 2a0b:4e07:3:1400::/60
-2a14:2d45:2800::/40
 2a14:67c2:8ed::/48

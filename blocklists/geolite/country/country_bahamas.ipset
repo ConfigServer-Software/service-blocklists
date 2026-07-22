@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 21 05:18:59 UTC 2026
-#   @entries        161,418 ips
-#                   278 subnets
-#                   278 lines
+#   @updated        Wed Jul 22 05:26:51 UTC 2026
+#   @entries        161,417 ips
+#                   277 subnets
+#                   277 lines
 #   @country        Bahamas (BS)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -291,6 +291,5 @@
 2a0e:ec05:8900::/41
 2a0e:ec05:8980::/42
 2a11:f887::/47
-2a14:2d45:1f00::/40
 2a14:67c2:882::/48
 2a14:7584:e3f8::/48
