@@ -5,10 +5,10 @@
 #   @source         https://d7uri8nf7uskq.cloudfront.net/tools/list-cloudfront-ips
 #   @id             privacy_cloudfront_ipset
 #   @uuid           faac2d95-4e94-303c-9cbf-74304f75f5fa
-#   @updated        Wed Jul 22 04:58:24 UTC 2026
-#   @entries        4,224,389 ips
-#                   179 subnets
-#                   180 lines
+#   @updated        Thu Jul 23 05:00:04 UTC 2026
+#   @entries        4,224,133 ips
+#                   178 subnets
+#                   179 lines
 #   @expires        6 hours
 #   @category       Privacy
 #
@@ -22,7 +22,6 @@
 #   download speeds and reduces latency for end users.
 # #
 
-1.178.168.0/24
 3.10.17.128/25
 3.11.53.0/24
 3.29.40.64/26
