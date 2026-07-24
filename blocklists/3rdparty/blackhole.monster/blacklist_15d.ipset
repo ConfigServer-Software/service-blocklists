@@ -5,27 +5,11 @@
 #   @source         https://blackhole.monster/blackhole-15days
 #   @id             3rdparty_blackhole_monster_blacklist_15d_ipset
 #   @uuid           8590aff5-b601-3983-a4ae-04cc5d3fbc4f
-#   @updated        Fri Jul 24 01:39:32 UTC 2026
+#   @updated        Fri Jul 24 06:30:28 UTC 2026
 #   @entries        0 ips
 #                   0 subnets
 #                   3 lines
-#   @expires        
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-  <head>
-    <title>503 first byte timeout</title>
-  </head>
-  <body>
-    <h1>Error 503 first byte timeout</h1>
-    <p>first byte timeout</p>
-    <h3>Error 54113</h3>
-    <p>Details: cache-bur-kbur8200161-BUR 1784857188 3251037935</p>
-    <hr>
-    <p>Varnish cache server</p>
-  </body>
-</html>
+#   @expires        4 hours
 #   @category       3rdParty
 #
 #   Blackhole.Monster IP Blocklist › 15 Days
