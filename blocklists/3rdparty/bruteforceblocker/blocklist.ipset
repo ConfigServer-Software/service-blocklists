@@ -5,7 +5,7 @@
 #   @source         http://danger.rulez.sk/projects/bruteforceblocker/blist.php
 #   @id             3rdparty_bruteforceblocker_blocklist_ipset
 #   @uuid           fe9d9942-beab-34a1-8e9a-20523944a425
-#   @updated        Sat Jul 25 16:56:54 UTC 2026
+#   @updated        Sat Jul 25 20:53:35 UTC 2026
 #   @entries        584 ips
 #                   1 subnets
 #                   583 lines
@@ -317,6 +317,7 @@
 45.15.226.187
 45.38.249.157
 45.61.173.86
+45.70.131.21
 45.135.194.48
 45.153.34.47
 45.154.244.149
@@ -548,7 +549,6 @@
 171.231.197.6
 171.231.197.233
 171.231.197.235
-171.243.148.21
 171.243.150.217
 171.243.150.226
 171.243.150.247
