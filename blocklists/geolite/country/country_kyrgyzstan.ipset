@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 24 05:27:41 UTC 2026
-#   @entries        308,512 ips
+#   @updated        Sat Jul 25 05:22:07 UTC 2026
+#   @entries        308,513 ips
 #                   416 subnets
 #                   416 lines
 #   @country        Kyrgyzstan (KG)
@@ -230,7 +230,7 @@
 193.34.225.0/24
 193.36.95.0/24
 193.106.48.0/24
-193.106.49.34/32
+193.106.49.34/31
 193.106.50.0/24
 193.151.226.0/24
 193.176.239.0/24

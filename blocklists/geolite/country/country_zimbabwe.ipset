@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 24 05:28:45 UTC 2026
-#   @entries        263,546 ips
-#                   354 subnets
-#                   354 lines
+#   @updated        Sat Jul 25 05:23:09 UTC 2026
+#   @entries        266,106 ips
+#                   357 subnets
+#                   357 lines
 #   @country        Zimbabwe (ZW)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -17,6 +17,8 @@
 # #
 
 5.252.184.0/24
+9.170.58.0/23
+9.170.60.0/22
 41.57.64.0/20
 41.60.32.0/20
 41.60.48.0/22
@@ -251,6 +253,7 @@
 217.15.120.0/22
 217.15.124.0/23
 217.15.126.0/24
+217.74.224.0/22
 217.74.239.0/24
 2001:470:26:460::/64
 2001:470:28:69f::/64

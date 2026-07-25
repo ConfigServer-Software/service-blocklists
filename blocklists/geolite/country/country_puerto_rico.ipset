@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 24 05:28:00 UTC 2026
-#   @entries        1,227,663 ips
+#   @updated        Sat Jul 25 05:22:26 UTC 2026
+#   @entries        1,227,407 ips
 #                   878 subnets
 #                   878 lines
 #   @country        Puerto Rico (PR)
@@ -610,7 +610,7 @@
 200.25.18.0/23
 200.41.14.170/31
 200.50.0.0/19
-200.62.8.0/23
+200.62.9.0/24
 204.2.80.0/20
 204.15.144.0/21
 204.16.121.232/32

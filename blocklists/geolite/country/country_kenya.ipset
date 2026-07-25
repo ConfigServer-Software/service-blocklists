@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 24 05:27:41 UTC 2026
-#   @entries        6,373,228 ips
-#                   1,223 subnets
-#                   1,223 lines
+#   @updated        Sat Jul 25 05:22:07 UTC 2026
+#   @entries        6,373,740 ips
+#                   1,224 subnets
+#                   1,224 lines
 #   @country        Kenya (KE)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -185,6 +185,7 @@
 87.255.96.0/19
 88.202.6.0/24
 93.127.176.128/25
+98.97.168.0/23
 98.97.176.0/23
 98.98.189.0/24
 102.0.0.0/13

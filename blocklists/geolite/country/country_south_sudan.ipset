@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 24 05:28:08 UTC 2026
-#   @entries        32,078 ips
-#                   166 subnets
-#                   166 lines
+#   @updated        Sat Jul 25 05:22:34 UTC 2026
+#   @entries        32,590 ips
+#                   167 subnets
+#                   167 lines
 #   @country        South Sudan (SS)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -16,6 +16,7 @@
 #   No description provided
 # #
 
+9.170.68.0/23
 38.43.72.0/22
 41.79.24.0/22
 41.79.120.0/22

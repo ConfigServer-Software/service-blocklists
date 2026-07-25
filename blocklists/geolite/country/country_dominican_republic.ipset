@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 24 05:27:15 UTC 2026
-#   @entries        2,038,774 ips
-#                   1,004 subnets
-#                   1,004 lines
+#   @updated        Sat Jul 25 05:21:41 UTC 2026
+#   @entries        2,038,775 ips
+#                   1,005 subnets
+#                   1,005 lines
 #   @country        Dominican Republic (DO)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -916,6 +916,7 @@
 2803:e950::/32
 2803:ebd0::/32
 2803:ec30::/32
+2803:f080:2e40::/43
 2803:f1a0::/32
 2803:f280::/32
 2803:f2e0::/32

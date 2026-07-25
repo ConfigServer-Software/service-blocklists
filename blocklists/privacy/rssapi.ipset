@@ -5,11 +5,27 @@
 #   @source         https://rssapi.net/ips.txt
 #   @id             privacy_rssapi_ipset
 #   @uuid           25f8a230-2869-3380-b3b4-cf05e212a968
-#   @updated        Fri Jul 24 05:04:34 UTC 2026
+#   @updated        Sat Jul 25 04:58:35 UTC 2026
 #   @entries        2 ips
 #                   1 subnets
 #                   2 lines
-#   @expires        6 hours
+#   @expires        
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>503 first byte timeout</title>
+  </head>
+  <body>
+    <h1>Error 503 first byte timeout</h1>
+    <p>first byte timeout</p>
+    <h3>Error 54113</h3>
+    <p>Details: cache-iad-khef600062-IAD 1784955546 4115866552</p>
+    <hr>
+    <p>Varnish cache server</p>
+  </body>
+</html>
 #   @category       Privacy
 #
 #   RSS Webhook API
