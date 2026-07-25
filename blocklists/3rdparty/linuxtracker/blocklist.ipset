@@ -5,28 +5,12 @@
 #   @source         https://raw.githubusercontent.com/LinuxTracker/Blocklists/master/HancitorIPs.txt
 #   @id             3rdparty_linuxtracker_blocklist_ipset
 #   @uuid           5e12a53c-a12b-344a-96cf-5f605ae19f4f
-#   @updated        Sat Jul 25 09:41:14 UTC 2026
+#   @updated        Sat Jul 25 13:14:21 UTC 2026
 #   @entries        54,609 ips
 #                   2,133 subnets
 #                   49,382 lines
 #   @expires        4 hours
-#   @category       
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-  <head>
-    <title>503 first byte timeout</title>
-  </head>
-  <body>
-    <h1>Error 503 first byte timeout</h1>
-    <p>first byte timeout</p>
-    <h3>Error 54113</h3>
-    <p>Details: cache-iad-kjyo7100072-IAD 1784972506 3698501920</p>
-    <hr>
-    <p>Varnish cache server</p>
-  </body>
-</html>
+#   @category       3rdParty
 #
 #   LinuxTracker › HancitorIPs
 #   

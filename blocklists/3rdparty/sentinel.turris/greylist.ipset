@@ -5,27 +5,11 @@
 #   @source         https://view.sentinel.turris.cz/greylist-data/greylist-latest.csv
 #   @id             3rdparty_sentinel_turris_greylist_ipset
 #   @uuid           59b4c9ab-a8a6-3781-8dc1-c7d22dc974ab
-#   @updated        Sat Jul 25 09:42:31 UTC 2026
+#   @updated        Sat Jul 25 13:14:57 UTC 2026
 #   @entries        7,901 ips
 #                   381 subnets
 #                   7,273 lines
-#   @expires        
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-  <head>
-    <title>503 first byte timeout</title>
-  </head>
-  <body>
-    <h1>Error 503 first byte timeout</h1>
-    <p>first byte timeout</p>
-    <h3>Error 54113</h3>
-    <p>Details: cache-iad-kiad7000052-IAD 1784972582 6476300</p>
-    <hr>
-    <p>Varnish cache server</p>
-  </body>
-</html>
+#   @expires        4 hours
 #   @category       3rdParty
 #
 #   TurrisTech › Sentinel Attackers
