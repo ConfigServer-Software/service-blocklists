@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_U_usa_internet_corp_ipset
 #   @uuid           ed4177b8-ee39-385f-9aed-da65d651d7b2
-#   @updated        Sun Jul 26 05:34:22 UTC 2026
-#   @entries        131,041 ips
-#                   360 subnets
-#                   360 lines
+#   @updated        Mon Jul 27 05:54:51 UTC 2026
+#   @entries        131,040 ips
+#                   367 subnets
+#                   367 lines
 #   @asn            AS10242
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -274,7 +274,14 @@
 206.55.178.180/30
 206.55.178.184/29
 206.55.178.192/26
-206.55.179.0/24
+206.55.179.0/25
+206.55.179.128/26
+206.55.179.192/27
+206.55.179.224/29
+206.55.179.232/32
+206.55.179.234/31
+206.55.179.236/30
+206.55.179.240/28
 206.55.180.0/22
 206.55.184.0/27
 206.55.184.32/28
