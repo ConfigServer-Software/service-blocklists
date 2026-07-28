@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_A_akamai_linode_ipset
 #   @uuid           587085ee-d44b-3218-9a56-402620c3a251
-#   @updated        Mon Jul 27 05:52:45 UTC 2026
-#   @entries        1,309,478 ips
-#                   170 subnets
-#                   170 lines
+#   @updated        Tue Jul 28 05:18:38 UTC 2026
+#   @entries        1,309,479 ips
+#                   171 subnets
+#                   171 lines
 #   @asn            AS63949
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -171,6 +171,7 @@
 2600:3c0f:48::/47
 2600:3c0f:4::/48
 2600:3c0f:50::/46
+2600:3c0f:55::/48
 2600:3c0f:56::/47
 2600:3c0f:6::/47
 2600:3c0f:9::/48
