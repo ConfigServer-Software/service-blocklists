@@ -5,7 +5,7 @@
 #   @source         https://blocklist.configserver.dev/threats/rdp_365d.ipset
 #   @id             threats_rdp_365d_ipset
 #   @uuid           8b76c6eb-c1b2-3f88-bf5b-6dc0ab33464f
-#   @updated        Tue Jul 28 21:08:23 UTC 2026
+#   @updated        Wed Jul 29 01:35:29 UTC 2026
 #   @entries        16,541 ips
 #                   1,127 subnets
 #                   13,689 lines
