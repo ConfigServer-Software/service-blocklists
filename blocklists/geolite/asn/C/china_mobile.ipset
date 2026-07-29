@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_C_china_mobile_ipset
 #   @uuid           56cc5075-d782-36af-b19c-7b8218f86b1b
-#   @updated        Tue Jul 28 05:19:08 UTC 2026
-#   @entries        32,102,082 ips
-#                   7,606 subnets
-#                   7,606 lines
+#   @updated        Wed Jul 29 05:31:42 UTC 2026
+#   @entries        32,102,084 ips
+#                   7,608 subnets
+#                   7,608 lines
 #   @asn            AS9808, AS134810, AS131486, AS131516, AS135629
 #                   AS137718, AS58453, AS58807, AS10212, AS132510
 #                   AS56048, AS209141, AS56040, AS56046, AS56041
@@ -4382,6 +4382,8 @@
 2402:4f00:f800::/37
 2402:9a80::/32
 2403:b400::/32
+2404:c2c0:111::/48
+2404:c2c0:112::/48
 2404:c2c0:240::/44
 2404:c2c0:280::/44
 2404:c2c0:2c0::/44

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Jul 28 05:15:38 UTC 2026
-#   @entries        16,599 ips
-#                   142 subnets
-#                   142 lines
+#   @updated        Wed Jul 29 05:28:09 UTC 2026
+#   @entries        15,319 ips
+#                   140 subnets
+#                   140 lines
 #   @country        Anguilla (AI)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -20,8 +20,6 @@
 45.134.78.0/24
 45.138.10.44/30
 67.215.79.54/31
-69.57.234.0/24
-69.57.248.0/22
 76.76.176.0/20
 104.28.8.13/32
 104.28.8.14/31
