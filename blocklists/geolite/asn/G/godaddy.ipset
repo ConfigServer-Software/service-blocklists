@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_G_godaddy_ipset
 #   @uuid           2a083bb4-f957-3c40-990e-7c5a575cbf0b
-#   @updated        Thu Jul 30 05:14:51 UTC 2026
-#   @entries        1,124,158 ips
-#                   719 subnets
-#                   719 lines
+#   @updated        Fri Jul 31 05:42:09 UTC 2026
+#   @entries        1,124,159 ips
+#                   720 subnets
+#                   720 lines
 #   @asn            AS26496, AS20773, AS398101, AS400754, AS398105
 #                   AS397514, AS397518, AS397519, AS398109, AS397515
 #                   AS397521, AS398788, AS398106, AS397516, AS398104
@@ -698,6 +698,7 @@
 2603:4:1504::/48
 2603:5:2100::/40
 2603:5:2200::/40
+2607:f208:7003::/48
 2607:f208:d000::/43
 2607:f208:d200::/43
 2607:f208:d310::/44

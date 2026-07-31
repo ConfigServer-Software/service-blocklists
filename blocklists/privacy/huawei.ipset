@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_huawei_ipset
 #   @uuid           82f556dc-6e0f-353a-96ad-f52cf6d4a25a
-#   @updated        Thu Jul 30 04:48:09 UTC 2026
-#   @entries        3,873,295 ips
-#                   207 subnets
-#                   207 lines
+#   @updated        Fri Jul 31 05:14:59 UTC 2026
+#   @entries        3,874,319 ips
+#                   205 subnets
+#                   205 lines
 #   @asn            AS55990, AS136907, AS131444, AS141180, AS206204
 #                   AS206798, AS265443
 #   @expires        4 hours
@@ -54,9 +54,7 @@
 101.44.0.0/16
 101.46.0.0/16
 101.245.0.0/17
-101.245.128.0/20
-101.245.144.0/22
-101.245.152.0/21
+101.245.128.0/19
 101.245.160.0/20
 103.31.200.0/22
 103.40.100.0/22
