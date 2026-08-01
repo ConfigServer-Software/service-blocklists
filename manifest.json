@@ -1,9 +1,9 @@
 {
   "name": "ConfigServer Blocklists",
-  "version": "1.1.0",
+  "version": "",
   "author": "Aetherinox",
   "description": "IPSET Blocklist service.",
   "url": "https://github.com/ConfigServerApps/service-blocklists",
-  "last_update": "07.31.2026 05:49:58",
-  "last_update_ts": "1785476998"
+  "last_update": "08.01.2026 02:03:48",
+  "last_update_ts": "1785549828"
 }
