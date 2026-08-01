@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_twitter_x_ipset
 #   @uuid           91063083-a070-366f-9e33-fc5c7619e8a2
-#   @updated        Fri Jul 31 05:20:04 UTC 2026
-#   @entries        49,155 ips
-#                   20 subnets
-#                   20 lines
+#   @updated        Sat Aug 01 05:08:20 UTC 2026
+#   @entries        49,156 ips
+#                   21 subnets
+#                   21 lines
 #   @asn            AS13414, AS63179, AS35995, AS54888
 #   @expires        4 hours
 #   @category       Uncategorized
@@ -35,4 +35,5 @@
 209.237.192.0/19
 2400:6680::/32
 2606:1f80::/32
+2606:ec80:10::/44
 2a04:9d40::/29

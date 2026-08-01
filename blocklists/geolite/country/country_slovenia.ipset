@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 31 05:39:12 UTC 2026
-#   @entries        2,645,842 ips
-#                   1,483 subnets
-#                   1,483 lines
+#   @updated        Sat Aug  1 05:35:47 UTC 2026
+#   @entries        2,645,835 ips
+#                   1,481 subnets
+#                   1,481 lines
 #   @country        Slovenia (SI)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -34,9 +34,6 @@
 5.134.208.132/31
 5.134.208.146/32
 5.157.72.0/21
-5.182.129.26/31
-5.182.130.60/30
-5.182.131.26/31
 31.7.192.0/19
 31.15.128.0/17
 31.43.162.0/24
@@ -1493,6 +1490,7 @@
 2a11:d580::/29
 2a12:ae80::/29
 2a12:f0c0::/29
+2a13:240:5a00::/40
 2a13:3280::/29
 2a13:6b40::/29
 2a13:f400::/29

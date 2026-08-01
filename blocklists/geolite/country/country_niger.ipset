@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Jul 31 05:38:54 UTC 2026
-#   @entries        54,273 ips
+#   @updated        Sat Aug  1 05:35:29 UTC 2026
+#   @entries        54,017 ips
 #                   128 subnets
 #                   128 lines
 #   @country        Niger (NE)
@@ -85,7 +85,7 @@
 197.214.32.0/20
 197.214.48.0/21
 197.214.57.0/24
-197.214.58.0/23
+197.214.59.0/24
 197.214.60.0/22
 198.54.100.94/31
 216.234.218.0/23
