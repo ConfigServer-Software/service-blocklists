@@ -1193,7 +1193,7 @@ jobs:
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/webclient.ipset
 
                   curl -sSL "https://iplists.firehol.org/files/firehol_webserver.netset" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/webservert.ipset
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/webserver.ipset
 
                   curl -sSL "https://iplists.firehol.org/files/greensnow.ipset" \
                     | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/firehol/greensnow.ipset
