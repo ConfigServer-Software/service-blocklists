@@ -1370,7 +1370,7 @@ jobs:
                   # #
 
                   curl -sSL "${{ vars.BL_3PARTY_SEKURIPY_SSH_L1 }}" \
-                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/sekuripy/ssh-bruteforce-attackers.ipset
+                    | CFG_SKIP_BOGON_FILTER=true CFG_TRUSTED_INPUT=true .github/scripts/bl-format.sh blocklists/3rdparty/sekuripy/ssh_bruteforce_attackers.ipset
 
                   # #
                   #   3rd Party › Sentinel Turris
