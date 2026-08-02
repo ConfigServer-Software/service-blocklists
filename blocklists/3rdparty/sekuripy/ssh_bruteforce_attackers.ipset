@@ -2,34 +2,79 @@
 #   🧱 Firewall Blocklist - blocklists/3rdparty/sekuripy/ssh_bruteforce_attackers.ipset
 #
 #   @blocklist      https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/3rdparty/sekuripy/ssh_bruteforce_attackers.ipset
-#   @source         https://www.sekuripy.hr/blacklist.txt
+#   @source         https://blocklist.configserver.dev/
 #   @id             3rdparty_sekuripy_ssh_bruteforce_attackers_ipset
 #   @uuid           182ec471-cf4b-33e8-abfc-ec6e38dec938
-#   @updated        Sun Aug 02 17:01:50 UTC 2026
-#   @entries        0 ips
+#   @updated        Sun Aug 02 20:58:56 UTC 2026
+#   @entries        63 ips
 #                   0 subnets
-#                   0 lines
+#                   63 lines
 #   @expires        4 hours
-#   @category       3rdParty
+#   @category       Uncategorized
 #
-#   Sekuripy › SSH Bruteforce Attackers
-#   
-#   This blocklist contains IP addresses identified through SSH authentication
-#   logs as sources of brute-force login attempts against exposed services.
-#   
-#   It is maintained by the same author as the IPSUM blocklist project and is
-#   intended to help mitigate repeated SSH password-guessing attacks.
-#   
-#   IPs in this list are derived from observed authentication failures and
-#   malicious login patterns targeting SSH endpoints.
-#   
-#   This third-party blocklist is not maintained by ConfigServer; IPs are
-#   sourced externally and not curated by us. We do however, validate the
-#   blocklist to ensure that it only contains properly validated IP addresses,
-#   and does not include any non-relevant or malformed data beyond the scope
-#   of the source.
-#   
-#   Use at the administrator’s discretion based on risk tolerance and
-#   environment requirements.
+#   No description provided
 # #
 
+2.57.121.25
+2.57.121.112
+14.98.67.210
+36.105.164.126
+39.117.79.36
+41.204.63.118
+43.134.49.202
+45.148.10.141
+45.148.10.147
+45.148.10.151
+45.148.10.152
+45.148.10.157
+45.156.87.13
+45.164.168.10
+47.83.159.53
+77.87.40.114
+77.90.185.20
+77.239.126.9
+79.104.0.82
+80.94.92.179
+81.177.141.233
+83.168.107.5
+85.121.215.128
+85.198.21.237
+91.92.42.10
+91.92.42.147
+91.92.47.90
+92.118.39.50
+92.118.39.77
+95.90.13.168
+96.78.175.36
+97.93.43.157
+103.109.186.231
+103.125.103.201
+103.143.239.167
+103.189.234.9
+103.193.179.139
+103.237.144.204
+120.52.18.19
+141.95.162.162
+145.239.89.124
+150.136.214.177
+156.239.224.104
+157.10.182.14
+157.15.67.253
+157.230.239.134
+160.30.125.124
+160.187.174.22
+163.7.13.17
+171.25.158.47
+171.25.158.74
+173.231.200.81
+173.249.52.138
+176.53.159.197
+176.53.159.198
+187.110.238.50
+192.129.135.51
+193.32.162.15
+193.46.255.86
+195.178.110.137
+199.195.254.215
+213.230.111.14
+218.51.148.194
