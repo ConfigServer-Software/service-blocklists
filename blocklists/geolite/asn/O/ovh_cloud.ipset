@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_O_ovh_cloud_ipset
 #   @uuid           b6225dd3-1528-328a-a810-54321ef559ee
-#   @updated        Mon Aug 03 05:37:50 UTC 2026
-#   @entries        4,725,514 ips
-#                   611 subnets
-#                   611 lines
+#   @updated        Tue Aug 04 05:48:10 UTC 2026
+#   @entries        4,725,770 ips
+#                   612 subnets
+#                   612 lines
 #   @asn            AS16276, AS35540
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -469,6 +469,7 @@
 178.32.0.0/15
 178.83.45.0/24
 178.83.46.0/24
+178.92.111.0/24
 178.92.120.0/24
 178.93.247.0/24
 178.95.83.0/24
