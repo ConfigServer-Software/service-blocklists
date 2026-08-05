@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Aug  4 05:43:31 UTC 2026
-#   @entries        72,718 ips
-#                   359 subnets
-#                   359 lines
+#   @updated        Wed Aug  5 05:39:25 UTC 2026
+#   @entries        72,726 ips
+#                   360 subnets
+#                   360 lines
 #   @country        Andorra (AD)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -109,6 +109,7 @@
 130.41.146.32/27
 130.41.152.96/27
 130.41.179.128/27
+134.82.75.160/29
 134.231.140.0/26
 134.238.59.64/26
 134.238.59.128/25

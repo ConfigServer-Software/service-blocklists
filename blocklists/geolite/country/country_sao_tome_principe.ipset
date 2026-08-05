@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Aug  4 05:44:54 UTC 2026
-#   @entries        14,257 ips
-#                   114 subnets
-#                   114 lines
+#   @updated        Wed Aug  5 05:40:43 UTC 2026
+#   @entries        14,001 ips
+#                   113 subnets
+#                   113 lines
 #   @country        Sao Tome Principe (ST)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -18,7 +18,6 @@
 
 102.202.92.0/22
 102.206.44.0/22
-103.204.122.0/24
 104.28.13.46/31
 104.28.13.48/32
 104.28.21.211/32

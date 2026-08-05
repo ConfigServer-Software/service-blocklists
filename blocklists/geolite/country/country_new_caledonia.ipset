@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Aug  4 05:44:33 UTC 2026
-#   @entries        147,200 ips
-#                   176 subnets
-#                   176 lines
+#   @updated        Wed Aug  5 05:40:23 UTC 2026
+#   @entries        147,219 ips
+#                   180 subnets
+#                   180 lines
 #   @country        New Caledonia (NC)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -83,6 +83,7 @@
 172.69.47.0/24
 172.225.60.64/28
 172.225.63.192/27
+172.225.175.128/28
 172.225.231.224/28
 172.225.244.96/28
 172.225.254.32/28
@@ -143,6 +144,9 @@
 2a02:26f7:fb80:4000::/64
 2a02:26f7:fb80:c5e0::/64
 2a02:26f7:fb81:4000::/64
+2a02:26f7:fb82:4000::/64
+2a02:26f7:fb82:c5e0::/64
+2a02:26f7:fb83:4000::/64
 2a02:26f7:fb84:4000::/64
 2a02:26f7:fb84:c5e0::/64
 2a02:26f7:fb85:4000::/64

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Aug  4 05:44:56 UTC 2026
-#   @entries        3,783 ips
-#                   96 subnets
-#                   96 lines
+#   @updated        Wed Aug  5 05:40:44 UTC 2026
+#   @entries        3,802 ips
+#                   100 subnets
+#                   100 lines
 #   @country        Tokelau (TK)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -42,6 +42,7 @@
 162.120.204.60/32
 162.120.216.148/32
 172.225.62.128/27
+172.225.157.16/28
 172.225.231.64/28
 172.225.241.96/27
 172.225.245.0/28
@@ -86,6 +87,9 @@
 2a02:26f7:f2c4:4000::/64
 2a02:26f7:f2c4:c880::/64
 2a02:26f7:f2c5:4000::/64
+2a02:26f7:f2c6:4000::/64
+2a02:26f7:f2c6:c880::/64
+2a02:26f7:f2c7:4000::/64
 2a02:26f7:f2c8:4000::/64
 2a02:26f7:f2c8:c880::/64
 2a02:26f7:f2c9:4000::/64
