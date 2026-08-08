@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug  7 05:08:15 UTC 2026
-#   @entries        2,357,290 ips
-#                   886 subnets
-#                   886 lines
+#   @updated        Sat Aug  8 03:55:10 UTC 2026
+#   @entries        2,357,034 ips
+#                   885 subnets
+#                   885 lines
 #   @country        Costa Rica (CR)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -259,7 +259,6 @@
 153.51.248.0/24
 153.67.126.0/23
 153.72.182.192/26
-154.6.175.0/24
 154.197.77.0/24
 156.246.165.0/24
 157.167.11.0/24

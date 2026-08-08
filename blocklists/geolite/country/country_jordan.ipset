@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug  7 05:08:48 UTC 2026
-#   @entries        662,262 ips
-#                   579 subnets
-#                   579 lines
+#   @updated        Sat Aug  8 03:55:43 UTC 2026
+#   @entries        662,518 ips
+#                   580 subnets
+#                   580 lines
 #   @country        Jordan (JO)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -303,6 +303,7 @@
 176.57.0.0/19
 176.57.51.0/24
 176.57.52.0/23
+176.57.54.0/24
 176.57.56.0/23
 176.57.60.0/23
 176.57.62.0/24
