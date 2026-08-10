@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_I_inmotion_hosting_ipset
 #   @uuid           536ccdab-2a4d-395e-9cec-686cab340890
-#   @updated        Sun Aug 09 04:07:16 UTC 2026
-#   @entries        40,705 ips
-#                   34 subnets
-#                   34 lines
+#   @updated        Mon Aug 10 04:15:51 UTC 2026
+#   @entries        39,681 ips
+#                   33 subnets
+#                   33 lines
 #   @asn            AS54641
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -41,7 +41,6 @@
 199.223.114.0/23
 199.250.192.0/20
 199.250.216.0/21
-200.225.32.0/22
 200.225.40.0/22
 209.182.196.0/24
 209.182.198.0/23
