@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             isp_sprint_ipset
 #   @uuid           2bdab4b3-4e73-39a5-887f-d74798d7c94e
-#   @updated        Tue Aug 11 03:57:22 UTC 2026
-#   @entries        10,761,119 ips
-#                   685 subnets
-#                   685 lines
+#   @updated        Wed Aug 12 04:07:00 UTC 2026
+#   @entries        10,761,631 ips
+#                   686 subnets
+#                   686 lines
 #   @asn            AS1239, AS7421, AS1802, AS150389, AS3643
 #                   AS1790, AS1803, AS1806, AS6177, AS1791
 #                   AS1794, AS1799, AS1793, AS1805, AS4999
@@ -359,6 +359,7 @@
 156.242.32.0/19
 156.242.64.0/19
 156.251.112.0/20
+157.254.154.0/23
 157.254.156.0/22
 157.254.160.0/21
 157.254.192.0/20

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Aug 11 04:07:28 UTC 2026
-#   @entries        54,882 ips
-#                   242 subnets
-#                   242 lines
+#   @updated        Wed Aug 12 04:16:34 UTC 2026
+#   @entries        55,395 ips
+#                   244 subnets
+#                   244 lines
 #   @country        Bhutan (BT)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -134,6 +134,7 @@
 172.225.218.128/28
 172.226.156.96/27
 173.239.196.16/28
+179.65.114.0/23
 185.112.134.4/32
 187.15.129.0/24
 194.50.99.33/32
@@ -193,6 +194,7 @@
 2405:d000::/32
 2405:ec00::/31
 2406:2d40:a300::/40
+2406:2d40:d500::/40
 2407:5040::/32
 2606:54c0:fd8::/45
 2606:54c3:0:12e8::/64

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Aug 11 04:08:38 UTC 2026
-#   @entries        16,408 ips
-#                   127 subnets
-#                   127 lines
+#   @updated        Wed Aug 12 04:17:42 UTC 2026
+#   @entries        17,176 ips
+#                   129 subnets
+#                   129 lines
 #   @country        Turks Caicos Islands (TC)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -76,6 +76,8 @@
 208.138.41.0/24
 208.138.44.0/24
 208.169.70.0/23
+208.169.72.0/24
+208.169.78.0/23
 209.236.48.0/22
 209.236.52.0/23
 2001:470:24:126::/64

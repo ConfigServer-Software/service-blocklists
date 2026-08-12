@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Aug 11 04:08:38 UTC 2026
-#   @entries        60,175 ips
-#                   144 subnets
-#                   144 lines
+#   @updated        Wed Aug 12 04:17:42 UTC 2026
+#   @entries        59,919 ips
+#                   143 subnets
+#                   143 lines
 #   @country        Eswatini (SZ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -79,7 +79,6 @@
 172.225.179.0/28
 172.225.197.48/28
 194.50.99.214/32
-196.8.228.0/24
 196.11.124.0/24
 196.13.168.0/24
 196.26.86.0/24
