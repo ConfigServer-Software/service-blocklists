@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug 14 04:24:38 UTC 2026
-#   @entries        391,450 ips
-#                   150 subnets
-#                   150 lines
+#   @updated        Sat Aug 15 03:10:28 UTC 2026
+#   @entries        390,426 ips
+#                   149 subnets
+#                   149 lines
 #   @country        Gabon (GA)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -25,7 +25,6 @@
 66.102.36.64/26
 74.118.126.68/30
 102.129.32.0/22
-102.134.28.0/22
 102.142.0.0/17
 102.142.128.0/18
 102.142.192.0/19

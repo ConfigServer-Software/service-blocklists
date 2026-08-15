@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug 14 04:24:45 UTC 2026
-#   @entries        2,472,045 ips
+#   @updated        Sat Aug 15 03:10:35 UTC 2026
+#   @entries        2,471,533 ips
 #                   1,098 subnets
 #                   1,098 lines
 #   @country        Croatia (HR)
@@ -71,7 +71,7 @@
 34.103.159.120/29
 34.103.159.128/25
 34.103.224.0/24
-36.255.92.0/22
+36.255.92.0/23
 37.1.188.192/29
 37.48.232.0/21
 37.60.128.0/21
