@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/threats/sid_365d.ipset
 #   @id             threats_sip_365d_ipset
 #   @uuid           9faeb121-93a3-3c55-a91a-9347af267f38
-#   @updated        Sat Aug 15 12:26:51 UTC 2026
-#   @entries        8,326 ips
+#   @updated        Sat Aug 15 16:24:56 UTC 2026
+#   @entries        8,327 ips
 #                   669 subnets
-#                   6,563 lines
+#                   6,564 lines
 #   @expires        4 hours
 #   @category       Threats
 #
@@ -2862,6 +2862,7 @@
 87.236.176.69
 87.236.176.70/31
 87.236.176.72/31
+87.236.176.75
 87.236.176.76/31
 87.236.176.79
 87.236.176.80
