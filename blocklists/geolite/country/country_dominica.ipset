@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Mon Aug 17 03:28:26 UTC 2026
+#   @updated        Wed Aug 19 03:21:06 UTC 2026
 #   @entries        22,145 ips
-#                   163 subnets
-#                   163 lines
+#                   164 subnets
+#                   164 lines
 #   @country        Dominica (DM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -108,7 +108,8 @@
 205.217.252.0/22
 206.53.141.0/24
 206.214.8.0/22
-206.214.12.0/23
+206.214.12.0/24
+206.214.14.0/24
 216.162.201.0/24
 2001:470:5:106::/64
 2001:470:24:963::/64

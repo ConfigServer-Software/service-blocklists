@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Mon Aug 17 03:28:41 UTC 2026
-#   @entries        43,649 ips
-#                   146 subnets
-#                   146 lines
+#   @updated        Wed Aug 19 03:21:20 UTC 2026
+#   @entries        43,665 ips
+#                   147 subnets
+#                   147 lines
 #   @country        Guinea (GN)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -27,6 +27,7 @@
 45.220.52.0/22
 63.246.45.64/26
 74.118.126.80/30
+80.88.139.80/28
 84.254.158.0/24
 92.122.186.0/24
 102.176.160.0/20

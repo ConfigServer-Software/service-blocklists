@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Mon Aug 17 03:28:53 UTC 2026
-#   @entries        12,253 ips
-#                   108 subnets
-#                   108 lines
+#   @updated        Wed Aug 19 03:21:31 UTC 2026
+#   @entries        12,261 ips
+#                   109 subnets
+#                   109 lines
 #   @country        Comoros (KM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -21,6 +21,7 @@
 41.194.33.0/24
 74.118.126.112/30
 79.135.105.72/30
+80.88.136.136/29
 102.202.32.0/22
 102.204.47.0/24
 102.207.176.0/22

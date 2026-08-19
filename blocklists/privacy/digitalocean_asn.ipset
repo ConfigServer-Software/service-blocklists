@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_digitalocean_asn_ipset
 #   @uuid           88a7ed54-ef75-32e3-a514-fdec31d77784
-#   @updated        Mon Aug 17 03:01:01 UTC 2026
-#   @entries        3,233,544 ips
-#                   146 subnets
-#                   146 lines
+#   @updated        Wed Aug 19 02:57:37 UTC 2026
+#   @entries        3,233,032 ips
+#                   144 subnets
+#                   144 lines
 #   @asn            AS14061, AS39690, AS62567, AS133165, AS135340
 #                   AS200130, AS201229, AS202018, AS202109, AS205301
 #                   AS393406, AS394362
@@ -28,13 +28,11 @@
 24.199.64.0/18
 31.56.191.0/24
 31.57.104.0/24
-31.77.119.0/24
 37.139.0.0/19
 40.27.56.0/24
 44.30.43.0/24
 45.55.0.0/16
 46.101.0.0/16
-62.182.191.0/24
 64.16.235.0/24
 64.23.128.0/17
 64.204.38.0/24

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Mon Aug 17 03:28:58 UTC 2026
-#   @entries        188,878 ips
-#                   491 subnets
-#                   491 lines
+#   @updated        Wed Aug 19 03:21:36 UTC 2026
+#   @entries        189,390 ips
+#                   492 subnets
+#                   492 lines
 #   @country        Mongolia (MN)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -177,6 +177,7 @@
 158.173.246.224/27
 160.22.210.0/23
 160.187.40.0/23
+160.236.248.0/23
 160.250.66.0/24
 161.248.104.0/24
 161.248.142.0/23
