@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_luxembourg.ipset
 #
 #   @repo           https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/country/country_luxembourg.ipset
-#   @service        None
+#   @service        
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Wed Aug 19 03:21:34 UTC 2026
+#   @updated        Thu Aug 20 03:23:45 UTC 2026
 #   @entries        1,412,653 ips
 #                   2,000 subnets
 #                   2,000 lines

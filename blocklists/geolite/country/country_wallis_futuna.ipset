@@ -5,7 +5,7 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Wed Aug 19 03:22:27 UTC 2026
+#   @updated        Thu Aug 20 03:24:23 UTC 2026
 #   @entries        4,271 ips
 #                   90 subnets
 #                   90 lines
@@ -13,7 +13,7 @@
 #   @expires        6 hours
 #   @category       Uncategorized
 #
-#   No description provided
+
 # #
 
 5.175.190.160/29
