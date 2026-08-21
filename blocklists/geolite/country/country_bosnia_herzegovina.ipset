@@ -2,10 +2,10 @@
 #   🧱 Firewall Blocklist - blocklists/geolite/country/country_bosnia_herzegovina.ipset
 #
 #   @repo           https://raw.githubusercontent.com/ConfigServerApps/service-blocklists/main/blocklists/geolite/country/country_bosnia_herzegovina.ipset
-#   @service        
+#   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Thu Aug 20 03:23:10 UTC 2026
+#   @updated        Fri Aug 21 03:40:13 UTC 2026
 #   @entries        824,455 ips
 #                   448 subnets
 #                   448 lines
