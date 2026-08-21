@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             3rdparty_sekuripy_ssh_bruteforce_attackers_ipset
 #   @uuid           182ec471-cf4b-33e8-abfc-ec6e38dec938
-#   @updated        Fri Aug 21 00:57:08 UTC 2026
-#   @entries        131 ips
+#   @updated        Fri Aug 21 04:46:55 UTC 2026
+#   @entries        133 ips
 #                   0 subnets
-#                   131 lines
+#                   133 lines
 #   @expires        4 hours
 #   @category       Uncategorized
 #
@@ -97,6 +97,7 @@
 111.238.174.6
 113.53.83.123
 113.105.114.208
+113.161.222.150
 114.218.57.21
 115.190.225.133
 120.48.52.177
@@ -137,6 +138,7 @@
 197.153.57.103
 197.248.207.138
 200.175.61.207
+200.219.200.16
 201.63.223.140
 201.71.192.108
 202.145.0.61
