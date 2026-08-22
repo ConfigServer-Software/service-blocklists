@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug 21 03:40:52 UTC 2026
-#   @entries        1,363,539 ips
-#                   2,775 subnets
-#                   2,775 lines
+#   @updated        Sat Aug 22 03:23:50 UTC 2026
+#   @entries        1,363,283 ips
+#                   2,774 subnets
+#                   2,774 lines
 #   @country        Republic Moldova (MD)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -125,7 +125,6 @@
 77.246.242.0/24
 79.140.160.0/20
 79.170.224.0/21
-80.66.79.0/24
 80.71.157.0/24
 80.91.210.0/24
 80.94.240.0/20

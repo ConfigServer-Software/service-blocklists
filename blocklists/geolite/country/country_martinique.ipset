@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug 21 03:40:53 UTC 2026
-#   @entries        240,082 ips
-#                   260 subnets
-#                   260 lines
+#   @updated        Sat Aug 22 03:23:51 UTC 2026
+#   @entries        240,083 ips
+#                   261 subnets
+#                   261 lines
 #   @country        Martinique (MQ)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -276,3 +276,4 @@
 2a09:bac5:4968::/45
 2a09:bac6:4968::/45
 2a0b:4e07:3:4740::/60
+2a0c:b641:b40::/44

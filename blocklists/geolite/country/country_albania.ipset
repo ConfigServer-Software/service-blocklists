@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug 21 03:40:10 UTC 2026
-#   @entries        352,035 ips
-#                   1,489 subnets
-#                   1,489 lines
+#   @updated        Sat Aug 22 03:22:56 UTC 2026
+#   @entries        351,778 ips
+#                   1,487 subnets
+#                   1,487 lines
 #   @country        Albania (AL)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -77,7 +77,6 @@
 80.79.13.0/24
 80.90.80.0/20
 80.91.112.0/20
-80.246.28.0/24
 81.26.200.0/21
 82.21.191.0/24
 82.22.190.0/24
@@ -1483,8 +1482,7 @@
 2a13:c8c4:c000::/35
 2a13:c8c4:e000::/36
 2a13:c8c4:f000::/40
-2a13:c8c4:f101::/48
-2a13:c8c4:f102::/47
+2a13:c8c4:f103::/48
 2a13:c8c4:f104::/46
 2a13:c8c4:f108::/45
 2a13:c8c4:f110::/44

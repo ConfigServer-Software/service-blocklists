@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug 21 03:40:10 UTC 2026
-#   @entries        608,269 ips
-#                   778 subnets
-#                   778 lines
+#   @updated        Sat Aug 22 03:22:57 UTC 2026
+#   @entries        608,268 ips
+#                   777 subnets
+#                   777 lines
 #   @country        Armenia (AM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -712,7 +712,6 @@
 2a07:ce00::/29
 2a07:d887:600::/40
 2a09:1500:7000::/40
-2a09:1501::/48
 2a09:a702:56::/47
 2a09:a702:98::/47
 2a09:bac0:1000:878::/64

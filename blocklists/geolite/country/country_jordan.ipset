@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug 21 03:40:47 UTC 2026
-#   @entries        662,081 ips
+#   @updated        Sat Aug 22 03:23:44 UTC 2026
+#   @entries        662,337 ips
 #                   657 subnets
 #                   657 lines
 #   @country        Jordan (JO)
@@ -16,7 +16,7 @@
 #   No description provided
 # #
 
-1.179.89.0/24
+1.179.88.0/23
 1.179.94.0/24
 2.17.24.0/22
 2.59.53.0/24

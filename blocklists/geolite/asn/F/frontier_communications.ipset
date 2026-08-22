@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_F_frontier_communications_ipset
 #   @uuid           4191dccb-8394-3b14-ba7d-086c4f992acf
-#   @updated        Fri Aug 21 03:43:40 UTC 2026
-#   @entries        10,838,477 ips
-#                   10,210 subnets
-#                   10,210 lines
+#   @updated        Sat Aug 22 03:27:19 UTC 2026
+#   @entries        10,838,221 ips
+#                   10,209 subnets
+#                   10,209 lines
 #   @asn            AS5650, AS7011, AS3593, AS26127, AS32587
 #                   AS30064
 #   @expires        6 hours
@@ -85,7 +85,6 @@
 45.151.196.0/22
 45.157.72.0/23
 46.20.96.0/24
-46.20.102.0/24
 46.20.216.0/21
 46.203.160.0/24
 46.203.164.0/24

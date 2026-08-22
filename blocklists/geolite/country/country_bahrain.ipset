@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug 21 03:40:15 UTC 2026
-#   @entries        923,353 ips
-#                   444 subnets
-#                   444 lines
+#   @updated        Sat Aug 22 03:23:02 UTC 2026
+#   @entries        923,349 ips
+#                   443 subnets
+#                   443 lines
 #   @country        Bahrain (BH)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -259,7 +259,6 @@
 193.188.96.0/19
 194.33.28.0/24
 194.50.99.23/32
-195.219.152.128/30
 195.242.243.0/24
 196.48.44.0/24
 196.56.44.0/24

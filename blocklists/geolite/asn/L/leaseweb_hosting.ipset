@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_L_leaseweb_hosting_ipset
 #   @uuid           a5863bd6-36ed-3c07-933e-4e3fe79daa37
-#   @updated        Fri Aug 21 03:43:52 UTC 2026
-#   @entries        413,130 ips
-#                   510 subnets
-#                   510 lines
+#   @updated        Sat Aug 22 03:27:33 UTC 2026
+#   @entries        412,618 ips
+#                   509 subnets
+#                   509 lines
 #   @asn            AS60781
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -169,7 +169,6 @@
 103.229.29.0/24
 103.229.30.0/23
 109.70.9.0/24
-109.70.10.0/23
 109.70.12.0/22
 109.70.73.0/24
 109.176.21.0/24

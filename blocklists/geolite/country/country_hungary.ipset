@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug 21 03:40:43 UTC 2026
-#   @entries        5,973,769 ips
-#                   2,832 subnets
-#                   2,832 lines
+#   @updated        Sat Aug 22 03:23:38 UTC 2026
+#   @entries        5,973,752 ips
+#                   2,829 subnets
+#                   2,829 lines
 #   @country        Hungary (HU)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -965,8 +965,6 @@
 155.2.174.112/29
 155.2.217.0/24
 155.117.103.0/24
-156.109.34.32/29
-156.109.34.104/29
 156.109.248.64/28
 157.22.26.0/24
 157.167.66.0/24
@@ -2433,7 +2431,6 @@
 2606:f4c0:2050::/44
 2606:f4c0:b3f0::/44
 2606:f4c0:ba00::/44
-2620:132:f541::/48
 2620:171:9c::/48
 2a00:ca0:2050:4000::/52
 2a00:ca0:2051:8000::/50
