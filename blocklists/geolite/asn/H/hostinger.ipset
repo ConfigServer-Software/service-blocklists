@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_H_hostinger_ipset
 #   @uuid           e07763a4-685e-3473-907b-becb39ce0880
-#   @updated        Sat Aug 22 03:27:27 UTC 2026
-#   @entries        1,241,117 ips
-#                   433 subnets
-#                   433 lines
+#   @updated        Sun Aug 23 03:40:32 UTC 2026
+#   @entries        1,242,141 ips
+#                   434 subnets
+#                   434 lines
 #   @asn            AS47583
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -23,6 +23,7 @@
 2.25.25.0/24
 2.25.64.0/19
 2.25.96.0/20
+2.25.112.0/22
 2.25.128.0/17
 2.57.88.0/22
 2.59.150.0/24
