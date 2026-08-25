@@ -5,10 +5,10 @@
 #   @source         https://ru.myip.ms/files/blacklist/general/full_blacklist_database.zip
 #   @id             3rdparty_myip_ms_blocklist_full_ipset
 #   @uuid           8dd28923-e1ef-3443-8b9a-0c9da1c2c2fb
-#   @updated        Tue Aug 25 04:43:58 UTC 2026
-#   @entries        209,851 ips
+#   @updated        Tue Aug 25 08:45:21 UTC 2026
+#   @entries        209,853 ips
 #                   7,083 subnets
-#                   194,578 lines
+#                   194,580 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
@@ -21738,6 +21738,7 @@
 20.151.73.211
 20.151.78.25
 20.151.90.195
+20.151.129.194
 20.151.249.134
 20.160.9.55
 20.160.244.240
@@ -129407,6 +129408,7 @@
 166.0.234.42
 166.1.13.193
 166.1.22.160
+166.1.89.7
 166.1.173.95
 166.48.152.11
 166.62.6.69
