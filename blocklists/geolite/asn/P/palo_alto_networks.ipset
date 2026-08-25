@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_P_palo_alto_networks_ipset
 #   @uuid           594d0beb-bea9-314d-8dc8-8c9d1e321ce0
-#   @updated        Mon Aug 24 03:39:10 UTC 2026
-#   @entries        14,340 ips
-#                   44 subnets
-#                   44 lines
+#   @updated        Tue Aug 25 03:33:02 UTC 2026
+#   @entries        14,084 ips
+#                   43 subnets
+#                   43 lines
 #   @asn            AS54538, AS64280, AS2763, AS396421
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -16,7 +16,6 @@
 #   Includes both IPv4 and IPv6 networks merged
 # #
 
-1.7.225.0/24
 65.154.226.0/24
 65.155.30.0/24
 65.155.38.0/24
