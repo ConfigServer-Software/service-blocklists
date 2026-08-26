@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Aug 25 03:28:44 UTC 2026
-#   @entries        22,145 ips
+#   @updated        Wed Aug 26 03:33:47 UTC 2026
+#   @entries        22,273 ips
 #                   164 subnets
 #                   164 lines
 #   @country        Dominica (DM)
@@ -94,7 +94,7 @@
 199.189.112.0/22
 199.195.220.0/22
 205.217.237.0/24
-205.217.244.0/25
+205.217.244.0/24
 205.217.248.0/24
 205.217.249.0/25
 205.217.249.128/26

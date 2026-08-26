@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Aug 25 03:28:21 UTC 2026
-#   @entries        81,051 ips
-#                   694 subnets
-#                   694 lines
+#   @updated        Wed Aug 26 03:33:23 UTC 2026
+#   @entries        80,795 ips
+#                   685 subnets
+#                   685 lines
 #   @country        American Samoa (AS)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -78,15 +78,6 @@
 122.248.16.2/32
 122.248.132.0/24
 128.246.72.0/24
-129.192.196.0/29
-129.192.196.8/31
-129.192.196.11/32
-129.192.196.12/30
-129.192.196.16/28
-129.192.196.32/27
-129.192.196.64/26
-129.192.196.128/25
-129.192.198.12/32
 130.36.155.0/24
 137.71.230.0/24
 138.32.254.0/24

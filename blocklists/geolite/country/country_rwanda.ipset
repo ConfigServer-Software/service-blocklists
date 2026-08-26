@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Aug 25 03:29:30 UTC 2026
-#   @entries        321,144 ips
-#                   193 subnets
-#                   193 lines
+#   @updated        Wed Aug 26 03:34:37 UTC 2026
+#   @entries        322,168 ips
+#                   194 subnets
+#                   194 lines
 #   @country        Rwanda (RW)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -21,7 +21,8 @@
 41.138.80.0/21
 41.173.28.0/22
 41.173.32.0/22
-41.173.168.0/23
+41.173.168.0/22
+41.173.182.0/23
 41.173.248.0/21
 41.186.0.0/16
 41.197.0.0/16

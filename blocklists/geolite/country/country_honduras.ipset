@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Aug 25 03:29:01 UTC 2026
-#   @entries        494,439 ips
-#                   591 subnets
-#                   591 lines
+#   @updated        Wed Aug 26 03:34:05 UTC 2026
+#   @entries        494,695 ips
+#                   592 subnets
+#                   592 lines
 #   @country        Honduras (HN)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -302,6 +302,7 @@
 190.61.116.0/22
 190.83.2.0/23
 190.83.116.0/23
+190.83.118.0/24
 190.92.0.0/18
 190.92.64.0/19
 190.97.176.0/20
