@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug 28 13:41:33 UTC 2026
-#   @entries        221,694 ips
-#                   180 subnets
-#                   180 lines
+#   @updated        Sat Aug 29 08:52:46 UTC 2026
+#   @entries        221,696 ips
+#                   182 subnets
+#                   182 lines
 #   @country        Brunei Darussalam (BN)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -144,6 +144,7 @@
 2001:df6:1a80::/48
 2400:9400::/32
 2400:cb00:229::/48
+2401:3620:231:9::/64
 2404:8980::/32
 2405:1700::/32
 2405:2000:2e00::/64
@@ -195,4 +196,5 @@
 2a0e:4205:2000::/47
 2a0e:4205:2002::/48
 2a10:9007:5:1::/64
+2a13:241:900::/40
 2a14:67c2:8d1::/48

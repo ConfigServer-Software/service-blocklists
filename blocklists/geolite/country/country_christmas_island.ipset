@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug 28 13:41:43 UTC 2026
-#   @entries        82 ips
+#   @updated        Sat Aug 29 08:52:57 UTC 2026
+#   @entries        75 ips
 #                   70 subnets
 #                   70 lines
 #   @country        Christmas Island (CX)
@@ -18,7 +18,6 @@
 
 5.62.60.89/32
 5.62.60.90/31
-5.175.190.120/29
 45.138.10.24/30
 104.28.9.66/31
 104.28.9.68/32
@@ -67,6 +66,7 @@
 2001:470:fcbe::/48
 2001:470:fdd1::/48
 2001:470:fe69::/48
+2401:3620:231:3f::/64
 2600:70ff:a534::/48
 2600:70ff:a780::/48
 2600:70ff:a7bd::/48

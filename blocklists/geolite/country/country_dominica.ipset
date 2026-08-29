@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Aug 28 13:41:51 UTC 2026
-#   @entries        22,273 ips
-#                   164 subnets
-#                   164 lines
+#   @updated        Sat Aug 29 08:53:05 UTC 2026
+#   @entries        22,274 ips
+#                   165 subnets
+#                   165 lines
 #   @country        Dominica (DM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -128,6 +128,7 @@
 2001:504:63::/48
 2001:678:a50::/48
 2001:3786:5004:400::/56
+2401:3620:231:45::/64
 2602:fc3a::/36
 2604:8c80::/32
 2605:59ca:8d00::/40
