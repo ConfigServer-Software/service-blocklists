@@ -5,7 +5,7 @@
 #   @source         https://raw.githubusercontent.com/multiduplikator/mikrotik_blocklist/main/blocklist.txt
 #   @id             3rdparty_multiduplikator_blocklist_core_ipset
 #   @uuid           2e200f06-c3f2-3562-94ef-a10060105121
-#   @updated        Sat Aug 29 16:14:55 UTC 2026
+#   @updated        Sat Aug 29 19:22:08 UTC 2026
 #   @entries        18,522,416 ips
 #                   5,712 subnets
 #                   32,524 lines
