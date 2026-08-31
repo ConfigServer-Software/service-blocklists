@@ -5,10 +5,10 @@
 #   @source         None
 #   @id             geolite_asn_Y_youtube_ipset
 #   @uuid           6f48f734-5961-3162-bad0-431ba7efbbf4
-#   @updated        Sun Aug 30 07:40:43 UTC 2026
-#   @entries        139,314 ips
-#                   160 subnets
-#                   160 lines
+#   @updated        Mon Aug 31 07:59:56 UTC 2026
+#   @entries        139,570 ips
+#                   159 subnets
+#                   159 lines
 #   @asn            AS11344, AS43515, AS36561, AS1026, AS36040
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -47,8 +47,7 @@
 35.214.128.0/17
 50.151.212.0/23
 50.151.215.0/24
-50.151.216.0/23
-50.151.218.0/24
+50.151.216.0/22
 50.151.220.0/23
 50.151.223.0/24
 50.152.230.0/24
