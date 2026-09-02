@@ -5,8 +5,8 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Sep  1 07:11:59 UTC 2026
-#   @entries        2,196,559 ips
+#   @updated        Wed Sep  2 06:55:34 UTC 2026
+#   @entries        2,196,303 ips
 #                   1,817 subnets
 #                   1,817 lines
 #   @country        Latvia (LV)
@@ -1201,7 +1201,7 @@
 213.21.238.0/23
 213.21.241.0/24
 213.21.243.0/24
-213.21.244.0/23
+213.21.244.0/24
 213.21.247.0/24
 213.21.249.0/24
 213.21.255.0/24

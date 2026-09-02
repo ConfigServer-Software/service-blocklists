@@ -5,10 +5,10 @@
 #   @source         https://blocklist.configserver.dev/
 #   @id             privacy_contabo_gmbh_ipset
 #   @uuid           706e6a4a-2c19-365b-93e2-dee7f8d6b198
-#   @updated        Tue Sep 01 06:41:37 UTC 2026
-#   @entries        624,391 ips
-#                   291 subnets
-#                   291 lines
+#   @updated        Wed Sep 02 06:20:34 UTC 2026
+#   @entries        613,383 ips
+#                   285 subnets
+#                   285 lines
 #   @asn            AS51167
 #   @expires        4 hours
 #   @category       Uncategorized
@@ -288,12 +288,6 @@
 198.7.112.0/20
 207.180.192.0/18
 207.244.224.0/19
-209.126.0.0/20
-209.126.70.0/24
-209.126.77.0/24
-209.126.79.0/24
-209.126.80.0/21
-209.145.48.0/20
 212.47.64.0/20
 212.90.120.0/23
 213.109.76.0/23

@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Sep  1 07:12:12 UTC 2026
-#   @entries        1,833,928 ips
-#                   897 subnets
-#                   897 lines
+#   @updated        Wed Sep  2 06:55:47 UTC 2026
+#   @entries        1,834,953 ips
+#                   899 subnets
+#                   899 lines
 #   @country        Panama (PA)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -17,6 +17,7 @@
 # #
 
 2.57.225.36/31
+2.152.252.0/22
 5.145.169.88/30
 5.252.152.0/22
 8.242.240.0/22
@@ -146,6 +147,7 @@
 104.28.20.0/30
 104.28.20.4/31
 104.28.32.84/31
+104.28.32.91/32
 104.28.36.112/31
 104.28.91.95/32
 104.28.91.96/32

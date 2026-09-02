@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Sep  1 07:12:23 UTC 2026
-#   @entries        28,432 ips
-#                   149 subnets
-#                   149 lines
+#   @updated        Wed Sep  2 06:55:59 UTC 2026
+#   @entries        28,176 ips
+#                   148 subnets
+#                   148 lines
 #   @country        Turkmenistan (TM)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -94,7 +94,6 @@
 196.198.195.0/24
 196.199.195.0/24
 216.250.8.0/21
-217.8.117.0/24
 217.65.78.0/24
 217.138.10.0/25
 217.174.224.0/20

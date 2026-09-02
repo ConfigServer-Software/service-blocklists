@@ -5,10 +5,10 @@
 #   @source         https://raw.githubusercontent.com/duckduckgo/duckduckgo-help-pages/master/_docs/results/duckduckbot.md
 #   @id             privacy_duckduckgo_ipset
 #   @uuid           dc7c973c-d5dc-36f4-80d2-9d1296d45935
-#   @updated        Tue Sep 01 06:42:40 UTC 2026
-#   @entries        481 ips
+#   @updated        Wed Sep 02 06:21:52 UTC 2026
+#   @entries        486 ips
 #                   2 subnets
-#                   479 lines
+#                   484 lines
 #   @expires        6 hours
 #   @category       Privacy
 #
@@ -27,7 +27,10 @@
 #   your server.
 # #
 
+4.144.148.23
 4.144.182.50
+4.144.227.142
+4.144.251.39
 4.149.142.7
 4.149.159.71
 4.149.159.102
@@ -462,6 +465,7 @@
 132.196.106.146
 132.220.1.71
 134.33.207.189
+135.171.251.169
 135.233.63.237
 135.234.221.112
 135.235.183.95
@@ -492,6 +496,7 @@
 172.171.37.221
 172.179.105.87
 172.179.128.118
+172.188.250.220
 172.189.40.18
 172.193.184.42
 172.193.197.146

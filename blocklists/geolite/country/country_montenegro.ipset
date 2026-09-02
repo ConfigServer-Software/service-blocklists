@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Tue Sep  1 07:12:00 UTC 2026
-#   @entries        201,673 ips
-#                   244 subnets
-#                   244 lines
+#   @updated        Wed Sep  2 06:55:35 UTC 2026
+#   @entries        199,881 ips
+#                   237 subnets
+#                   237 lines
 #   @country        Montenegro (ME)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -107,14 +107,7 @@
 172.225.99.160/27
 172.225.227.80/28
 176.125.229.0/24
-177.177.213.0/24
-177.203.58.0/24
-179.66.186.0/24
-179.66.189.0/24
-179.236.42.0/24
-179.236.45.0/24
 179.252.218.0/24
-179.252.221.0/24
 181.215.138.80/28
 185.1.44.0/24
 185.12.40.0/22
