@@ -5,10 +5,10 @@
 #   @source         https://iplists.firehol.org/files/firehol_level1.netset
 #   @id             3rdparty_firehol_level1_ipset
 #   @uuid           24a6cf25-6e33-36a1-8828-a4a57e0cede2
-#   @updated        Thu Sep 03 08:38:39 UTC 2026
-#   @entries        611,189,697 ips
-#                   4,653 subnets
-#                   4,654 lines
+#   @updated        Thu Sep 03 15:39:27 UTC 2026
+#   @entries        611,189,953 ips
+#                   4,654 subnets
+#                   4,655 lines
 #   @expires        4 hours
 #   @category       3rdParty
 #
@@ -338,6 +338,7 @@
 64.92.224.0/20
 64.116.200.0/21
 64.250.144.0/20
+65.49.1.0/24
 65.166.249.0/24
 65.205.64.0/22
 65.216.208.0/21
@@ -395,7 +396,7 @@
 85.203.46.0/24
 85.208.212.0/22
 85.209.204.0/22
-85.217.149.0/24
+85.217.140.0/24
 85.217.216.0/22
 85.237.194.0/24
 86.54.25.0/24
