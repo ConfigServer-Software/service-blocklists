@@ -5,7 +5,7 @@
 #   @source         https://rules.emergingthreats.net/blockrules/compromised-ips.txt
 #   @id             3rdparty_emergingthreats_compromised_ipset
 #   @uuid           8d191a27-8d9e-3fef-a785-5a82541b07fe
-#   @updated        Sat Sep 05 11:40:36 UTC 2026
+#   @updated        Sat Sep 05 14:22:39 UTC 2026
 #   @entries        564 ips
 #                   2 subnets
 #                   562 lines
