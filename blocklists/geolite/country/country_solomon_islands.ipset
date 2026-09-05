@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Sep  4 06:57:02 UTC 2026
-#   @entries        17,329 ips
-#                   116 subnets
-#                   116 lines
+#   @updated        Sat Sep  5 06:42:32 UTC 2026
+#   @entries        17,333 ips
+#                   118 subnets
+#                   118 lines
 #   @country        Solomon Islands (SB)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -24,6 +24,8 @@
 103.21.230.0/23
 103.21.248.0/22
 103.89.36.0/24
+103.103.61.150/31
+103.103.61.152/31
 103.115.80.0/23
 103.140.178.0/23
 103.142.98.0/23

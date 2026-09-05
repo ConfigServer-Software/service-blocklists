@@ -5,10 +5,10 @@
 #   @service        None
 #   @id             countries
 #   @uuid           356cd7cf-d7e8-3e39-82d3-2b023280cac8
-#   @updated        Fri Sep  4 06:56:17 UTC 2026
-#   @entries        375,113 ips
-#                   175 subnets
-#                   175 lines
+#   @updated        Sat Sep  5 06:41:47 UTC 2026
+#   @entries        375,369 ips
+#                   176 subnets
+#                   176 lines
 #   @country        Ethiopia (ET)
 #   @expires        6 hours
 #   @category       Uncategorized
@@ -54,6 +54,7 @@
 104.28.220.16/30
 104.28.252.15/32
 104.28.252.16/30
+109.107.60.0/24
 140.248.36.106/31
 140.248.56.68/32
 140.248.57.68/32
